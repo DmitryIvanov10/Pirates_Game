@@ -4,6 +4,8 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsView>
 
+#include "Player.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);    
@@ -12,7 +14,7 @@ int main(int argc, char *argv[])
     QGraphicsScene * scene = new QGraphicsScene();
 
     // create an item to put into the scene
-    QGraphicsRectItem * rect = new QGraphicsRectItem();
+    Player * rect = new Player();
     rect->setRect(0,0,100,100);
 
     // add the item to the theme
@@ -20,6 +22,10 @@ int main(int argc, char *argv[])
 
     // add a view
     QGraphicsView * view = new QGraphicsView(scene);
+
+    //make item focus
+    rect->setFlag(QGraphicsItem::ItemIsFocusable);
+    rect->setFocus();
 
     view->show();
     return a.exec();

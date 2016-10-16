@@ -12,8 +12,10 @@ TARGET = Test
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    player.cpp
 
-HEADERS  +=
+HEADERS  += \
+    player.h
 
 FORMS    +=
