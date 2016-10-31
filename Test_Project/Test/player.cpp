@@ -10,7 +10,6 @@ Player::Player()
 void Player::keyPressEvent(QKeyEvent *event)
 {
     //choose the key which has been pressed and react
-    qDebug() << "haha";
     switch (event->key())
     {
         case Qt::Key_A:

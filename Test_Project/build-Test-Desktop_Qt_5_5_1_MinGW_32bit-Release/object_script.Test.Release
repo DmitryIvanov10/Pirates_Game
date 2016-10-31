@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\player.o
+./release\ship.o
+./release\npc.o
+./release\voronoi_point.o
+./release\city.o
+./release\wind.o
+./release\moc_ship.o
+./release\moc_city.o
+./release\moc_wind.o
+);

@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\player.o
+./debug\ship.o
+./debug\npc.o
+./debug\voronoi_point.o
+./debug\city.o
+./debug\wind.o
+./debug\moc_ship.o
+./debug\moc_city.o
+./debug\moc_wind.o
+);
