@@ -13,9 +13,19 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    player.cpp
+    player.cpp \
+    ship.cpp \
+    npc.cpp \
+    voronoi_point.cpp \
+    city.cpp \
+    wind.cpp
 
 HEADERS  += \
-    player.h
+    player.h \
+    ship.h \
+    npc.h \
+    voronoi_point.h \
+    city.h \
+    wind.h
 
 FORMS    +=
