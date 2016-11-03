@@ -1,8 +1,9 @@
 #ifndef VORONOI_POINT_H
 #define VORONOI_POINT_H
 
-#include <vector>
-#include <QDebug>
+//biblioteki
+#include <vector> //obsługa wektorów
+#include <QDebug> //obsługa konsoli Qt
 
 class Voronoi_point
 {

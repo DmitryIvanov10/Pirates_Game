@@ -1,9 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <QGraphicsRectItem>
-#include <QKeyEvent>
-#include <QDebug>
+//biblioteki
+#include <QGraphicsRectItem> //dziedziczenie itemu z grafik
+#include <QKeyEvent> //obługa klawiszy
+#include <QDebug> //obsługa konsoli Qt
 
 class Player: public QGraphicsRectItem
 {

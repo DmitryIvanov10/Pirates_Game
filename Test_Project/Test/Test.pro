@@ -18,7 +18,9 @@ SOURCES += main.cpp \
     npc.cpp \
     voronoi_point.cpp \
     city.cpp \
-    wind.cpp
+    wind.cpp \
+    game.cpp \
+    newgame.cpp
 
 HEADERS  += \
     player.h \
@@ -26,6 +28,8 @@ HEADERS  += \
     npc.h \
     voronoi_point.h \
     city.h \
-    wind.h
+    wind.h \
+    game.h \
+    newgame.h
 
 FORMS    +=

@@ -1,8 +1,10 @@
 #ifndef NPC_H
 #define NPC_H
 
+//pliki
 #include "ship.h"
-
+//biblioteki
+#include <cstdlib> //liczby losowe
 
 class NPC: Ship
 {
@@ -18,7 +20,6 @@ public:
     NPC();
 
     //funkcje dostępu
-    void find_angle (); //funkcja znajdująca kąt pod jakim statek powinien się ustawić
     void find_next (); //funkcja znajdująca kolejny wierzchołek voronoi
     short show_fraction(); //funkcja wyświetlająca frakcję jednostki
 };

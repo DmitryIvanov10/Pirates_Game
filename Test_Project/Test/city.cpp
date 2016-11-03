@@ -20,3 +20,13 @@ City::City(short a, short b, short c)
     fraction=b;
     id=c;
 }
+
+short City::show_fraction()
+{
+    return fraction;
+}
+
+float City::show_price(short a)
+{
+    return prices[a];
+}

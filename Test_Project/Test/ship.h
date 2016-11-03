@@ -1,8 +1,13 @@
 #ifndef SHIP_H
 #define SHIP_H
 
-#include <QObject>
-#include <vector>
+//biblioteki
+#include <QObject> //potrzebne do slotów i sygnałów
+#include <vector> //obsługa wektorów
+#include <math.h> //funkcje trygonometryczne
+
+//pliki
+#include "wind.h"
 
 class Ship: public QObject
 {
@@ -12,7 +17,7 @@ class Ship: public QObject
     //zmienne statku, ważne dla gry w widoku podróży
     short angle; //aktualny kąt o jaki statek jest obrócony
     short ship_model; //model statku
-    short ship_angle; //kąt obrotu obrazka ze statkiem
+    short ship_angle; //kąt obrotu obrazka ze statkiem, wartość pomiędzy [0,7]
     //zmienne zaopatrzenia, używane przy pojedynkach
     short health; //punkty zdrowia dla statku
     short crue; //ilość ludzi na statku
@@ -34,6 +39,8 @@ public:
     //fukncje dostępu
     double pos (bool i); //funckja zwracająca aktualną pozycję statku dla i=0 x, dla i=1 y
     void move(double x, double y); //prymitywna funkcja ruchu statku, raczej nie będzie używana, ale jest na potrzeby testów
+    void move(Wind *a); //pożądna funkcja przemieszczenia uwzględniają nachylenie statku, kąt i siłę wiatru
+    short find_angle(); //dobieranie kątu statku za pomocą zmiennej angle
 
 
 signals:

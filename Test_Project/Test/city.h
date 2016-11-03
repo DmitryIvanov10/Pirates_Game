@@ -1,8 +1,9 @@
 #ifndef CITY_H
 #define CITY_H
 
-#include <QObject>
-#include <vector>
+//biblioteki
+#include <QObject> //potrzebne do slotów i sygnałów
+#include <vector> //obsługa wektorów
 
 class City: QObject
 {
@@ -25,7 +26,7 @@ public:
     void change_fraction(short a); //funkcja zmiany frakcji
     short show_fraction(); //funkcja wyświetlania aktualnej frakcji
     void change_prices(); //funkcja losowej zmiany cen
-
+    float show_price(short a); //funkcja pokazująca cenę obiektu a
 
 signals:
 
