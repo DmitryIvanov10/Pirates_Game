@@ -7,7 +7,7 @@
 #include <QKeyEvent> //obługa klawiszy
 #include <QDebug> //obsługa konsoli Qt
 
-class Player: public QGraphicsRectItem, public QObject
+class Player: public QObject, public QGraphicsRectItem
 {
     Q_OBJECT
 

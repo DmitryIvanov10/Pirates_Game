@@ -5,9 +5,11 @@
 #include "ship.h"
 //biblioteki
 #include <cstdlib> //liczby losowe
+#include <QObject>
 
-class NPC: Ship
+class NPC: public QObject, Ship
 {
+    Q_OBJECT
 
     //zmienne typu short klasy NPC
     short fraction; //frakcja do której okręt należy
@@ -23,5 +25,10 @@ public:
     void find_next (); //funkcja znajdująca kolejny wierzchołek voronoi
     short show_fraction(); //funkcja wyświetlająca frakcję jednostki
 };
+
+signals:
+
+public slots:
+
 
 #endif // NPC_H
