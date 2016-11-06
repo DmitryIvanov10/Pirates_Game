@@ -10,6 +10,7 @@ Player::Player()
 void Player::keyPressEvent(QKeyEvent *event)
 {
     //choose the key which has been pressed and react
+    /*
     switch (event->key())
     {
         case Qt::Key_A:
@@ -29,6 +30,7 @@ void Player::keyPressEvent(QKeyEvent *event)
             setPos(x(),y()+10);
             break;
     }
+    */
 }
 
 void Player::move()

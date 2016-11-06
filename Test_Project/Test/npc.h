@@ -3,6 +3,7 @@
 
 //pliki
 #include "ship.h"
+
 //biblioteki
 #include <cstdlib> //liczby losowe
 #include <QObject>
