@@ -30,3 +30,8 @@ void Player::keyPressEvent(QKeyEvent *event)
             break;
     }
 }
+
+void Player::move()
+{
+    qDebug() << "dziala";
+}

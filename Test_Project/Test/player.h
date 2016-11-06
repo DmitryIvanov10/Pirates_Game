@@ -13,6 +13,13 @@ class Player: public QObject, public QGraphicsRectItem
 
 public:
     void keyPressEvent(QKeyEvent * event);
+
+public slots:
+    void move();
+
+signals:
+
+
 };
 
 #endif // PLAYER_H

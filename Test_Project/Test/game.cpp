@@ -19,6 +19,9 @@ Game::Game(QObject *parent) : QObject(parent)
     rect->setFlag(QGraphicsItem::ItemIsFocusable);
     rect->setFocus();
 
+    connect (timer, SIGNAL(timeout()), rect, SLOT(move()));
+    timer->start(17);
+
     view->show();
 }
 
