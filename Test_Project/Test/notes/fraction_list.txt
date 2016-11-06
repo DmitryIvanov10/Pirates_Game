@@ -1,0 +1,8 @@
+//list of all fractions
+
+0 null //debug value
+1 Great Britain
+2 Spain
+3 Portugal
+4 Netherland
+5 Wales

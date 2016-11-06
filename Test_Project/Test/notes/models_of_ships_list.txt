@@ -1,0 +1,13 @@
+//list of all models of ships
+
+0 null //debug value
+1 gnat
+2 runaboat
+3 whery
+4 slup
+5 couter
+6 brig
+7 caravel
+8 frigate
+9 ship of the line
+10 galleon

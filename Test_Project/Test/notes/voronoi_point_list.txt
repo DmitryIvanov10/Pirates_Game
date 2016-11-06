@@ -1,0 +1,1 @@
+//list of all voronoi points, segregate by id, and show x and y position

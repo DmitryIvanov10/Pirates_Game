@@ -22,7 +22,7 @@ void Ship::move(double x, double y)
 
 void Ship::move(Wind *a)
 {
-    double norm = abs((double)abs(a->show_angl() - angle) - 180); //do poprawy! norm powinno  być równe 1 dla angle=a->show_angl() i 0 dla wartości odległych o 180.
+    double norm = abs((double)abs(a->show_angl() - angle) - 180) / 359 + 0.5; //do poprawy! norm powinno  być równe 1 dla angle=a->show_angl() i 0 dla wartości odległych o 180.
     double shift = norm * ((double)a->show_str()/100); //to wymaga sprawdzenia, ma zwracać 1 jeśli kąt statku = kąt wiatru, a siła wiatru = 100
     X=shift*sin(angle);
     Y=shift*cos(angle);
