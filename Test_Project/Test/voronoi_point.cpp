@@ -64,3 +64,13 @@ double Voronoi_point::pos(bool a)
     else
         return x;
 }
+
+double Voronoi_point::get_x()
+{
+    return x;
+}
+
+double Voronoi_point::get_y()
+{
+    return y;
+}

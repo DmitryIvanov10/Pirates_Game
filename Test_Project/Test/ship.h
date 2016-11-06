@@ -15,7 +15,7 @@ class Ship: public QObject
 
     //lista zmiennych typu short klasy Ship
     //zmienne statku, ważne dla gry w widoku podróży
-    short angle; //aktualny kąt o jaki statek jest obrócony
+    double angle; //aktualny kąt o jaki statek jest obrócony
     short model; //model statku
     short sprite_angle; //kąt obrotu obrazka ze statkiem, wartość pomiędzy [0,7]
     //zmienne zaopatrzenia, używane przy pojedynkach
@@ -38,9 +38,12 @@ public:
 
     //fukncje dostępu
     double pos (bool i); //funckja zwracająca aktualną pozycję statku dla i=0 x, dla i=1 y
+    double get_x(); // get x coordinate of a ship
+    double get_y(); // get y coordinate of a ship
+    void set_angle(double _angle); // funkcja ustawiająca wartość angle
     void move(double _x, double _y); //prymitywna funkcja ruchu statku, raczej nie będzie używana, ale jest na potrzeby testów
     void move(Wind *_wind); //pożądna funkcja przemieszczenia uwzględniają nachylenie statku, kąt i siłę wiatru
-    short find_angle(); //dobieranie kątu statku za pomocą zmiennej angle
+    short find_sprite_angle(); //dobieranie kątu statku za pomocą zmiennej angle
 
 
 signals:

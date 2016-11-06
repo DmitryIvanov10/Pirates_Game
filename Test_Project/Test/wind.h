@@ -15,12 +15,12 @@ class Wind : public QObject
 public:
     //konstruktory
     explicit Wind(QObject *parent = 0); // angle=0, strenght 50
-    Wind(short _angle, short _strength); //angle=a, strenght=b
+    Wind(double _angle, short _strength); //angle=a, strenght=b
 
     //funkcje normalizacji
-    void norm_all(); //normalizacja kątu do zakresów [0 stopni, 360 stopni], oraz siły do wartości [0, 99]
-    void norm_angl(); //normalizacja kątu do zakresów [0 stopni, 360 stopni]
-    void norm_str(); //normalizacja siły do wartości [0, 99]
+    void norm_all(); //normalizacja kątu do zakresów [0 stopni, 360 stopni], oraz siły do wartości [0, 100]
+    void norm_angle(); //normalizacja kątu do zakresów [0 stopni, 360 stopni]
+    void norm_strength(); //normalizacja siły do wartości [0, 100]
 
     //funkcje dostępu
     void change_all(); //zmiana kątu i siły o losowy czynnik
@@ -28,8 +28,8 @@ public:
     void change_angle(); //zmiana kątu o losowy czynnik
     void change_strenght(); //zmiana siły o losowy czynnik
 
-    short show_angl(); //wyślwietlenie zmiennej angle
-    short show_str(); //wyświetlenie zmiennej strenght
+    short get_angle(); //wyślwietlenie zmiennej angle
+    short get_strength(); //wyświetlenie zmiennej strenght
 signals:
 
 public slots:
