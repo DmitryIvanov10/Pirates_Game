@@ -7,11 +7,11 @@ Wind::Wind(QObject *parent) : QObject(parent)
     strenght = 50;
 }
 
-Wind::Wind(short a, short b)
+Wind::Wind(short _angle, short _strength)
 {
     std::srand(0);
-    angle = a;
-    strenght = b;
+    angle = _angle;
+    strenght = _strength;
 }
 
 void Wind::norm_all()
@@ -45,15 +45,15 @@ void Wind::norm_str()
 void Wind::change_all()
 {
 
-    angle += (rand()%100)-50;
-    strenght += (rand()%40)-20;
+    angle += (rand()%10)-5;
+    strenght += (rand()%10)-5;
     norm_all();
 }
 
-void Wind::change_all(int a, int b)
+void Wind::change_all(short angle_delta, short strength_delta)
 {
-    angle += (rand()%(2*a))-a;
-    strenght += (rand()%(2*b))-b;
+    angle += (rand()%(2*angle_delta))-angle_delta;
+    strenght += (rand()%(2*strength_delta))-strength_delta;
     norm_all();
 }
 

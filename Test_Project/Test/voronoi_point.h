@@ -20,12 +20,13 @@ class Voronoi_point
 public:
     //konstruktory
     Voronoi_point(double x, double y); //punkt o współżędnych x, y
-    Voronoi_point(double x, double y, short a); //punkt o współżędnych x, y, oraz id
-    Voronoi_point(double x, double y, bool a); //punkt o współżędnych x, y, oraz harbor
-    Voronoi_point(double x, double y, bool a, bool b); //punkt o współżędnych x, y, harbor, oraz edge
+    Voronoi_point(double x, double y, short _id); //punkt o współżędnych x, y, oraz id
+    Voronoi_point(double x, double y, bool _hrabor); //punkt o współżędnych x, y, oraz harbor
+    Voronoi_point(double x, double y, bool _harbor, bool _edge); //punkt o współżędnych x, y, harbor, oraz edge
+    Voronoi_point(double x, double y, short _id, bool _harbor, bool _edge);
 
     //funkcje dostępu
-    void new_neighbor(short a); //funkcja dodawania sąsiadów
+    void new_neighbor(short _id); //funkcja dodawania sąsiadów
     double pos (bool a); //pozycja punktu, dla a=0 x, dla a=1 y
 };
 

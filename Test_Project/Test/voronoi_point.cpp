@@ -9,38 +9,47 @@ Voronoi_point::Voronoi_point(double x, double y)
     edge=0;
 }
 
-Voronoi_point::Voronoi_point(double x, double y, short a)
+Voronoi_point::Voronoi_point(double x, double y, short _id)
 {
     X=x;
     Y=y;
-    id=a;
+    id=_id;
     harbor=0;
     edge=0;
 }
 
-Voronoi_point::Voronoi_point(double x, double y, bool a)
+Voronoi_point::Voronoi_point(double x, double y, bool _harbor)
 {
     X=x;
     Y=y;
     id=1;
-    harbor=a;
+    harbor=_harbor;
     edge=0;
 }
 
-Voronoi_point::Voronoi_point(double x, double y, bool a, bool b)
+Voronoi_point::Voronoi_point(double x, double y, bool _harbor, bool _edge)
 {
     X=x;
     Y=y;
     id=1;
-    harbor=a;
-    edge=b;
+    harbor=_harbor;
+    edge=_edge;
 }
 
-void Voronoi_point::new_neighbor(short a)
+Voronoi_point::Voronoi_point(double x, double y, short _id, bool _harbor, bool _edge)
+{
+    X=x;
+    Y=y;
+    id=_id;
+    harbor=_harbor;
+    edge=_edge;
+}
+
+void Voronoi_point::new_neighbor(short _id)
 {
     if(neighbors.size() < 3)
     {
-        neighbors.push_back(a);
+        neighbors.push_back(_id);
     }
     else
     {
