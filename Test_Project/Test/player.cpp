@@ -33,5 +33,5 @@ void Player::keyPressEvent(QKeyEvent *event)
 
 void Player::move()
 {
-    qDebug() << "dziala";
+    //qDebug() << "dziala";
 }

@@ -2,16 +2,20 @@
 #define PLAYER_H
 
 //biblioteki
-#include <QObject>
+//#include <QObject>
 #include <QGraphicsRectItem> //dziedziczenie itemu z grafik
 #include <QKeyEvent> //obługa klawiszy
 #include <QDebug> //obsługa konsoli Qt
 
-class Player: public QObject, public QGraphicsRectItem
+//pliki
+#include "ship.h"
+
+class Player: public QGraphicsRectItem, Ship
 {
     Q_OBJECT
 
 public:
+    Player();
     void keyPressEvent(QKeyEvent * event);
 
 public slots:
