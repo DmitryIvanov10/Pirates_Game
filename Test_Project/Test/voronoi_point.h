@@ -9,8 +9,8 @@ class Voronoi_point
 {
 
     //lista stałych klasy Voronoi_point
-    double X; //położenie x punktu
-    double Y; //połozenie y punktu
+    double x; //położenie x punktu
+    double y; //połozenie y punktu
     short id; //niepowtarzalne id punktu
     bool harbor; //informacja o tym czy w punkcie jest port
     bool edge; //informacja o tym czy dany punkt jest na skraju mapy
@@ -19,11 +19,11 @@ class Voronoi_point
 
 public:
     //konstruktory
-    Voronoi_point(double x, double y); //punkt o współżędnych x, y
-    Voronoi_point(double x, double y, short _id); //punkt o współżędnych x, y, oraz id
-    Voronoi_point(double x, double y, bool _hrabor); //punkt o współżędnych x, y, oraz harbor
-    Voronoi_point(double x, double y, bool _harbor, bool _edge); //punkt o współżędnych x, y, harbor, oraz edge
-    Voronoi_point(double x, double y, short _id, bool _harbor, bool _edge);
+    Voronoi_point(double _x, double _y); //punkt o współżędnych x, y
+    Voronoi_point(double _x, double _y, short _id); //punkt o współżędnych x, y, oraz id
+    Voronoi_point(double _x, double _y, bool _hrabor); //punkt o współżędnych x, y, oraz harbor
+    Voronoi_point(double _x, double _y, bool _harbor, bool _edge); //punkt o współżędnych x, y, harbor, oraz edge
+    Voronoi_point(double _x, double _y, short _id, bool _harbor, bool _edge);
 
     //funkcje dostępu
     void new_neighbor(short _id); //funkcja dodawania sąsiadów

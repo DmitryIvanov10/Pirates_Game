@@ -2,38 +2,38 @@
 
 Ship::Ship()
 {
-    X=0;
-    Y=0;
-    ship_model=1;
+    x=0;
+    y=0;
+    model=1;
 }
 
-Ship::Ship(double x, double y, short ship)
+Ship::Ship(double _x, double _y, short _model)
 {
-    X=x;
-    Y=y;
-    ship_model=ship;
+    x=_x;
+    y=_y;
+    model=_model;
 }
 
-void Ship::move(double x, double y)
+void Ship::move(double _x, double _y)
 {
-    X=x;
-    Y=y;
+    x=_x;
+    y=_y;
 }
 
-void Ship::move(Wind *a)
+void Ship::move(Wind *_wind)
 {
-    double norm = abs((double)abs(a->show_angl() - angle) - 180) / 359 + 0.5; //do poprawy! norm powinno  być równe 1 dla angle=a->show_angl() i 0 dla wartości odległych o 180.
-    double shift = norm * ((double)a->show_str()/100); //to wymaga sprawdzenia, ma zwracać 1 jeśli kąt statku = kąt wiatru, a siła wiatru = 100
-    X=shift*sin(angle);
-    Y=shift*cos(angle);
+    double norm = abs((double)abs(_wind->show_angl() - angle) - 180) / 359 + 0.5; //do poprawy! norm powinno  być równe 1 dla angle=a->show_angl() i 0 dla wartości odległych o 180.
+    double shift = norm * ((double)_wind->show_str()/100); //to wymaga sprawdzenia, ma zwracać 1 jeśli kąt statku = kąt wiatru, a siła wiatru = 100
+    x=shift*sin(angle);
+    y=shift*cos(angle);
 }
 
 double Ship::pos(bool i)
 {
     if(i)
-        return Y;
+        return y;
     else
-        return X;
+        return x;
 }
 
 short Ship::find_angle()
@@ -42,7 +42,7 @@ short Ship::find_angle()
     {
         if(angle < i*45)
         {
-            ship_angle = i-1;
+            sprite_angle = i-1;
             return 0;
         }
     }
