@@ -7,7 +7,7 @@
 #include <cstdlib> //liczby losowe
 #include <QObject>
 
-class NPC: public QObject, Ship
+class NPC: Ship
 {
     Q_OBJECT
 
@@ -24,11 +24,12 @@ public:
     //funkcje dostępu
     void find_next (); //funkcja znajdująca kolejny wierzchołek voronoi
     short show_fraction(); //funkcja wyświetlająca frakcję jednostki
-};
+    void set_direction(); // funkcja zmienia kąt tak, żeby płynął do next_location
 
 signals:
 
 public slots:
-
+    void move_to_next_location();
+};
 
 #endif // NPC_H

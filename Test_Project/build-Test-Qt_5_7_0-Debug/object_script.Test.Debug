@@ -10,6 +10,7 @@ INPUT(
 ./debug\newgame.o
 ./debug\moc_player.o
 ./debug\moc_ship.o
+./debug\moc_npc.o
 ./debug\moc_city.o
 ./debug\moc_wind.o
 ./debug\moc_game.o
