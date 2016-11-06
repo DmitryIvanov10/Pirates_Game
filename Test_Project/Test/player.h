@@ -9,7 +9,7 @@
 #include <QKeyEvent> //obługa klawiszy
 #include <QDebug> //obsługa konsoli Qt
 
-class Player: Ship, public QGraphicsRectItem
+class Player: public Ship, public QGraphicsRectItem
 {
     Q_OBJECT
 

@@ -2,15 +2,15 @@
 
 Ship::Ship()
 {
-    x=0;
-    y=0;
+    X=0;
+    Y=0;
     model=1;
 }
 
 Ship::Ship(double _x, double _y, short _model)
 {
-    x=_x;
-    y=_y;
+    X=_x;
+    Y=_y;
     model=_model;
 }
 
@@ -26,34 +26,34 @@ void Ship::set_angle(double _angle)
 
 void Ship::move(double _x, double _y)
 {
-    x=_x;
-    y=_y;
+    X=_x;
+    Y=_y;
 }
 
 void Ship::move(Wind *_wind)
 {
     double wind_effect = abs(abs(_wind->get_angle() - angle) - 180) / 359 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
     double shift = wind_effect * ((double)_wind->get_strength()/100);
-    y=-shift*cos(angle);
-    x=-shift*sin(angle);
+    X=-shift*sin(angle);
+    Y=-shift*cos(angle);
 }
 
 double Ship::pos(bool i)
 {
     if(i)
-        return y;
+        return Y;
     else
-        return x;
+        return X;
 }
 
 double Ship::get_x()
 {
-    return x;
+    return X;
 }
 
 double Ship::get_y()
 {
-    return y;
+    return Y;
 }
 
 short Ship::find_sprite_angle()

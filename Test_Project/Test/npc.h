@@ -8,7 +8,7 @@
 #include <cstdlib> //liczby losowe
 #include <QObject>
 
-class NPC: Ship
+class NPC: public Ship
 {
     Q_OBJECT
 

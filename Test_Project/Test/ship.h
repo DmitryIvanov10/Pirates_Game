@@ -28,8 +28,8 @@ class Ship: public QObject
    std:: vector <short> goods; //ilość przewożonych towarów przez statek, każdy element vector'a to inne dobro (na przykład goods[2] to perły, a goods[5] to sól itd.)
 
     //lista zimennych typu double klasy Ship
-    double x; //aktualna pozycja x
-    double y; //aktualna pozycja y
+    double X; //aktualna pozycja x
+    double Y; //aktualna pozycja y
 
 public:
     //konstruktory
