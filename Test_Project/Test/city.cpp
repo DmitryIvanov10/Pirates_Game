@@ -7,18 +7,18 @@ City::City(short _id_voronoi)
     id = 1;
 }
 
-City::City(short a, short b)
+City::City(short _id_voronoi, short _fraction)
 {
-    id_voronoi = a;
-    fraction = b;
+    id_voronoi = _id_voronoi;
+    fraction = _fraction;
     id = 1;
 }
 
-City::City(short a, short b, short c)
+City::City(short _id_voronoi, short _fraction, short _id)
 {
-    id_voronoi = a;
-    fraction = b;
-    id = c;
+    id_voronoi = _id_voronoi;
+    fraction = _fraction;
+    id = _id;
 }
 
 short City::show_fraction()
@@ -26,7 +26,7 @@ short City::show_fraction()
     return fraction;
 }
 
-float City::show_price(short a)
+float City::show_price(short _good)
 {
-    return prices[a];
+    return prices[_good];
 }
