@@ -10,6 +10,7 @@ INPUT(
 ./release\newgame.o
 ./release\moc_player.o
 ./release\moc_ship.o
+./release\moc_npc.o
 ./release\moc_city.o
 ./release\moc_wind.o
 ./release\moc_game.o

@@ -9,9 +9,11 @@
 #include <QGraphicsView>
 #include <fstream>
 #include <QTimer> //potrzebny do Qtimer'a
+#include <vector>
 
 //pliki
 #include "Player.h"
+#include "voronoi_point.h"
 
 class Game : public QObject
 {
@@ -19,10 +21,21 @@ class Game : public QObject
 
     QTimer *timer = new QTimer();
 
+    std::vector <Voronoi_point> map;
+
 public:
     //konstruktory
     explicit Game(QObject *parent = 0); //nowa gra
     Game(std::string a); //wczytanie gry o nazwie a
+
+    void new_game();
+    void load_game();
+
+    //funkcje dostępu
+    double get_x(short _id);
+    double get_y(short _id);
+    double get_harbor(short _id);
+    double get_edge(short _id);
 
 signals:
 

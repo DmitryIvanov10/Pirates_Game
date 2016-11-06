@@ -74,7 +74,7 @@ void Player::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
 }
 
 const QMetaObject Player::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_Player.data,
+    { &Ship::staticMetaObject, qt_meta_stringdata_Player.data,
       qt_meta_data_Player,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
@@ -91,12 +91,12 @@ void *Player::qt_metacast(const char *_clname)
         return static_cast<void*>(const_cast< Player*>(this));
     if (!strcmp(_clname, "QGraphicsRectItem"))
         return static_cast< QGraphicsRectItem*>(const_cast< Player*>(this));
-    return QObject::qt_metacast(_clname);
+    return Ship::qt_metacast(_clname);
 }
 
 int Player::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QObject::qt_metacall(_c, _id, _a);
+    _id = Ship::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
