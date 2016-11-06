@@ -8,6 +8,7 @@ INPUT(
 ./release\wind.o
 ./release\game.o
 ./release\newgame.o
+./release\moc_player.o
 ./release\moc_ship.o
 ./release\moc_city.o
 ./release\moc_wind.o
