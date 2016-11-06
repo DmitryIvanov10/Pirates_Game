@@ -1,13 +1,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+//pliki
+#include "ship.h"
 //biblioteki
 #include <QObject>
 #include <QGraphicsRectItem> //dziedziczenie itemu z grafik
 #include <QKeyEvent> //obługa klawiszy
 #include <QDebug> //obsługa konsoli Qt
 
-class Player: public QObject, public QGraphicsRectItem
+class Player: Ship, public QGraphicsRectItem
 {
     Q_OBJECT
 
