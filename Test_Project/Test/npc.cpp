@@ -14,8 +14,11 @@ void NPC::find_next()
 
 void NPC::set_direction()
 {
-    double _x = 50;
-    double _y = 50;
+    // get x and y coordinates of the location (next voronoi point)
+    double _x = Game().get_x_by_id(next_location);
+    double _y = Game().get_y_by_id(next_location);
+
+    // set the angle to the location (next voronoi point)
     double _angle = atan2(get_y()-_y, _x - get_x()) * 180 / M_PI - 90;
     set_angle(_angle);
 }

@@ -3,6 +3,7 @@
 
 //pliki
 #include "ship.h"
+#include "game.h"
 
 //biblioteki
 #include <cstdlib> //liczby losowe

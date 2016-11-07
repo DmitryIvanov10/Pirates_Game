@@ -32,8 +32,8 @@ public:
     void load_game();
 
     //funkcje dostępu
-    double get_x(short _id);
-    double get_y(short _id);
+    double get_x_by_id(short _id);
+    double get_y_by_id(short _id);
     double get_harbor(short _id);
     double get_edge(short _id);
 
