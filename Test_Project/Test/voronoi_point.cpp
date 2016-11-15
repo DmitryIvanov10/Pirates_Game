@@ -57,6 +57,11 @@ void Voronoi_point::new_neighbor(short _id)
     }
 }
 
+short Voronoi_point::get_neighbours(short _number)
+{
+    return neighbors[_number % 3]; //dzielone przez 3 ponieważ vector neighbors nie może mieć więcej niż trzech sąsiadów i niechcący uruchomienie tej funkcji dla _number = 3 by mogło uszkodzić program
+}
+
 double Voronoi_point::pos(bool a)
 {
     if(a)

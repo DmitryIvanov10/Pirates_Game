@@ -14,6 +14,7 @@
 //pliki
 #include "Player.h"
 #include "voronoi_point.h"
+#include "wind.h"
 
 class Game : public QObject
 {
@@ -31,11 +32,15 @@ public:
     void new_game();
     void load_game();
 
+    //metody konstruktora
+
+
     //funkcje dostępu
-    double get_x_by_id(short _id);
-    double get_y_by_id(short _id);
+    double get_x(short _id);
+    double get_y(short _id);
     double get_harbor(short _id);
     double get_edge(short _id);
+    short get_neighbour(short _id, short _number);
 
 signals:
 

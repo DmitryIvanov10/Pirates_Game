@@ -4,8 +4,10 @@
 //biblioteki
 #include <QObject> //potrzebne do slotów i sygnałów
 #include <cstdlib> //potrzebne do liczb losowych
+#include <QGraphicsTextItem> //potrzebne do wyświetlania wiatru na ekranie
+#include <QFont> //opcje czcionki
 
-class Wind : public QObject
+class Wind : public QObject, public QGraphicsTextItem
 {
     Q_OBJECT
 
