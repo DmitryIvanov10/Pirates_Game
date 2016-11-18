@@ -22,9 +22,8 @@ class Game : public QObject
 
     QTimer *timer = new QTimer();
 
-    std::vector <Voronoi_point> map;
-
 public:
+	static std::vector <Voronoi_point> map;
     //konstruktory
     explicit Game(QObject *parent = 0); //nowa gra
     Game(std::string a); //wczytanie gry o nazwie a
