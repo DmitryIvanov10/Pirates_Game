@@ -22,6 +22,7 @@ class NPC: public Ship
 public:
     //konstruktory
     NPC();
+    NPC(double _x, double _y, short _model);
 
     //funkcje dostępu
     void find_next (); //funkcja znajdująca kolejny wierzchołek voronoi

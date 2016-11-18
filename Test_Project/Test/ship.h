@@ -13,6 +13,7 @@ class Ship: public QObject
 {
     Q_OBJECT
 
+protected:
     //lista zmiennych typu short klasy Ship
     //zmienne statku, ważne dla gry w widoku podróży
     double angle; //aktualny kąt o jaki statek jest obrócony

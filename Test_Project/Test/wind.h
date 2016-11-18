@@ -7,16 +7,14 @@
 #include <QGraphicsTextItem> //potrzebne do wyświetlania wiatru na ekranie
 #include <QFont> //opcje czcionki
 
-class Wind : public QObject, public QGraphicsTextItem
+class Wind : public QGraphicsTextItem
 {
-    //Q_OBJECT
-
     short angle; //kąt wiatru w stopniach
     short strenght; //siła wiatru, wartości pomiędzy 0 a 99
 
 public:
     //konstruktory
-    explicit Wind(QObject *parent = 0); // angle=0, strenght 50
+    explicit Wind(); // angle=0, strenght 50
     Wind(double _angle, short _strength); //angle=a, strenght=b
 
     //funkcje normalizacji

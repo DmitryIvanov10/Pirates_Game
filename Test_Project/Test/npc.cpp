@@ -2,8 +2,20 @@
 
 NPC::NPC()
 {
+    X=0;
+    Y=0;
+    model=1;
     std::srand(0);
     fraction=rand()%3;
+}
+
+NPC::NPC(double _x, double _y, short _model)
+{
+    std::srand(0);
+    fraction=rand()%3;
+    X=_x;
+    Y=_y;
+    model=_model;
 }
 
 void NPC::find_next()

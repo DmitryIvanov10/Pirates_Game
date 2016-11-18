@@ -1,6 +1,6 @@
 #include "wind.h"
 
-Wind::Wind(QObject *parent) : QObject(parent)
+Wind::Wind()
 {
     std::srand(0);
     angle = 0;
