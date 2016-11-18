@@ -14,15 +14,13 @@ void NPC::find_next()
 
 void NPC::set_direction()
 {
-    /*
     // get x and y coordinates of the location (next voronoi point)
-    double _x = Game().get_x_by_id(next_location);
-    double _y = Game().get_y_by_id(next_location);
+    double _x = Game().get_x(next_location);
+    double _y = Game().get_y(next_location);
 
     // set the angle to the location (next voronoi point)
     double _angle = atan2(get_y()-_y, _x - get_x()) * 180 / M_PI - 90;
     set_angle(_angle);
-    */
 }
 
 short NPC::show_fraction()

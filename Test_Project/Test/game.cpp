@@ -1,4 +1,5 @@
 #include "game.h"
+#include "wind.h"
 
 Game::Game(QObject *parent) : QObject(parent)
 {  
@@ -10,6 +11,8 @@ Game::Game(QObject *parent) : QObject(parent)
     rect->setRect(0,0,100,100);
 
     // create wind and put into the scene
+    Wind *wind = new Wind();
+    scene->addItem(wind);
 
     // add the item to the theme
     scene->addItem(rect);

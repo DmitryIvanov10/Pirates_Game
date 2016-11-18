@@ -6,7 +6,7 @@ Wind::Wind(QObject *parent) : QObject(parent)
     angle = 0;
     strenght = 50;
 
-    setPlainText(QString("Kąt: " + QString::number(angle);
+    setPlainText(QString("Kąt: " + QString::number(angle) + "\nSila: " + QString::number(strenght)));
     setFont(QFont("times", 24));
     setDefaultTextColor(Qt::red);
 }
@@ -17,7 +17,7 @@ Wind::Wind(double _angle, short _strength)
     angle = _angle;
     strenght = _strength;
 
-    setPlainText(QString("Kąt: " + QString::number(angle);
+    setPlainText(QString("Kąt: " + QString::number(angle)));
     setFont(QFont("times", 24));
     setDefaultTextColor(Qt::red);
 }

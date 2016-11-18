@@ -9,7 +9,7 @@
 
 class Wind : public QObject, public QGraphicsTextItem
 {
-    Q_OBJECT
+    //Q_OBJECT
 
     short angle; //kąt wiatru w stopniach
     short strenght; //siła wiatru, wartości pomiędzy 0 a 99
