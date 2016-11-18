@@ -25,6 +25,7 @@ Game::Game(QObject *parent) : QObject(parent)
     rect->setFocus();
 
     connect (timer, SIGNAL(timeout()), rect, SLOT(move()));
+    connect (timer, SIGNAL(timeout()), wind, SLOT(do_tour()));
     timer->start(17);
 
     view->show();

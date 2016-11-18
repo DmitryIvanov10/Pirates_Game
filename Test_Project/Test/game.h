@@ -45,6 +45,7 @@ public:
 signals:
 
 public slots:
+
 };
 
 #endif // GAME_H

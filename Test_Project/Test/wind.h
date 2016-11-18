@@ -9,6 +9,8 @@
 
 class Wind : public QGraphicsTextItem
 {
+    Q_OBJECT
+
     short angle; //kąt wiatru w stopniach
     short strenght; //siła wiatru, wartości pomiędzy 0 a 99
 
@@ -31,8 +33,10 @@ public:
     short get_angle(); //wyślwietlenie zmiennej angle
     short get_strength(); //wyświetlenie zmiennej strenght
 signals:
+    void signal();
 
 public slots:
+    void do_tour();
 };
 
 #endif // WIND_H

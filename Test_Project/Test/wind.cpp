@@ -1,5 +1,7 @@
 #include "wind.h"
 
+#include <QDebug>
+
 Wind::Wind()
 {
     std::srand(0);
@@ -73,4 +75,11 @@ short Wind::get_angle()
 short Wind::get_strength()
 {
     return strenght;
+}
+
+void Wind::do_tour()
+{
+    change_all();
+    setPlainText(QString("Kąt: " + QString::number(angle) + "\nSila: " + QString::number(strenght)));
+    signal();
 }
