@@ -4,7 +4,7 @@
 
 Wind::Wind()
 {
-    std::srand(0);
+    std::srand(time(0));
     angle = 0;
     strenght = 50;
 
@@ -62,8 +62,8 @@ void Wind::change_all()
 
 void Wind::change_all(short angle_delta, short strength_delta)
 {
-    angle += (rand()%(2*angle_delta))-angle_delta;
-    strenght += (rand()%(2*strength_delta))-strength_delta;
+    angle += (rand()%(2*angle_delta+1))-angle_delta;
+    strenght += (rand()%(2*strength_delta+1))-strength_delta;
     norm_all();
 }
 
@@ -79,7 +79,22 @@ short Wind::get_strength()
 
 void Wind::do_tour()
 {
-    change_all();
-    setPlainText(QString("Kąt: " + QString::number(angle) + "\nSila: " + QString::number(strenght)));
+    change_frequency ++;
+    if(change_frequency >= 1200)
+    {
+        change_all(200,6);
+        setPlainText(QString("Kąt: " + QString::number(angle) + "\nSila: " + QString::number(strenght)));
+        change_frequency = 0;
+    }
+    else if(change_frequency%300 == 0)
+    {
+        change_all(90,6);
+        setPlainText(QString("Kąt: " + QString::number(angle) + "\nSila: " + QString::number(strenght)));
+    }
+    else if(change_frequency%15 == 0)
+    {
+        change_all(10,6);
+        setPlainText(QString("Kąt: " + QString::number(angle) + "\nSila: " + QString::number(strenght)));
+    }
     signal();
 }

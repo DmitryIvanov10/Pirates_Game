@@ -42,8 +42,10 @@ public:
     short get_neighbour(short _id, short _number);
 
 signals:
+    //void next_tour();
 
 public slots:
+    //void check();
 
 };
 

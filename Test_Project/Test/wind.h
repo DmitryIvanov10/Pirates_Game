@@ -6,11 +6,13 @@
 #include <cstdlib> //potrzebne do liczb losowych
 #include <QGraphicsTextItem> //potrzebne do wyświetlania wiatru na ekranie
 #include <QFont> //opcje czcionki
+#include <time.h>
 
 class Wind : public QGraphicsTextItem
 {
     Q_OBJECT
 
+    short change_frequency = 0; //częstotliwość zmian wiatru
     short angle; //kąt wiatru w stopniach
     short strenght; //siła wiatru, wartości pomiędzy 0 a 99
 
