@@ -8,7 +8,6 @@
 
 //pliki
 #include "wind.h"
-#include "game.h"
 
 class Ship: public QObject
 {
@@ -32,9 +31,6 @@ protected:
     //lista zimennych typu double klasy Ship
     double X; //aktualna pozycja x
     double Y; //aktualna pozycja y
-
-    //funkcja poszukiwania odległości
-    int find_distance(short _id1, short _id2); //zwraca odległość pomiędzy dwoma punktami voronoi
 
 public:
     //konstruktory

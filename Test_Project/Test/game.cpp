@@ -1,5 +1,4 @@
 #include "game.h"
-#include "wind.h"
 #include <QDebug>
 
 Game::Game(QObject *parent) : QObject(parent)

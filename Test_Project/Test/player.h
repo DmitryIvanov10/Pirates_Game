@@ -3,6 +3,7 @@
 
 //pliki
 #include "ship.h"
+
 //biblioteki
 #include <QObject>
 #include <QGraphicsRectItem> //dziedziczenie itemu z grafik

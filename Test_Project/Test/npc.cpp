@@ -10,8 +10,15 @@ NPC::NPC()
     X = Game::map[current_location].get_x();
     Y = Game::map[current_location].get_y();
     target_location = rand()%(Game::map.size());
-    qDebug() <<"Current location: " << current_location << "NPC_X: " << X <<", NPC_Y: " << Y;
-    qDebug() <<"Target location: " << current_location << "NPC_X: " << X <<", NPC_Y: " << Y;
+    //qDebug() << rand()%(Game::map.size());
+    //qDebug() << rand()%(Game::map.size());
+    qDebug() <<"Current location: " << current_location << ". X: " <<
+               Game::map[current_location].get_x() <<", Y: " <<
+               Game::map[current_location].get_y();
+    qDebug() <<"Target location: " << target_location << ". X: " <<
+               Game::map[target_location].get_x() <<", Y: " <<
+               Game::map[target_location].get_y();
+    find_next();
 }
 
 NPC::NPC(double _x, double _y, short _model)
@@ -23,10 +30,23 @@ NPC::NPC(double _x, double _y, short _model)
     model=_model;
 }
 
+int NPC::find_distance(short _id1, short _id2)
+{
+    return (int)sqrt(
+        (Game::map[_id2].get_x() - Game::map[_id1].get_x()) *
+        (Game::map[_id2].get_x() - Game::map[_id1].get_x()) +
+        (Game::map[_id2].get_y() - Game::map[_id1].get_y()) *
+        (Game::map[_id2].get_y() - Game::map[_id1].get_y())
+        );
+}
+
 void NPC::find_next()
 {
+    qDebug() << "Looking for next location: ...";
     short next_id = Game::map[current_location].get_neighbour(0);
+    qDebug() << "First neighbour has id: " << next_id;
     double distance = find_distance(next_id, target_location);
+    qDebug() << "Distance is: " << distance;
     short i = 1;
     while (Game::map[current_location].get_neighbour(i) != -1 && i<3)
     {

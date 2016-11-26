@@ -12,9 +12,9 @@
 #include <vector>
 
 //pliki
+//#include "ship.h"
 #include "player.h"
 #include "npc.h"
-#include "ship.h"
 #include "voronoi_point.h"
 #include "wind.h"
 

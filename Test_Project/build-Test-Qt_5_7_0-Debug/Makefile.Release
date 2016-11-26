@@ -387,7 +387,7 @@ release/moc_ship.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/Dmitry/Documents/MINE/Prog/C++/Project_Pirates/Test_Project/Test -IC:/Qt/5.7/mingw53_32/include -IC:/Qt/5.7/mingw53_32/include/QtWidgets -IC:/Qt/5.7/mingw53_32/include/QtGui -IC:/Qt/5.7/mingw53_32/include/QtANGLE -IC:/Qt/5.7/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\Test\ship.h -o release\moc_ship.cpp
 
-release/moc_npc.cpp: ../Test/ship.h \
+release/moc_npc.cpp: ../Test/game.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobjectdefs.h \
@@ -436,50 +436,46 @@ release/moc_npc.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
-		../Test/wind.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qmap.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qdebug.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qhash.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qtextstream.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qiodevice.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qlocale.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qshareddata.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qvector.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsScene \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qpoint.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qset.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qcontiguouscache.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qsharedpointer.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qrect.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qmargins.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qsize.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpainterpath.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qbrush.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qvector.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qcolor.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qrgb.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qrgba64.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qmatrix.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpolygon.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qregion.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qwindowdefs.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qwindowdefs_win.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qiodevice.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qline.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpixmap.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpaintdevice.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qcolor.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qrgb.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qrgba64.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpainterpath.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpaintdevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpixmap.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qsharedpointer.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qhash.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
-		../Test/game.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsScene \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qbrush.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpen.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsItem \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qmap.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qdebug.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qlocale.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qset.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsView \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
@@ -506,6 +502,10 @@ release/moc_npc.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
 		../Test/player.h \
+		../Test/ship.h \
+		../Test/wind.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
 		../Test/npc.h \
@@ -1181,7 +1181,7 @@ release/ship.o: ../Test/ship.cpp ../Test/ship.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\ship.o ..\Test\ship.cpp
 
 release/npc.o: ../Test/npc.cpp ../Test/npc.h \
-		../Test/ship.h \
+		../Test/game.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobjectdefs.h \
@@ -1230,50 +1230,46 @@ release/npc.o: ../Test/npc.cpp ../Test/npc.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
-		../Test/wind.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qmap.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qdebug.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qhash.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qtextstream.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qiodevice.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qlocale.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qshareddata.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qvector.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsScene \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qpoint.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qset.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qcontiguouscache.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qsharedpointer.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qrect.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qmargins.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qsize.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpainterpath.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qbrush.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qvector.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qcolor.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qrgb.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qrgba64.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qmatrix.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpolygon.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qregion.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qwindowdefs.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qwindowdefs_win.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qiodevice.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qline.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpixmap.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpaintdevice.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qcolor.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qrgb.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qrgba64.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpainterpath.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpaintdevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpixmap.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qsharedpointer.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qhash.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
-		../Test/game.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsScene \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qbrush.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpen.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsItem \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qmap.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qdebug.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qlocale.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qset.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsView \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
@@ -1300,6 +1296,10 @@ release/npc.o: ../Test/npc.cpp ../Test/npc.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
 		../Test/player.h \
+		../Test/ship.h \
+		../Test/wind.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
 		../Test/voronoi_point.h

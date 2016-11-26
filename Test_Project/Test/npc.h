@@ -2,8 +2,8 @@
 #define NPC_H
 
 //pliki
-#include "game.h"
 #include "ship.h"
+#include "game.h"
 
 //biblioteki
 #include <cstdlib> //liczby losowe
@@ -19,6 +19,9 @@ class NPC: public Ship
     short current_location; //wierzchołek voronoi na którym statek się ostatnio meldował
     short next_location; //wierzchołek voronoi na który statek zmierza
     short target_location; //cel statku, wierzchołek voronoi
+
+    //funkcja poszukiwania odległości
+    int find_distance(short _id1, short _id2); //zwraca odległość pomiędzy dwoma punktami voronoi
 
 public:
     //konstruktory
