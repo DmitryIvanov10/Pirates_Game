@@ -3,6 +3,7 @@
 
 //pliki
 #include "ship.h"
+#include "wind.h"
 
 //biblioteki
 #include <QObject>
@@ -22,7 +23,7 @@ public:
     void keyPressEvent(QKeyEvent * event);
 
 public slots:
-    void move();
+    void do_tour();
 
 signals:
 

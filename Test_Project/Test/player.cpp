@@ -3,16 +3,23 @@
 Player::Player()
 {
     model = 1;
+    ammo = 50;
     crue = 50;
     health = 100;
     cannons  = 4;
     angle = 90;
+    sprite_angle = 2;
+
+    X=0;
+    Y=0;
+
 }
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
     //choose the key which has been pressed and react
 
+    /*
     switch (event->key())
     {
         case Qt::Key_A:
@@ -32,6 +39,7 @@ void Player::keyPressEvent(QKeyEvent *event)
             setPos(x(),y()+10);
             break;
     }
+    */
 
     switch (event->key())
     {
@@ -48,7 +56,7 @@ void Player::keyPressEvent(QKeyEvent *event)
     qDebug() << angle;
 }
 
-void Player::move()
+void Player::do_tour()
 {
-
+    move(wind);
 }
