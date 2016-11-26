@@ -47,7 +47,6 @@ Game::Game(std::string a)
 
 void Game::new_game()
 {
-    qDebug() << "Create map.";
     short iterate = 1;
     // id = 0
     Game::map.push_back(Voronoi_point(0.0, 0.0, (short)0));
