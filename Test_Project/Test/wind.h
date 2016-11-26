@@ -13,13 +13,18 @@ class Wind : public QGraphicsTextItem
     Q_OBJECT
 
     short change_frequency = 0; //częstotliwość zmian wiatru
-    short angle; //kąt wiatru w stopniach
-    short strenght; //siła wiatru, wartości pomiędzy 0 a 99
+    //short angle; //kąt wiatru w stopniach
+    //short strenght; //siła wiatru, wartości pomiędzy 0 a 99
 
 public:
+    static double angle;
+    static short strength;
+
     //konstruktory
     explicit Wind(); // angle=0, strenght 50
-    Wind(double _angle, short _strength); //angle=a, strenght=b
+    //Wind(double _angle, short _strength); //angle=a, strenght=b
+    void create_wind();
+    void create_wind(double _angle, short _strength);
 
     //funkcje normalizacji
     void norm_all(); //normalizacja kątu do zakresów [0 stopni, 360 stopni], oraz siły do wartości [0, 100]
@@ -32,8 +37,8 @@ public:
     void change_angle(); //zmiana kątu o losowy czynnik
     void change_strenght(); //zmiana siły o losowy czynnik
 
-    short get_angle(); //wyślwietlenie zmiennej angle
-    short get_strength(); //wyświetlenie zmiennej strenght
+    //short get_angle(); //wyślwietlenie zmiennej angle
+    //short get_strength(); //wyświetlenie zmiennej strenght
 signals:
     void signal();
 

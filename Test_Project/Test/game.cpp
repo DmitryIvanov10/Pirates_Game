@@ -17,9 +17,10 @@ Game::Game(QObject *parent) : QObject(parent)
     // create an npc to put into the scene
     NPC * npc_ship = new NPC();
 
-    // create wind and put into the scene
+    // create wind to put into the scene
     Wind *wind = new Wind();
     scene->addItem(wind);
+    //Wind::create_wind();
 
 
     // add a view
@@ -47,6 +48,10 @@ Game::Game(std::string a)
 
 void Game::new_game()
 {
+    //create wind
+    Wind::angle = 0;
+    Wind::strength = 50;
+
     short iterate = 1;
     // id = 0
     Game::map.push_back(Voronoi_point(0.0, 0.0, (short)0));

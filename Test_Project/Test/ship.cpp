@@ -30,10 +30,10 @@ void Ship::move(double _x, double _y)
     Y=_y;
 }
 
-void Ship::move(Wind *_wind)
+void Ship::move()
 {
-    double wind_effect = abs(abs(_wind->get_angle() - angle) - 180) / 359 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
-    double shift = wind_effect * ((double)_wind->get_strength()/100);
+    double wind_effect = abs(abs(Wind::angle - angle) - 180) / 359 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
+    double shift = wind_effect * ((double)Wind::strength/100);
     X -= shift*sin(angle);
     Y -= shift*cos(angle);
 }

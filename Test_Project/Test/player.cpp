@@ -58,5 +58,5 @@ void Player::keyPressEvent(QKeyEvent *event)
 
 void Player::do_tour()
 {
-    move(wind);
+    //move(wind);
 }

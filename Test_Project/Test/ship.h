@@ -43,7 +43,7 @@ public:
     double get_y(); // get y coordinate of a ship
     void set_angle(double _angle); // funkcja ustawiająca wartość angle
     void move(double _x, double _y); //prymitywna funkcja ruchu statku, raczej nie będzie używana, ale jest na potrzeby testów
-    void move(Wind *_wind); //pożądna funkcja przemieszczenia uwzględniają nachylenie statku, kąt i siłę wiatru
+    void move(); //pożądna funkcja przemieszczenia uwzględniają nachylenie statku, kąt i siłę wiatru
     short find_sprite_angle(); //dobieranie kątu statku za pomocą zmiennej angle
 
 
