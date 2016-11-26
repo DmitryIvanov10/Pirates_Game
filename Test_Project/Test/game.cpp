@@ -30,7 +30,7 @@ Game::Game(QObject *parent) : QObject(parent)
     rect->setFlag(QGraphicsItem::ItemIsFocusable);
     rect->setFocus();
 
-    connect (timer, SIGNAL(timeout()), rect, SLOT(move()));
+    connect (timer, SIGNAL(timeout()), rect, SLOT(do_tour()));
     connect (timer, SIGNAL(timeout()), wind, SLOT(do_tour()));
     timer->start(17);
 

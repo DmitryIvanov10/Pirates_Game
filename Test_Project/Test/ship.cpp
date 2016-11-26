@@ -37,8 +37,8 @@ void Ship::move()
 {
     double wind_effect = abs(abs(Wind::angle - angle) - 180) / 359 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
     double shift = wind_effect * ((double)Wind::strength/100);
-    X -= shift*sin(angle);
-    Y -= shift*cos(angle);
+    X -= shift*sin(angle/180*M_PI);
+    Y -= shift*cos(angle/180*M_PI);
 }
 
 double Ship::pos(bool i)
