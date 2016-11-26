@@ -1,21 +1,27 @@
 #include "game.h"
 #include "wind.h"
+#include <QDebug>
 
 Game::Game(QObject *parent) : QObject(parent)
 {  
+    // create map
+    new_game();
+
     // create a scene
     QGraphicsScene * scene = new QGraphicsScene();
 
     // create an item to put into the scene
     Player * rect = new Player();
     rect->setRect(0,0,100,100);
+    scene->addItem(rect);
+
+    // create an npc to put into the scene
+    NPC * npc_ship = new NPC();
 
     // create wind and put into the scene
     Wind *wind = new Wind();
     scene->addItem(wind);
 
-    // add the item to the theme
-    scene->addItem(rect);
 
     // add a view
     QGraphicsView * view = new QGraphicsView(scene);
@@ -42,6 +48,7 @@ Game::Game(std::string a)
 
 void Game::new_game()
 {
+    qDebug() << "Create map.";
     short iterate = 1;
     Game::map.push_back(Voronoi_point(0.0, 0.0, (short)0));
     Game::map[iterate-1].new_neighbor(-1);

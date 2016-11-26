@@ -8,6 +8,7 @@
 //biblioteki
 #include <cstdlib> //liczby losowe
 #include <QObject>
+#include <time.h>
 
 class NPC: public Ship
 {

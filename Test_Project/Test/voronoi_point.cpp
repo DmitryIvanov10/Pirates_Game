@@ -53,7 +53,7 @@ void Voronoi_point::new_neighbor(short _id)
     }
     else
     {
-        qDebug() << "Error! To much neighbors for point " << id;
+        qDebug() << "Error! Can't add neighbour " << _id << " to the point " << id;
     }
 }
 

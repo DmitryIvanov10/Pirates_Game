@@ -12,7 +12,8 @@
 #include <vector>
 
 //pliki
-#include "Player.h"
+#include "player.h"
+#include "npc.h"
 #include "voronoi_point.h"
 #include "wind.h"
 

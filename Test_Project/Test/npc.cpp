@@ -1,17 +1,21 @@
 #include "npc.h"
+#include <QDebug>
 
 NPC::NPC()
 {
-    X=0;
-    Y=0;
+    std::srand(time(0));
     model=1;
-    std::srand(0);
     fraction=rand()%3;
+    current_location = rand()%(Game::map.size());
+    X = Game::map[current_location].get_x();
+    Y = Game::map[current_location].get_y();
+    target_location = rand()%(Game::map.size());
+    qDebug() <<"Point: " << current_location << "NPC_X: " << X <<", NPC_Y: " << Y;
 }
 
 NPC::NPC(double _x, double _y, short _model)
 {
-    std::srand(0);
+    std::srand(time(0));
     fraction=rand()%3;
     X=_x;
     Y=_y;
