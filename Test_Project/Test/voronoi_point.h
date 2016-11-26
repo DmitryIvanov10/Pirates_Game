@@ -27,7 +27,7 @@ public:
 
     //funkcje dostępu
     void new_neighbor(short _id); //funkcja dodawania sąsiadów
-    short get_neighbours(short _number); //funkcja zwracania sąsiadów
+    short get_neighbour(short _number); //funkcja zwracania sąsiadów
     double pos (bool a); //pozycja punktu, dla a=0 x, dla a=1 y
     double get_x(); // get x coordinate of a voronoi point
     double get_y(); // get y coordinate of a voronoi point

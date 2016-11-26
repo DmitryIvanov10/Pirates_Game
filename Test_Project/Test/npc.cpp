@@ -10,7 +10,8 @@ NPC::NPC()
     X = Game::map[current_location].get_x();
     Y = Game::map[current_location].get_y();
     target_location = rand()%(Game::map.size());
-    qDebug() <<"Point: " << current_location << "NPC_X: " << X <<", NPC_Y: " << Y;
+    qDebug() <<"Current location: " << current_location << "NPC_X: " << X <<", NPC_Y: " << Y;
+    qDebug() <<"Target location: " << current_location << "NPC_X: " << X <<", NPC_Y: " << Y;
 }
 
 NPC::NPC(double _x, double _y, short _model)
@@ -24,8 +25,19 @@ NPC::NPC(double _x, double _y, short _model)
 
 void NPC::find_next()
 {
-    short next_id = 1;
+    short next_id = Game::map[current_location].get_neighbour(0);
+    double distance = find_distance(next_id, target_location);
+    short i = 1;
+    while (Game::map[current_location].get_neighbour(i) != -1 && i<3)
+    {
+        if (find_distance(Game::map[current_location].get_neighbour(i), target_location) < distance)
+        {
+            distance = find_distance(Game::map[current_location].get_neighbour(i), target_location);
+            next_id = Game::map[current_location].get_neighbour(i);
+        }
+    }
     next_location = next_id;
+    qDebug() <<"Next location: " << next_location;
 }
 
 void NPC::set_direction()

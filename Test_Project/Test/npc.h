@@ -2,8 +2,8 @@
 #define NPC_H
 
 //pliki
-#include "ship.h"
 #include "game.h"
+#include "ship.h"
 
 //biblioteki
 #include <cstdlib> //liczby losowe

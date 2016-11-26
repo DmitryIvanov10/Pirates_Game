@@ -14,6 +14,16 @@ Ship::Ship(double _x, double _y, short _model)
     model=_model;
 }
 
+int Ship::find_distance(short _id1, short _id2)
+{
+    return (int)sqrt(
+        (Game::map[_id2].get_x() - Game::map[_id1].get_x()) *
+        (Game::map[_id2].get_x() - Game::map[_id1].get_x()) +
+        (Game::map[_id2].get_y() - Game::map[_id1].get_y()) *
+        (Game::map[_id2].get_y() - Game::map[_id1].get_y())
+        );
+}
+
 void Ship::set_angle(double _angle)
 {
     _angle = -(short)floor(_angle) + _angle + (short)floor(_angle) % 360;

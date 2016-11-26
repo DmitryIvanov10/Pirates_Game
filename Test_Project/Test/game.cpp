@@ -120,5 +120,5 @@ double Game::get_harbor(short _id)
 
 short Game::get_neighbour(short _id, short _number)
 {
-    return map[_id].get_neighbours(_number);
+    return map[_id].get_neighbour(_number);
 }

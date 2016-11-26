@@ -220,17 +220,42 @@ debug/moc_player.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/game.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsScene \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qbrush.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpen.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsView \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpainter.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtextoption.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontinfo.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontmetrics.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpalette.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qcursor.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QTimer \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
+		../Test/player.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../Test/npc.h \
+		../Test/voronoi_point.h \
 		../Test/player.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/Dmitry/Documents/MINE/Prog/C++/Project_Pirates/Test_Project/Test -IC:/Qt/5.7/mingw53_32/include -IC:/Qt/5.7/mingw53_32/include/QtWidgets -IC:/Qt/5.7/mingw53_32/include/QtGui -IC:/Qt/5.7/mingw53_32/include/QtANGLE -IC:/Qt/5.7/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\Test\player.h -o debug\moc_player.cpp
@@ -321,6 +346,43 @@ debug/moc_ship.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/game.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsScene \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qbrush.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpen.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsItem \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsView \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpainter.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtextoption.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontinfo.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontmetrics.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpalette.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qcursor.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QTimer \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
+		../Test/player.h \
+		../Test/ship.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../Test/npc.h \
+		../Test/voronoi_point.h \
 		../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/Dmitry/Documents/MINE/Prog/C++/Project_Pirates/Test_Project/Test -IC:/Qt/5.7/mingw53_32/include -IC:/Qt/5.7/mingw53_32/include/QtWidgets -IC:/Qt/5.7/mingw53_32/include/QtGui -IC:/Qt/5.7/mingw53_32/include/QtANGLE -IC:/Qt/5.7/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\Test\ship.h -o debug\moc_ship.cpp
@@ -711,11 +773,11 @@ debug/moc_game.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
-		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
-		../Test/npc.h \
 		../Test/game.h \
+		../Test/npc.h \
 		../Test/voronoi_point.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		../Test/game.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/Dmitry/Documents/MINE/Prog/C++/Project_Pirates/Test_Project/Test -IC:/Qt/5.7/mingw53_32/include -IC:/Qt/5.7/mingw53_32/include/QtWidgets -IC:/Qt/5.7/mingw53_32/include/QtGui -IC:/Qt/5.7/mingw53_32/include/QtANGLE -IC:/Qt/5.7/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\Test\game.h -o debug\moc_game.cpp
@@ -956,17 +1018,41 @@ debug/player.o: ../Test/player.cpp ../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/game.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsScene \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qbrush.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpen.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsView \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpainter.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtextoption.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontinfo.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontmetrics.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpalette.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qcursor.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
-		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug
+		C:/Qt/5.7/mingw53_32/include/QtCore/QTimer \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
+		../Test/npc.h \
+		../Test/voronoi_point.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\player.o ..\Test\player.cpp
 
 debug/ship.o: ../Test/ship.cpp ../Test/ship.h \
@@ -1055,7 +1141,43 @@ debug/ship.o: ../Test/ship.cpp ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/game.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsScene \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qbrush.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpen.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsItem \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsView \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpainter.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtextoption.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontinfo.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontmetrics.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpalette.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qcursor.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QTimer \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
+		../Test/player.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../Test/npc.h \
+		../Test/voronoi_point.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ship.o ..\Test\ship.cpp
 
 debug/npc.o: ../Test/npc.cpp ../Test/npc.h \

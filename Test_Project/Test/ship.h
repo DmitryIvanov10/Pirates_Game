@@ -8,6 +8,7 @@
 
 //pliki
 #include "wind.h"
+#include "game.h"
 
 class Ship: public QObject
 {
@@ -26,11 +27,14 @@ protected:
     short ammo; //ilość amunicji na statku
 
     //zmienne typu vector klasy Ship
-   std:: vector <short> goods; //ilość przewożonych towarów przez statek, każdy element vector'a to inne dobro (na przykład goods[2] to perły, a goods[5] to sól itd.)
+    std:: vector <short> goods; //ilość przewożonych towarów przez statek, każdy element vector'a to inne dobro (na przykład goods[2] to perły, a goods[5] to sól itd.)
 
     //lista zimennych typu double klasy Ship
     double X; //aktualna pozycja x
     double Y; //aktualna pozycja y
+
+    //funkcja poszukiwania odległości
+    int find_distance(short _id1, short _id2); //zwraca odległość pomiędzy dwoma punktami voronoi
 
 public:
     //konstruktory
