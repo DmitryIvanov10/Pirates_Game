@@ -32,6 +32,7 @@ Game::Game(QObject *parent) : QObject(parent)
 
     connect (timer, SIGNAL(timeout()), rect, SLOT(do_tour()));
     connect (timer, SIGNAL(timeout()), wind, SLOT(do_tour()));
+    connect (timer, SIGNAL(timeout()), npc_ship, SLOT(move_to_next_location()));
     timer->start(17);
 
     view->show();

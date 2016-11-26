@@ -59,6 +59,6 @@ void Player::keyPressEvent(QKeyEvent *event)
 void Player::do_tour()
 {
     move();
-    setPos(X,Y);
+    //setPos(X,Y);
     //qDebug() << "X: " <<  X << ", Y: " << Y;
 }

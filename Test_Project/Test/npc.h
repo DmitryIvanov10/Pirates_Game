@@ -22,11 +22,15 @@ class NPC: public Ship
 
     //funkcja poszukiwania odległości
     int find_distance(short _id1, short _id2); //zwraca odległość pomiędzy dwoma punktami voronoi
+    int find_distance(double _X, double _Y, short _id); //zwraca odległość pomiędzy npc a punktem voronoi
 
 public:
     //konstruktory
     NPC();
     NPC(double _x, double _y, short _model);
+
+    //destructor
+    ~NPC();
 
     //funkcje dostępu
     void find_next (); //funkcja znajdująca kolejny wierzchołek voronoi

@@ -14,7 +14,7 @@ NPC::NPC()
     {
         target_location = rand()%(Game::map.size()-1) + 1;
     }
-    qDebug() <<"Current location: " << current_location ;
+    qDebug() <<"Current location: " << current_location;
     qDebug() <<"Target location: " << target_location;
     find_next();
 }
@@ -28,6 +28,11 @@ NPC::NPC(double _x, double _y, short _model)
     model=_model;
 }
 
+NPC::~NPC()
+{
+    qDebug() <<"NPC deleted";
+}
+
 int NPC::find_distance(short _id1, short _id2)
 {
     return (int)sqrt(
@@ -35,6 +40,16 @@ int NPC::find_distance(short _id1, short _id2)
         (Game::map[_id2].get_x() - Game::map[_id1].get_x()) +
         (Game::map[_id2].get_y() - Game::map[_id1].get_y()) *
         (Game::map[_id2].get_y() - Game::map[_id1].get_y())
+        );
+}
+
+int NPC::find_distance(double _X, double _Y, short _id)
+{
+    return (int)sqrt(
+        (_X - Game::map[_id].get_x()) *
+        (_X - Game::map[_id].get_x()) +
+        (_Y - Game::map[_id].get_y()) *
+        (_Y - Game::map[_id].get_y())
         );
 }
 
@@ -77,6 +92,19 @@ short NPC::show_fraction()
 
 void NPC::move_to_next_location()
 {
-    // next_
-
+    move();
+    if (find_distance(X, Y, next_location) <= 1)
+    {
+        if (next_location != target_location)
+        {
+            qDebug() <<"Got to the location: " << next_location;
+            qDebug() <<"NPC is at point X: " << X << ", Y: " << Y;
+            current_location = next_location;
+            find_next();
+        } else
+        {
+            qDebug() <<"NPC is at target location: " << next_location;
+            delete this;
+        }
+    }
 }
