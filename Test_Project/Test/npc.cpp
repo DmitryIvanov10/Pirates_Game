@@ -6,12 +6,14 @@ NPC::NPC()
     std::srand(time(0));
     model=1;
     fraction=rand()%3;
-    current_location = rand()%(Game::map.size());
+    current_location = rand()%(Game::map.size()-1) + 1;
     X = Game::map[current_location].get_x();
     Y = Game::map[current_location].get_y();
-    target_location = rand()%(Game::map.size());
-    //qDebug() << rand()%(Game::map.size());
-    //qDebug() << rand()%(Game::map.size());
+    target_location = current_location;
+    while (target_location == current_location)
+    {
+        target_location = rand()%(Game::map.size()-1) + 1;
+    }
     qDebug() <<"Current location: " << current_location << ". X: " <<
                Game::map[current_location].get_x() <<", Y: " <<
                Game::map[current_location].get_y();
@@ -50,11 +52,14 @@ void NPC::find_next()
     short i = 1;
     while (Game::map[current_location].get_neighbour(i) != -1 && i<3)
     {
+        qDebug() << "Distance from neighbour with id " << Game::map[current_location].get_neighbour(i) <<
+                    " is " << find_distance(Game::map[current_location].get_neighbour(i), target_location);
         if (find_distance(Game::map[current_location].get_neighbour(i), target_location) < distance)
         {
             distance = find_distance(Game::map[current_location].get_neighbour(i), target_location);
             next_id = Game::map[current_location].get_neighbour(i);
         }
+        ++i;
     }
     next_location = next_id;
     qDebug() <<"Next location: " << next_location;
