@@ -9,6 +9,7 @@ Player::Player()
     cannons  = 4;
     angle = 90;
     sprite_angle = 2;
+    sail_level = 1;
 
     X=0;
     Y=0;
@@ -45,11 +46,19 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         case Qt::Key_A:
         case Qt::Key_Left:
-            set_angle(angle+5);
+            set_angle(angle+2);
             break;
         case Qt::Key_D:
         case Qt::Key_Right:
-            set_angle(angle-5);
+            set_angle(angle-2);
+            break;
+        case Qt::Key_W:
+        case Qt::Key_Up:
+            set_sail_level(1);
+            break;
+        case Qt::Key_S:
+        case Qt::Key_Down:
+            set_sail_level(0);
             break;
     }
 

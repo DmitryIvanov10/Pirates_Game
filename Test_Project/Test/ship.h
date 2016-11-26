@@ -18,6 +18,8 @@ protected:
     //zmienne statku, ważne dla gry w widoku podróży
     double angle; //aktualny kąt o jaki statek jest obrócony
     short model; //model statku
+    short sail_level; //poziom rozwinięcia żagli
+
     short sprite_angle; //kąt obrotu obrazka ze statkiem, wartość pomiędzy [0,7]
     //zmienne zaopatrzenia, używane przy pojedynkach
     short health; //punkty zdrowia dla statku
@@ -41,6 +43,7 @@ public:
     double pos (bool i); //funckja zwracająca aktualną pozycję statku dla i=0 x, dla i=1 y
     double get_x(); // get x coordinate of a ship
     double get_y(); // get y coordinate of a ship
+    void set_sail_level(bool _sign); //funkcja zmieniająca wartość rozłożenia żagli
     void set_angle(double _angle); // funkcja ustawiająca wartość angle
     void move(double _x, double _y); //prymitywna funkcja ruchu statku, raczej nie będzie używana, ale jest na potrzeby testów
     void move(); //pożądna funkcja przemieszczenia uwzględniają nachylenie statku, kąt i siłę wiatru
