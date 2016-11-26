@@ -16,6 +16,8 @@ class Player: public Ship, public QGraphicsRectItem
 public:
     //konstruktory
     Player();
+
+    //funkcje dostępu
     void keyPressEvent(QKeyEvent * event);
 
 public slots:

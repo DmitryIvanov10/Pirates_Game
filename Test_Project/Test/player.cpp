@@ -6,6 +6,7 @@ Player::Player()
     crue = 50;
     health = 100;
     cannons  = 4;
+    angle = 90;
 }
 
 void Player::keyPressEvent(QKeyEvent *event)
@@ -31,6 +32,20 @@ void Player::keyPressEvent(QKeyEvent *event)
             setPos(x(),y()+10);
             break;
     }
+
+    switch (event->key())
+    {
+        case Qt::Key_A:
+        case Qt::Key_Left:
+            set_angle(angle+5);
+            break;
+        case Qt::Key_D:
+        case Qt::Key_Right:
+            set_angle(angle-5);
+            break;
+    }
+
+    qDebug() << angle;
 }
 
 void Player::move()
