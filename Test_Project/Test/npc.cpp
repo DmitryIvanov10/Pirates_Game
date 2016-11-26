@@ -5,6 +5,7 @@ NPC::NPC()
 {
     std::srand(time(0));
     model=1;
+    sail_level = 1;
     fraction=rand()%3;
     current_location = rand()%(Game::map.size()-1) + 1;
     X = Game::map[current_location].get_x();
@@ -93,7 +94,7 @@ short NPC::show_fraction()
 void NPC::move_to_next_location()
 {
     move();
-    if (find_distance(X, Y, next_location) <= 1)
+    if (find_distance(X, Y, next_location) <= 5)
     {
         if (next_location != target_location)
         {
