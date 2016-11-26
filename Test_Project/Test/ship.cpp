@@ -1,4 +1,5 @@
 #include "ship.h"
+#include <QDebug>
 
 Ship::Ship()
 {
@@ -22,6 +23,8 @@ void Ship::set_angle(double _angle)
         _angle += 360;
     }
     angle = _angle;
+    find_sprite_angle();
+    qDebug() << "kąt statku: " << angle << ", sprite: " << sprite_angle;
 }
 
 void Ship::move(double _x, double _y)
@@ -58,13 +61,20 @@ double Ship::get_y()
 
 short Ship::find_sprite_angle()
 {
+    bool temp = 0;
     for(int i=1; i<9; i++)
     {
-        if(angle < i*45)
+        if(angle < i*45 - 23)
         {
             sprite_angle = i-1;
+            temp = 1;
             return 0;
         }
+    }
+    if(!temp)
+    {
+        sprite_angle = 0;
+        return 0;
     }
     return 1;
 }
