@@ -1,11 +1,12 @@
 #include "player.h"
 
-/*
 Player::Player()
 {
-
+    model = 1;
+    crue = 50;
+    health = 100;
+    cannons  = 4;
 }
-*/
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
