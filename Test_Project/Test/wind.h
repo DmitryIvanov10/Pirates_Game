@@ -17,7 +17,7 @@ class Wind : public QGraphicsTextItem
     //short strenght; //siła wiatru, wartości pomiędzy 0 a 99
 
 public:
-    static double angle;
+    static short angle;
     static short strength;
 
     //konstruktory

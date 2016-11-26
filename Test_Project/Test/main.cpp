@@ -6,7 +6,7 @@
 #include "game.h"
 
 std::vector<Voronoi_point> Game::map;
-double Wind::angle;
+short Wind::angle;
 short Wind::strength;
 
 int main(int argc, char *argv[])
