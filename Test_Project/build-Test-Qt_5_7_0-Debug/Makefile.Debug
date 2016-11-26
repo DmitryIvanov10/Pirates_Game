@@ -443,9 +443,10 @@ debug/moc_npc.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
-		../Test/Player.h \
+		../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../Test/npc.h \
 		../Test/voronoi_point.h \
 		../Test/npc.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
@@ -705,13 +706,15 @@ debug/moc_game.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
-		../Test/Player.h \
+		../Test/player.h \
 		../Test/ship.h \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../Test/npc.h \
+		../Test/game.h \
 		../Test/voronoi_point.h \
 		../Test/game.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
@@ -854,13 +857,14 @@ debug/main.o: ../Test/main.cpp C:/Qt/5.7/mingw53_32/include/QtWidgets/QApplicati
 		C:/Qt/5.7/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
-		../Test/Player.h \
+		../Test/player.h \
 		../Test/ship.h \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../Test/npc.h \
 		../Test/voronoi_point.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\Test\main.cpp
 
@@ -1173,7 +1177,7 @@ debug/npc.o: ../Test/npc.cpp ../Test/npc.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
-		../Test/Player.h \
+		../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
 		../Test/voronoi_point.h
@@ -1498,13 +1502,14 @@ debug/game.o: ../Test/game.cpp ../Test/game.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qtimer.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qbasictimer.h \
-		../Test/Player.h \
+		../Test/player.h \
 		../Test/ship.h \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../Test/npc.h \
 		../Test/voronoi_point.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\game.o ..\Test\game.cpp
 

@@ -14,6 +14,8 @@ class Player: public Ship, public QGraphicsRectItem
     Q_OBJECT
 
 public:
+    //konstruktory
+    Player();
     void keyPressEvent(QKeyEvent * event);
 
 public slots:
