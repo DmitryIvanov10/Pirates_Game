@@ -7,10 +7,8 @@ NPC::NPC()
     model=1;
     sail_level = 1;
     fraction=rand()%3;
-    /*current_location = rand()%(Game::map.size()-1) + 1;
-    target_location = current_location;*/
-    current_location = 1;
-    target_location = 8;
+    current_location = rand()%(Game::map.size()-1) + 1;
+    target_location = current_location;
     X = Game::map[current_location].get_x();
     Y = Game::map[current_location].get_y();
     while (target_location == current_location)
