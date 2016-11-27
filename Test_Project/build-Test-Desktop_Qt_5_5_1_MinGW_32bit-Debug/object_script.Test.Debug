@@ -8,6 +8,7 @@ INPUT(
 ./debug\wind.o
 ./debug\game.o
 ./debug\newgame.o
+./debug\qrc_resources.o
 ./debug\moc_player.o
 ./debug\moc_ship.o
 ./debug\moc_npc.o

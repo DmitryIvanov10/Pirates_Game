@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/Ships/Caravel_01/Caravel_E_01.png</file>
+        <file>img/Ships/Caravel_01/Caravel_N_01.png</file>
+        <file>img/Ships/Caravel_01/Caravel_NE_01.png</file>
+        <file>img/Ships/Caravel_01/Caravel_S_01.png</file>
+        <file>img/Ships/Caravel_01/Caravel_SE_01.png</file>
+        <file>img/Ships/Caravel_01/Caravel_NW_01.png</file>
+        <file>img/Ships/Caravel_01/Caravel_SW_01.png</file>
+        <file>img/Ships/Caravel_01/Caravel_W_01.png</file>
+    </qresource>
+</RCC>

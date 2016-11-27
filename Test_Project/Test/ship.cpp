@@ -80,13 +80,46 @@ short Ship::find_sprite_angle()
         {
             sprite_angle = i-1;
             temp = 1;
+            set_sprite_angle();
             return 0;
         }
     }
     if(!temp)
     {
         sprite_angle = 0;
+        set_sprite_angle();
         return 0;
     }
     return 1;
+}
+
+void Ship::set_sprite_angle()
+{
+    switch(sprite_angle)
+    {
+        case 0:
+            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_N_01.png"));
+            break;
+        case 1:
+            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_NW_01.png"));
+            break;
+        case 2:
+            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_W_01.png"));
+            break;
+        case 3:
+            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_SW_01.png"));
+            break;
+        case 4:
+            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_S_01.png"));
+            break;
+        case 5:
+            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_SE_01.png"));
+            break;
+        case 6:
+            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_E_01.png"));
+            break;
+        case 7:
+            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_NE_01.png"));
+            break;
+    }
 }

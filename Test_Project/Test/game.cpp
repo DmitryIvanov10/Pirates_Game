@@ -10,14 +10,16 @@ Game::Game(QObject *parent) : QObject(parent)
     QGraphicsScene * scene = new QGraphicsScene();
 
     // create an item to put into the scene
-    Player * rect = new Player();
-    rect->setRect(0,0,20,20);
-    scene->addItem(rect);
+    Player * player = new Player();
+    //rect->setRect(0,0,80,80);
+    scene->addItem(player);
 
     // create an npc to put into the scene
-    NPC * npc_ship = new NPC();
-    npc_ship->setRect(0,0,20,20);
-    scene->addItem(npc_ship);
+    NPC * npc_ship1 = new NPC();
+    NPC * npc_ship2 = new NPC();
+    //npc_ship->setRect(0,0,20,20);
+    scene->addItem(npc_ship1);
+    scene->addItem(npc_ship2);
 
     // create wind to put into the scene
     Wind *wind = new Wind();
@@ -29,14 +31,16 @@ Game::Game(QObject *parent) : QObject(parent)
     QGraphicsView * view = new QGraphicsView(scene);
 
     //make item focus
-    //rect->setFlag(QGraphicsItem::ItemIsFocusable);
-    //rect->setFocus();
-    npc_ship->setFlag(QGraphicsItem::ItemIsFocusable);
-    npc_ship->setFocus();
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    player->setFocus();
+    //npc_ship->setFlag(QGraphicsItem::ItemIsFocusable);
+    //npc_ship->setFocus();
 
-    connect (timer, SIGNAL(timeout()), rect, SLOT(do_tour()));
+    connect (timer, SIGNAL(timeout()), player, SLOT(do_tour()));
     connect (timer, SIGNAL(timeout()), wind, SLOT(do_tour()));
-    connect (timer, SIGNAL(timeout()), npc_ship, SLOT(move_to_next_location()));
+    connect (timer, SIGNAL(timeout()), npc_ship1, SLOT(move_to_next_location()));
+    connect (timer, SIGNAL(timeout()), npc_ship2, SLOT(move_to_next_location()));
+    //view->centerOn(0,0);
     timer->start(17);
 
     view->show();

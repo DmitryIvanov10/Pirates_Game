@@ -7,13 +7,13 @@ Player::Player()
     crue = 50;
     health = 100;
     cannons  = 4;
-    angle = 90;
-    sprite_angle = 2;
+    set_angle(90);
     sail_level = 1;
 
     X=0;
     Y=0;
 
+    //setPixmap(QPixmap(":/Caravel_E_01.png"));
 }
 
 void Player::keyPressEvent(QKeyEvent *event)

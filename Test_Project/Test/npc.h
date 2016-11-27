@@ -10,7 +10,7 @@
 #include <QObject>
 #include <time.h>
 
-class NPC: public Ship, public QGraphicsRectItem
+class NPC: public Ship //, public QGraphicsRectItem
 {
     Q_OBJECT
 

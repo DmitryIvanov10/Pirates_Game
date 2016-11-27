@@ -5,11 +5,12 @@
 #include <QObject> //potrzebne do slotów i sygnałów
 #include <vector> //obsługa wektorów
 #include <math.h> //funkcje trygonometryczne
+#include <QGraphicsPixmapItem>
 
 //pliki
 #include "wind.h"
 
-class Ship: public QObject
+class Ship: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
@@ -45,6 +46,7 @@ public:
     double get_y(); // get y coordinate of a ship
     void set_sail_level(bool _sign); //funkcja zmieniająca wartość rozłożenia żagli
     void set_angle(double _angle); // funkcja ustawiająca wartość angle
+    void set_sprite_angle();
     void move(double _x, double _y); //prymitywna funkcja ruchu statku, raczej nie będzie używana, ale jest na potrzeby testów
     void move(); //pożądna funkcja przemieszczenia uwzględniają nachylenie statku, kąt i siłę wiatru
     short find_sprite_angle(); //dobieranie kątu statku za pomocą zmiennej angle

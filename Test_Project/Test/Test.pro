@@ -33,3 +33,6 @@ HEADERS  += \
     newgame.h
 
 FORMS    +=
+
+RESOURCES += \
+    resources.qrc
