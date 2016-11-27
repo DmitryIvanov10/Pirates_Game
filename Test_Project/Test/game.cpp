@@ -11,11 +11,13 @@ Game::Game(QObject *parent) : QObject(parent)
 
     // create an item to put into the scene
     Player * rect = new Player();
-    rect->setRect(0,0,100,100);
+    rect->setRect(0,0,20,20);
     scene->addItem(rect);
 
     // create an npc to put into the scene
     NPC * npc_ship = new NPC();
+    npc_ship->setRect(0,0,20,20);
+    scene->addItem(npc_ship);
 
     // create wind to put into the scene
     Wind *wind = new Wind();
@@ -27,8 +29,10 @@ Game::Game(QObject *parent) : QObject(parent)
     QGraphicsView * view = new QGraphicsView(scene);
 
     //make item focus
-    rect->setFlag(QGraphicsItem::ItemIsFocusable);
-    rect->setFocus();
+    //rect->setFlag(QGraphicsItem::ItemIsFocusable);
+    //rect->setFocus();
+    npc_ship->setFlag(QGraphicsItem::ItemIsFocusable);
+    npc_ship->setFocus();
 
     connect (timer, SIGNAL(timeout()), rect, SLOT(do_tour()));
     connect (timer, SIGNAL(timeout()), wind, SLOT(do_tour()));

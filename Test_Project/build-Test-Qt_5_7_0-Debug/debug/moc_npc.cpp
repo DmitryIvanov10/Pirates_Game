@@ -89,6 +89,8 @@ void *NPC::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_NPC.stringdata0))
         return static_cast<void*>(const_cast< NPC*>(this));
+    if (!strcmp(_clname, "QGraphicsRectItem"))
+        return static_cast< QGraphicsRectItem*>(const_cast< NPC*>(this));
     return Ship::qt_metacast(_clname);
 }
 

@@ -10,7 +10,7 @@
 #include <QObject>
 #include <time.h>
 
-class NPC: public Ship
+class NPC: public Ship, public QGraphicsRectItem
 {
     Q_OBJECT
 
@@ -18,6 +18,7 @@ class NPC: public Ship
     short fraction; //frakcja do której okręt należy
     short current_location; //wierzchołek voronoi na którym statek się ostatnio meldował
     short next_location; //wierzchołek voronoi na który statek zmierza
+    short previous_location; //wierzchołek voronoi z którego statek zmierza
     short target_location; //cel statku, wierzchołek voronoi
 
     //funkcja poszukiwania odległości
