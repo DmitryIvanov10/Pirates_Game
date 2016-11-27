@@ -7,10 +7,10 @@ Game::Game(QObject *parent) : QObject(parent)
     new_game();
 
     // create a scene
-    QGraphicsScene * scene = new QGraphicsScene();
+    //QGraphicsScene * scene = new QGraphicsScene();
 
     // create an item to put into the scene
-    Player * player = new Player();
+    //Player * player = new Player();
     //rect->setRect(0,0,80,80);
     scene->addItem(player);
 
@@ -22,13 +22,13 @@ Game::Game(QObject *parent) : QObject(parent)
     scene->addItem(npc_ship2);
 
     // create wind to put into the scene
-    Wind *wind = new Wind();
+    //Wind *wind = new Wind();
     scene->addItem(wind);
     //Wind::create_wind();
 
 
     // add a view
-    QGraphicsView * view = new QGraphicsView(scene);
+    //QGraphicsView * view = new QGraphicsView(scene);
 
     //make item focus
     player->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -36,6 +36,7 @@ Game::Game(QObject *parent) : QObject(parent)
     //npc_ship->setFlag(QGraphicsItem::ItemIsFocusable);
     //npc_ship->setFocus();
 
+    connect (timer, SIGNAL(timeout()), this, SLOT(center_view()));
     connect (timer, SIGNAL(timeout()), player, SLOT(do_tour()));
     connect (timer, SIGNAL(timeout()), wind, SLOT(do_tour()));
     connect (timer, SIGNAL(timeout()), npc_ship1, SLOT(move_to_next_location()));
@@ -43,7 +44,9 @@ Game::Game(QObject *parent) : QObject(parent)
     //view->centerOn(0,0);
     timer->start(17);
 
-    view->show();
+    //view->show();
+    view->showFullScreen();
+   // view->centerOn(player);
 }
 
 Game::Game(std::string a)
@@ -140,6 +143,12 @@ double Game::get_harbor(short _id)
     return map[_id].get_harbor();
 }
 */
+
+void Game::center_view()
+{
+    wind->setPos(player->x()-100,player->y()-120);
+    view->centerOn(player->get_x(),player->get_y());
+}
 
 short Game::get_neighbour(short _id, short _number)
 {

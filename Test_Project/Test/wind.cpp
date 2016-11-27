@@ -4,7 +4,7 @@
 
 Wind::Wind()
 {
-    setPlainText(QString("Kąt: " + QString::number(Wind::angle) + "\nSila: " + QString::number(Wind::strength)));
+    setPlainText(QString("Kąt wiatru: " + QString::number(Wind::angle) + "\nSila wiatru: " + QString::number(Wind::strength)));
     setFont(QFont("times", 24));
     setDefaultTextColor(Qt::red);
 }
@@ -87,18 +87,18 @@ void Wind::do_tour()
     if(change_frequency >= 1200)
     {
         change_all(200,6);
-        setPlainText(QString("Kąt: " + QString::number(angle) + "\nSila: " + QString::number(strength)));
+        setPlainText(QString("Wiatr\nKąt: " + QString::number(angle) + "\nSiła: " + QString::number(strength)));
         change_frequency = 0;
     }
     else if(change_frequency%300 == 0)
     {
         change_all(90,6);
-        setPlainText(QString("Kąt: " + QString::number(angle) + "\nSila: " + QString::number(strength)));
+        setPlainText(QString("Wiatr\nKąt: " + QString::number(angle) + "\nSiła: " + QString::number(strength)));
     }
     else if(change_frequency%15 == 0)
     {
         change_all(10,6);
-        setPlainText(QString("Kąt: " + QString::number(angle) + "\nSila: " + QString::number(strength)));
+        setPlainText(QString("Wiatr\nKąt: " + QString::number(angle) + "\nSiła: " + QString::number(strength)));
     }
     signal();
 }

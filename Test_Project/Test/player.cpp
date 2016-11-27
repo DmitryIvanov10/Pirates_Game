@@ -10,8 +10,8 @@ Player::Player()
     set_angle(90);
     sail_level = 1;
 
-    X=0;
-    Y=0;
+    X=200;
+    Y=200;
 
     //setPixmap(QPixmap(":/Caravel_E_01.png"));
 }
@@ -68,6 +68,6 @@ void Player::keyPressEvent(QKeyEvent *event)
 void Player::do_tour()
 {
     move();
-    //setPos(X,Y);
+    setPos(X,Y);
     //qDebug() << "X: " <<  X << ", Y: " << Y;
 }

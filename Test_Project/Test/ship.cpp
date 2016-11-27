@@ -95,10 +95,12 @@ short Ship::find_sprite_angle()
 
 void Ship::set_sprite_angle()
 {
+    //bool sight = 0;
     switch(sprite_angle)
     {
         case 0:
             setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_N_01.png"));
+            //sight = 1;
             break;
         case 1:
             setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_NW_01.png"));
@@ -111,6 +113,7 @@ void Ship::set_sprite_angle()
             break;
         case 4:
             setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_S_01.png"));
+            //sight = 1;
             break;
         case 5:
             setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_SE_01.png"));
@@ -122,4 +125,13 @@ void Ship::set_sprite_angle()
             setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_NE_01.png"));
             break;
     }
+
+    setTransformOriginPoint(40,40);
+    setRotation(((-(int)angle-23)%45+23)*0.3);
+    /*
+    if(!sight)
+        setRotation(((-(int)angle-23)%45+23)*0.4);
+    else
+        setRotation(0);
+        */
 }

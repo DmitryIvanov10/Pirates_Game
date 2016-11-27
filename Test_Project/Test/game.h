@@ -23,6 +23,10 @@ class Game : public QObject
     Q_OBJECT
 
     QTimer *timer = new QTimer();
+    QGraphicsScene * scene = new QGraphicsScene();
+    Player * player = new Player();
+    Wind *wind = new Wind();
+    QGraphicsView * view = new QGraphicsView(scene);
 
 public:
 	static std::vector <Voronoi_point> map;
@@ -48,6 +52,7 @@ signals:
 
 public slots:
     //void check();
+    void center_view();
 
 };
 
