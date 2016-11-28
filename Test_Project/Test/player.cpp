@@ -62,7 +62,7 @@ void Player::keyPressEvent(QKeyEvent *event)
             break;
     }
 
-    qDebug() << angle;
+    //qDebug() << angle;
 }
 
 void Player::do_tour()

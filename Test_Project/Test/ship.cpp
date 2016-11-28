@@ -24,7 +24,7 @@ void Ship::set_angle(double _angle)
     }
     angle = _angle;
     find_sprite_angle();
-    qDebug() << "kąt statku: " << angle << ", sprite: " << sprite_angle;
+    //qDebug() << "kąt statku: " << angle << ", sprite: " << sprite_angle;
 }
 
 void Ship::move(double _x, double _y)

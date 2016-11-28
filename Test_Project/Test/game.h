@@ -11,6 +11,7 @@
 #include <QTimer> //potrzebny do Qtimer'a
 #include <vector>
 #include <cstdlib>
+#include <QList>
 
 //pliki
 //#include "ship.h"

@@ -6,6 +6,9 @@ Game::Game(QObject *parent) : QObject(parent)
     // randomize in creating all new objects
     std::srand(time(0));
 
+    // amount of NPC in the beginning of the game
+    const int start_npc_amount = 3;
+
     // create map
     new_game();
 
@@ -17,12 +20,27 @@ Game::Game(QObject *parent) : QObject(parent)
     //rect->setRect(0,0,80,80);
     scene->addItem(player);
 
-    // create an npc to put into the scene
-    NPC * npc_ship1 = new NPC();
-    NPC * npc_ship2 = new NPC();
+    // create npc's to put into the scene
+    //NPC * npc_ship1 = new NPC();
+    //NPC * npc_ship2 = new NPC();
+
+    // create list to hold NPC ships
+    QList<NPC *> npc_ships;
+
+    // create NPCs ships and add them to the list of NPC ships
+    for (int i=0; i<start_npc_amount; i++)
+    {
+        npc_ships << (new NPC());
+    }
     //npc_ship->setRect(0,0,20,20);
-    scene->addItem(npc_ship1);
-    scene->addItem(npc_ship2);
+    /*scene->addItem(npc_ship1);
+    scene->addItem(npc_ship2);*/
+
+    // add all NPC ships to the scene
+    foreach (NPC * npc_ship, npc_ships)
+    {
+        scene->addItem(npc_ship);
+    }
 
     // create wind to put into the scene
     //Wind *wind = new Wind();
@@ -37,11 +55,21 @@ Game::Game(QObject *parent) : QObject(parent)
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
+    // update view
     connect (timer, SIGNAL(timeout()), this, SLOT(center_view()));
+    // update player
     connect (timer, SIGNAL(timeout()), player, SLOT(do_tour()));
+    // update wind properties
     connect (timer, SIGNAL(timeout()), wind, SLOT(do_tour()));
-    connect (timer, SIGNAL(timeout()), npc_ship1, SLOT(move_to_next_location()));
-    connect (timer, SIGNAL(timeout()), npc_ship2, SLOT(move_to_next_location()));
+    /*connect (timer, SIGNAL(timeout()), npc_ship1, SLOT(move_to_next_location()));
+    connect (timer, SIGNAL(timeout()), npc_ship2, SLOT(move_to_next_location()));*/
+
+    // update all NPC ships
+    foreach (NPC * npc_ship, npc_ships)
+    {
+        connect (timer, SIGNAL(timeout()), npc_ship, SLOT(move_to_next_location()));
+    }
+
     //view->centerOn(0,0);
     timer->start(17);
 
@@ -61,7 +89,7 @@ Game::Game(std::string a)
 
 void Game::new_game()
 {
-    //create wind
+    // create wind
     Wind::angle = 0;
     Wind::strength = 50;
 
