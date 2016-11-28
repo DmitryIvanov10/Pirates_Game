@@ -3,6 +3,9 @@
 
 Game::Game(QObject *parent) : QObject(parent)
 {  
+    // randomize in creating all new objects
+    std::srand(time(0));
+
     // create map
     new_game();
 
@@ -33,8 +36,6 @@ Game::Game(QObject *parent) : QObject(parent)
     //make item focus
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
-    //npc_ship->setFlag(QGraphicsItem::ItemIsFocusable);
-    //npc_ship->setFocus();
 
     connect (timer, SIGNAL(timeout()), this, SLOT(center_view()));
     connect (timer, SIGNAL(timeout()), player, SLOT(do_tour()));

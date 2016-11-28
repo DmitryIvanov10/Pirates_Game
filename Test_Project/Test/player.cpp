@@ -69,5 +69,4 @@ void Player::do_tour()
 {
     move();
     setPos(X,Y);
-    //qDebug() << "X: " <<  X << ", Y: " << Y;
 }

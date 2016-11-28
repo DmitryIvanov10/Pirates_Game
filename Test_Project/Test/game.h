@@ -10,6 +10,7 @@
 #include <fstream>
 #include <QTimer> //potrzebny do Qtimer'a
 #include <vector>
+#include <cstdlib>
 
 //pliki
 //#include "ship.h"

@@ -28,6 +28,7 @@ class NPC: public Ship //, public QGraphicsRectItem
 public:
     //konstruktory
     NPC();
+    NPC(short _start_id, short _finish_id);
     NPC(double _x, double _y, short _model);
 
     //destructor
