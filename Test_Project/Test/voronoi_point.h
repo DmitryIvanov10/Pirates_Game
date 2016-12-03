@@ -26,6 +26,9 @@ public:
     Voronoi_point(double _x, double _y, short _id, bool _harbor, bool _edge);
 
     //funkcje dostępu
+    void set_neighbours(short _id1); // function to set neighbours to voronoi point
+    void set_neighbours(short _id1, short _id2); // overload of function set_neighbours
+    void set_neighbours(short _id1, short _id2, short _id3); // overload of function set_neighbours
     void new_neighbor(short _id); //funkcja dodawania sąsiadów
     short get_neighbour(short _number); //funkcja zwracania sąsiadów
     double pos (bool a); //pozycja punktu, dla a=0 x, dla a=1 y

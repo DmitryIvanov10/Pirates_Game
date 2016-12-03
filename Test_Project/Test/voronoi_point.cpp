@@ -57,6 +57,27 @@ void Voronoi_point::new_neighbor(short _id)
     }
 }
 
+void Voronoi_point::set_neighbours(short _id1)
+{
+    new_neighbor(_id1);
+    new_neighbor(-1);
+    new_neighbor(-1);
+}
+
+void Voronoi_point::set_neighbours(short _id1, short _id2)
+{
+    new_neighbor(_id1);
+    new_neighbor(_id2);
+    new_neighbor(-1);
+}
+
+void Voronoi_point::set_neighbours(short _id1, short _id2, short _id3)
+{
+    new_neighbor(_id1);
+    new_neighbor(_id2);
+    new_neighbor(_id3);
+}
+
 short Voronoi_point::get_neighbour(short _number)
 {
     return neighbors[_number % 3]; //dzielone przez 3 ponieważ vector neighbors nie może mieć więcej niż trzech sąsiadów i niechcący uruchomienie tej funkcji dla _number = 3 by mogło uszkodzić program

@@ -3,7 +3,7 @@
 
 NPC::NPC()
 {
-    qDebug() <<"Created new NPC!";
+    //qDebug() <<"Created new NPC!";
     model=1;
     sail_level = 1;
     fraction=rand()%3;
@@ -17,14 +17,14 @@ NPC::NPC()
         target_location = rand()%(Game::map.size()-1) + 1;
     }
 
-    qDebug() <<"Current location: " << current_location;
-    qDebug() <<"Target location: " << target_location;
+    /*qDebug() <<"Current location: " << current_location;
+    qDebug() <<"Target location: " << target_location;*/
     find_next();
 }
 
 NPC::NPC(short _start_id, short _finish_id)
 {
-    qDebug() <<"Created new NPC!";
+    //qDebug() <<"Created new NPC!";
     model=1;
     sail_level = 1;
     fraction=rand()%3;
@@ -34,8 +34,8 @@ NPC::NPC(short _start_id, short _finish_id)
     Y = Game::map[current_location].get_y();
     target_location = _finish_id;
 
-    qDebug() <<"Current location: " << current_location;
-    qDebug() <<"Target location: " << target_location;
+    /*qDebug() <<"Current location: " << current_location;
+    qDebug() <<"Target location: " << target_location;*/
     find_next();
 }
 
@@ -50,7 +50,7 @@ NPC::NPC(double _x, double _y, short _model)
 
 NPC::~NPC()
 {
-    qDebug() <<"NPC deleted";
+    //qDebug() <<"NPC deleted";
 }
 
 int NPC::find_distance(short _id1, short _id2)
@@ -83,8 +83,8 @@ void NPC::find_next()
     if (Game::map[current_location].get_neighbour(i) == previous_location &&
         Game::map[current_location].get_neighbour(i+1) != -1)
     {
-        qDebug() <<"Location " << Game::map[current_location].get_neighbour(i) <<
-                   " is previous location and doesn't fit.";
+        /*qDebug() <<"Location " << Game::map[current_location].get_neighbour(i) <<
+                   " is previous location and doesn't fit.";*/
         ++i;
     }
     // skip all neighbours which are further from target location and are not the last neighbours
@@ -93,7 +93,7 @@ void NPC::find_next()
            Game::map[current_location].get_neighbour(i+1) != -1 && i<3)
     {
         // for debug purposes only
-        if (Game::map[current_location].get_neighbour(i) == previous_location)
+        /*if (Game::map[current_location].get_neighbour(i) == previous_location)
         {
             qDebug() <<"Location " << Game::map[current_location].get_neighbour(i) <<
                        " is previous location.";
@@ -102,57 +102,57 @@ void NPC::find_next()
         {
             qDebug() <<"Location " << Game::map[current_location].get_neighbour(i) <<
                        " is further from target than current location.";
-        }
+        }*/
         ++i;
     }
     // first appropriate choise for next location
     short next_id = Game::map[current_location].get_neighbour(i);
-    qDebug() <<"First choice is location " << next_id;
+    //qDebug() <<"First choice is location " << next_id;
     ++i;
     // check if choise is a target location
     if (next_id != target_location)
     {
         //for shortest distance method only
-        double distance = find_distance(next_id, target_location);
+        //double distance = find_distance(next_id, target_location);
 
         // check all existing neighbours which left
         while (Game::map[current_location].get_neighbour(i) != -1 && i<3)
         {
-            qDebug() <<"Checking id " << Game::map[current_location].get_neighbour(i);
+            //qDebug() <<"Checking id " << Game::map[current_location].get_neighbour(i);
 
             // random choise for locations closer to the target location than current location
             if (find_distance(Game::map[current_location].get_neighbour(i), target_location) <
                     find_distance(current_location, target_location))
             {
-                qDebug() <<"This id is not further from target than current location.";
+                //qDebug() <<"This id is not further from target than current location.";
                 // check if not a previous location
                 if (Game::map[current_location].get_neighbour(i) != previous_location)
                 {
-                    qDebug() <<"This id is not previous location.";
+                    //qDebug() <<"This id is not previous location.";
                     // check if it's a target location
                     if (Game::map[current_location].get_neighbour(i) == target_location)
                     {
-                        qDebug() <<"This id is target location.";
+                        //qDebug() <<"This id is target location.";
                         next_id = Game::map[current_location].get_neighbour(i);
                     }
                     else
                     {
                         // coin flip between locations closer to target location than current location
-                        qDebug() <<"Coin flip between locations " << next_id
-                                 <<" and " << Game::map[current_location].get_neighbour(i);
+                        /*qDebug() <<"Coin flip between locations " << next_id
+                                 <<" and " << Game::map[current_location].get_neighbour(i);*/
                         if (rand() % 2)
                         {
-                            qDebug() <<"Decided to choose id " << Game::map[current_location].get_neighbour(i);
+                            //qDebug() <<"Decided to choose id " << Game::map[current_location].get_neighbour(i);
                             next_id = Game::map[current_location].get_neighbour(i);
                         }
                         else
                         {
-                            qDebug() <<"Decided to choose id " << next_id;
+                            //qDebug() <<"Decided to choose id " << next_id;
                         }
                     }
                 }
             }
-            else
+            /*else
             {
                 // for debug purposes only
                 if (Game::map[current_location].get_neighbour(i) == previous_location)
@@ -165,7 +165,7 @@ void NPC::find_next()
                     qDebug() <<"Location " << Game::map[current_location].get_neighbour(i) <<
                                " is further from target than current location.";
                 }
-            }
+            }*/
 
             // moving with shortest trace
             /*if (find_distance(Game::map[current_location].get_neighbour(i), target_location) < distance)
@@ -192,14 +192,14 @@ void NPC::find_next()
             ++i;
         }
     }
-    else
+    /*else
     {
         qDebug() <<"This id is target location.";
-    }
+    }*/
 
     // set next location and angle to it
     next_location = next_id;
-    qDebug() <<"Next location: " << next_location;
+    //qDebug() <<"Next location: " << next_location;
     set_angle(atan2(Y - Game::map[next_location].get_y(), Game::map[next_location].get_x() - X) * 180 / M_PI - 90);
 }
 
@@ -212,6 +212,7 @@ void NPC::set_direction()
     // set the angle to the location (next voronoi point)
     double _angle = atan2(get_y()-_y, _x - get_x()) * 180 / M_PI - 90;
     set_angle(_angle);*/
+    // set the angle to the location (next voronoi point)
     set_angle(atan2(get_y()-Game().get_y(next_location),
               Game().get_x(next_location) - get_x()) * 180 / M_PI - 90);
 }
@@ -232,14 +233,14 @@ void NPC::move_to_next_location()
         // check if already at the target location
         if (next_location != target_location)
         {
-            qDebug() <<"Got to the location: " << next_location;
+            //qDebug() <<"Got to the location: " << next_location;
             previous_location = current_location;
             current_location = next_location;
             find_next();
         }
         else
         {
-            qDebug() <<"NPC is at target location: " << next_location;
+            //qDebug() <<"NPC is at target location: " << next_location;
             delete this;
         }
     }
