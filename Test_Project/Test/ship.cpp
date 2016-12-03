@@ -6,6 +6,7 @@ Ship::Ship()
     X=0;
     Y=0;
     model=1;
+    set_model_parameters();
 }
 
 Ship::Ship(double _x, double _y, short _model)
@@ -13,6 +14,18 @@ Ship::Ship(double _x, double _y, short _model)
     X=_x;
     Y=_y;
     model=_model;
+    set_model_parameters();
+}
+
+void Ship::set_model_parameters()
+{
+    switch(model)
+    {
+        case 1:
+            width = 80;
+            height = 80;
+            break;
+    }
 }
 
 void Ship::set_angle(double _angle)
@@ -56,19 +69,29 @@ void Ship::set_sail_level(bool _sign)
 double Ship::pos(bool i)
 {
     if(i)
-        return Y;
+        return Y + height/2;
     else
-        return X;
+        return X + width/2;
 }
 
 double Ship::get_x()
 {
-    return X;
+    return X + width/2;
 }
 
 double Ship::get_y()
 {
-    return Y;
+    return Y + height/2;
+}
+
+int Ship::get_width()
+{
+    return width;
+}
+
+int Ship::get_height()
+{
+    return height;
 }
 
 short Ship::find_sprite_angle()
@@ -126,7 +149,7 @@ void Ship::set_sprite_angle()
             break;
     }
 
-    setTransformOriginPoint(40,40);
+    setTransformOriginPoint(width/2, height/2);
     setRotation(((-(int)angle-23)%45+23)*0.3);
     /*
     if(!sight)

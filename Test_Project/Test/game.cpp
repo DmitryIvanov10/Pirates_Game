@@ -406,8 +406,27 @@ double Game::get_harbor(short _id)
 
 void Game::center_view()
 {
-    wind->setPos(player->x()-100,player->y()-120);
-    view->centerOn(player->get_x(),player->get_y());
+    wind->setPos(player->get_x()-(100 + player->get_width()/2),player->get_y()-(120 + player->get_height()/2));
+    //view->centerOn(player->get_x(),player->get_y());
+
+    if (player->get_x() - scene_x < border_x)
+    {
+        scene_x = player->get_x() - border_x;
+    }
+    if (player->get_y() - scene_y < border_y)
+    {
+        scene_y = player->get_y() - border_y;
+    }
+    if (scene_x + resolution_x - player->get_x() - player->get_width() < border_x)
+    {
+        scene_x = player->get_x() + player->get_width() + border_x - resolution_x;
+    }
+    if (scene_y + resolution_y - player->get_y() - player->get_height() < border_y)
+    {
+        scene_y = player->get_y() + player->get_height() + border_y - resolution_y;
+    }
+
+    scene->setSceneRect(scene_x, scene_y, resolution_x, resolution_y);
 }
 
 short Game::get_neighbour(short _id, short _number)

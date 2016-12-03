@@ -34,6 +34,8 @@ protected:
     //lista zimennych typu double klasy Ship
     double X; //aktualna pozycja x
     double Y; //aktualna pozycja y
+    int width; // width of the sprite
+    int height; // height of the sprite
 
 public:
     //konstruktory
@@ -44,6 +46,9 @@ public:
     double pos (bool i); //funckja zwracająca aktualną pozycję statku dla i=0 x, dla i=1 y
     double get_x(); // get x coordinate of a ship
     double get_y(); // get y coordinate of a ship
+    int get_width(); // get width of the ship pixmap
+    int get_height(); // et height of the ship pixmap
+    void set_model_parameters(); // set parameters depending on the model of the ship
     void set_sail_level(bool _sign); //funkcja zmieniająca wartość rozłożenia żagli
     void set_angle(double _angle); // funkcja ustawiająca wartość angle
     void set_sprite_angle();

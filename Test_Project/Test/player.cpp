@@ -10,8 +10,8 @@ Player::Player()
     set_angle(90);
     sail_level = 1;
 
-    X=2000;
-    Y=1000;
+    X = 2000;
+    Y = 1000;
 
     //setPixmap(QPixmap(":/Caravel_E_01.png"));
 }

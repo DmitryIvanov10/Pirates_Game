@@ -30,6 +30,14 @@ class Game : public QObject
     Wind *wind = new Wind();
     QGraphicsView * view = new QGraphicsView(scene);
 
+    int resolution_x = 1366 - 2;
+    int resolution_y = 768 - 2;
+    int border_x = resolution_x / 5;
+    int border_y = resolution_y / 5;
+
+    double scene_x = player->get_x()-resolution_x/2;
+    double scene_y = player->get_y()-resolution_y/2;
+
 public:
 	static std::vector <Voronoi_point> map;
     //konstruktory
