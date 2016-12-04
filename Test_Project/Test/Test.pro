@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     city.cpp \
     wind.cpp \
     game.cpp \
-    newgame.cpp
+    newgame.cpp \
+    island.cpp
 
 HEADERS  += \
     player.h \
@@ -30,7 +31,8 @@ HEADERS  += \
     city.h \
     wind.h \
     game.h \
-    newgame.h
+    newgame.h \
+    island.h
 
 FORMS    +=
 

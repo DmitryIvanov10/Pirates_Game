@@ -5,13 +5,15 @@
 #include <QObject> //potrzebne do slotów i sygnałów
 #include <QGraphicsScene>
 #include <QGraphicsItem>
-#include <QGraphicsRectItem>
+//#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QGraphicsView>
 #include <fstream>
 #include <QTimer> //potrzebny do Qtimer'a
 #include <vector>
 #include <cstdlib>
 #include <QList>
+#include <QDebug>
 
 //pliki
 //#include "ship.h"
@@ -24,24 +26,34 @@ class Game : public QObject
 {
     Q_OBJECT
 
-    QTimer *timer = new QTimer();
-    QGraphicsScene * scene = new QGraphicsScene();
-    Player * player = new Player();
-    Wind *wind = new Wind();
-    QGraphicsView * view = new QGraphicsView(scene);
+    QTimer *timer = new QTimer(); //zegar odliczający kolejne kroki fizyczne
+    QGraphicsScene * scene = new QGraphicsScene(); //scena na której dzieje się gra
+    Player * player = new Player(); //statek gracza
+    Wind *wind = new Wind(); //wiatr wiejący na mapie
+    QGraphicsView * view = new QGraphicsView(scene); //widok na scenie
+
+    std::vector <QGraphicsPixmapItem *> sea; //kafelki oceanu
+    std::vector <QGraphicsPixmapItem *> islands; //wszystkie wyspy na mapie
+
 
     int resolution_x = 1366 - 2;
     int resolution_y = 768 - 2;
-    int border_x = resolution_x / 5;
-    int border_y = resolution_y / 5;
+    int border_x = resolution_x / 4;
+    int border_y = resolution_y / 4;
 
-    double scene_x = player->get_x()-resolution_x/2;
-    double scene_y = player->get_y()-resolution_y/2;
+    const int start_npc_amount = 15; //ilość statków NPC
+
+    double scene_x = player->get_x()-resolution_x/2; //położenie widoku x
+    double scene_y = player->get_y()-resolution_y/2; //położenie widoku y
 
 public:
 	static std::vector <Voronoi_point> map;
+
+
     //konstruktory
     explicit Game(QObject *parent = 0); //nowa gra
+
+
     Game(std::string a); //wczytanie gry o nazwie a
 
     void new_game();

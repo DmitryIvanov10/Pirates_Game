@@ -21,6 +21,7 @@ public:
 
     //funkcje dostępu
     void keyPressEvent(QKeyEvent * event);
+    void move();
 
 public slots:
     void do_tour();

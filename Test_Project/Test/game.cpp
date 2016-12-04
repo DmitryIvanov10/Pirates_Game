@@ -1,30 +1,30 @@
 #include "game.h"
-#include <QDebug>
 
 Game::Game(QObject *parent) : QObject(parent)
 {  
     // randomize in creating all new objects
     std::srand(time(0));
 
-    // amount of NPC in the beginning of the game
-    const int start_npc_amount = 15;
-
     // create map
     new_game();
 
-    // create list to hold NPC ships
-    QList<NPC *> npc_ships;
-
     // create NPCs ships and add them to the list of NPC ships
-    for (int i=0; i<start_npc_amount; i++)
+    std::vector <NPC *> npc_ships; //statki npc na mapie
+    for (int i = 0; i < start_npc_amount; i++)
     {
-        npc_ships << (new NPC());
+        npc_ships.push_back(new NPC());
     }
 
     // add all NPC ships to the scene
+    /*
     foreach (NPC * npc_ship, npc_ships)
     {
         scene->addItem(npc_ship);
+    }
+    */
+    for (int i = 0; i < npc_ships.size(); i++)
+    {
+        scene->addItem(npc_ships[i]);
     }
 
     // create wind to put into the scene
@@ -380,6 +380,26 @@ void Game::new_game()
     // id = 84
     Game::map.push_back(Voronoi_point(3663, 991, ++iterate));
     Game::map[iterate].set_neighbours(63, 83);
+
+    //ustawianie kafelków oceanu
+    iterate = 0;
+    for (int i = -border_y; i < 2304 + border_y; i += 1024)
+    for (int j = -border_x; j < 4098 + border_x; j += 1024)
+    {
+        sea.push_back(new QGraphicsPixmapItem());
+        sea[iterate]->setPixmap(QPixmap(":/img/Sea/sea_01.png"));
+        scene->addItem(sea[iterate]);
+        sea[iterate]->setPos(j, i);
+        iterate++;
+    }
+
+    //ustawianie wysp
+    iterate = 0;
+    islands.push_back(new QGraphicsPixmapItem());
+    islands[iterate]->setPixmap(QPixmap(":/img/Islands/island_a1_02.png"));
+    scene->addItem(islands[iterate]);
+    islands[iterate]->setPos(1977, 1239);
+
 }
 
 double Game::get_x(short _id)
@@ -406,7 +426,7 @@ double Game::get_harbor(short _id)
 
 void Game::center_view()
 {
-    wind->setPos(player->get_x()-(100 + player->get_width()/2),player->get_y()-(120 + player->get_height()/2));
+    //wind->setPos(player->get_x()-(100 + player->get_width()/2),player->get_y()-(120 + player->get_height()/2));
     //view->centerOn(player->get_x(),player->get_y());
 
     if (player->get_x() - scene_x < border_x)
@@ -427,6 +447,8 @@ void Game::center_view()
     }
 
     scene->setSceneRect(scene_x, scene_y, resolution_x, resolution_y);
+
+    wind->setPos(scene_x, scene_y);
 }
 
 short Game::get_neighbour(short _id, short _number)
