@@ -8,6 +8,7 @@ INPUT(
 ./debug\wind.o
 ./debug\game.o
 ./debug\newgame.o
+./debug\island.o
 ./debug\qrc_resources.o
 ./debug\moc_player.o
 ./debug\moc_ship.o
@@ -15,4 +16,5 @@ INPUT(
 ./debug\moc_city.o
 ./debug\moc_wind.o
 ./debug\moc_game.o
+./debug\moc_island.o
 );

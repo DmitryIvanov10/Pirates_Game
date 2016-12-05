@@ -10,8 +10,8 @@ Player::Player()
     set_angle(90);
     sail_level = 1;
 
-    X = 2000;
-    Y = 1000;
+    X = 4000;
+    Y = 2000;
 
     //setPixmap(QPixmap(":/Caravel_E_01.png"));
 }
@@ -76,7 +76,7 @@ void Player::move()
     double wind_effect = abs(abs(Wind::angle - angle) - 180) / 359 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
     double shift = wind_effect * ((double)Wind::strength/100)+0.4;
 
-    if(shift * sin(angle / 180 * M_PI) * sail_level > 0 && X - shift * sin(angle / 180 * M_PI) * sail_level > 0)
+    /*if(shift * sin(angle / 180 * M_PI) * sail_level > 0 && X - shift * sin(angle / 180 * M_PI) * sail_level > 0)
         X -= shift*sin(angle/180*M_PI)*sail_level;
     else if(shift * sin(angle / 180 * M_PI) * sail_level < 0 && X - shift * sin(angle / 180 * M_PI) * sail_level < 4098)
         X -= shift*sin(angle/180*M_PI)*sail_level;
@@ -84,5 +84,27 @@ void Player::move()
     if(shift*cos(angle/180*M_PI)*sail_level > 0 && Y - shift*cos(angle/180*M_PI)*sail_level > 0)
         Y -= shift*cos(angle/180*M_PI)*sail_level;
     if(shift*cos(angle/180*M_PI)*sail_level < 0 && Y - shift*cos(angle/180*M_PI)*sail_level < 2304)
-        Y -= shift*cos(angle/180*M_PI)*sail_level;
+        Y -= shift*cos(angle/180*M_PI)*sail_level;*/
+
+    // change of the position on X and Y axis
+    X -= shift*sin(angle/180*M_PI)*sail_level;
+    Y -= shift*cos(angle/180*M_PI)*sail_level;
+
+    // clamping
+    if (X < 0)
+    {
+        X = 0;
+    }
+    if (X > 8196)
+    {
+        X = 8196;
+    }
+    if (Y < 0)
+    {
+        Y = 0;
+    }
+    if (Y > 4608)
+    {
+        Y = 4608;
+    }
 }
