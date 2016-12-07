@@ -9,6 +9,7 @@
 #include <cstdlib> //liczby losowe
 #include <QObject>
 #include <time.h>
+#include <QGraphicsPixmapItem>
 
 class NPC: public Ship //, public QGraphicsRectItem
 {
@@ -26,6 +27,8 @@ class NPC: public Ship //, public QGraphicsRectItem
     int find_distance(double _X, double _Y, short _id); //zwraca odległość pomiędzy npc a punktem voronoi
 
 public:
+    QGraphicsPixmapItem * flag = new QGraphicsPixmapItem(); //flaga frakcji
+
     //konstruktory
     NPC();
     NPC(short _start_id, short _finish_id);

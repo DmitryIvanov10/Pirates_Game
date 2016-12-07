@@ -161,7 +161,10 @@ debug/qrc_resources.cpp: ../Test/resources.qrc \
 		../Test/img/Ships/Caravel_01/Caravel_W_01.png \
 		../Test/img/Ships/Caravel_01/Caravel_S_01.png \
 		../Test/img/Ships/Caravel_01/Caravel_N_01.png \
+		../Test/img/Fractions/Flag_British_01.png \
+		../Test/img/Fractions/Flag_Spanish_01.png \
 		../Test/img/Sea/sea_01.png \
+		../Test/img/Islands/island_a1_03.png \
 		../Test/img/Islands/island_a1_02.png \
 		../Test/img/Islands/island_a1_01.png
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name resources ..\Test\resources.qrc -o debug\qrc_resources.cpp

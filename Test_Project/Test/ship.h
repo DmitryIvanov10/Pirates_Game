@@ -16,12 +16,14 @@ class Ship: public QObject, public QGraphicsPixmapItem
 
 protected:
     //lista zmiennych typu short klasy Ship
+
     //zmienne statku, ważne dla gry w widoku podróży
     double angle; //aktualny kąt o jaki statek jest obrócony
     short model; //model statku
     short sail_level; //poziom rozwinięcia żagli
-
+    double speed;
     short sprite_angle; //kąt obrotu obrazka ze statkiem, wartość pomiędzy [0,7]
+
     //zmienne zaopatrzenia, używane przy pojedynkach
     short health; //punkty zdrowia dla statku
     short crue; //ilość ludzi na statku

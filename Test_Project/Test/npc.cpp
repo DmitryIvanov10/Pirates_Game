@@ -27,7 +27,19 @@ NPC::NPC(short _start_id, short _finish_id)
     //qDebug() <<"Created new NPC!";
     model=1;
     sail_level = 1;
-    fraction=rand()%3;
+    fraction=rand()%2;
+
+    switch (fraction)
+    {
+        case 1:
+            flag->setPixmap(QPixmap(":/img/Fractions/Flag_British_01.png"));
+            break;
+        case 2:
+            flag->setPixmap(QPixmap(":/img/Fractions/Flag_Spanish_01.png"));
+            break;
+    }
+    flag->setPos(get_x() - width/2, get_y()+ height/2);
+    //flag->setPos(2000, 1000);
 
     current_location = _start_id;
     X = Game::map[current_location].get_x();
@@ -225,6 +237,7 @@ short NPC::show_fraction()
 void NPC::move_to_next_location()
 {
     move();
+    flag->setPos(X - width/2, Y + height/2);
     setPos(X,Y);
 
     // searches next location if close to voronoi point
