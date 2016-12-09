@@ -164,6 +164,14 @@ debug/qrc_resources.cpp: ../Test/resources.qrc \
 		../Test/img/Fractions/Flag_British_01.png \
 		../Test/img/Fractions/Flag_Spanish_01.png \
 		../Test/img/Sea/sea_01.png \
+		../Test/img/Interface/HUD/Interface_SG_02.png \
+		../Test/img/Interface/HUD/Interface_SD_02.png \
+		../Test/img/Interface/HUD/Interface_SG_01.png \
+		../Test/img/Interface/HUD/Interface_PG_02.png \
+		../Test/img/Interface/HUD/Interface_SD_01.png \
+		../Test/img/Interface/HUD/Interface_PD_02.png \
+		../Test/img/Interface/HUD/Interface_PG_01.png \
+		../Test/img/Interface/HUD/Interface_PD_01.png \
 		../Test/img/Islands/island_a1_03.png \
 		../Test/img/Islands/island_a1_02.png \
 		../Test/img/Islands/island_a1_01.png

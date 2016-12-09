@@ -14,5 +14,13 @@
         <file>img/Fractions/Flag_British_01.png</file>
         <file>img/Fractions/Flag_Spanish_01.png</file>
         <file>img/Islands/island_a1_03.png</file>
+        <file>img/Interface/HUD/Interface_PD_01.png</file>
+        <file>img/Interface/HUD/Interface_PG_01.png</file>
+        <file>img/Interface/HUD/Interface_SD_01.png</file>
+        <file>img/Interface/HUD/Interface_SG_01.png</file>
+        <file>img/Interface/HUD/Interface_PD_02.png</file>
+        <file>img/Interface/HUD/Interface_PG_02.png</file>
+        <file>img/Interface/HUD/Interface_SD_02.png</file>
+        <file>img/Interface/HUD/Interface_SG_02.png</file>
     </qresource>
 </RCC>

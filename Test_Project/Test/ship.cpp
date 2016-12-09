@@ -162,3 +162,23 @@ void Ship::set_sprite_angle()
     setTransformOriginPoint(width/2, height/2);
     setRotation(((-(int)angle-23)%45+23)*0.3);
 }
+
+short Ship::get_cannon()
+{
+    return cannons;
+}
+
+short Ship::get_crue()
+{
+    return crue;
+}
+
+short Ship::get_health()
+{
+    return health;
+}
+
+short Ship::get_sail_level()
+{
+    return sail_level;
+}

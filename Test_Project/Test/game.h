@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include <QList>
 #include <QDebug>
+#include <QFont> //opcje czcionki
 
 //pliki
 //#include "ship.h"
@@ -35,8 +36,11 @@ class Game : public QObject
     std::vector <QGraphicsPixmapItem *> sea; //kafelki oceanu
     std::vector <QGraphicsPixmapItem *> islands; //wszystkie wyspy na mapie
 
+    std::vector <QGraphicsPixmapItem *> hud_img; //graficzna część HUD'u
+    std::vector <QGraphicsTextItem *> hud_txt; //tekstowa część HUD'u
+
     int frame_time = 17;
-    int resolution_x = 1366 - 2;
+    int resolution_x = 1366 - 3;
     int resolution_y = 768 - 3;
     int border_x = resolution_x / 4;
     int border_y = resolution_y / 4;
@@ -68,6 +72,7 @@ public:
     double get_harbor(short _id);
     double get_edge(short _id);
     short get_neighbour(short _id, short _number);
+    void set_hud();
 
 signals:
     //void next_tour();

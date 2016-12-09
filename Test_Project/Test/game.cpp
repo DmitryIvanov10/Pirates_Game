@@ -34,6 +34,9 @@ Game::Game(QObject *parent) : QObject(parent)
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
+    //make HUD
+    set_hud();
+
     // update view
     connect (timer, SIGNAL(timeout()), this, SLOT(center_view()));
     // update player
@@ -462,9 +465,87 @@ void Game::center_view()
     scene->setSceneRect(scene_x, scene_y, resolution_x, resolution_y);
 
     wind->setPos(scene_x, scene_y);
+    hud_img[0]->setPos(scene_x + resolution_x - 300, scene_y + resolution_y - 241);
+    hud_img[1]->setPos(scene_x + resolution_x - 220, scene_y - 2);
+    hud_img[2]->setPos(scene_x + resolution_x/2 - 350, scene_y - 2);
+    hud_img[3]->setPos(scene_x + resolution_x/2 - 225, scene_y + resolution_y - 49);
+
+    hud_txt[0]->setPlainText(QString(QString::number(Wind::strength)));
+    hud_txt[0]->setPos(scene_x + resolution_x - 182, scene_y + resolution_y - 47);
+    hud_txt[1]->setPlainText(QString(QString::number(player->get_health())));
+    hud_txt[1]->setPos(scene_x + resolution_x/2 - 189, scene_y + resolution_y - 36);
+    hud_txt[2]->setPlainText(QString(QString::number(player->get_crue())));
+    hud_txt[2]->setPos(scene_x + resolution_x/2 - 111, scene_y + resolution_y - 36);
+    hud_txt[3]->setPlainText(QString(QString::number(player->get_cannon())));
+    hud_txt[3]->setPos(scene_x + resolution_x - 75, scene_y + 31);
 }
 
 short Game::get_neighbour(short _id, short _number)
 {
     return map[_id].get_neighbour(_number);
+}
+
+void Game::set_hud()
+{
+    int iterate = 0;
+    hud_img.push_back(new QGraphicsPixmapItem());
+    hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_PD_02.png"));
+    scene->addItem(hud_img[iterate]);
+    hud_img[iterate]->setPos(scene_x + resolution_x - 300, scene_y + resolution_y - 241);
+    iterate++;
+
+    hud_img.push_back(new QGraphicsPixmapItem());
+    hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_PG_02.png"));
+    scene->addItem(hud_img[iterate]);
+    hud_img[iterate]->setPos(scene_x + resolution_x - 220, scene_y - 2);
+    iterate++;
+
+    hud_img.push_back(new QGraphicsPixmapItem());
+    hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_SG_02.png"));
+    scene->addItem(hud_img[iterate]);
+    hud_img[iterate]->setPos(scene_x + resolution_x/2 - 350, scene_y - 2);
+    iterate++;
+
+    hud_img.push_back(new QGraphicsPixmapItem());
+    hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_SD_02.png"));
+    scene->addItem(hud_img[iterate]);
+    hud_img[iterate]->setPos(scene_x + resolution_x/2 - 225, scene_y + resolution_y - 49);
+    iterate++;
+
+    iterate = 0;
+    hud_txt.push_back(new QGraphicsTextItem());
+    hud_txt[iterate]->setPlainText(QString(QString::number(Wind::strength)));
+    hud_txt[iterate]->setFont(QFont("times", 20));
+    scene->addItem(hud_txt[iterate]);
+    hud_txt[iterate]->setPos(scene_x + resolution_x - 181, scene_y + resolution_y - 47);
+    iterate++;
+
+    hud_txt.push_back(new QGraphicsTextItem());
+    hud_txt[iterate]->setPlainText(QString(QString::number(player->get_health())));
+    hud_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_txt[iterate]);
+    hud_txt[iterate]->setPos(scene_x + resolution_x/2 - 189, scene_y + resolution_y - 36);
+    iterate++;
+
+    hud_txt.push_back(new QGraphicsTextItem());
+    hud_txt[iterate]->setPlainText(QString(QString::number(player->get_crue())));
+    hud_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_txt[iterate]);
+    hud_txt[iterate]->setPos(scene_x + resolution_x/2 - 111, scene_y + resolution_y - 36);
+    iterate++;
+
+    hud_txt.push_back(new QGraphicsTextItem());
+    hud_txt[iterate]->setPlainText(QString(QString::number(player->get_cannon())));
+    hud_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_txt[iterate]);
+    hud_txt[iterate]->setPos(scene_x + resolution_x - 75, scene_y + 31);
+    iterate++;
+
+    /*
+     * setPlainText(QString("Kąt wiatru: " + QString::number(Wind::angle) + "\nSila wiatru: " + QString::number(Wind::strength)));
+            setFont(QFont("times", 24));
+            setDefaultTextColor(Qt::red);
+     */
+
+    qDebug() << scene_x + resolution_x - 535 << " " << scene_y + resolution_y - 430;
 }
