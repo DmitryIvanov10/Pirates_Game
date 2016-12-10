@@ -50,6 +50,7 @@ public:
     double get_y(); // get y coordinate of a ship
     int get_width(); // get width of the ship pixmap
     int get_height(); // et height of the ship pixmap
+    short get_ammo();
     short get_health();
     short get_sail_level();
     short get_crue();

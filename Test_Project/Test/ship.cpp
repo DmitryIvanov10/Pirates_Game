@@ -182,3 +182,8 @@ short Ship::get_sail_level()
 {
     return sail_level;
 }
+
+short Ship::get_ammo()
+{
+    return ammo;
+}

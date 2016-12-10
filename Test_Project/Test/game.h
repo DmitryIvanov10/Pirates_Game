@@ -38,6 +38,7 @@ class Game : public QObject
 
     std::vector <QGraphicsPixmapItem *> hud_img; //graficzna część HUD'u
     std::vector <QGraphicsTextItem *> hud_txt; //tekstowa część HUD'u
+    QGraphicsRectItem * map_rect;
 
     int frame_time = 17;
     int resolution_x = 1366 - 3;

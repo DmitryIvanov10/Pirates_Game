@@ -15,6 +15,9 @@ class Player: public Ship //, public QGraphicsRectItem
 {
     Q_OBJECT
 
+    short food;
+    short morale;
+
 public:
     //konstruktory
     Player();
@@ -22,6 +25,9 @@ public:
     //funkcje dostępu
     void keyPressEvent(QKeyEvent * event);
     void move();
+
+    short get_morale();
+    short get_food();
 
 public slots:
     void do_tour();

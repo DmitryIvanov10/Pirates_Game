@@ -22,5 +22,8 @@
         <file>img/Interface/HUD/Interface_PG_02.png</file>
         <file>img/Interface/HUD/Interface_SD_02.png</file>
         <file>img/Interface/HUD/Interface_SG_02.png</file>
+        <file>img/Interface/HUD/arrow_01.png</file>
+        <file>img/Interface/HUD/arrow_02.png</file>
+        <file>img/Interface/HUD/Interface_LD_02.png</file>
     </qresource>
 </RCC>

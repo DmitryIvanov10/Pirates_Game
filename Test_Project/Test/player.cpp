@@ -9,6 +9,8 @@ Player::Player()
     cannons  = 4;
     set_angle(90);
     sail_level = 1;
+    morale = 100;
+    food = 100;
 
     X = 4000;
     Y = 2000;
@@ -107,4 +109,14 @@ void Player::move()
     {
         Y = 4608;
     }
+}
+
+short Player::get_food()
+{
+    return food;
+}
+
+short Player::get_morale()
+{
+    return morale;
 }

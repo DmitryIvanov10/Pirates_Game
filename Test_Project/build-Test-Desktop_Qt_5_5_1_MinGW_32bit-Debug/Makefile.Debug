@@ -164,12 +164,15 @@ debug/qrc_resources.cpp: ../Test/resources.qrc \
 		../Test/img/Fractions/Flag_British_01.png \
 		../Test/img/Fractions/Flag_Spanish_01.png \
 		../Test/img/Sea/sea_01.png \
+		../Test/img/Interface/HUD/arrow_02.png \
 		../Test/img/Interface/HUD/Interface_SG_02.png \
 		../Test/img/Interface/HUD/Interface_SD_02.png \
+		../Test/img/Interface/HUD/arrow_01.png \
 		../Test/img/Interface/HUD/Interface_SG_01.png \
 		../Test/img/Interface/HUD/Interface_PG_02.png \
 		../Test/img/Interface/HUD/Interface_SD_01.png \
 		../Test/img/Interface/HUD/Interface_PD_02.png \
+		../Test/img/Interface/HUD/Interface_LD_02.png \
 		../Test/img/Interface/HUD/Interface_PG_01.png \
 		../Test/img/Interface/HUD/Interface_PD_01.png \
 		../Test/img/Islands/island_a1_03.png \
@@ -784,11 +787,11 @@ debug/moc_game.cpp: ../../../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/qbasictimer.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/QFont \
 		../Test/player.h \
 		../Test/ship.h \
 		../Test/wind.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsTextItem \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/QFont \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsRectItem \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/QKeyEvent \
 		../Test/npc.h \
@@ -1032,11 +1035,11 @@ debug/main.o: ../Test/main.cpp ../../../../Qt/5.5/mingw492_32/include/QtWidgets/
 		../../../../Qt/5.5/mingw492_32/include/QtCore/qbasictimer.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/QFont \
 		../Test/player.h \
 		../Test/ship.h \
 		../Test/wind.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsTextItem \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/QFont \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsRectItem \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/QKeyEvent \
 		../Test/npc.h \
@@ -1718,11 +1721,11 @@ debug/game.o: ../Test/game.cpp ../Test/game.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/qbasictimer.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QList \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/QFont \
 		../Test/player.h \
 		../Test/ship.h \
 		../Test/wind.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsTextItem \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/QFont \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsRectItem \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/QKeyEvent \
 		../Test/npc.h \

@@ -1,0 +1,2 @@
+1. coœ jest nie tak z kierunkiem wiatru, albo nie dzia³a strza³ka, albo napis pokazuj¹cy k¹t
+2. elementy tekstowe "skacz¹" podczas poruszania siê
