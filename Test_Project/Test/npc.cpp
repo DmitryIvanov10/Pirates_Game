@@ -6,7 +6,18 @@ NPC::NPC()
     //qDebug() <<"Created new NPC!";
     model=1;
     sail_level = 1;
-    fraction=rand()%3;
+    fraction=rand()%2 + 1;
+
+    switch (fraction)
+    {
+        case 1:
+            flag->setPixmap(QPixmap(":/img/Fractions/Flag_British_01.png"));
+            break;
+        case 2:
+            flag->setPixmap(QPixmap(":/img/Fractions/Flag_Spanish_01.png"));
+            break;
+    }
+    //flag->setPos(get_x() - width/2, get_y()+ height/2);
 
     current_location = rand()%(Game::map.size()-1) + 1;
     X = Game::map[current_location].get_x();
@@ -27,7 +38,7 @@ NPC::NPC(short _start_id, short _finish_id)
     //qDebug() <<"Created new NPC!";
     model=1;
     sail_level = 1;
-    fraction=rand()%2;
+    fraction=rand()%2 + 1;
 
     switch (fraction)
     {
@@ -38,7 +49,7 @@ NPC::NPC(short _start_id, short _finish_id)
             flag->setPixmap(QPixmap(":/img/Fractions/Flag_Spanish_01.png"));
             break;
     }
-    flag->setPos(get_x() - width/2, get_y()+ height/2);
+    //flag->setPos(get_x() - width/2, get_y()+ height/2);
     //flag->setPos(2000, 1000);
 
     current_location = _start_id;
@@ -63,6 +74,7 @@ NPC::NPC(double _x, double _y, short _model)
 NPC::~NPC()
 {
     //qDebug() <<"NPC deleted";
+
 }
 
 int NPC::find_distance(short _id1, short _id2)
@@ -237,8 +249,8 @@ short NPC::show_fraction()
 void NPC::move_to_next_location()
 {
     move();
-    flag->setPos(X - width/2, Y + height/2);
     setPos(X,Y);
+    flag->setPos(X + width/2, Y);
 
     // searches next location if close to voronoi point
     if (find_distance(X, Y, next_location) <= 5)
@@ -254,7 +266,9 @@ void NPC::move_to_next_location()
         else
         {
             //qDebug() <<"NPC is at target location: " << next_location;
+            delete flag;
             delete this;
         }
     }
 }
+

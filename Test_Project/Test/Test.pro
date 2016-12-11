@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     wind.cpp \
     game.cpp \
     newgame.cpp \
-    island.cpp
+    island.cpp \
+    pirate.cpp
 
 HEADERS  += \
     player.h \
@@ -32,7 +33,8 @@ HEADERS  += \
     wind.h \
     game.h \
     newgame.h \
-    island.h
+    island.h \
+    pirate.h
 
 FORMS    +=
 

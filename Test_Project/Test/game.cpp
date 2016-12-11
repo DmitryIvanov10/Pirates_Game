@@ -34,6 +34,13 @@ Game::Game(QObject *parent) : QObject(parent)
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
+    // update all NPC ships
+    foreach (NPC * npc_ship, npc_ships)
+    {
+        connect (timer, SIGNAL(timeout()), npc_ship, SLOT(move_to_next_location()));
+        scene->addItem(npc_ship->flag);
+    }
+
     //make HUD
     set_hud();
 
@@ -43,12 +50,6 @@ Game::Game(QObject *parent) : QObject(parent)
     connect (timer, SIGNAL(timeout()), player, SLOT(do_tour()));
     // update wind properties
     connect (timer, SIGNAL(timeout()), wind, SLOT(do_tour()));
-
-    // update all NPC ships
-    foreach (NPC * npc_ship, npc_ships)
-    {
-        connect (timer, SIGNAL(timeout()), npc_ship, SLOT(move_to_next_location()));
-    }
 
     // put player to the scene
     scene->addItem(player);
@@ -447,33 +448,37 @@ void Game::center_view()
 
     if (player->get_x() - scene_x < border_x)
     {
-        scene_x = player->get_x() - border_x;
+        scene_x = (int)player->get_x() - border_x;
     }
     if (player->get_y() - scene_y < border_y)
     {
-        scene_y = player->get_y() - border_y;
+        scene_y = (int)player->get_y() - border_y;
     }
     if (scene_x + resolution_x - player->get_x() - player->get_width() < border_x)
     {
-        scene_x = player->get_x() + player->get_width() + border_x - resolution_x;
+        scene_x = (int)player->get_x() + player->get_width() + border_x - resolution_x;
     }
     if (scene_y + resolution_y - player->get_y() - player->get_height() < border_y)
     {
-        scene_y = player->get_y() + player->get_height() + border_y - resolution_y;
+        scene_y = (int)player->get_y() + player->get_height() + border_y - resolution_y;
     }
 
     scene->setSceneRect(scene_x, scene_y, resolution_x, resolution_y);
 
     wind->setPos(scene_x, scene_y);
-    hud_img[0]->setPos(scene_x + resolution_x - 300, scene_y + resolution_y - 241);
-    hud_img[1]->setPos(scene_x + resolution_x - 220, scene_y - 2);
-    hud_img[2]->setPos(scene_x + resolution_x/2 - 350, scene_y - 2);
-    hud_img[3]->setPos(scene_x + resolution_x/2 - 225, scene_y + resolution_y - 49);
-    hud_img[4]->setPos(scene_x, scene_y + resolution_y - 219);
+
+    hud_img[0]->setPos(scene_x + resolution_x - hud_img[0]->pixmap().width(),
+            scene_y + resolution_y - hud_img[0]->pixmap().height());
+    hud_img[1]->setPos(scene_x + resolution_x - hud_img[1]->pixmap().width(), scene_y - 2);
+    hud_img[2]->setPos(scene_x + resolution_x/2 - hud_img[2]->pixmap().width()/2, scene_y - 2);
+    hud_img[3]->setPos(scene_x + resolution_x/2 - hud_img[3]->pixmap().width()/2,
+            scene_y + resolution_y - hud_img[3]->pixmap().height());
+    hud_img[4]->setPos(scene_x, scene_y + resolution_y - hud_img[4]->pixmap().height());
 
     hud_img[5]->setTransformOriginPoint(50, 50);
-    hud_img[5]->setRotation(Wind::angle);
-    hud_img[5]->setPos(scene_x + resolution_x - 125, scene_y + resolution_y - 125);
+    hud_img[5]->setRotation(-1 * Wind::angle);
+    hud_img[5]->setPos(scene_x + resolution_x - 125,
+                       scene_y + resolution_y - 125);
 
     //siła wiatru
     hud_txt[0]->setPlainText(QString(QString::number(Wind::strength)));
@@ -521,42 +526,42 @@ void Game::set_hud()
     hud_img.push_back(new QGraphicsPixmapItem());
     hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_PD_02.png"));
     scene->addItem(hud_img[iterate]);
-    hud_img[iterate]->setPos(scene_x + resolution_x - 300, scene_y + resolution_y - 241);
+    //hud_img[iterate]->setPos(scene_x + resolution_x - hud_img[iterate]->pixmap().width(), scene_y + resolution_y - hud_img[iterate]->pixmap().height());
     iterate++;
 
     //HUD dotyczący stanu statku w prawym górnym rogu
     hud_img.push_back(new QGraphicsPixmapItem());
     hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_PG_02.png"));
     scene->addItem(hud_img[iterate]);
-    hud_img[iterate]->setPos(scene_x + resolution_x - 220, scene_y - 2);
+    //hud_img[iterate]->setPos(scene_x + resolution_x - 220, scene_y - 2);
     iterate++;
 
     //HUD dotyczący stanu ładowni po środku na górze
     hud_img.push_back(new QGraphicsPixmapItem());
     hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_SG_02.png"));
     scene->addItem(hud_img[iterate]);
-    hud_img[iterate]->setPos(scene_x + resolution_x/2 - 350, scene_y - 2);
+    //hud_img[iterate]->setPos(scene_x + resolution_x/2 - 350, scene_y - 2);
     iterate++;
 
     //HUD dotyczący stanu załogi i pieniędzy po środku na dole
     hud_img.push_back(new QGraphicsPixmapItem());
     hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_SD_02.png"));
     scene->addItem(hud_img[iterate]);
-    hud_img[iterate]->setPos(scene_x + resolution_x/2 - 225, scene_y + resolution_y - 49);
+    //hud_img[iterate]->setPos(scene_x + resolution_x/2 - 225, scene_y + resolution_y - 49);
     iterate++;
 
     //HUD z mapą w lewym dolnym rogu
     hud_img.push_back(new QGraphicsPixmapItem());
     hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_LD_02.png"));
     scene->addItem(hud_img[iterate]);
-    hud_img[iterate]->setPos(scene_x, scene_y + resolution_y - 219);
+    //hud_img[iterate]->setPos(scene_x, scene_y + resolution_y - 219);
     iterate++;
 
     //strzałka wiatru
     hud_img.push_back(new QGraphicsPixmapItem());
     hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/arrow_02.png"));
     scene->addItem(hud_img[iterate]);
-    hud_img[iterate]->setPos(scene_x + resolution_x - 125, scene_y + resolution_y - 125);
+    //hud_img[iterate]->setPos(scene_x + resolution_x - 125, scene_y + resolution_y - 125);
     //iterate++;
 
     //elementy tekstowe
@@ -567,7 +572,7 @@ void Game::set_hud()
     hud_txt[iterate]->setPlainText(QString(QString::number(Wind::strength)));
     hud_txt[iterate]->setFont(QFont("times", 20));
     scene->addItem(hud_txt[iterate]);
-    hud_txt[iterate]->setPos(scene_x + resolution_x - 181, scene_y + resolution_y - 47);
+    //hud_txt[iterate]->setPos(scene_x + resolution_x - 181, scene_y + resolution_y - 47);
     iterate++;
 
     //zdrowie statku
@@ -575,7 +580,7 @@ void Game::set_hud()
     hud_txt[iterate]->setPlainText(QString(QString::number(player->get_health())));
     hud_txt[iterate]->setFont(QFont("times", 13));
     scene->addItem(hud_txt[iterate]);
-    hud_txt[iterate]->setPos(scene_x + resolution_x/2 - 189, scene_y + resolution_y - 36);
+    //hud_txt[iterate]->setPos(scene_x + resolution_x/2 - 189, scene_y + resolution_y - 36);
     iterate++;
 
     //stan załogi
@@ -583,7 +588,7 @@ void Game::set_hud()
     hud_txt[iterate]->setPlainText(QString(QString::number(player->get_crue())));
     hud_txt[iterate]->setFont(QFont("times", 13));
     scene->addItem(hud_txt[iterate]);
-    hud_txt[iterate]->setPos(scene_x + resolution_x/2 - 111, scene_y + resolution_y - 36);
+    //hud_txt[iterate]->setPos(scene_x + resolution_x/2 - 111, scene_y + resolution_y - 36);
     iterate++;
 
     //ilość jedzenia
@@ -591,7 +596,7 @@ void Game::set_hud()
     hud_txt[iterate]->setPlainText(QString(QString::number(player->get_food())));
     hud_txt[iterate]->setFont(QFont("times", 13));
     scene->addItem(hud_txt[iterate]);
-    hud_txt[iterate]->setPos(scene_x + resolution_x/2 - 45, scene_y + resolution_y - 36);
+    //hud_txt[iterate]->setPos(scene_x + resolution_x/2 - 45, scene_y + resolution_y - 36);
     iterate++;
 
     //stan morale
@@ -599,7 +604,7 @@ void Game::set_hud()
     hud_txt[iterate]->setPlainText(QString(QString::number(player->get_morale())));
     hud_txt[iterate]->setFont(QFont("times", 13));
     scene->addItem(hud_txt[iterate]);
-    hud_txt[iterate]->setPos(scene_x + resolution_x/2 + 31, scene_y + resolution_y - 36);
+    //hud_txt[iterate]->setPos(scene_x + resolution_x/2 + 31, scene_y + resolution_y - 36);
     iterate++;
 
     //ilość armat
@@ -607,7 +612,7 @@ void Game::set_hud()
     hud_txt[iterate]->setPlainText(QString(QString::number(player->get_cannon())));
     hud_txt[iterate]->setFont(QFont("times", 13));
     scene->addItem(hud_txt[iterate]);
-    hud_txt[iterate]->setPos(scene_x + resolution_x - 75, scene_y + 31);
+    //hud_txt[iterate]->setPos(scene_x + resolution_x - 75, scene_y + 31);
     iterate++;
 
     //ilość amunicji
@@ -615,14 +620,15 @@ void Game::set_hud()
     hud_txt[iterate]->setPlainText(QString(QString::number(player->get_ammo())));
     hud_txt[iterate]->setFont(QFont("times", 13));
     scene->addItem(hud_txt[iterate]);
-    hud_txt[iterate]->setPos(scene_x + resolution_x - 75, scene_y + 59);
+    //hud_txt[iterate]->setPos(scene_x + resolution_x - 75, scene_y + 59);
     iterate++;
 
     //Prostokącik na mapie
     map_rect = new QGraphicsRectItem();
-    map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
+    //map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
     scene->addItem(map_rect);
 
+    //qDebug() << "Ship X: " << player->get_x() << ", Y: " << player->get_y();
 
     //qDebug() << scene_x + resolution_x - 535 << " " << scene_y + resolution_y - 430;
 }

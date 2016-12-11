@@ -10,6 +10,7 @@
 #include <QObject>
 #include <time.h>
 #include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
 
 class NPC: public Ship //, public QGraphicsRectItem
 {
