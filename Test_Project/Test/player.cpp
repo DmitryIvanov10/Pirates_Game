@@ -3,6 +3,7 @@
 Player::Player()
 {
     model = 1;
+    speed = 1.0;
     ammo = 50;
     crue = 50;
     health = 100;
@@ -89,8 +90,24 @@ void Player::move()
         Y -= shift*cos(angle/180*M_PI)*sail_level;*/
 
     // change of the position on X and Y axis
-    X -= shift*sin(angle/180*M_PI)*sail_level;
-    Y -= shift*cos(angle/180*M_PI)*sail_level;
+    //X -= shift*sin(angle/180*M_PI)*sail_level;
+    //Y -= shift*cos(angle/180*M_PI)*sail_level;
+
+    switch(sail_level)
+    {
+        case 0:
+            X -= 0.1*sin(angle/180*M_PI)*speed;
+            Y -= 0.1*cos(angle/180*M_PI)*speed;
+            break;
+        case 1:
+            X -= shift*sin(angle/180*M_PI)*speed;
+            Y -= shift*cos(angle/180*M_PI)*speed;
+            break;
+        case 2:
+            X -= sin(angle/180*M_PI)*speed*0.5 + shift*sin((float)Wind::angle/180*M_PI)*1.0;
+            Y -= cos(angle/180*M_PI)*speed*0.5 + shift*cos((float)Wind::angle/180*M_PI)*1.0;
+            break;
+    }
 
     // clamping
     if (X < 0)

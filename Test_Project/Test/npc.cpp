@@ -6,7 +6,8 @@ NPC::NPC()
     //qDebug() <<"Created new NPC!";
     model=1;
     sail_level = 1;
-    fraction=rand()%2 + 1;
+    speed = 1.0;
+    fraction=rand()%4 + 1;
 
     switch (fraction)
     {
@@ -15,6 +16,12 @@ NPC::NPC()
             break;
         case 2:
             flag->setPixmap(QPixmap(":/img/Fractions/Flag_Spanish_01.png"));
+            break;
+        case 3:
+            flag->setPixmap(QPixmap(":/img/Fractions/Flag_French_01.png"));
+            break;
+        case 4:
+            flag->setPixmap(QPixmap(":/img/Fractions/Flag_Netherlands_01.png"));
             break;
     }
     //flag->setPos(get_x() - width/2, get_y()+ height/2);
