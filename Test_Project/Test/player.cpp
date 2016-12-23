@@ -77,31 +77,17 @@ void Player::do_tour()
 void Player::move()
 {
     double wind_effect = abs(abs(Wind::angle - angle) - 180) / 359 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
-    double shift = wind_effect * ((double)Wind::strength/100)+0.4;
-
-    /*if(shift * sin(angle / 180 * M_PI) * sail_level > 0 && X - shift * sin(angle / 180 * M_PI) * sail_level > 0)
-        X -= shift*sin(angle/180*M_PI)*sail_level;
-    else if(shift * sin(angle / 180 * M_PI) * sail_level < 0 && X - shift * sin(angle / 180 * M_PI) * sail_level < 4098)
-        X -= shift*sin(angle/180*M_PI)*sail_level;
-
-    if(shift*cos(angle/180*M_PI)*sail_level > 0 && Y - shift*cos(angle/180*M_PI)*sail_level > 0)
-        Y -= shift*cos(angle/180*M_PI)*sail_level;
-    if(shift*cos(angle/180*M_PI)*sail_level < 0 && Y - shift*cos(angle/180*M_PI)*sail_level < 2304)
-        Y -= shift*cos(angle/180*M_PI)*sail_level;*/
-
-    // change of the position on X and Y axis
-    //X -= shift*sin(angle/180*M_PI)*sail_level;
-    //Y -= shift*cos(angle/180*M_PI)*sail_level;
+    double shift = wind_effect * ((double)Wind::strength/100) + 0.4;
 
     switch(sail_level)
     {
         case 0:
-            X -= 0.1*sin(angle/180*M_PI)*speed;
-            Y -= 0.1*cos(angle/180*M_PI)*speed;
+            X -= sin(angle/180*M_PI)*speed*0.3 + shift*sin((float)Wind::angle/180*M_PI)*0.1;
+            Y -= cos(angle/180*M_PI)*speed*0.3 + shift*cos((float)Wind::angle/180*M_PI)*0.1;
             break;
         case 1:
-            X -= shift*sin(angle/180*M_PI)*speed;
-            Y -= shift*cos(angle/180*M_PI)*speed;
+            X -= sin(angle/180*M_PI)*speed*0.5 + shift*sin((float)Wind::angle/180*M_PI)*0.5;
+            Y -= cos(angle/180*M_PI)*speed*0.5 + shift*cos((float)Wind::angle/180*M_PI)*0.5;
             break;
         case 2:
             X -= sin(angle/180*M_PI)*speed*0.5 + shift*sin((float)Wind::angle/180*M_PI)*1.0;

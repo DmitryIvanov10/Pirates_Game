@@ -1,2 +1,3 @@
-1. co� jest nie tak z kierunkiem wiatru, albo nie dzia�a strza�ka, albo napis pokazuj�cy k�t (fixed)
-2. elementy tekstowe "skacz�" podczas poruszania si� (fixed)
+﻿1. coś jest nie tak z kierunkiem wiatru, albo nie działa strzałka, albo napis pokazujący kąt (fixed)
+2. elementy tekstowe "skaczą" podczas poruszania się (fixed)
+3. statki NPC powinny się poruszać z prędkością zbliżoną do prędkości gracza, ale wiatr nie powinien zmieniać kierunku ich ruchu
