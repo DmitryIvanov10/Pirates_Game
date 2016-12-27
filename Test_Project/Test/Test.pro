@@ -39,4 +39,6 @@ HEADERS  += \
 FORMS    +=
 
 RESOURCES += \
-    resources.qrc
+    resources.qrc \
+    img/Islands/islands.qrc \
+    img/Islands/islands2.qrc
