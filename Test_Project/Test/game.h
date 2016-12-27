@@ -22,6 +22,7 @@
 #include "voronoi_point.h"
 #include "voronoi_points.h"
 #include "wind.h"
+#include "island.h"
 
 class Game : public QObject
 {
@@ -35,7 +36,7 @@ class Game : public QObject
     QGraphicsView * view = new QGraphicsView(scene); //widok na scenie
 
     std::vector <QGraphicsPixmapItem *> sea; //kafelki oceanu
-    std::vector <QGraphicsPixmapItem *> islands; //wszystkie wyspy na mapie
+    std::vector <Island *> islands; //wszystkie wyspy na mapie
 
     std::vector <QGraphicsPixmapItem *> hud_img; //graficzna część HUD'u
     std::vector <QGraphicsTextItem *> hud_txt; //tekstowa część HUD'u

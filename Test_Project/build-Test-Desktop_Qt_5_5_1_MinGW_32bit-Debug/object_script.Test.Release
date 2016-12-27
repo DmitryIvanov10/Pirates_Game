@@ -10,6 +10,7 @@ INPUT(
 ./release\newgame.o
 ./release\island.o
 ./release\pirate.o
+./release\voronoi_points.o
 ./release\qrc_resources.o
 ./release\qrc_islands.o
 ./release\qrc_islands2.o

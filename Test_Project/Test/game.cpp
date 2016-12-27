@@ -353,55 +353,55 @@ void Game::new_game()
 
     //ustawianie wysp
     iterate = 0;
-    islands.push_back(new QGraphicsPixmapItem());
+    islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a1_02.png"));
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(5190, 975);
     iterate++;
 
-    islands.push_back(new QGraphicsPixmapItem());
+    islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a1_01.png"));
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(3249, 2694);
     iterate++;
 
-    islands.push_back(new QGraphicsPixmapItem());
+    islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a1_03.png"));
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(6096, 3829);
     iterate++;
 
-    islands.push_back(new QGraphicsPixmapItem());
+    islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a2_02.png"));
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(1848, 874);
     iterate++;
 
-    islands.push_back(new QGraphicsPixmapItem());
+    islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a3_02.png"));
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(4852, 2558);
     iterate++;
 
-    islands.push_back(new QGraphicsPixmapItem());
+    islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a3_02.png"));
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(411, 2175);
     iterate++;
 
-    islands.push_back(new QGraphicsPixmapItem());
+    islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a2_03.png"));
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(4253, 3325);
     iterate++;
 
-    islands.push_back(new QGraphicsPixmapItem());
+    islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a4_01.png"));
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(5583, 1386);
     iterate++;
 
-    islands.push_back(new QGraphicsPixmapItem());
+    islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a4_02.png"));
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(1629, 3737);

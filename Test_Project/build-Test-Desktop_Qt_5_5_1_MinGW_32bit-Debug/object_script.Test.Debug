@@ -10,6 +10,7 @@ INPUT(
 ./debug\newgame.o
 ./debug\island.o
 ./debug\pirate.o
+./debug\voronoi_points.o
 ./debug\qrc_resources.o
 ./debug\qrc_islands.o
 ./debug\qrc_islands2.o
