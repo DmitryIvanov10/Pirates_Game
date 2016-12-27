@@ -35,19 +35,20 @@ class Game : public QObject
 
     std::vector <QGraphicsPixmapItem *> sea; //kafelki oceanu
     std::vector <QGraphicsPixmapItem *> islands; //wszystkie wyspy na mapie
-    std::vector <QGraphicsPixmapItem *> flags; // wszystkie flagi statków NPC
 
     std::vector <QGraphicsPixmapItem *> hud_img; //graficzna część HUD'u
     std::vector <QGraphicsTextItem *> hud_txt; //tekstowa część HUD'u
     QGraphicsRectItem * map_rect;
 
     int frame_time = 17;
+    int game_time = 0;
     int resolution_x = 1366 - 2;
     int resolution_y = 768 - 3;
     int border_x = resolution_x / 4;
     int border_y = resolution_y / 4;
 
-    const int start_npc_amount = 15; //ilość statków NPC
+    const int start_npc_amount = 30; //ilość statków NPC
+    const int game_day = 600;
 
     double scene_x = player->get_x()-resolution_x/2; //położenie widoku x
     double scene_y = player->get_y()-resolution_y/2; //położenie widoku y
@@ -78,9 +79,11 @@ public:
 
 signals:
     //void next_tour();
+    void new_day();
 
 public slots:
     //void check();
+    void count_days();
     void center_view();
 };
 

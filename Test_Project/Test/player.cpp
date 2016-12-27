@@ -123,3 +123,8 @@ short Player::get_morale()
 {
     return morale;
 }
+
+void Player::set_new_day()
+{
+    food -= 5;
+}

@@ -66,7 +66,7 @@ public:
 
 signals:
 
-public slots:
+public slots:\
 };
 
 #endif // SHIP_H

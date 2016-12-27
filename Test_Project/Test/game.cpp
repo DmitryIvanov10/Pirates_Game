@@ -8,6 +8,9 @@ Game::Game(QObject *parent) : QObject(parent)
     // create map
     new_game();
 
+    //make HUD
+    set_hud();
+
     // create NPCs ships and add them to the list of NPC ships
     std::vector <NPC *> npc_ships; //statki npc na mapie
     for (int i = 0; i < start_npc_amount; i++)
@@ -41,15 +44,16 @@ Game::Game(QObject *parent) : QObject(parent)
         scene->addItem(npc_ship->flag);
     }
 
-    //make HUD
-    set_hud();
-
     // update view
     connect (timer, SIGNAL(timeout()), this, SLOT(center_view()));
     // update player
     connect (timer, SIGNAL(timeout()), player, SLOT(do_tour()));
     // update wind properties
     connect (timer, SIGNAL(timeout()), wind, SLOT(do_tour()));
+    // set new day in the game
+    connect (timer, SIGNAL(timeout()), this, SLOT(count_days()));
+    // update player properties each new day
+    connect (this, SIGNAL(new_day()), player, SLOT(set_new_day()));
 
     // put player to the scene
     scene->addItem(player);
@@ -441,8 +445,19 @@ double Game::get_harbor(short _id)
 }
 */
 
+void Game::count_days()
+{
+    game_time ++;
+    if (game_time > game_day)
+    {
+        game_time = 0;
+        emit new_day();
+    }
+}
+
 void Game::center_view()
 {
+    player->setFocus();
     //wind->setPos(player->get_x()-(100 + player->get_width()/2),player->get_y()-(120 + player->get_height()/2));
     //view->centerOn(player->get_x(),player->get_y());
 
