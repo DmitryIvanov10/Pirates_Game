@@ -17,10 +17,10 @@
 #include <QFont> //opcje czcionki
 
 //pliki
-//#include "ship.h"
-#include "player.h"
 #include "npc.h"
+#include "player.h"
 #include "voronoi_point.h"
+#include "voronoi_points.h"
 #include "wind.h"
 
 class Game : public QObject
@@ -31,6 +31,7 @@ class Game : public QObject
     QGraphicsScene * scene = new QGraphicsScene(); //scena na której dzieje się gra
     Player * player = new Player(); //statek gracza
     Wind *wind = new Wind(); //wiatr wiejący na mapie
+    Voronoi_points * voronoi_points = new Voronoi_points();
     QGraphicsView * view = new QGraphicsView(scene); //widok na scenie
 
     std::vector <QGraphicsPixmapItem *> sea; //kafelki oceanu
@@ -39,6 +40,8 @@ class Game : public QObject
     std::vector <QGraphicsPixmapItem *> hud_img; //graficzna część HUD'u
     std::vector <QGraphicsTextItem *> hud_txt; //tekstowa część HUD'u
     QGraphicsRectItem * map_rect;
+
+    std::vector <NPC *> npc_ships; //statki npc na mapie
 
     int frame_time = 17;
     int game_time = 0;
@@ -54,7 +57,7 @@ class Game : public QObject
     double scene_y = player->get_y()-resolution_y/2; //położenie widoku y
 
 public:
-	static std::vector <Voronoi_point> map;
+    //static std::vector <Voronoi_point> map;
 
 
     //konstruktory
@@ -84,6 +87,7 @@ signals:
 public slots:
     //void check();
     void count_days();
+    void update_states();
     void center_view();
 };
 

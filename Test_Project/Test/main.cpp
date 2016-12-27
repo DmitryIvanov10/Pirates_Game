@@ -5,7 +5,7 @@
 //pliki
 #include "game.h"
 
-std::vector<Voronoi_point> Game::map;
+std::vector<Voronoi_point> Voronoi_points::map;
 short Wind::angle;
 short Wind::strength;
 

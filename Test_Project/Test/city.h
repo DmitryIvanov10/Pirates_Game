@@ -13,6 +13,7 @@ class City: QObject
     short id_voronoi; //najbliższy wierzchołek voronoi
     short fraction; //frakcja do której miasto przynależy
     short id; //niepowtarzalne id portu
+    bool active; //czy jest we view
 
     std::vector <float> prices; //ceny konkretnych dóbr
 
@@ -26,6 +27,8 @@ public:
     void change_fraction(short _fraction); //funkcja zmiany frakcji
     short show_fraction(); //funkcja wyświetlania aktualnej frakcji
     void change_prices(); //funkcja losowej zmiany cen
+    void set_state(bool state); // zmienia stan miasta - czy jest aktywny
+    bool in_view();
     float show_price(short _good); //funkcja pokazująca cenę obiektu a
 
 signals:

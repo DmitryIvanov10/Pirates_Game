@@ -10,6 +10,7 @@ class Island : public QObject, public QGraphicsPixmapItem
 
     short id; //nipowtarzalne id wyspy
     short texture_number; //rodzaj wyświetlanej tekstury wyspy
+    bool active; //czy jest we view
 
     double x; //położenie x
     double y; //położenie y
@@ -22,6 +23,8 @@ public:
     double get_x();
     double get_y();
     void set_texture();
+    void set_state(bool state); // ustawia czy jest wyspa aktywna
+    bool in_view();
 
 signals:
 

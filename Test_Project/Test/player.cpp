@@ -79,7 +79,7 @@ void Player::move()
     double wind_effect = abs(abs(Wind::angle - angle) - 180) / 359 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
     double shift = wind_effect * ((double)Wind::strength/100) + 0.4;
 
-    switch(sail_level)
+    /*switch(sail_level)
     {
         case 0:
             X -= sin(angle/180*M_PI)*speed*0.3 + shift*sin((float)Wind::angle/180*M_PI)*0.1;
@@ -93,7 +93,9 @@ void Player::move()
             X -= sin(angle/180*M_PI)*speed*0.5 + shift*sin((float)Wind::angle/180*M_PI)*1.0;
             Y -= cos(angle/180*M_PI)*speed*0.5 + shift*cos((float)Wind::angle/180*M_PI)*1.0;
             break;
-    }
+    }*/
+    X -= shift*sin(angle/180*M_PI)*sail_level*speed;
+    Y -= shift*cos(angle/180*M_PI)*sail_level*speed;
 
     // clamping
     if (X < 0)
@@ -124,7 +126,7 @@ short Player::get_morale()
     return morale;
 }
 
-void Player::set_new_day()
+void Player::next_day()
 {
     food -= 5;
 }

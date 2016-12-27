@@ -31,7 +31,7 @@ public:
 
 public slots:
     void do_tour();
-    void set_new_day();
+    void next_day();
 
 signals:
 

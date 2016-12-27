@@ -12,6 +12,7 @@ Island::Island(double _x, double _y, short _texture_number, short _id)
     texture_number = _texture_number;
     id = _id;
     set_texture();
+    active = false;
 }
 
 double Island::get_x()
@@ -33,4 +34,14 @@ void Island::set_texture()
             break;
     }
 
+}
+
+void Island::set_state(bool state)
+{
+    active = state;
+}
+
+bool Island::in_view()
+{
+    return active;
 }

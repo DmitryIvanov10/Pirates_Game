@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     game.cpp \
     newgame.cpp \
     island.cpp \
-    pirate.cpp
+    pirate.cpp \
+    voronoi_points.cpp
 
 HEADERS  += \
     player.h \
@@ -34,7 +35,8 @@ HEADERS  += \
     game.h \
     newgame.h \
     island.h \
-    pirate.h
+    pirate.h \
+    voronoi_points.h
 
 FORMS    +=
 
