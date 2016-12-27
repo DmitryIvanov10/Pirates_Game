@@ -444,6 +444,18 @@ void Game::new_game()
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(4253, 3325);
     iterate++;
+
+    islands.push_back(new QGraphicsPixmapItem());
+    islands[iterate]->setPixmap(QPixmap(":/island_a4_01.png"));
+    scene->addItem(islands[iterate]);
+    islands[iterate]->setPos(5583, 1386);
+    iterate++;
+
+    islands.push_back(new QGraphicsPixmapItem());
+    islands[iterate]->setPixmap(QPixmap(":/island_a4_02.png"));
+    scene->addItem(islands[iterate]);
+    islands[iterate]->setPos(1629, 3737);
+    iterate++;
 }
 
 double Game::get_x(short _id)

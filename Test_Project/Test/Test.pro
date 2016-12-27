@@ -41,4 +41,5 @@ FORMS    +=
 RESOURCES += \
     resources.qrc \
     img/Islands/islands.qrc \
-    img/Islands/islands2.qrc
+    img/Islands/islands2.qrc \
+    img/Islands/islands4.qrc
