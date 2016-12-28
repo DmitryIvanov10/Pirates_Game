@@ -100,5 +100,6 @@ void Wind::do_tour()
         change_all(10,6);
         setPlainText(QString("Wiatr\nKąt: " + QString::number(angle) + "\nSiła: " + QString::number(strength)));
     }
+
     signal();
 }

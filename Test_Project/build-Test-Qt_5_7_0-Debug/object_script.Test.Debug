@@ -12,6 +12,9 @@ INPUT(
 ./debug\pirate.o
 ./debug\voronoi_points.o
 ./debug\qrc_resources.o
+./debug\qrc_islands.o
+./debug\qrc_islands2.o
+./debug\qrc_islands4.o
 ./debug\moc_player.o
 ./debug\moc_ship.o
 ./debug\moc_npc.o

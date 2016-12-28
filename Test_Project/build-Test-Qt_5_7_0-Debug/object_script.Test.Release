@@ -12,6 +12,9 @@ INPUT(
 ./release\pirate.o
 ./release\voronoi_points.o
 ./release\qrc_resources.o
+./release\qrc_islands.o
+./release\qrc_islands2.o
+./release\qrc_islands4.o
 ./release\moc_player.o
 ./release\moc_ship.o
 ./release\moc_npc.o

@@ -25,9 +25,14 @@ protected:
     short sprite_angle; //kąt obrotu obrazka ze statkiem, wartość pomiędzy [0,7]
 
     //zmienne zaopatrzenia, używane przy pojedynkach
+    short max_health; // maksymalne zdrowie dla statku
     short health; //punkty zdrowia dla statku
+    short max_crue; // maksymalna ilość ludzi na statku
     short crue; //ilość ludzi na statku
+    short initial_cannons; //początkowa iłość armat na danej modeli statku
+    short max_cannons; //maksymalna ilość armat na statku
     short cannons; //ilość armat na statku
+    short max_ammo; //maksymalna ilość amunicji na statku
     short ammo; //ilość amunicji na statku
 
     //zmienne typu vector klasy Ship

@@ -455,7 +455,7 @@ void Game::update_states()
             ship->set_state(false);
         }
     }
-    /*foreach (Island* island, islands)
+    foreach (Island* island, islands)
     {
         if (island->get_x() > scene_x - 1000 &&
             island->get_x() < scene_x + resolution_x &&
@@ -467,7 +467,7 @@ void Game::update_states()
         {
             island->set_state(false);
         }
-    }*/
+    }
 }
 
 void Game::center_view()

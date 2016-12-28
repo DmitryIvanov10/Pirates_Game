@@ -50,7 +50,7 @@ void Ship::move(double _x, double _y)
 void Ship::move()
 {
     //if(! (X < 0 || X > 4098 || Y < 0 || Y > 2304))
-    double wind_effect = abs(abs(Wind::angle - angle) - 180) / 359 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
+    double wind_effect = (double)(abs(abs(Wind::angle - angle) - 180)) / 180 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
     double shift = wind_effect * ((double)Wind::strength/100)+0.4;
 
     X -= shift*sin(angle/180*M_PI)*sail_level*speed;
