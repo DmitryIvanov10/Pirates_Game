@@ -10,6 +10,8 @@
 #include <QGraphicsRectItem> //dziedziczenie itemu z grafik
 #include <QKeyEvent> //obługa klawiszy
 #include <QDebug> //obsługa konsoli Qt
+#include <time.h>
+#include <cstdlib>
 
 class Player: public Ship //, public QGraphicsRectItem
 {
@@ -24,7 +26,7 @@ public:
 
     //funkcje dostępu
     void keyPressEvent(QKeyEvent * event);
-    void move();
+    void clamp();
 
     short get_morale();
     short get_food();

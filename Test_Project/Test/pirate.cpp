@@ -1,28 +1,29 @@
 #include "pirate.h"
 #include <QDebug>
 
-Pirate::Pirate()
-{
-    model=1;
-    sail_level = 1;
-    fight_active = true;
-    active = false;
-
-    current_location = rand()%(Voronoi_points::map.size()-1) + 1;
-    X = Voronoi_points::map[current_location].get_x();
-    Y = Voronoi_points::map[current_location].get_y();
-
-    find_next();
-}
+Pirate::Pirate() : Pirate::Pirate(0) {}
 
 Pirate::Pirate(short _start_id)
 {
+    std::srand(time(0));
     model=1;
+    set_model_parameters();
+    health = max_health;
+    crew = random_value(short(max_crew*0.25), short(max_crew*0.75));
+    cannons = max_cannons;
+    ammo = random_value(short(max_ammo*0.2), short(max_ammo*0.8));
     sail_level = 1;
     fight_active = true;
     active = false;
 
-    current_location = _start_id;
+    if (_start_id)
+    {
+        current_location = _start_id;
+    } else
+    {
+        current_location = rand()%(Voronoi_points::map.size()-1) + 1;
+    }
+
     X = Voronoi_points::map[current_location].get_x();
     Y = Voronoi_points::map[current_location].get_y();
 

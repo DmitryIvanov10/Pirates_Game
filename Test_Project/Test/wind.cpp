@@ -30,14 +30,8 @@ void Wind::create_wind(double _angle, short _strength)
 
 void Wind::norm_all()
 {
-    if(Wind::angle < 0)
-        Wind::angle += 360;
-    else if(Wind::angle > 359)
-        Wind::angle -= 360;
-    if(Wind::strength < 0)
-        Wind::strength += 100;
-    else if(Wind::strength > 99)
-        Wind::strength -= 100;
+    norm_angle();
+    norm_strength();
 }
 
 void Wind::norm_angle()
@@ -50,7 +44,7 @@ void Wind::norm_angle()
 
 void Wind::norm_strength()
 {
-    if(Wind::strength < 0)
+    if (Wind::strength < 0)
         Wind::strength += 100;
     else if(Wind::strength > 99)
         Wind::strength -= 100;
@@ -59,8 +53,7 @@ void Wind::norm_strength()
 void Wind::change_all()
 {
 
-    Wind::angle += (rand()%10)-5;
-    Wind::strength += (rand()%10)-5;
+    change_all(5, 5);
     norm_all();
 }
 
@@ -84,20 +77,25 @@ short Wind::get_strength()
 void Wind::do_tour()
 {
     change_frequency ++;
-    if(change_frequency >= 1200)
+    if(change_frequency >= 17*500)
     {
-        change_all(200,6);
+        change_all(180,100);
         setPlainText(QString("Wiatr\nKąt: " + QString::number(angle) + "\nSiła: " + QString::number(strength)));
         change_frequency = 0;
     }
-    else if(change_frequency%300 == 0)
+    else if(change_frequency%(17*50) == 0)
     {
-        change_all(90,6);
+        change_all(90,50);
         setPlainText(QString("Wiatr\nKąt: " + QString::number(angle) + "\nSiła: " + QString::number(strength)));
     }
-    else if(change_frequency%15 == 0)
+    else if(change_frequency%(17*10) == 0)
     {
-        change_all(10,6);
+        change_all(45,25);
+        setPlainText(QString("Wiatr\nKąt: " + QString::number(angle) + "\nSiła: " + QString::number(strength)));
+    }
+    else if(change_frequency%(17) == 0)
+    {
+        change_all(5,2);
         setPlainText(QString("Wiatr\nKąt: " + QString::number(angle) + "\nSiła: " + QString::number(strength)));
     }
 

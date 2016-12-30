@@ -484,13 +484,13 @@ void Game::center_view()
     {
         scene_y = (int)player->get_y() - border_y;
     }
-    if (scene_x + resolution_x - player->get_x() - player->get_width() < border_x)
+    if (scene_x + resolution_x - player->get_x() - player->get_sprite_width() < border_x)
     {
-        scene_x = (int)player->get_x() + player->get_width() + border_x - resolution_x;
+        scene_x = (int)player->get_x() + player->get_sprite_width() + border_x - resolution_x;
     }
-    if (scene_y + resolution_y - player->get_y() - player->get_height() < border_y)
+    if (scene_y + resolution_y - player->get_y() - player->get_sprite_height() < border_y)
     {
-        scene_y = (int)player->get_y() + player->get_height() + border_y - resolution_y;
+        scene_y = (int)player->get_y() + player->get_sprite_height() + border_y - resolution_y;
     }
 
     scene->setSceneRect(scene_x, scene_y, resolution_x, resolution_y);
@@ -519,7 +519,7 @@ void Game::center_view()
     hud_txt[1]->setPos(scene_x + resolution_x/2 - 189, scene_y + resolution_y - 36);
 
     //stan załogi
-    hud_txt[2]->setPlainText(QString(QString::number(player->get_crue())));
+    hud_txt[2]->setPlainText(QString(QString::number(player->get_crew())));
     hud_txt[2]->setPos(scene_x + resolution_x/2 - 111, scene_y + resolution_y - 36);
 
     //ilość jedzenia
@@ -615,7 +615,7 @@ void Game::set_hud()
 
     //stan załogi
     hud_txt.push_back(new QGraphicsTextItem());
-    hud_txt[iterate]->setPlainText(QString(QString::number(player->get_crue())));
+    hud_txt[iterate]->setPlainText(QString(QString::number(player->get_crew())));
     hud_txt[iterate]->setFont(QFont("times", 13));
     scene->addItem(hud_txt[iterate]);
     //hud_txt[iterate]->setPos(scene_x + resolution_x/2 - 111, scene_y + resolution_y - 36);

@@ -1,20 +1,8 @@
 #include "city.h"
 
-City::City(short _id_voronoi)
-{
-   id_voronoi = _id_voronoi;
-    fraction = 1;
-    id = 1;
-    active = false;
-}
+City::City(short _id_voronoi) : City::City(_id_voronoi, 1, 1) {}
 
-City::City(short _id_voronoi, short _fraction)
-{
-    id_voronoi = _id_voronoi;
-    fraction = _fraction;
-    id = 1;
-    active = false;
-}
+City::City(short _id_voronoi, short _fraction) : City::City(_id_voronoi, _fraction, 1) {}
 
 City::City(short _id_voronoi, short _fraction, short _id)
 {

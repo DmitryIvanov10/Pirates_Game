@@ -2,12 +2,13 @@
 
 Player::Player()
 {
+    std::srand(time(0));
     model = 1;
-    speed = 1.0;
-    ammo = 50;
-    crue = 50;
-    health = 100;
-    cannons  = 4;
+    set_model_parameters();
+    health = max_health;
+    crew = 0.75 * max_crew;
+    cannons = initial_cannons;
+    ammo = 0.5 * max_ammo;
     set_angle(90);
     sail_level = 1;
     morale = 100;
@@ -74,11 +75,8 @@ void Player::do_tour()
     setPos(X,Y);
 }
 
-void Player::move()
+void Player::clamp()
 {
-    double wind_effect = (double)(abs(abs(Wind::angle - angle) - 180)) / 180 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
-    double shift = wind_effect * ((double)Wind::strength/100) + 0.4;
-
     /*switch(sail_level)
     {
         case 0:
@@ -94,8 +92,6 @@ void Player::move()
             Y -= cos(angle/180*M_PI)*speed*0.5 + shift*cos((float)Wind::angle/180*M_PI)*1.0;
             break;
     }*/
-    X -= shift*sin(angle/180*M_PI)*sail_level*speed;
-    Y -= shift*cos(angle/180*M_PI)*sail_level*speed;
 
     // clamping
     if (X < 0)

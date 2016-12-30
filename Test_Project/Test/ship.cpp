@@ -1,14 +1,6 @@
 #include "ship.h"
 #include <QDebug>
 
-Ship::Ship()
-{
-    X=0;
-    Y=0;
-    model=1;
-    set_model_parameters();
-}
-
 Ship::Ship(double _x, double _y, short _model)
 {
     X=_x;
@@ -17,14 +9,24 @@ Ship::Ship(double _x, double _y, short _model)
     set_model_parameters();
 }
 
+Ship::Ship() : Ship::Ship(0, 0, 1) {}
+
 void Ship::set_model_parameters()
 {
     switch(model)
     {
         case 1:
-            width = 80;
-            height = 80;
-
+            sprite_width = 80;
+            sprite_height = 80;
+            max_health = 230;
+            max_crew = 175;
+            initial_cannons = 24;
+            max_cannons = 30;
+            max_ammo = 150;
+            hold_size = 4;
+            max_speed = 1.9;
+            bladewind_speed = 0.7;
+            paddle_speed = 0.2;
             break;
     }
 }
@@ -49,12 +51,15 @@ void Ship::move(double _x, double _y)
 
 void Ship::move()
 {
-    //if(! (X < 0 || X > 4098 || Y < 0 || Y > 2304))
-    double wind_effect = (double)(abs(abs(Wind::angle - angle) - 180)) / 180 + 0.5; // Liczy effekt wiatru na prędkość statku jako współczynnik - 0.5 przy dokładnie przeciwnym kierunku, 1 - przy tym samym kierunku statku i wiatru
-    double shift = wind_effect * ((double)Wind::strength/100)+0.4;
+    double wind_effect = ((double)(abs(abs(Wind::angle - angle) - 180)) / 180)
+            * (max_speed - bladewind_speed) + bladewind_speed; // Liczy effekt wiatru na prędkość statku, gdy wynik - bladewind_speed przy dokładnie przeciwnym kierunku, speed - przy tym samym kierunku statku i wiatru
+    double actual_speed = wind_effect * ((double)Wind::strength/100) * 0.5 * double(sail_level);
+    if (actual_speed < paddle_speed && sail_level)
+        actual_speed = paddle_speed;
 
-    X -= shift*sin(angle/180*M_PI)*sail_level*speed;
-    Y -= shift*cos(angle/180*M_PI)*sail_level*speed;
+    X -= actual_speed*sin(angle/180*M_PI);
+    Y -= actual_speed*cos(angle/180*M_PI);
+    //if (actual_speed > max_speed * 0.45 * double(sail_level)) qDebug() << actual_speed << " " << sail_level;
 }
 
 void Ship::set_sail_level(bool _sign)
@@ -72,29 +77,29 @@ void Ship::set_sail_level(bool _sign)
 double Ship::pos(bool i)
 {
     if(i)
-        return Y + height/2;
+        return Y + sprite_height/2;
     else
-        return X + width/2;
+        return X + sprite_width/2;
 }
 
 double Ship::get_x()
 {
-    return X + width/2;
+    return X + sprite_width/2;
 }
 
 double Ship::get_y()
 {
-    return Y + height/2;
+    return Y + sprite_height/2;
 }
 
-int Ship::get_width()
+int Ship::get_sprite_width()
 {
-    return width;
+    return sprite_width;
 }
 
-int Ship::get_height()
+int Ship::get_sprite_height()
 {
-    return height;
+    return sprite_height;
 }
 
 short Ship::find_sprite_angle()
@@ -149,7 +154,7 @@ void Ship::set_sprite_angle()
             break;
     }
 
-    setTransformOriginPoint(width/2, height/2);
+    setTransformOriginPoint(sprite_width/2, sprite_height/2);
     setRotation(((-(int)angle-23)%45+23)*0.3);
 }
 
@@ -158,9 +163,9 @@ short Ship::get_cannon()
     return cannons;
 }
 
-short Ship::get_crue()
+short Ship::get_crew()
 {
-    return crue;
+    return crew;
 }
 
 short Ship::get_health()
@@ -176,4 +181,26 @@ short Ship::get_sail_level()
 short Ship::get_ammo()
 {
     return ammo;
+}
+
+short Ship::random_value(short _interval, short _value)
+{
+    double a = 1;
+    for (int i=0; i<2; i++)
+    {
+        a *= ((double) rand() / (RAND_MAX));
+    }
+
+    if (_value)
+    {
+        return _value + short(double(_interval)*a)*((rand() % 2) * 2 - 1);
+    } else
+    {
+        return _interval - short(double(_interval)*a*0.25);
+    }
+}
+
+short Ship::random_value(short _interval)
+{
+    return random_value(_interval, 0);
 }

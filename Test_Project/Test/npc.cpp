@@ -1,36 +1,19 @@
 #include "npc.h"
 #include <QDebug>
 
-NPC::NPC()
-{
-    //qDebug() <<"Created new NPC!";
-    model=1;
-    sail_level = 1;
-    speed = 1.0;
-    fraction=rand()%4 + 1;
-    active = false;
-
-    set_flag();
-    //flag->setPos(get_x() - width/2, get_y()+ height/2);
-
-    current_location = rand()%(Voronoi_points::map.size()-1) + 1;
-    X = Voronoi_points::map[current_location].get_x();
-    Y = Voronoi_points::map[current_location].get_y();
-    target_location = current_location;
-    while (target_location == current_location)
-    {
-        target_location = rand()%(Voronoi_points::map.size()-1) + 1;
-    }
-
-    /*qDebug() <<"Current location: " << current_location;
-    qDebug() <<"Target location: " << target_location;*/
-    find_next();
-}
+NPC::NPC() : NPC::NPC(0, 0) {}
 
 NPC::NPC(short _start_id, short _finish_id)
 {
     //qDebug() <<"Created new NPC!";
+    std::srand(time(0));
     model=1;
+    set_model_parameters();
+    health = random_value(max_health);
+    crew = random_value(short(max_crew*0.25), short(max_crew*0.75));
+    cannons = initial_cannons;
+    ammo = random_value(short(max_ammo*0.25), short(max_ammo*0.5));
+
     sail_level = 1;
     fraction=rand()%4 + 1;
     active = false;
@@ -38,11 +21,23 @@ NPC::NPC(short _start_id, short _finish_id)
     set_flag();
     //flag->setPos(get_x() - width/2, get_y()+ height/2);
     //flag->setPos(2000, 1000);
+    if (_start_id && _finish_id)
+    {
+        current_location = _start_id;
+        target_location = _finish_id;
+    } else
+    {
+        current_location = rand()%(Voronoi_points::map.size()-1) + 1;
+        do
+        {
+            target_location = rand()%(Voronoi_points::map.size()-1) + 1;
+        }
+        while (target_location == current_location);
+    }
 
-    current_location = _start_id;
     X = Voronoi_points::map[current_location].get_x();
     Y = Voronoi_points::map[current_location].get_y();
-    target_location = _finish_id;
+
 
     /*qDebug() <<"Current location: " << current_location;
     qDebug() <<"Target location: " << target_location;*/
@@ -69,12 +64,13 @@ NPC::~NPC()
 int NPC::find_distance(short _id1, short _id2)
 {
     // return distance between two voronoi points
-    return (int)sqrt(
+    /*return (int)sqrt(
         (Voronoi_points::map[_id2].get_x() - Voronoi_points::map[_id1].get_x()) *
         (Voronoi_points::map[_id2].get_x() - Voronoi_points::map[_id1].get_x()) +
         (Voronoi_points::map[_id2].get_y() - Voronoi_points::map[_id1].get_y()) *
         (Voronoi_points::map[_id2].get_y() - Voronoi_points::map[_id1].get_y())
-        );
+        );*/
+    return find_distance(Voronoi_points::map[_id1].get_x(), Voronoi_points::map[_id1].get_y(), _id2);
 }
 
 int NPC::find_distance(double _X, double _Y, short _id)
@@ -269,7 +265,7 @@ void NPC::move_to_next_location()
 {
     move();
     setPos(X,Y);
-    flag->setPos(X + width/2, Y);
+    flag->setPos(X + sprite_width/2, Y);
 
     // searches next location if close to voronoi point
     if (find_distance(X, Y, next_location) <= 5)

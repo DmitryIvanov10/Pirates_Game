@@ -1,40 +1,16 @@
 #include "voronoi_point.h"
 
-Voronoi_point::Voronoi_point(double _x, double _y)
-{
-    x=_x;
-    y=_y;
-    id=1;
-    harbor=0;
-    edge=0;
-}
+Voronoi_point::Voronoi_point(double _x, double _y) :
+    Voronoi_point::Voronoi_point(_x, _y, 1, 0, 0) {}
 
-Voronoi_point::Voronoi_point(double _x, double _y, short _id)
-{
-    x=_x;
-    y=_y;
-    id=_id;
-    harbor=0;
-    edge=0;
-}
+Voronoi_point::Voronoi_point(double _x, double _y, short _id) :
+    Voronoi_point::Voronoi_point(_x, _y, _id, 0, 0) {}
 
-Voronoi_point::Voronoi_point(double _x, double _y, bool _harbor)
-{
-    x=_x;
-    y=_y;
-    id=1;
-    harbor=_harbor;
-    edge=0;
-}
+Voronoi_point::Voronoi_point(double _x, double _y, bool _harbor) :
+    Voronoi_point::Voronoi_point(_x, _y, 1, _harbor, 0) {}
 
-Voronoi_point::Voronoi_point(double _x, double _y, bool _harbor, bool _edge)
-{
-    x=_x;
-    y=_y;
-    id=1;
-    harbor=_harbor;
-    edge=_edge;
-}
+Voronoi_point::Voronoi_point(double _x, double _y, bool _harbor, bool _edge) :
+    Voronoi_point::Voronoi_point(_x, _y, 1, _harbor, _edge) {}
 
 Voronoi_point::Voronoi_point(double _x, double _y, short _id, bool _harbor, bool _edge)
 {
@@ -59,16 +35,12 @@ void Voronoi_point::new_neighbor(short _id)
 
 void Voronoi_point::set_neighbours(short _id1)
 {
-    new_neighbor(_id1);
-    new_neighbor(-1);
-    new_neighbor(-1);
+    set_neighbours(_id1, -1, -1);
 }
 
 void Voronoi_point::set_neighbours(short _id1, short _id2)
 {
-    new_neighbor(_id1);
-    new_neighbor(_id2);
-    new_neighbor(-1);
+    set_neighbours(_id1, _id2, -1);
 }
 
 void Voronoi_point::set_neighbours(short _id1, short _id2, short _id3)

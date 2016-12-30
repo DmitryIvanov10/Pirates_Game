@@ -8,6 +8,9 @@
 #include <QFont> //opcje czcionki
 #include <time.h>
 
+//pliki
+//#include "game.h"
+
 class Wind : public QGraphicsTextItem
 {
     Q_OBJECT
