@@ -5,6 +5,7 @@
 #include <QObject> //potrzebne do slotów i sygnałów
 #include <vector> //obsługa wektorów
 #include <math.h> //funkcje trygonometryczne
+#include <string> //dla nazwy statku
 
 #include <QGraphicsPixmapItem>
 
@@ -20,7 +21,8 @@ protected:
 
     //zmienne statku, ważne dla gry w widoku podróży
     double angle; //aktualny kąt o jaki statek jest obrócony
-    short model; //model statku
+    short model; //id modelu statku
+    std::string model_name; //nazwa modelu statku
     short sail_level; //poziom rozwinięcia żagli
     double max_speed; //maksymalna prędkość
     double speed; //aktualna prędkość

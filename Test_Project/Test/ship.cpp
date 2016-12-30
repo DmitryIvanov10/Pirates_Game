@@ -16,6 +16,7 @@ void Ship::set_model_parameters()
     switch(model)
     {
         case 1:
+            model_name = "Caravel";
             sprite_width = 80;
             sprite_height = 80;
             max_health = 230;
@@ -27,6 +28,20 @@ void Ship::set_model_parameters()
             max_speed = 2.85;
             bladewind_speed = 1.05;
             paddle_speed = 0.3;
+            break;
+        case 2:
+            model_name = "Brig";
+            sprite_width = 80;
+            sprite_height = 80;
+            max_health = 270;
+            max_crew = 177;
+            initial_cannons = 16;
+            max_cannons = 24;
+            max_ammo = 120;
+            hold_size = 3;
+            max_speed = 4.35;
+            bladewind_speed = 1.05;
+            paddle_speed = 0.4;
             break;
     }
 }
@@ -136,8 +151,34 @@ short Ship::find_sprite_angle()
 
 void Ship::set_sprite_angle()
 {
+
     switch(sprite_angle)
     {
+
+        /*case 0:
+            setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_N_01.png"));
+            break;
+        case 1:
+            setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_NW_01.png"));
+            break;
+        case 2:
+            setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_W_01.png"));
+            break;
+        case 3:
+            setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_SW_01.png"));
+            break;
+        case 4:
+            setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_S_01.png"));
+            break;
+        case 5:
+            setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_SE_01.png"));
+            break;
+        case 6:
+            setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_E_01.png"));
+            break;
+        case 7:
+            setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_NE_01.png"));
+            break;*/
         case 0:
             setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_N_01.png"));
             break;
