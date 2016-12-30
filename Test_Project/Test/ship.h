@@ -23,6 +23,7 @@ protected:
     short model; //model statku
     short sail_level; //poziom rozwinięcia żagli
     double max_speed; //maksymalna prędkość
+    double speed; //aktualna prędkość
     double bladewind_speed; //prędkość przeciwko wiatru
     double paddle_speed; //prędkość bez wiatru albo słabym wiatru - na wiosłach
     short sprite_angle; //kąt obrotu obrazka ze statkiem, wartość pomiędzy [0,7]

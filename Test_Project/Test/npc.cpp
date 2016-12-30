@@ -44,7 +44,7 @@ NPC::NPC(short _start_id, short _finish_id)
     find_next();
 }
 
-NPC::NPC(double _x, double _y, short _model)
+/*NPC::NPC(double _x, double _y, short _model)
 {
     std::srand(time(0));
     fraction=rand()%4 + 1;
@@ -53,7 +53,7 @@ NPC::NPC(double _x, double _y, short _model)
     Y=_y;
     model=_model;
     active = false;
-}
+}*/
 
 NPC::~NPC()
 {

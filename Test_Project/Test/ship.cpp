@@ -24,9 +24,9 @@ void Ship::set_model_parameters()
             max_cannons = 30;
             max_ammo = 150;
             hold_size = 4;
-            max_speed = 1.9;
-            bladewind_speed = 0.7;
-            paddle_speed = 0.2;
+            max_speed = 2.85;
+            bladewind_speed = 1.05;
+            paddle_speed = 0.3;
             break;
     }
 }
@@ -51,15 +51,25 @@ void Ship::move(double _x, double _y)
 
 void Ship::move()
 {
-    double wind_effect = ((double)(abs(abs(Wind::angle - angle) - 180)) / 180)
+    /*double wind_effect = ((double)(abs(abs(Wind::angle - angle) - 180)) / 180)
             * (max_speed - bladewind_speed) + bladewind_speed; // Liczy effekt wiatru na prędkość statku, gdy wynik - bladewind_speed przy dokładnie przeciwnym kierunku, speed - przy tym samym kierunku statku i wiatru
     double actual_speed = wind_effect * ((double)Wind::strength/100) * 0.5 * double(sail_level);
     if (actual_speed < paddle_speed && sail_level)
         actual_speed = paddle_speed;
 
     X -= actual_speed*sin(angle/180*M_PI);
-    Y -= actual_speed*cos(angle/180*M_PI);
-    //if (actual_speed > max_speed * 0.45 * double(sail_level)) qDebug() << actual_speed << " " << sail_level;
+    Y -= actual_speed*cos(angle/180*M_PI);*/
+    speed = (((double)(abs(abs(Wind::angle - angle) - 180)) / 180)
+            * (max_speed - bladewind_speed) + bladewind_speed) *
+            ((double)Wind::strength/100) * 0.5 * double(sail_level);
+    if (speed < paddle_speed && sail_level)
+        speed = paddle_speed;
+
+    X -= speed*sin(angle/180*M_PI);
+    Y -= speed*cos(angle/180*M_PI);
+
+    /*if (speed < (max_speed * 0.1 * double(sail_level)))
+        qDebug() << speed << " " << sail_level;*/
 }
 
 void Ship::set_sail_level(bool _sign)
