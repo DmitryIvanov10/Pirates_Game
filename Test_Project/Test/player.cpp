@@ -3,7 +3,7 @@
 Player::Player()
 {
     std::srand(time(0));
-    model = 1;
+    model = 2;
     set_model_parameters();
     health = max_health;
     crew = 0.75 * max_crew;

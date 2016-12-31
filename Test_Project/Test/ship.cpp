@@ -151,11 +151,9 @@ short Ship::find_sprite_angle()
 
 void Ship::set_sprite_angle()
 {
-
     switch(sprite_angle)
     {
-
-        /*case 0:
+        case 0:
             setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_N_01.png"));
             break;
         case 1:
@@ -178,31 +176,31 @@ void Ship::set_sprite_angle()
             break;
         case 7:
             setPixmap(QPixmap(":/img/Ships/" + model_name + "_01/" + model_name + "_NE_01.png"));
-            break;*/
-        case 0:
-            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_N_01.png"));
+            break;
+        /*case 0:
+            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_N_01.png"));
             break;
         case 1:
-            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_NW_01.png"));
+            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_NW_01.png"));
             break;
         case 2:
-            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_W_01.png"));
+            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_W_01.png"));
             break;
         case 3:
-            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_SW_01.png"));
+            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_SW_01.png"));
             break;
         case 4:
-            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_S_01.png"));
+            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_S_01.png"));
             break;
         case 5:
-            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_SE_01.png"));
+            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_SE_01.png"));
             break;
         case 6:
-            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_E_01.png"));
+            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_E_01.png"));
             break;
         case 7:
-            setPixmap(QPixmap(":/img/Ships/Caravel_01/Caravel_NE_01.png"));
-            break;
+            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_NE_01.png"));
+            break;*/
     }
 
     setTransformOriginPoint(sprite_width/2, sprite_height/2);

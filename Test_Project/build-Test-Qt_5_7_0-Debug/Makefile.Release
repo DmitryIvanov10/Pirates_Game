@@ -254,6 +254,7 @@ release/moc_player.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
@@ -356,6 +357,7 @@ release/moc_ship.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
@@ -448,6 +450,7 @@ release/moc_npc.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
@@ -757,6 +760,7 @@ release/moc_game.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		../Test/npc.h \
 		../Test/ship.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		../Test/voronoi_points.h \
@@ -764,6 +768,7 @@ release/moc_game.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
+		../Test/island.h \
 		../Test/game.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/Dmitry/Documents/MINE/Prog/C++/Project_Pirates/Test_Project/Test -IC:/Qt/5.7/mingw53_32/include -IC:/Qt/5.7/mingw53_32/include/QtWidgets -IC:/Qt/5.7/mingw53_32/include/QtGui -IC:/Qt/5.7/mingw53_32/include/QtANGLE -IC:/Qt/5.7/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\Test\game.h -o release\moc_game.cpp
@@ -904,6 +909,7 @@ release/moc_pirate.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
@@ -1092,13 +1098,15 @@ release/main.o: ../Test/main.cpp C:/Qt/5.7/mingw53_32/include/QtWidgets/QApplica
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		../Test/npc.h \
 		../Test/ship.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		../Test/voronoi_points.h \
 		../Test/voronoi_point.h \
 		../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent
+		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
+		../Test/island.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\Test\main.cpp
 
 release/player.o: ../Test/player.cpp ../Test/player.h \
@@ -1151,6 +1159,7 @@ release/player.o: ../Test/player.cpp ../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
@@ -1252,6 +1261,7 @@ release/ship.o: ../Test/ship.cpp ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
@@ -1344,6 +1354,7 @@ release/npc.o: ../Test/npc.cpp ../Test/npc.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
@@ -1716,13 +1727,15 @@ release/game.o: ../Test/game.cpp ../Test/game.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		../Test/npc.h \
 		../Test/ship.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		../Test/voronoi_points.h \
 		../Test/voronoi_point.h \
 		../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent
+		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
+		../Test/island.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\game.o ..\Test\game.cpp
 
 release/newgame.o: ../Test/newgame.cpp ../Test/newgame.h
@@ -1864,6 +1877,7 @@ release/pirate.o: ../Test/pirate.cpp ../Test/pirate.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qvariant.h \
