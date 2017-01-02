@@ -23,7 +23,8 @@ SOURCES += main.cpp \
     newgame.cpp \
     island.cpp \
     pirate.cpp \
-    voronoi_points.cpp
+    voronoi_points.cpp \
+    cargo.cpp
 
 HEADERS  += \
     player.h \
@@ -36,7 +37,8 @@ HEADERS  += \
     newgame.h \
     island.h \
     pirate.h \
-    voronoi_points.h
+    voronoi_points.h \
+    cargo.h
 
 FORMS    +=
 

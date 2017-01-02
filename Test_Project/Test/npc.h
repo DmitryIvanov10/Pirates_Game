@@ -45,6 +45,7 @@ public:
     void set_direction(); // funkcja zmienia kąt tak, żeby płynął do next_location
     void set_flag(); //funkcja która wybiera flagę w zależności od frakcji
     void set_state(bool state); //ustawia stan statku (aktywny czy nie)
+    void set_cargo(); //ustawia towary statku
     bool in_view();
 
 signals:

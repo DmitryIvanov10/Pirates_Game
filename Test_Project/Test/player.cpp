@@ -1,10 +1,12 @@
 #include "player.h"
+#include <QDebug>
 
 Player::Player()
 {
     std::srand(time(0));
     model = 3;
     set_model_parameters();
+    max_food = 30 * ceil(double (max_crew) / 15);
     health = max_health;
     crew = 0.75 * max_crew;
     cannons = initial_cannons;
@@ -12,7 +14,14 @@ Player::Player()
     set_angle(90);
     sail_level = 1;
     morale = 100;
-    food = 100;
+    food = max_food / 2;
+
+    // set cargo
+    for (int i=0; i<hold_size; i++)
+    {
+        goods.push_back(new Cargo());
+        qDebug() << goods[i]->get_name() << ": " << goods[i]->get_amount();
+    }
 
     X = 4000;
     Y = 2000;
@@ -125,5 +134,20 @@ short Player::get_morale()
 
 void Player::next_day()
 {
-    food -= 5;
+    one_day_food = ceil(double(crew) / 15);
+    if (food > one_day_food)
+        food -= one_day_food;
+    else
+        food = 0;
+    if (morale <= 0)
+        morale = 0;
+    else
+        if (!food)
+        {
+            morale -= 10;
+            crew -= crew / 10;
+        }
+        else
+        if (food <= 5 * one_day_food)
+            morale -= 5;
 }

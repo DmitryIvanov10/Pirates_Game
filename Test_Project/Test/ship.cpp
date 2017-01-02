@@ -34,9 +34,9 @@ void Ship::set_model_parameters()
             max_cannons = 30;
             max_ammo = 150;
             hold_size = 4;
-            max_speed = 2.85;
-            bladewind_speed = 1.05;
-            paddle_speed = 0.3;
+            max_speed = 2.85f;
+            bladewind_speed = 1.05f;
+            paddle_speed = 0.3f;
             break;
         case 4:
             model_name = "Brig";
@@ -48,9 +48,9 @@ void Ship::set_model_parameters()
             max_cannons = 24;
             max_ammo = 120;
             hold_size = 3;
-            max_speed = 4.35;
-            bladewind_speed = 1.05;
-            paddle_speed = 0.4;
+            max_speed = 4.35f;
+            bladewind_speed = 1.05f;
+            paddle_speed = 0.4f;
             break;
         case 5:
             model_name = "Galeon";

@@ -6,12 +6,15 @@ NPC::NPC() : NPC::NPC(0, 0) {}
 NPC::NPC(short _start_id, short _finish_id)
 {
     //qDebug() <<"Created new NPC!";
-    model = rand() % 2 + 4;
+    model = rand() % 2 + 3;
     set_model_parameters();
     health = random_value(max_health);
     crew = random_value(short(max_crew*0.25), short(max_crew*0.75));
     cannons = initial_cannons;
     ammo = random_value(short(max_ammo*0.25), short(max_ammo*0.5));
+
+    // set cargo
+    set_cargo();
 
     sail_level = 1;
     fraction=rand()%4 + 1;
@@ -253,6 +256,14 @@ void NPC::set_flag()
 void NPC::set_state(bool state)
 {
     active = state;
+}
+
+void NPC::set_cargo()
+{
+    for (int i=0; i<hold_size; i++)
+    {
+        goods.push_back(new Cargo());
+    }
 }
 
 bool NPC::in_view()

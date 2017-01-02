@@ -1,20 +1,20 @@
 //list of all goods
 
 0 null //debug value
-1 water
-2 meat
-3 alcohol
+1 sugar (!)
+2 coffee (!)
+3 alcohol (rum)
 4 fruits
-5 soil
-6 pepper
-7 
-8 
-9 
-10 
-11 
-12 
-13 
-14 
+5 cotton
+6 pepper (a tu na odwrót zrobiłbym ogólnie - spices)
+7 tabacco
+8 cocoa
+9 ebony
+10 mahogany
+11 corn/flour
+12 soil (?)
+13 water (?)
+14 meat (?.. nie było wtedy zamrażarników) 
 15 
 16 
 17 

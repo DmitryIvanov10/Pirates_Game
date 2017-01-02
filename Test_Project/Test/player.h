@@ -11,12 +11,15 @@
 #include <QKeyEvent> //obługa klawiszy
 #include <QDebug> //obsługa konsoli Qt
 #include <time.h>
+#include <math.h>
 #include <cstdlib>
 
 class Player: public Ship //, public QGraphicsRectItem
 {
     Q_OBJECT
 
+    short one_day_food;
+    short max_food;
     short food;
     short morale;
 

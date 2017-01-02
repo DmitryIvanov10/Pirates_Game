@@ -1,16 +1,18 @@
 #ifndef SHIP_H
 #define SHIP_H
 
+#define _USE_MATH_DEFINES
+
 //biblioteki
 #include <QObject> //potrzebne do slotów i sygnałów
 #include <vector> //obsługa wektorów
 #include <math.h> //funkcje trygonometryczne
 #include <QString> //dla nazwy statku
-
 #include <QGraphicsPixmapItem>
 
 //pliki
 #include "wind.h"
+#include "cargo.h"
 
 class Ship: public QObject, public QGraphicsPixmapItem
 {
@@ -43,7 +45,7 @@ protected:
     short hold_size; //rozmiar łądowni
 
     //zmienne typu vector klasy Ship
-    std:: vector <short> goods; //ilość przewożonych towarów przez statek, każdy element vector'a to inne dobro (na przykład goods[2] to perły, a goods[5] to sól itd.)
+    std:: vector <Cargo *> goods; //towary, przewożone przez statek
 
     //lista zimennych typu double klasy Ship
     double X; //aktualna pozycja x
