@@ -54,7 +54,6 @@ void Player::keyPressEvent(QKeyEvent *event)
             break;
     }
     */
-
     switch (event->key())
     {
         case Qt::Key_A:
@@ -76,6 +75,29 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
 
     //qDebug() << angle;
+}
+
+void Player::mousePressEvent(QMouseEvent *event)
+{
+    qDebug() << "Mouse pressed";
+    if (event->button() == Qt::LeftButton)
+    {
+        qDebug() << "Mouse pressed in " << event->pos();
+    }
+
+    /*foreach (NPC * ship, npc_ships)
+    {
+        qDebug() << ship->get_model_name();
+        if (ship->get_state())
+        {
+            qDebug() << ship->get_model_name();
+            if (event->x() > ship->get_x() &&
+                event->x() < ship->get_x() + ship->get_sprite_width() &&
+                event->y() > ship->get_y() &&
+                event->y() < ship->get_y() + ship->get_sprite_height())
+                qDebug() << "inside NPC ship, which is " << ship->get_model_name();
+        }
+    }*/
 }
 
 void Player::do_tour()

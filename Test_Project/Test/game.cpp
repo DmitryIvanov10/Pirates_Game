@@ -9,21 +9,9 @@ Game::Game(QObject *parent) : QObject(parent)
     new_game();
 
     // create NPCs ships and add them to the list of NPC ships
-    //std::vector <NPC *> npc_ships; //statki npc na mapie
     for (int i = 0; i < start_npc_amount; i++)
     {
         npc_ships.push_back(new NPC());
-    }
-
-    // add all NPC ships to the scene
-    /*
-    foreach (NPC * npc_ship, npc_ships)
-    {
-        scene->addItem(npc_ship);
-    }
-    */
-    for (int i = 0; i < npc_ships.size(); i++)
-    {
         scene->addItem(npc_ships[i]);
     }
 
@@ -60,10 +48,10 @@ Game::Game(QObject *parent) : QObject(parent)
     // put player to the scene
     scene->addItem(player);
 
-    //view->centerOn(0,0);
+    //set timer to achieve 60 FPS
     timer->start(17);
 
-    //view->show();
+    // show game on a full screen
     view->showFullScreen();
 }
 
@@ -340,7 +328,7 @@ void Game::new_game()
     Voronoi_points::map[iterate].set_neighbours(63, 83);
 
     //ustawianie kafelków oceanu
-    iterate = 0;
+    /*iterate = 0;
     for (int i = -border_y; i < 4608 + border_y; i += 1024)
     for (int j = -border_x; j < 8196 + border_x; j += 1024)
     {
@@ -349,7 +337,8 @@ void Game::new_game()
         scene->addItem(sea[iterate]);
         sea[iterate]->setPos(j, i);
         iterate++;
-    }
+    }*/
+    scene->setBackgroundBrush(QBrush(QImage(":/img/Sea/sea_01.png")));
 
     //ustawianie wysp
     iterate = 0;
@@ -473,8 +462,6 @@ void Game::update_states()
 void Game::center_view()
 {
     player->setFocus();
-    //wind->setPos(player->get_x()-(100 + player->get_width()/2),player->get_y()-(120 + player->get_height()/2));
-    //view->centerOn(player->get_x(),player->get_y());
 
     if (player->get_x() - scene_x < border_x)
     {
@@ -657,8 +644,4 @@ void Game::set_hud()
     map_rect = new QGraphicsRectItem();
     //map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
     scene->addItem(map_rect);
-
-    //qDebug() << "Ship X: " << player->get_x() << ", Y: " << player->get_y();
-
-    //qDebug() << scene_x + resolution_x - 535 << " " << scene_y + resolution_y - 430;
 }

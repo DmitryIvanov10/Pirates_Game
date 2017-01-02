@@ -144,6 +144,11 @@ int Ship::get_sprite_height()
     return sprite_height;
 }
 
+QString Ship::get_model_name()
+{
+    return model_name;
+}
+
 short Ship::find_sprite_angle()
 {
     bool temp = 0;
@@ -220,7 +225,7 @@ void Ship::set_sprite_angle()
             break;*/
     }
 
-    setTransformOriginPoint(sprite_width/2, sprite_height/2);
+    setTransformOriginPoint(50, 50);
     setRotation(((-(int)angle-23)%45+23)*0.3);
 }
 
@@ -269,4 +274,16 @@ short Ship::random_value(short _interval, short _value)
 short Ship::random_value(short _interval)
 {
     return random_value(_interval, 0);
+}
+
+void Ship::mousePressEvent(QMouseEvent *event)
+{
+    qDebug() << "Mouse pressed";
+    if (event->x() > X &&
+        event->x() < X + sprite_width &&
+        event->y() > Y &&
+        event->y() < Y + sprite_height)
+    {
+        qDebug() << "inside NPC ship, which is " << model_name;
+    }
 }

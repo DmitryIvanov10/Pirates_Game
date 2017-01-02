@@ -9,6 +9,7 @@
 #include <QObject>
 #include <QGraphicsRectItem> //dziedziczenie itemu z grafik
 #include <QKeyEvent> //obługa klawiszy
+#include <QMouseEvent>
 #include <QDebug> //obsługa konsoli Qt
 #include <time.h>
 #include <math.h>
@@ -29,6 +30,7 @@ public:
 
     //funkcje dostępu
     void keyPressEvent(QKeyEvent * event);
+    void mousePressEvent(QMouseEvent *event);
     void clamp();
 
     short get_morale();

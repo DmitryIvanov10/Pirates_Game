@@ -318,6 +318,7 @@ release/moc_player.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
@@ -421,6 +422,7 @@ release/moc_ship.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
 		../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/Dmitry/Documents/MINE/Prog/C++/Project_Pirates/Test_Project/Test -IC:/Qt/5.7/mingw53_32/include -IC:/Qt/5.7/mingw53_32/include/QtWidgets -IC:/Qt/5.7/mingw53_32/include/QtGui -IC:/Qt/5.7/mingw53_32/include/QtANGLE -IC:/Qt/5.7/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\Test\ship.h -o release\moc_ship.cpp
@@ -514,6 +516,7 @@ release/moc_npc.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
 		../Test/voronoi_points.h \
 		../Test/voronoi_point.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
@@ -782,11 +785,15 @@ release/moc_game.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QList \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QImage \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QBrush \
 		../Test/npc.h \
 		../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
+		../Test/cargo.h \
 		../Test/voronoi_points.h \
 		../Test/voronoi_point.h \
 		../Test/player.h \
@@ -973,6 +980,7 @@ release/moc_pirate.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
 		../Test/voronoi_points.h \
 		../Test/voronoi_point.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
@@ -1120,11 +1128,15 @@ release/main.o: ../Test/main.cpp C:/Qt/5.7/mingw53_32/include/QtWidgets/QApplica
 		C:/Qt/5.7/mingw53_32/include/QtCore/QList \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QImage \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QBrush \
 		../Test/npc.h \
 		../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
+		../Test/cargo.h \
 		../Test/voronoi_points.h \
 		../Test/voronoi_point.h \
 		../Test/player.h \
@@ -1223,6 +1235,7 @@ release/player.o: ../Test/player.cpp ../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
@@ -1325,6 +1338,7 @@ release/ship.o: ../Test/ship.cpp ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\ship.o ..\Test\ship.cpp
 
@@ -1418,6 +1432,7 @@ release/npc.o: ../Test/npc.cpp ../Test/npc.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
 		../Test/voronoi_points.h \
 		../Test/voronoi_point.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
@@ -1749,11 +1764,15 @@ release/game.o: ../Test/game.cpp ../Test/game.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QList \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QImage \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QBrush \
 		../Test/npc.h \
 		../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
+		../Test/cargo.h \
 		../Test/voronoi_points.h \
 		../Test/voronoi_point.h \
 		../Test/player.h \
@@ -1941,6 +1960,7 @@ release/pirate.o: ../Test/pirate.cpp ../Test/pirate.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
 		../Test/voronoi_points.h \
 		../Test/voronoi_point.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug

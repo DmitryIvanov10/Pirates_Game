@@ -258,6 +258,11 @@ void NPC::set_state(bool state)
     active = state;
 }
 
+bool NPC::get_state()
+{
+    return active;
+}
+
 void NPC::set_cargo()
 {
     for (int i=0; i<hold_size; i++)

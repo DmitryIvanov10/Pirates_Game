@@ -9,6 +9,7 @@
 #include <math.h> //funkcje trygonometryczne
 #include <QString> //dla nazwy statku
 #include <QGraphicsPixmapItem>
+#include <QMouseEvent>
 
 //pliki
 #include "wind.h"
@@ -63,7 +64,8 @@ public:
     double get_x(); // get x coordinate of a ship
     double get_y(); // get y coordinate of a ship
     int get_sprite_width(); // get width of the ship pixmap
-    int get_sprite_height(); // et height of the ship pixmap
+    int get_sprite_height(); // get height of the ship pixmap
+    QString get_model_name(); // get the name of the model
     short get_ammo();
     short get_health();
     short get_sail_level();
@@ -78,6 +80,8 @@ public:
     short find_sprite_angle(); //dobieranie kątu statku za pomocą zmiennej angle
     short random_value(short _interval, short _value); //zwraca liczbę losową w okolicach _interval od _value z przeciążeniem do _value
     short random_value(short _interval); //zwraca liczbę losową od 0 do _interval przeciążoną do _interval
+
+    void mousePressEvent(QMouseEvent * event);
 
 signals:
 

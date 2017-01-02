@@ -15,6 +15,9 @@
 #include <QList>
 #include <QDebug>
 #include <QFont> //opcje czcionki
+#include <QMouseEvent>
+#include <QImage>
+#include <QBrush>
 
 //pliki
 #include "npc.h"
@@ -62,16 +65,11 @@ public:
 
 
     //konstruktory
-    explicit Game(QObject *parent = 0); //nowa gra
-
-
+    Game(QObject *parent = 0); //nowa gra
     Game(std::string a); //wczytanie gry o nazwie a
 
     void new_game();
     void load_game();
-
-    //metody konstruktora
-
 
     //funkcje dostępu
     double get_x(short _id);
