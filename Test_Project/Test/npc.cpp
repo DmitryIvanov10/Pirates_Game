@@ -6,7 +6,7 @@ NPC::NPC() : NPC::NPC(0, 0) {}
 NPC::NPC(short _start_id, short _finish_id)
 {
     //qDebug() <<"Created new NPC!";
-    model = rand() % 2 + 1;
+    model = rand() % 2 + 4;
     set_model_parameters();
     health = random_value(max_health);
     crew = random_value(short(max_crew*0.25), short(max_crew*0.75));

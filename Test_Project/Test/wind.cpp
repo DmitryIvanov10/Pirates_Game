@@ -45,9 +45,9 @@ void Wind::norm_angle()
 void Wind::norm_strength()
 {
     if (Wind::strength < 0)
-        Wind::strength += 100;
+        Wind::strength = 0;
     else if(Wind::strength > 99)
-        Wind::strength -= 100;
+        Wind::strength = 99;
 }
 
 void Wind::change_all()

@@ -24,10 +24,10 @@ protected:
     short model; //id modelu statku
     QString model_name; //nazwa modelu statku
     short sail_level; //poziom rozwinięcia żagli
-    double max_speed; //maksymalna prędkość
-    double speed; //aktualna prędkość
-    double bladewind_speed; //prędkość przeciwko wiatru
-    double paddle_speed; //prędkość bez wiatru albo słabym wiatru - na wiosłach
+    float max_speed; //maksymalna prędkość
+    float speed; //aktualna prędkość
+    float bladewind_speed; //prędkość przeciwko wiatru
+    float paddle_speed; //prędkość bez wiatru albo słabym wiatru - na wiosłach
     short sprite_angle; //kąt obrotu obrazka ze statkiem, wartość pomiędzy [0,7]
 
     //zmienne zaopatrzenia, używane przy pojedynkach

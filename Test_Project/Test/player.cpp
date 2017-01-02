@@ -3,7 +3,7 @@
 Player::Player()
 {
     std::srand(time(0));
-    model = 2;
+    model = 3;
     set_model_parameters();
     health = max_health;
     crew = 0.75 * max_crew;
@@ -72,6 +72,7 @@ void Player::keyPressEvent(QKeyEvent *event)
 void Player::do_tour()
 {
     move();
+    clamp();
     setPos(X,Y);
 }
 
