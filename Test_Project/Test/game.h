@@ -7,7 +7,7 @@
 #include <QGraphicsItem> //elemrnty wewnątrz sceny
 //#include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem> //elementy graficzne
-#include <QGraphicsView> //widok wewntrz sceny
+//#include <QGraphicsView> //widok wewntrz sceny
 #include <fstream> //czytanie plików, aktulanie nie używane
 #include <QTimer> //potrzebny do Qtimer'a
 #include <vector> //vector
@@ -26,6 +26,7 @@
 #include "voronoi_points.h"
 #include "wind.h"
 #include "island.h"
+#include "view.h"
 
 class Game : public QObject
 {
@@ -36,7 +37,7 @@ class Game : public QObject
     Player * player = new Player(); //statek gracza
     Wind *wind = new Wind(); //wiatr wiejący na mapie
     Voronoi_points * voronoi_points = new Voronoi_points();
-    QGraphicsView * view = new QGraphicsView(scene); //widok na scenie
+    View * view = new View(scene); //widok na scenie
 
     std::vector <QGraphicsPixmapItem *> sea; //kafelki oceanu
     std::vector <Island *> islands; //wszystkie wyspy na mapie
