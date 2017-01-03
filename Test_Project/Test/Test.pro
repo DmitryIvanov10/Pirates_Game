@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     island.cpp \
     pirate.cpp \
     voronoi_points.cpp \
-    cargo.cpp
+    cargo.cpp \
+    view.cpp
 
 HEADERS  += \
     player.h \
@@ -38,7 +39,8 @@ HEADERS  += \
     island.h \
     pirate.h \
     voronoi_points.h \
-    cargo.h
+    cargo.h \
+    view.h
 
 FORMS    +=
 
