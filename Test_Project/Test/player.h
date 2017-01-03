@@ -23,6 +23,13 @@ class Player: public Ship //, public QGraphicsRectItem
     short max_food;
     short food;
     short morale;
+    short salary;
+    short one_day_salary;
+    short gold;
+    float days_off_harbor_morale;
+    float food_morale;
+    float salary_morale;
+    short day;
 
 public:
     //konstruktory
@@ -35,6 +42,8 @@ public:
 
     short get_morale();
     short get_food();
+    void set_day_salary();
+    void set_morale();
 
 public slots:
     void do_tour();

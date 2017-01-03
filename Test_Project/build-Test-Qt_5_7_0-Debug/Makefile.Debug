@@ -170,6 +170,9 @@ debug/qrc_resources.cpp: ../Test/resources.qrc \
 		../Test/img/Fractions/Flag_Spanish_01.png \
 		../Test/img/Fractions/Flag_Netherlands_01.png \
 		../Test/img/Sea/sea_01.png \
+		../Test/img/Interface/Sails/sail_none_01.png \
+		../Test/img/Interface/Sails/sail_half_01.png \
+		../Test/img/Interface/Sails/sail_full_01.png \
 		../Test/img/Interface/HUD/arrow_02.png \
 		../Test/img/Interface/HUD/Interface_SG_02.png \
 		../Test/img/Interface/HUD/Interface_SD_02.png \
@@ -314,13 +317,7 @@ debug/moc_player.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
-		../Test/wind.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
-		../Test/cargo.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
@@ -329,6 +326,13 @@ debug/moc_player.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
+		../Test/wind.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug \
 		../Test/player.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
@@ -418,6 +422,15 @@ debug/moc_ship.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
@@ -512,6 +525,15 @@ debug/moc_npc.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
@@ -976,6 +998,15 @@ debug/moc_pirate.cpp: ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
@@ -1231,13 +1262,7 @@ debug/player.o: ../Test/player.cpp ../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
-		../Test/wind.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
-		../Test/cargo.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
-		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
@@ -1246,6 +1271,13 @@ debug/player.o: ../Test/player.cpp ../Test/player.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
+		../Test/wind.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfont.h \
+		../Test/cargo.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsRectItem \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\player.o ..\Test\player.cpp
 
@@ -1334,6 +1366,15 @@ debug/ship.o: ../Test/ship.cpp ../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
@@ -1428,6 +1469,15 @@ debug/npc.o: ../Test/npc.cpp ../Test/npc.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
@@ -1956,6 +2006,15 @@ debug/pirate.o: ../Test/pirate.cpp ../Test/pirate.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qimage.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtransform.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/QMouseEvent \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qevent.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qkeysequence.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurl.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qtouchdevice.h \
 		../Test/wind.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QFont \
