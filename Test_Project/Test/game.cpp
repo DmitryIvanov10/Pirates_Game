@@ -15,8 +15,11 @@ Game::Game(QObject *parent) : QObject(parent)
         scene->addItem(npc_ships[i]);
     }
 
+
+
     // create wind to put into the scene
-    scene->addItem(wind);
+    //aktualnie wiatr jest na scenie nie potrzebny, zawsze można go dodać
+    //scene->addItem(wind);
 
     //make item focus
     player->setFlag(QGraphicsItem::ItemIsFocusable);

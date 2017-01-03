@@ -3,14 +3,14 @@
 
 //biblioteki
 #include <QObject> //potrzebne do slotów i sygnałów
-#include <QGraphicsScene>
-#include <QGraphicsItem>
+#include <QGraphicsScene> //scena w której odbywa się gra
+#include <QGraphicsItem> //elemrnty wewnątrz sceny
 //#include <QGraphicsRectItem>
-#include <QGraphicsPixmapItem>
-#include <QGraphicsView>
-#include <fstream>
+#include <QGraphicsPixmapItem> //elementy graficzne
+#include <QGraphicsView> //widok wewntrz sceny
+#include <fstream> //czytanie plików, aktulanie nie używane
 #include <QTimer> //potrzebny do Qtimer'a
-#include <vector>
+#include <vector> //vector
 #include <cstdlib>
 #include <QList>
 #include <QDebug>
