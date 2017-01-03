@@ -33,12 +33,15 @@ class Game : public QObject
 {
     Q_OBJECT
 
+    int resolution_x = 1366 - 2;
+    int resolution_y = 768 - 3;
+
     QTimer *timer = new QTimer(); //zegar odliczający kolejne kroki fizyczne
     QGraphicsScene * scene = new QGraphicsScene(); //scena na której dzieje się gra
     Player * player = new Player(); //statek gracza
     Wind *wind = new Wind(); //wiatr wiejący na mapie
     Voronoi_points * voronoi_points = new Voronoi_points();
-    View * view = new View(scene); //widok na scenie
+    View * view = new View(scene, resolution_x, resolution_y); //widok na scenie
 
     std::vector <QGraphicsPixmapItem *> sea; //kafelki oceanu
     std::vector <Island *> islands; //wszystkie wyspy na mapie
@@ -51,8 +54,8 @@ class Game : public QObject
 
     int frame_time = 17;
     int game_time = 0;
-    int resolution_x = 1366 - 2;
-    int resolution_y = 768 - 3;
+    //int resolution_x = 1366 - 2;
+    //int resolution_y = 768 - 3;
     int border_x = resolution_x / 4;
     int border_y = resolution_y / 4;
 
