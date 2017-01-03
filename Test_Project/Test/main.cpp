@@ -6,6 +6,7 @@
 #include "game.h"
 
 std::vector<Voronoi_point> Voronoi_points::map;
+std::vector<QPointF> Player::island_coordinates;
 short Wind::angle;
 short Wind::strength;
 

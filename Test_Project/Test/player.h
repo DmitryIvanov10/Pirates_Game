@@ -9,11 +9,13 @@
 #include <QObject>
 #include <QGraphicsRectItem> //dziedziczenie itemu z grafik
 #include <QKeyEvent> //obługa klawiszy
-#include <QMouseEvent>
 #include <QDebug> //obsługa konsoli Qt
+#include <typeinfo>
 #include <time.h>
 #include <math.h>
 #include <cstdlib>
+#include <vector>
+#include <QPointF>
 
 class Player: public Ship //, public QGraphicsRectItem
 {
@@ -35,9 +37,12 @@ public:
     //konstruktory
     Player();
 
+    //zmienne publiczne
+    QGraphicsPixmapItem * probe = new QGraphicsPixmapItem;
+    static std::vector<QPointF> island_coordinates;
+
     //funkcje dostępu
     void keyPressEvent(QKeyEvent * event);
-    void mousePressEvent(QMouseEvent *event);
     void clamp();
 
     short get_morale();

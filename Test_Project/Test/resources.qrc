@@ -19,5 +19,6 @@
         <file>img/Interface/Sails/sail_full_01.png</file>
         <file>img/Interface/Sails/sail_half_01.png</file>
         <file>img/Interface/Sails/sail_none_01.png</file>
+        <file>img/probe.png</file>
     </qresource>
 </RCC>

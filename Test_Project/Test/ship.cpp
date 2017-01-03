@@ -199,30 +199,6 @@ void Ship::set_sprite_angle()
         case 7:
             setPixmap(QPixmap(":/" + model_name + "_NE_01.png"));
             break;
-        /*case 0:
-            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_N_01.png"));
-            break;
-        case 1:
-            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_NW_01.png"));
-            break;
-        case 2:
-            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_W_01.png"));
-            break;
-        case 3:
-            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_SW_01.png"));
-            break;
-        case 4:
-            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_S_01.png"));
-            break;
-        case 5:
-            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_SE_01.png"));
-            break;
-        case 6:
-            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_E_01.png"));
-            break;
-        case 7:
-            setPixmap(QPixmap(":/img/Ships/Brig_01/Brig_NE_01.png"));
-            break;*/
     }
 
     setTransformOriginPoint(50, 50);
@@ -274,16 +250,4 @@ short Ship::random_value(short _interval, short _value)
 short Ship::random_value(short _interval)
 {
     return random_value(_interval, 0);
-}
-
-void Ship::mousePressEvent(QMouseEvent *event)
-{
-    qDebug() << "Mouse pressed";
-    if (event->x() > X &&
-        event->x() < X + sprite_width &&
-        event->y() > Y &&
-        event->y() < Y + sprite_height)
-    {
-        qDebug() << "inside NPC ship, which is " << model_name;
-    }
 }

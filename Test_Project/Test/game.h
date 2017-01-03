@@ -18,6 +18,7 @@
 #include <QMouseEvent>
 #include <QImage>
 #include <QBrush>
+#include <QPointF>
 
 //pliki
 #include "npc.h"

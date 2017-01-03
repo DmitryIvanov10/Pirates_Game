@@ -21,6 +21,8 @@ Player::Player()
     salary = 3;
     set_morale();
 
+    probe->setPixmap(QPixmap(":/img/probe.png"));
+
     // set cargo
     for (int i=0; i<hold_size; i++)
     {
@@ -59,34 +61,30 @@ void Player::keyPressEvent(QKeyEvent *event)
     //qDebug() << angle;
 }
 
-void Player::mousePressEvent(QMouseEvent *event)
-{
-    qDebug() << "Mouse pressed";
-    if (event->button() == Qt::LeftButton)
-    {
-        qDebug() << "Mouse pressed in " << event->pos();
-    }
-
-    /*foreach (NPC * ship, npc_ships)
-    {
-        qDebug() << ship->get_model_name();
-        if (ship->get_state())
-        {
-            qDebug() << ship->get_model_name();
-            if (event->x() > ship->get_x() &&
-                event->x() < ship->get_x() + ship->get_sprite_width() &&
-                event->y() > ship->get_y() &&
-                event->y() < ship->get_y() + ship->get_sprite_height())
-                qDebug() << "inside NPC ship, which is " << ship->get_model_name();
-        }
-    }*/
-}
-
 void Player::do_tour()
 {
-    move();
-    clamp();
-    setPos(X,Y);
+    probe->setPos(X + sprite_width/2- 60*sin(angle/180*M_PI),
+                  Y + sprite_height/2 - 60*cos(angle/180*M_PI));
+
+    bool go = true;
+
+    if (probe->collidingItems().size() != 0)
+    {
+
+        short i = 0;
+        while (i<Player::island_coordinates.size() && go)
+        {
+            if (probe->collidingItems()[0]->pos() == Player::island_coordinates[i])
+                go = false;
+            i++;
+        }
+    }
+    if (go)
+    {
+        move();
+        clamp();
+        setPos(X,Y);
+    }
 }
 
 void Player::clamp()

@@ -81,8 +81,6 @@ public:
     short random_value(short _interval, short _value); //zwraca liczbę losową w okolicach _interval od _value z przeciążeniem do _value
     short random_value(short _interval); //zwraca liczbę losową od 0 do _interval przeciążoną do _interval
 
-    void mousePressEvent(QMouseEvent * event);
-
 signals:
 
 public slots:\
