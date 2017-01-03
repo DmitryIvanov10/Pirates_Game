@@ -497,6 +497,21 @@ void Game::center_view()
     hud_img[5]->setPos(scene_x + resolution_x - 125,
                        scene_y + resolution_y - 125);
 
+    switch (player->get_sail_level())
+    {
+        case 0:
+            hud_img[6]->setPixmap(QPixmap(":/img/Interface/Sails/sail_none_01.png"));
+            break;
+        case 1:
+            hud_img[6]->setPixmap(QPixmap(":/img/Interface/Sails/sail_half_01.png"));
+            break;
+        case 2:
+            hud_img[6]->setPixmap(QPixmap(":/img/Interface/Sails/sail_full_01.png"));
+            break;
+    }
+    hud_img[6]->setPos(scene_x + resolution_x - hud_img[6]->pixmap().width(),
+            scene_y + resolution_y - hud_img[6]->pixmap().height() - hud_img[0]->pixmap().height() + 108);
+
     //siła wiatru
     hud_txt[0]->setPlainText(QString(QString::number(Wind::strength)));
     hud_txt[0]->setPos(scene_x + resolution_x - 182, scene_y + resolution_y - 47);
@@ -577,6 +592,13 @@ void Game::set_hud()
     //strzałka wiatru
     hud_img.push_back(new QGraphicsPixmapItem());
     hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/arrow_02.png"));
+    scene->addItem(hud_img[iterate]);
+    //hud_img[iterate]->setPos(scene_x + resolution_x - 125, scene_y + resolution_y - 125);
+    iterate++;
+
+    //stan zagli
+    hud_img.push_back(new QGraphicsPixmapItem());
+    hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/Sails/sail_half_01.png"));
     scene->addItem(hud_img[iterate]);
     //hud_img[iterate]->setPos(scene_x + resolution_x - 125, scene_y + resolution_y - 125);
     //iterate++;
