@@ -4,6 +4,8 @@
 //pliki
 #include "ship.h"
 #include "wind.h"
+#include "npc.h"
+#include "island.h"
 
 //biblioteki
 #include <QObject>
@@ -32,6 +34,7 @@ class Player: public Ship //, public QGraphicsRectItem
     float food_morale;
     float salary_morale;
     short day;
+    bool collision_with_npc;
 
 public:
     //konstruktory
@@ -49,6 +52,7 @@ public:
     short get_food();
     void set_day_salary();
     void set_morale();
+    void revolt();
 
 public slots:
     void do_tour();

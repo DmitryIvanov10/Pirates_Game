@@ -6,7 +6,7 @@ Player::Player()
     std::srand(time(0));
     day = 0;
     model = 3;
-    days_off_harbor_morale = 1.0f / 0.98;
+    days_off_harbor_morale = 1.0f / 0.98f;
     set_model_parameters();
     max_food = 60 * ceil(double (max_crew) / 15);
     health = max_health;
@@ -56,6 +56,10 @@ void Player::keyPressEvent(QKeyEvent *event)
         case Qt::Key_Down:
             set_sail_level(0);
             break;
+        case Qt::Key_Space:
+            if (collision_with_npc && model)
+                qDebug() << "Fight!";
+            break;
     }
 
     //qDebug() << angle;
@@ -68,17 +72,25 @@ void Player::do_tour()
 
     bool go = true;
 
+    collision_with_npc = false;
+
+    if (collidingItems().size() != 0)
+        if (dynamic_cast<NPC *>(collidingItems()[0]) != 0)
+            collision_with_npc = true;
+
     if (probe->collidingItems().size() != 0)
     {
-
-        short i = 0;
+        if (dynamic_cast<Island *>(probe->collidingItems()[0]) != 0)
+            if (collidingItems().size() != 0)
+                go = false;
+        /*short i = 0;
         while (i<Player::island_coordinates.size() && go)
         {
             if (probe->collidingItems()[0]->pos() == Player::island_coordinates[i])
                 if (collidingItems().size() != 0)
                     go = false;
             i++;
-        }
+        }*/
     } else
         go = true;
     if (go)
@@ -168,17 +180,31 @@ void Player::set_morale()
         food_morale = pow(food_morale, 0.5);
     else
         food_morale = 1 + pow(food_morale - 1, 0.5);
-    qDebug() << "food " << food_morale;
-    days_off_harbor_morale *= 0.98;
-    qDebug() << "days " << days_off_harbor_morale;
+    //qDebug() << "food " << food_morale;
+    days_off_harbor_morale *= 0.98f;
+    //qDebug() << "days " << days_off_harbor_morale;
     set_day_salary();
-    qDebug() << "Salary " << salary_morale;
+    //qDebug() << "Salary " << salary_morale;
     morale = ceil((food_morale*days_off_harbor_morale*salary_morale)*200) - 100;
-    qDebug() << "Morale" << morale;
+    //qDebug() << "Morale" << morale;
     if (morale > 100)
         morale = 100;
     if (morale < -100)
         morale = -100;
+}
+
+void Player::revolt()
+{
+    qDebug() << "Revolt";
+    model = 0;
+    set_model_parameters();
+    health = max_health;
+    crew = max_crew;
+    ammo = 0;
+    food = 0;
+    morale = 0;
+    salary = 1;
+    cannons = 0;
 }
 
 short Player::get_morale()
@@ -205,8 +231,7 @@ void Player::next_day()
                 if (rand()%101 <= (rand()%(-morale) + 1))
                 {
                     qDebug() << "Day " << day;
-                    qDebug() << "Revolt";
-                    model = 0;
+                    revolt();
                 }
             } else
                 if (morale >= -100)
@@ -214,15 +239,13 @@ void Player::next_day()
                     if (rand()%101 <= (rand()%(-morale - 9) + 20))
                     {
                         qDebug() << "Day " << day;
-                        qDebug() << "Revolt";
-                        model = 0;
+                        revolt();
                     }
                 } else
                 {
                     morale = -100;
                     qDebug() << "Day " << day;
-                    qDebug() << "Revolt";
-                    model = 0;
+                    revolt();
                 }
     }
 }
