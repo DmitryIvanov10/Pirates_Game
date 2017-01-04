@@ -83,6 +83,7 @@ public:
     double get_edge(short _id);
     short get_neighbour(short _id, short _number);
     void set_hud();
+    void set_island(short _x, short _y, QString _pixmap_name);
 
 signals:
     //void next_tour();

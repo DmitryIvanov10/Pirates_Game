@@ -75,10 +75,12 @@ void Player::do_tour()
         while (i<Player::island_coordinates.size() && go)
         {
             if (probe->collidingItems()[0]->pos() == Player::island_coordinates[i])
-                go = false;
+                if (collidingItems().size() != 0)
+                    go = false;
             i++;
         }
-    }
+    } else
+        go = true;
     if (go)
     {
         move();

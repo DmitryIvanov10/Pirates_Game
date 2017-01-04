@@ -346,7 +346,17 @@ void Game::new_game()
     scene->setBackgroundBrush(QBrush(QImage(":/img/Sea/sea_01.png")));
 
     //ustawianie wysp
-    iterate = 0;
+    set_island(5190, 975, ":/island_a1_02.png");
+    set_island(3249, 2694, ":/island_a1_01.png");
+    set_island(6096, 3829, ":/island_a1_03.png");
+    set_island(1848, 874, ":/island_a2_02.png");
+    set_island(4852, 2558, ":/island_a3_02.png");
+    set_island(411, 2175, ":/island_a3_02.png");
+    set_island(4253, 3325, ":/island_a2_03.png");
+    set_island(5583, 1386, ":/island_a4_01.png");
+    set_island(1629, 3737, ":/island_a4_02.png");
+
+    /*iterate = 0;
     islands.push_back(new Island());
     islands[iterate]->setPixmap(QPixmap(":/island_a1_02.png"));
     scene->addItem(islands[iterate]);
@@ -408,7 +418,7 @@ void Game::new_game()
     scene->addItem(islands[iterate]);
     islands[iterate]->setPos(1629, 3737);
     Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;
+    iterate++;*/
 }
 
 double Game::get_x(short _id)
@@ -680,4 +690,13 @@ void Game::set_hud()
     map_rect = new QGraphicsRectItem();
     //map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
     scene->addItem(map_rect);
+}
+
+void Game::set_island(short _x, short _y, QString _pixmap_name)
+{
+    islands.push_back(new Island());
+    islands[islands.size() - 1]->setPixmap(QPixmap(_pixmap_name));
+    scene->addItem(islands[islands.size() - 1]);
+    islands[islands.size() - 1]->setPos(_x, _y);
+    Player::island_coordinates.push_back(islands[islands.size() - 1]->pos());
 }
