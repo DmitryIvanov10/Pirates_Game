@@ -13,6 +13,7 @@ INPUT(
 ./debug\voronoi_points.o
 ./debug\cargo.o
 ./debug\view.o
+./debug\battle.o
 ./debug\qrc_resources.o
 ./debug\qrc_islands.o
 ./debug\qrc_islands2.o
@@ -28,4 +29,5 @@ INPUT(
 ./debug\moc_island.o
 ./debug\moc_pirate.o
 ./debug\moc_view.o
+./debug\moc_battle.o
 );

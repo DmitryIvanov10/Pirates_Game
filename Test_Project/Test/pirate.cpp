@@ -12,6 +12,8 @@ Pirate::Pirate(short _start_id)
     crew = random_value(short(max_crew*0.25), short(max_crew*0.75));
     cannons = max_cannons;
     ammo = random_value(short(max_ammo*0.2), short(max_ammo*0.8));
+    maneuverability = max_maneuverability;
+
     sail_level = 1;
     fight_active = true;
     active = false;

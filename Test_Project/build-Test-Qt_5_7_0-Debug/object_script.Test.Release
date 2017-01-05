@@ -13,6 +13,7 @@ INPUT(
 ./release\voronoi_points.o
 ./release\cargo.o
 ./release\view.o
+./release\battle.o
 ./release\qrc_resources.o
 ./release\qrc_islands.o
 ./release\qrc_islands2.o
@@ -28,4 +29,5 @@ INPUT(
 ./release\moc_island.o
 ./release\moc_pirate.o
 ./release\moc_view.o
+./release\moc_battle.o
 );

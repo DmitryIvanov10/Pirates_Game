@@ -557,7 +557,7 @@ void Game::center_view()
     hud_txt[4]->setPos(scene_x + resolution_x/2 + 31, scene_y + resolution_y - 36);
 
     //ilość armat
-    hud_txt[5]->setPlainText(QString(QString::number(player->get_cannon())));
+    hud_txt[5]->setPlainText(QString(QString::number(player->get_cannons())));
     hud_txt[5]->setPos(scene_x + resolution_x - 75, scene_y + 31);
 
     //ilość amunicji
@@ -672,7 +672,7 @@ void Game::set_hud()
 
     //ilość armat
     hud_txt.push_back(new QGraphicsTextItem());
-    hud_txt[iterate]->setPlainText(QString(QString::number(player->get_cannon())));
+    hud_txt[iterate]->setPlainText(QString(QString::number(player->get_cannons())));
     hud_txt[iterate]->setFont(QFont("times", 13));
     scene->addItem(hud_txt[iterate]);
     //hud_txt[iterate]->setPos(scene_x + resolution_x - 75, scene_y + 31);

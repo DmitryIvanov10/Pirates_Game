@@ -41,6 +41,8 @@ protected:
     short initial_cannons; //początkowa iłość armat na danej modeli statku
     short max_cannons; //maksymalna ilość armat na statku
     short cannons; //ilość armat na statku
+    float max_maneuverability; // maksymalna zdolność manewrować statku (przydatne w walcę)
+    float maneuverability; // zdolność manewrować statku (przydatne w walcę)
     short max_ammo; //maksymalna ilość amunicji na statku
     short ammo; //ilość amunicji na statku
     short hold_size; //rozmiar łądowni
@@ -67,10 +69,18 @@ public:
     int get_sprite_height(); // get height of the ship pixmap
     QString get_model_name(); // get the name of the model
     short get_ammo();
+    void set_ammo(short _ammo);
     short get_health();
+    short get_max_health();
+    void set_health(short _health);
     short get_sail_level();
     short get_crew();
-    short get_cannon();
+    short get_max_crew();
+    void set_crew(short _crew);
+    short get_cannons();
+    void set_cannons(short _cannons);
+    float get_maneuverability();
+    void set_maneuverability(short _health);
     void set_model_parameters(); // set parameters depending on the model of the ship
     void set_sail_level(bool _sign); //funkcja zmieniająca wartość rozłożenia żagli
     void set_angle(double _angle); // funkcja ustawiająca wartość angle

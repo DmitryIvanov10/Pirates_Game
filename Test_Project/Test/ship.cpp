@@ -37,6 +37,7 @@ void Ship::set_model_parameters()
             max_speed = 2.85f;
             bladewind_speed = 1.05f;
             paddle_speed = 0.3f;
+            max_maneuverability = 0.45f;
             break;
         case 4:
             model_name = "Brig";
@@ -51,6 +52,7 @@ void Ship::set_model_parameters()
             max_speed = 4.35f;
             bladewind_speed = 1.05f;
             paddle_speed = 0.4f;
+            max_maneuverability = 0.65f;
             break;
         case 5:
             model_name = "Galeon";
@@ -205,9 +207,24 @@ void Ship::set_sprite_angle()
     setRotation(((-(int)angle-23)%45+23)*0.3);
 }
 
-short Ship::get_cannon()
+short Ship::get_cannons()
 {
     return cannons;
+}
+
+void Ship::set_cannons(short _cannons)
+{
+    cannons = _cannons;
+}
+
+float Ship::get_maneuverability()
+{
+    return maneuverability;
+}
+
+void Ship::set_maneuverability(short _health)
+{
+    maneuverability = 0.2f * max_maneuverability * ceil(5 * (double(_health) / double(max_health)));
 }
 
 short Ship::get_crew()
@@ -215,9 +232,29 @@ short Ship::get_crew()
     return crew;
 }
 
+short Ship::get_max_crew()
+{
+    return max_crew;
+}
+
+void Ship::set_crew(short _crew)
+{
+    crew = _crew;
+}
+
 short Ship::get_health()
 {
     return health;
+}
+
+short Ship::get_max_health()
+{
+    return max_health;
+}
+
+void Ship::set_health(short _health)
+{
+    health = _health;
 }
 
 short Ship::get_sail_level()
@@ -228,6 +265,11 @@ short Ship::get_sail_level()
 short Ship::get_ammo()
 {
     return ammo;
+}
+
+void Ship::set_ammo(short _ammo)
+{
+    ammo = _ammo;
 }
 
 short Ship::random_value(short _interval, short _value)

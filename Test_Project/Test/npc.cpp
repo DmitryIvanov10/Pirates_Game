@@ -12,6 +12,7 @@ NPC::NPC(short _start_id, short _finish_id)
     crew = random_value(short(max_crew*0.25), short(max_crew*0.75));
     cannons = initial_cannons;
     ammo = random_value(short(max_ammo*0.25), short(max_ammo*0.5));
+    maneuverability = max_maneuverability;
 
     // set cargo
     set_cargo();
