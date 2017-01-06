@@ -30,7 +30,7 @@ class Player: public Ship //, public QGraphicsRectItem
     short morale;
     short salary;
     short one_day_salary;
-    short gold;
+    int gold;
     float days_off_harbor_morale;
     float food_morale;
     float salary_morale;
@@ -51,6 +51,7 @@ public:
 
     short get_morale();
     short get_food();
+    int get_gold();
     void set_day_salary();
     void set_morale();
     void revolt();

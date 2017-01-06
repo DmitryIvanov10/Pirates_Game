@@ -11,8 +11,8 @@ class View : public QGraphicsView
 {
     Q_OBJECT
 
-    int res_x;
-    int res_y;
+    int X;
+    int Y;
 public:
     View();
     View(QGraphicsScene *scene);
@@ -22,7 +22,13 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
+    int get_x();
+    int get_y();
+
 signals:
+    void mouse_moved();
+    void mouse_pressed();
+    void mouse_released();
 
 public slots:
 };

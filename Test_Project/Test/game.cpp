@@ -15,8 +15,6 @@ Game::Game(QObject *parent) : QObject(parent)
         scene->addItem(npc_ships[i]);
     }
 
-
-
     // create wind to put into the scene
     //aktualnie wiatr jest na scenie nie potrzebny, zawsze można go dodać
     //scene->addItem(wind);
@@ -47,6 +45,8 @@ Game::Game(QObject *parent) : QObject(parent)
     connect (timer, SIGNAL(timeout()), this, SLOT(count_days()));
     // update player properties each new day
     connect (this, SIGNAL(new_day()), player, SLOT(next_day()));
+    // ruchy myszki
+    connect (view, SIGNAL(mouse_moved()), this, SLOT(mouse_moved()));
 
     connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));
 
@@ -517,11 +517,11 @@ void Game::center_view()
     hud_img[3]->setPos(scene_x + resolution_x/2 - hud_img[3]->pixmap().width()/2,
             scene_y + resolution_y - hud_img[3]->pixmap().height());
     hud_img[4]->setPos(scene_x, scene_y + resolution_y - hud_img[4]->pixmap().height());
+    hud_img[5]->setPos(scene_x,scene_y);
 
-    hud_img[5]->setTransformOriginPoint(50, 50);
-    hud_img[5]->setRotation(-1 * Wind::angle);
-    hud_img[5]->setPos(scene_x + resolution_x - 125,
-                       scene_y + resolution_y - 125);
+    hud_img[6]->setTransformOriginPoint(50, 50);
+    hud_img[6]->setRotation(-1 * Wind::angle);
+    hud_img[6]->setPos(scene_x + resolution_x - 125, scene_y + resolution_y - 125);
 
     switch (player->get_sail_level())
     {
@@ -544,19 +544,19 @@ void Game::center_view()
 
     //zdrowie statku
     hud_txt[1]->setPlainText(QString(QString::number(player->get_health())));
-    hud_txt[1]->setPos(scene_x + resolution_x/2 - 189, scene_y + resolution_y - 36);
+    hud_txt[1]->setPos(scene_x + resolution_x/2 - 222, scene_y + resolution_y - 40);
 
     //stan załogi
     hud_txt[2]->setPlainText(QString(QString::number(player->get_crew())));
-    hud_txt[2]->setPos(scene_x + resolution_x/2 - 111, scene_y + resolution_y - 36);
+    hud_txt[2]->setPos(scene_x + resolution_x/2 - 134, scene_y + resolution_y - 40);
 
     //ilość jedzenia
     hud_txt[3]->setPlainText(QString(QString::number(player->get_food())));
-    hud_txt[3]->setPos(scene_x + resolution_x/2 - 45, scene_y + resolution_y - 36);
+    hud_txt[3]->setPos(scene_x + resolution_x/2 - 53, scene_y + resolution_y - 40);
 
     //ilość stan morale
     hud_txt[4]->setPlainText(QString(QString::number(player->get_morale())));
-    hud_txt[4]->setPos(scene_x + resolution_x/2 + 31, scene_y + resolution_y - 36);
+    hud_txt[4]->setPos(scene_x + resolution_x/2 + 34, scene_y + resolution_y - 40);
 
     //ilość armat
     hud_txt[5]->setPlainText(QString(QString::number(player->get_cannons())));
@@ -565,6 +565,73 @@ void Game::center_view()
     //ilość amunicji
     hud_txt[6]->setPlainText(QString(QString::number(player->get_ammo())));
     hud_txt[6]->setPos(scene_x + resolution_x - 75, scene_y + 59);
+
+    //ilość złota
+    hud_txt[7]->setPlainText(QString(QString::number(player->get_gold())));
+    hud_txt[7]->setPos(scene_x + resolution_x/2 + 121, scene_y + resolution_y - 40);
+
+    //elementy tymczasowe
+
+
+    //stan zdrowia
+    if (hud_temp_bool[0])
+    {
+        hud_temp_img[0]->setPos(scene_x + resolution_x/2 - 220, scene_y + resolution_y - 134);
+        hud_temp_txt[0]->setPos(scene_x + resolution_x/2 - 220, scene_y + resolution_y - 134);
+    }
+    else
+    {
+        hud_temp_img[0]->setPos(0,0);
+        hud_temp_txt[0]->setPos(0,0);
+    }
+
+    //stan załogi
+    if (hud_temp_bool[1])
+    {
+        hud_temp_img[1]->setPos(scene_x + resolution_x/2 - 132, scene_y + resolution_y - 134);
+        hud_temp_txt[1]->setPos(scene_x + resolution_x/2 - 132, scene_y + resolution_y - 134);
+    }
+    else
+    {
+        hud_temp_img[1]->setPos(0,0);
+        hud_temp_txt[1]->setPos(0,0);
+    }
+
+    //stan jedzenia
+    if (hud_temp_bool[2])
+    {
+        hud_temp_img[2]->setPos(scene_x + resolution_x/2 - 51, scene_y + resolution_y - 134);
+        hud_temp_txt[2]->setPos(scene_x + resolution_x/2 - 51, scene_y + resolution_y - 134);
+    }
+    else
+    {
+        hud_temp_img[2]->setPos(0,0);
+        hud_temp_txt[2]->setPos(0,0);
+    }
+
+    //stan morale
+    if (hud_temp_bool[3])
+    {
+        hud_temp_img[3]->setPos(scene_x + resolution_x/2 + 37, scene_y + resolution_y - 134);
+        hud_temp_txt[3]->setPos(scene_x + resolution_x/2 + 37, scene_y + resolution_y - 134);
+    }
+    else
+    {
+        hud_temp_img[3]->setPos(0,0);
+        hud_temp_txt[3]->setPos(0,0);
+    }
+
+    //stan złota
+    if (hud_temp_bool[4])
+    {
+        hud_temp_img[4]->setPos(scene_x + resolution_x/2 + 124, scene_y + resolution_y - 134);
+        hud_temp_txt[4]->setPos(scene_x + resolution_x/2 + 124, scene_y + resolution_y - 134);
+    }
+    else
+    {
+        hud_temp_img[4]->setPos(0,0);
+        hud_temp_txt[4]->setPos(0,0);
+    }
 
     //inne elementy HUD'u
     map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
@@ -601,14 +668,14 @@ void Game::set_hud()
 
     //HUD dotyczący stanu ładowni po środku na górze
     hud_img.push_back(new QGraphicsPixmapItem());
-    hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_SG_02.png"));
+    hud_img[iterate]->setPixmap(QPixmap(":/Interface_SG_03.png"));
     scene->addItem(hud_img[iterate]);
     //hud_img[iterate]->setPos(scene_x + resolution_x/2 - 350, scene_y - 2);
     iterate++;
 
     //HUD dotyczący stanu załogi i pieniędzy po środku na dole
     hud_img.push_back(new QGraphicsPixmapItem());
-    hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_SD_02.png"));
+    hud_img[iterate]->setPixmap(QPixmap(":/Interface_SD_03.png"));
     scene->addItem(hud_img[iterate]);
     //hud_img[iterate]->setPos(scene_x + resolution_x/2 - 225, scene_y + resolution_y - 49);
     iterate++;
@@ -618,6 +685,12 @@ void Game::set_hud()
     hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_LD_02.png"));
     scene->addItem(hud_img[iterate]);
     //hud_img[iterate]->setPos(scene_x, scene_y + resolution_y - 219);
+    iterate++;
+
+    //HUD w lewym górnym rogu
+    hud_img.push_back(new QGraphicsPixmapItem());
+    hud_img[iterate]->setPixmap(QPixmap(":/interface_LG_01.png"));
+    scene->addItem(hud_img[iterate]);
     iterate++;
 
     //strzałka wiatru
@@ -693,6 +766,92 @@ void Game::set_hud()
     //hud_txt[iterate]->setPos(scene_x + resolution_x - 75, scene_y + 59);
     iterate++;
 
+    //ilość złota
+    hud_txt.push_back(new QGraphicsTextItem());
+    hud_txt[iterate]->setPlainText(QString(QString::number(player->get_gold())));
+    hud_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_txt[iterate]);
+    iterate++;
+
+    //elementy graficzne tymczasowe, odpowiadające im elementy tekstowe i bool'owskie
+    iterate = 0;
+
+    //stan zdrowia
+    hud_temp_img.push_back(new QGraphicsPixmapItem());
+    hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_health_01.png"));
+    scene->addItem(hud_temp_img[iterate]);
+    //hud_temp_img[iterate]->setPos(0,0);
+
+    hud_temp_txt.push_back(new QGraphicsTextItem());
+    hud_temp_txt[iterate]->setPlainText(QString("Health"));
+    hud_temp_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_temp_txt[iterate]);
+    //hud_temp_txt[iterate]->setPos(0,0);
+
+    hud_temp_bool.push_back(0);
+    iterate++;
+
+    //stan załogi
+    hud_temp_img.push_back(new QGraphicsPixmapItem());
+    hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_crue_01.png"));
+    scene->addItem(hud_temp_img[iterate]);
+    //hud_temp_img[iterate]->setPos(0,0);
+
+    hud_temp_txt.push_back(new QGraphicsTextItem());
+    hud_temp_txt[iterate]->setPlainText(QString("Crue"));
+    hud_temp_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_temp_txt[iterate]);
+    //hud_temp_txt[iterate]->setPos(0,0);
+
+    hud_temp_bool.push_back(0);
+    iterate++;
+
+    //stan jedzenia
+    hud_temp_img.push_back(new QGraphicsPixmapItem());
+    hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_food_01.png"));
+    scene->addItem(hud_temp_img[iterate]);
+    //hud_temp_img[iterate]->setPos(0,0);
+
+    hud_temp_txt.push_back(new QGraphicsTextItem());
+    hud_temp_txt[iterate]->setPlainText(QString("Food"));
+    hud_temp_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_temp_txt[iterate]);
+    //hud_temp_txt[iterate]->setPos(0,0);
+
+    hud_temp_bool.push_back(0);
+    iterate++;
+
+    //stan morale
+    hud_temp_img.push_back(new QGraphicsPixmapItem());
+    hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_morale_01.png"));
+    scene->addItem(hud_temp_img[iterate]);
+    //hud_temp_img[iterate]->setPos(0,0);
+
+    hud_temp_txt.push_back(new QGraphicsTextItem());
+    hud_temp_txt[iterate]->setPlainText(QString("Morale"));
+    hud_temp_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_temp_txt[iterate]);
+    //hud_temp_txt[iterate]->setPos(0,0);
+
+    hud_temp_bool.push_back(0);
+    iterate++;
+
+    //stan złota
+    hud_temp_img.push_back(new QGraphicsPixmapItem());
+    hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_gold_01.png"));
+    scene->addItem(hud_temp_img[iterate]);
+    //hud_temp_img[iterate]->setPos(0,0);
+
+    hud_temp_txt.push_back(new QGraphicsTextItem());
+    hud_temp_txt[iterate]->setPlainText(QString("Gold"));
+    hud_temp_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_temp_txt[iterate]);
+    //hud_temp_txt[iterate]->setPos(0,0);
+
+    hud_temp_bool.push_back(0);
+    iterate++;
+
+
     //Prostokącik na mapie
     map_rect = new QGraphicsRectItem();
     //map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
@@ -706,4 +865,37 @@ void Game::set_island(short _x, short _y, QString _pixmap_name)
     scene->addItem(islands[islands.size() - 1]);
     islands[islands.size() - 1]->setPos(_x, _y);
     Player::island_coordinates.push_back(islands[islands.size() - 1]->pos());
+}
+
+void Game::mouse_moved()
+{
+    //obszar z ikoną zdrowia
+    if (view->get_x() > resolution_x/2 - 220 && view->get_x() < resolution_x/2 - 100 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38)
+        hud_temp_bool[0] = 1;
+    if (!(view->get_x() > resolution_x/2 - 220 && view->get_x() < resolution_x/2 - 150 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38))
+        hud_temp_bool[0] = 0;
+
+    //obszar z ikoną załogi
+    if (view->get_x() > resolution_x/2 - 132 && view->get_x() < resolution_x/2 -50 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38)
+        hud_temp_bool[1] = 1;
+    if (!(view->get_x() > resolution_x/2 - 132 && view->get_x() < resolution_x/2 -50 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38))
+        hud_temp_bool[1] = 0;
+
+    //obszar z ikoną jedzenia
+    if (view->get_x() > resolution_x/2 - 51 && view->get_x() < resolution_x/2 +20 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38)
+        hud_temp_bool[2] = 1;
+    if (!(view->get_x() > resolution_x/2 -51  && view->get_x() < resolution_x/2 +20 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38))
+        hud_temp_bool[2] = 0;
+
+    //obszar z ikoną morale
+    if (view->get_x() > resolution_x/2 + 37 && view->get_x() < resolution_x/2 +80 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38)
+        hud_temp_bool[3] = 1;
+    if (!(view->get_x() > resolution_x/2 +37  && view->get_x() < resolution_x/2 +80 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38))
+        hud_temp_bool[3] = 0;
+
+    //obszar z ikoną złota
+    if (view->get_x() > resolution_x/2 + 124 && view->get_x() < resolution_x/2 +200 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38)
+        hud_temp_bool[4] = 1;
+    if (!(view->get_x() > resolution_x/2 +124  && view->get_x() < resolution_x/2 +200 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38))
+        hud_temp_bool[4] = 0;
 }
