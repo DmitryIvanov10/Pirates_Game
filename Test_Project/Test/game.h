@@ -53,6 +53,8 @@ class Game : public QObject
     std::vector<bool> hud_temp_bool; //informacja o użytkowaniu danego elementu tymczasowego
     QGraphicsRectItem * map_rect; //prostokącik na mapie
 
+    QGraphicsPixmapItem * menu_bar = new QGraphicsPixmapItem(); //grafika menu
+
     std::vector <NPC *> npc_ships; //statki npc na mapie
 
     int frame_time = 17;
@@ -69,6 +71,7 @@ class Game : public QObject
     double scene_y = player->get_y()-resolution_y/2; //położenie widoku y
 
     bool pause = 0; //if game is paused
+    bool menu_bool = 0; //czy menu jest włączone
 
 public:
     //static std::vector <Voronoi_point> map;
@@ -90,6 +93,7 @@ public:
     void set_hud();
     void set_island(short _x, short _y, QString _pixmap_name);
     void start_stop();
+    void show_menu();
 
 signals:
     //void next_tour();
@@ -104,7 +108,9 @@ public slots:
     void end_player_battle();
     //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);
     void mouse_moved();
+    void mose_pressed();
     void reset_timer();
+    void esc_pressed();
 };
 
 #endif // GAME_H
