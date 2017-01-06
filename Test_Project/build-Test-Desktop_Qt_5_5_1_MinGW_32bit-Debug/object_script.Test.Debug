@@ -11,10 +11,17 @@ INPUT(
 ./debug\island.o
 ./debug\pirate.o
 ./debug\voronoi_points.o
+./debug\cargo.o
+./debug\view.o
+./debug\battle.o
 ./debug\qrc_resources.o
 ./debug\qrc_islands.o
 ./debug\qrc_islands2.o
 ./debug\qrc_islands4.o
+./debug\qrc_brig.o
+./debug\qrc_caravel.o
+./debug\qrc_interface_temps.o
+./debug\qrc_interface_hud.o
 ./debug\moc_player.o
 ./debug\moc_ship.o
 ./debug\moc_npc.o
@@ -23,4 +30,6 @@ INPUT(
 ./debug\moc_game.o
 ./debug\moc_island.o
 ./debug\moc_pirate.o
+./debug\moc_view.o
+./debug\moc_battle.o
 );

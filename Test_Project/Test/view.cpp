@@ -10,24 +10,32 @@ View::View(QGraphicsScene *scene) : QGraphicsView::QGraphicsView(scene)
     setMouseTracking(true);
 }
 
-View::View(QGraphicsScene *scene, int _res_x, int _res_y) : QGraphicsView::QGraphicsView(scene)
-{
-    setMouseTracking(true);
-    res_x = _res_x;
-    res_y = _res_y;
-}
-
 void View::mouseMoveEvent(QMouseEvent *event)
 {
     //qDebug() << event->x() << " " << event->y();
+    X = event->x();
+    Y = event->y();
+    emit mouse_moved();
 }
 
 void View::mousePressEvent(QMouseEvent *event)
 {
-    qDebug() << "wciskam " << event->x() << " " << event->y();
+    //qDebug() << "wciskam " << event->x() << " " << event->y();
+    emit mouse_pressed();
 }
 
 void View::mouseReleaseEvent(QMouseEvent *event)
 {
-    qDebug() << "puszczam";
+    //qDebug() << "puszczam";
+    emit mouse_released();
+}
+
+int View::get_x()
+{
+    return X;
+}
+
+int View::get_y()
+{
+    return Y;
 }

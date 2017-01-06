@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Game_t {
-    QByteArrayData data[6];
-    char stringdata0[51];
+    QByteArrayData data[7];
+    char stringdata0[63];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,11 +34,12 @@ QT_MOC_LITERAL(1, 5, 7), // "new_day"
 QT_MOC_LITERAL(2, 13, 0), // ""
 QT_MOC_LITERAL(3, 14, 10), // "count_days"
 QT_MOC_LITERAL(4, 25, 13), // "update_states"
-QT_MOC_LITERAL(5, 39, 11) // "center_view"
+QT_MOC_LITERAL(5, 39, 11), // "center_view"
+QT_MOC_LITERAL(6, 51, 11) // "mouse_moved"
 
     },
     "Game\0new_day\0\0count_days\0update_states\0"
-    "center_view"
+    "center_view\0mouse_moved"
 };
 #undef QT_MOC_LITERAL
 
@@ -48,7 +49,7 @@ static const uint qt_meta_data_Game[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -56,17 +57,19 @@ static const uint qt_meta_data_Game[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x06 /* Public */,
+       1,    0,   39,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   35,    2, 0x0a /* Public */,
-       4,    0,   36,    2, 0x0a /* Public */,
-       5,    0,   37,    2, 0x0a /* Public */,
+       3,    0,   40,    2, 0x0a /* Public */,
+       4,    0,   41,    2, 0x0a /* Public */,
+       5,    0,   42,    2, 0x0a /* Public */,
+       6,    0,   43,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -84,6 +87,7 @@ void Game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 1: _t->count_days(); break;
         case 2: _t->update_states(); break;
         case 3: _t->center_view(); break;
+        case 4: _t->mouse_moved(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -124,13 +128,13 @@ int Game::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

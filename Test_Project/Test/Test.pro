@@ -52,4 +52,6 @@ RESOURCES += \
     img/Islands/islands2.qrc \
     img/Islands/islands4.qrc \
     img/Ships/Brig/brig.qrc \
-    img/Ships/Caravel/caravel.qrc
+    img/Ships/Caravel/caravel.qrc \
+    img/Interface/Temps/interface_temps.qrc \
+    img/Interface/HUD/interface_hud.qrc

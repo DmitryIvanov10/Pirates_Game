@@ -1,0 +1,17 @@
+﻿1. 	coś jest nie tak z kierunkiem wiatru, albo nie działa strzałka, albo napis pokazujący kąt (fixed)
+
+2. 	elementy tekstowe "skaczą" podczas poruszania się (fixed)
+
+3. 	statki NPC powinny się poruszać z prędkością zbliżoną do prędkości gracza,
+	ale wiatr nie powinien zmieniać kierunku ich ruchu (kind of fixed xD)
+
+4.	gra raz na jakiś czas się wysypuje
+
+5.	znaleziono nieruchomą flagę holenderską na morzu
+
+6.	statek mi zniknął :( mogłem nadal pływać, ale mój obrazek nie był widoczny.
+	nie pomogła zmiana kąty statku
+
+
+
+

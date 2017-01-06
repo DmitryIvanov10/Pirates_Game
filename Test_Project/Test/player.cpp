@@ -212,6 +212,11 @@ short Player::get_morale()
     return morale;
 }
 
+int Player::get_gold()
+{
+    return gold;
+}
+
 void Player::next_day()
 {
     day++;

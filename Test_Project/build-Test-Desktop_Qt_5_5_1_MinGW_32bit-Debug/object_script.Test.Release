@@ -11,10 +11,17 @@ INPUT(
 ./release\island.o
 ./release\pirate.o
 ./release\voronoi_points.o
+./release\cargo.o
+./release\view.o
+./release\battle.o
 ./release\qrc_resources.o
 ./release\qrc_islands.o
 ./release\qrc_islands2.o
 ./release\qrc_islands4.o
+./release\qrc_brig.o
+./release\qrc_caravel.o
+./release\qrc_interface_temps.o
+./release\qrc_interface_hud.o
 ./release\moc_player.o
 ./release\moc_ship.o
 ./release\moc_npc.o
@@ -23,4 +30,6 @@ INPUT(
 ./release\moc_game.o
 ./release\moc_island.o
 ./release\moc_pirate.o
+./release\moc_view.o
+./release\moc_battle.o
 );
