@@ -56,6 +56,8 @@ protected:
     int sprite_width; // width of the sprite
     int sprite_height; // height of the sprite
 
+    QList<QGraphicsItem *> colliding_items;
+
 public:
     //konstruktory
     Ship(double _x, double _y, short _model); //konstruktor tworzący okręt w położeniu x, y o modelu statku ship

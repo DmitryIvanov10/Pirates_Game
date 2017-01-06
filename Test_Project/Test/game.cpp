@@ -48,6 +48,8 @@ Game::Game(QObject *parent) : QObject(parent)
     // update player properties each new day
     connect (this, SIGNAL(new_day()), player, SLOT(next_day()));
 
+    connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));
+
     // put player to the scene
     scene->addItem(player);
 
@@ -566,6 +568,11 @@ void Game::center_view()
 
     //inne elementy HUD'u
     map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
+}
+
+void Game::start_player_battle(Ship *_ship)
+{
+    battles.push_back(new Battle(player, _ship));
 }
 
 short Game::get_neighbour(short _id, short _number)

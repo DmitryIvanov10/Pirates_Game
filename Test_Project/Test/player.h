@@ -5,6 +5,7 @@
 #include "ship.h"
 #include "wind.h"
 #include "npc.h"
+#include "pirate.h"
 #include "island.h"
 
 //biblioteki
@@ -59,8 +60,7 @@ public slots:
     void next_day();
 
 signals:
-
-
+    void start_battle(Ship * _ship);
 };
 
 #endif // PLAYER_H

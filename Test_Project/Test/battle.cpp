@@ -5,10 +5,11 @@ Battle::Battle(QObject *parent)
 
 }
 
-Battle::Battle(Player *_player, NPC *_npc)
+Battle::Battle(Player *_player, Ship *_npc)
 {
-    timer->start(5000);
-
+    //timer->start(5000);
+    qDebug() << "New player/npc battle.";
+    qDebug() << "NPC model - " << _npc->get_model_name();
     morale_effect_1 = set_morale_effect(_player->get_morale());
     morale_effect_2 = set_morale_effect();
 
@@ -50,11 +51,18 @@ void Battle::next_move(Ship *_ship1, Ship *_ship2)
     if (_ship1->get_ammo() - round_ammo_shot_1 >= 0)
         _ship1->set_ammo(_ship1->get_ammo() - round_ammo_shot_1);
     else
+    {
+        round_ammo_shot_1 = _ship1->get_ammo();
         _ship1->set_ammo(0);
+    }
+
     if (_ship2->get_ammo() - round_ammo_shot_2 >= 0)
         _ship2->set_ammo(_ship2->get_ammo() - round_ammo_shot_2);
     else
+    {
+        round_ammo_shot_2 = _ship2->get_ammo();
         _ship2->set_ammo(0);
+    }
 
     // reset maneuverability
     _ship1->set_maneuverability(_ship1->get_health());

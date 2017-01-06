@@ -57,8 +57,16 @@ void Player::keyPressEvent(QKeyEvent *event)
             set_sail_level(0);
             break;
         case Qt::Key_Space:
-            if (collision_with_npc && model)
-                qDebug() << "Fight!";
+            colliding_items = collidingItems();
+            if (colliding_items.size() != 0)
+            {
+                foreach (QGraphicsItem * item, colliding_items)
+
+                    if (typeid(* item) == typeid(NPC) ||
+                        typeid(* item) == typeid(Pirate))
+                        if (model)
+                            emit start_battle(dynamic_cast<Ship *>(item));
+            }
             break;
     }
 
@@ -72,15 +80,9 @@ void Player::do_tour()
 
     bool go = true;
 
-    collision_with_npc = false;
-
-    if (collidingItems().size() != 0)
-        if (dynamic_cast<NPC *>(collidingItems()[0]) != 0)
-            collision_with_npc = true;
-
     if (probe->collidingItems().size() != 0)
     {
-        if (dynamic_cast<Island *>(probe->collidingItems()[0]) != 0)
+        if (typeid(* (probe->collidingItems()[0])) == typeid(Island))
             if (collidingItems().size() != 0)
                 go = false;
         /*short i = 0;
@@ -199,7 +201,9 @@ void Player::revolt()
     model = 0;
     set_model_parameters();
     health = max_health;
-    crew = max_crew;
+    crew = crew / 3;
+    if (crew > max_crew)
+        crew = max_crew;
     ammo = 0;
     food = 0;
     morale = 0;
