@@ -83,6 +83,8 @@ public:
     void set_cannons(short _cannons);
     float get_maneuverability();
     void set_maneuverability(short _health);
+    short get_hold_size();
+    std:: vector <Cargo *> get_goods();
     void set_model_parameters(); // set parameters depending on the model of the ship
     void set_sail_level(bool _sign); //funkcja zmieniająca wartość rozłożenia żagli
     void set_angle(double _angle); // funkcja ustawiająca wartość angle

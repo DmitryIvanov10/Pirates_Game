@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Game_t {
-    QByteArrayData data[11];
-    char stringdata0[107];
+    QByteArrayData data[14];
+    char stringdata0[141];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,13 +38,17 @@ QT_MOC_LITERAL(5, 39, 11), // "center_view"
 QT_MOC_LITERAL(6, 51, 19), // "start_player_battle"
 QT_MOC_LITERAL(7, 71, 5), // "Ship*"
 QT_MOC_LITERAL(8, 77, 5), // "_ship"
-QT_MOC_LITERAL(9, 83, 11), // "mouse_moved"
-QT_MOC_LITERAL(10, 95, 11) // "reset_timer"
+QT_MOC_LITERAL(9, 83, 17), // "end_player_battle"
+QT_MOC_LITERAL(10, 101, 11), // "mouse_moved"
+QT_MOC_LITERAL(11, 113, 11), // "reset_timer"
+QT_MOC_LITERAL(12, 125, 10), // "delete_npc"
+QT_MOC_LITERAL(13, 136, 4) // "NPC*"
 
     },
     "Game\0new_day\0\0count_days\0update_states\0"
     "center_view\0start_player_battle\0Ship*\0"
-    "_ship\0mouse_moved\0reset_timer"
+    "_ship\0end_player_battle\0mouse_moved\0"
+    "reset_timer\0delete_npc\0NPC*"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,7 +58,7 @@ static const uint qt_meta_data_Game[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,15 +66,17 @@ static const uint qt_meta_data_Game[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x06 /* Public */,
+       1,    0,   59,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   50,    2, 0x0a /* Public */,
-       4,    0,   51,    2, 0x0a /* Public */,
-       5,    0,   52,    2, 0x0a /* Public */,
-       6,    1,   53,    2, 0x0a /* Public */,
-       9,    0,   56,    2, 0x0a /* Public */,
-      10,    0,   57,    2, 0x0a /* Public */,
+       3,    0,   60,    2, 0x0a /* Public */,
+       4,    0,   61,    2, 0x0a /* Public */,
+       5,    0,   62,    2, 0x0a /* Public */,
+       6,    1,   63,    2, 0x0a /* Public */,
+       9,    0,   66,    2, 0x0a /* Public */,
+      10,    0,   67,    2, 0x0a /* Public */,
+      11,    0,   68,    2, 0x0a /* Public */,
+      12,    1,   69,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -82,6 +88,8 @@ static const uint qt_meta_data_Game[] = {
     QMetaType::Void, 0x80000000 | 7,    8,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 13,    8,
 
        0        // eod
 };
@@ -97,8 +105,10 @@ void Game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 2: _t->update_states(); break;
         case 3: _t->center_view(); break;
         case 4: _t->start_player_battle((*reinterpret_cast< Ship*(*)>(_a[1]))); break;
-        case 5: _t->mouse_moved(); break;
-        case 6: _t->reset_timer(); break;
+        case 5: _t->end_player_battle(); break;
+        case 6: _t->mouse_moved(); break;
+        case 7: _t->reset_timer(); break;
+        case 8: _t->delete_npc((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -109,6 +119,13 @@ void Game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Ship* >(); break;
+            }
+            break;
+        case 8:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< NPC* >(); break;
             }
             break;
         }
@@ -150,13 +167,13 @@ int Game::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 9;
     }
     return _id;
 }

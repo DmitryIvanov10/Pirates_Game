@@ -28,11 +28,11 @@ void Ship::set_model_parameters()
             model_name = "Caravel";
             sprite_width = 80;
             sprite_height = 80;
-            max_health = 230;
+            max_health = 115;
             max_crew = 175;
             initial_cannons = 24;
             max_cannons = 30;
-            max_ammo = 150;
+            max_ammo = 300;
             hold_size = 4;
             max_speed = 2.85f;
             bladewind_speed = 1.05f;
@@ -43,11 +43,11 @@ void Ship::set_model_parameters()
             model_name = "Brig";
             sprite_width = 80;
             sprite_height = 80;
-            max_health = 270;
+            max_health = 135;
             max_crew = 177;
             initial_cannons = 16;
             max_cannons = 24;
-            max_ammo = 120;
+            max_ammo = 240;
             hold_size = 3;
             max_speed = 4.35f;
             bladewind_speed = 1.05f;
@@ -225,6 +225,16 @@ float Ship::get_maneuverability()
 void Ship::set_maneuverability(short _health)
 {
     maneuverability = 0.2f * max_maneuverability * ceil(5 * (double(_health) / double(max_health)));
+}
+
+short Ship::get_hold_size()
+{
+    return hold_size;
+}
+
+std::vector<Cargo *> Ship::get_goods()
+{
+    return goods;
 }
 
 short Ship::get_crew()

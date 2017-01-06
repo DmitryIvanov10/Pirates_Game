@@ -105,6 +105,8 @@ public slots:
     //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);
     void mouse_moved();
     void reset_timer();
+    void delete_npc(NPC * _ship);
+    //void delete_pirate(Pirate * _ship);
 };
 
 #endif // GAME_H

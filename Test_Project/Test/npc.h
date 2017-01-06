@@ -50,6 +50,7 @@ public:
     bool in_view();
 
 signals:
+    void delete_npc(NPC * _ship);
 
 public slots:
     void move_to_next_location();

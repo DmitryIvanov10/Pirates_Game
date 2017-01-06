@@ -13,6 +13,8 @@ Game::Game(QObject *parent) : QObject(parent)
     {
         npc_ships.push_back(new NPC());
         scene->addItem(npc_ships[i]);
+        connect(npc_ships[i], SIGNAL(delete_npc(npc_ships[i])),
+                this, SLOT(delete_npc(npc_ships[i])));
     }
 
     // create wind to put into the scene
@@ -581,7 +583,12 @@ void Game::start_player_battle(Ship *_ship)
     start_stop();
 
     battles.push_back(new Battle(player, _ship));
-    connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(reset_timer()));
+    connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
+}
+
+void Game::end_player_battle()
+{
+    start_stop();
 }
 
 short Game::get_neighbour(short _id, short _number)
@@ -861,4 +868,10 @@ void Game::mouse_moved()
 void Game::reset_timer()
 {
     start_stop();
+}
+
+void Game::delete_npc(NPC *_ship)
+{
+    scene->removeItem(_ship->flag);
+    scene->removeItem(_ship);
 }

@@ -61,7 +61,8 @@ NPC::NPC(short _start_id, short _finish_id)
 NPC::~NPC()
 {
     //qDebug() <<"NPC deleted";
-
+    emit delete_npc(this);
+    delete flag;
 }
 
 int NPC::find_distance(short _id1, short _id2)
@@ -297,7 +298,6 @@ void NPC::move_to_next_location()
         else
         {
             //qDebug() <<"NPC is at target location: " << next_location;
-            delete flag;
             delete this;
         }
     }

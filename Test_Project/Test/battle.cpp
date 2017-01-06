@@ -7,18 +7,42 @@ Battle::Battle(QObject *parent)
 
 Battle::Battle(Player *_player, Ship *_npc)
 {
-    timer->start(5000);
-
+    timer->start(17*60);
+    player_battle = true;
     qDebug() << "New player/npc battle.";
+
+    ship1 = dynamic_cast<Ship *>(_player);
+    ship2 = dynamic_cast<Ship *>(_npc);
+
+    // show NPC parameters and goods
     qDebug() << "NPC model - " << _npc->get_model_name();
+    qDebug() << "Health - " << _npc->get_health();
+    qDebug() << "Crew - " << _npc->get_crew();
+    qDebug() << "Cannons - " << _npc->get_cannons();
+    qDebug() << "Ammo - " << _npc->get_ammo();
+    qDebug() << "Maneuverability - " << _npc->get_maneuverability();
+
+    foreach (Cargo * cargo, _npc->get_goods())
+    {
+        qDebug() << cargo->get_name() << ": " << cargo->get_amount();
+    }
+
     morale_effect_1 = set_morale_effect(_player->get_morale());
     morale_effect_2 = set_morale_effect();
-    kill();
+
+    connect(timer, SIGNAL(timeout()), this, SLOT(round()));
+}
+
+void Battle::run_away()
+{
+    qDebug() << "Ran away.";
+    emit finish_battle();
 }
 
 void Battle::kill()
 {
-
+    qDebug() << "Killed NPC.";
+    emit finish_battle();
 }
 
 float Battle::set_morale_effect()
@@ -36,6 +60,8 @@ float Battle::set_morale_effect(short _morale)
 
 void Battle::next_move(Ship *_ship1, Ship *_ship2)
 {
+    qDebug() << "New round";
+
     // set and normalize recharge speed (higher recharging speed - more fires in round)
     recharge_1 = morale_effect_1 * float(_ship1->get_crew()) /
             (_ship1->get_cannons() * _ship1->get_max_crew());
@@ -95,6 +121,25 @@ void Battle::next_move(Ship *_ship1, Ship *_ship2)
         _ship1->set_cannons(_ship1->get_cannons() - rand() % 3);
     if (_ship2->get_cannons() >= 10)
         _ship2->set_cannons(_ship2->get_cannons() - rand() % 3);
+
+    if (_ship2->get_health() < 0.2 * _ship2->get_max_health() || !_ship2->get_ammo())
+    {
+        timer->stop();
+        kill();
+        delete (_ship2);
+    } else
+    if (_ship1->get_health() < 0.2 * _ship1->get_max_health() || !_ship1->get_ammo())
+    {
+        timer->stop();
+        run_away();
+        delete (_ship2);
+    }
+}
+
+void Battle::round()
+{
+    if (player_battle)
+        next_move(ship1, ship2);
 }
 
 
