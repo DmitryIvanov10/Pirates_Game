@@ -49,6 +49,10 @@ Game::Game(QObject *parent) : QObject(parent)
     connect (this, SIGNAL(new_day()), player, SLOT(next_day()));
     // ruchy myszki
     connect (view, SIGNAL(mouse_moved()), this, SLOT(mouse_moved()));
+    //kliknięcia myszki
+    connect(view, SIGNAL(mouse_pressed()), this, SLOT(mose_pressed()));
+    //klawisz escape
+    connect(player, SIGNAL(esc_pressed()), this, SLOT(esc_pressed()));
 
     connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));    
 
@@ -591,6 +595,11 @@ void Game::end_player_battle()
     start_stop();
 }
 
+void Game::end_player_battle()
+{
+
+}
+
 short Game::get_neighbour(short _id, short _number)
 {
     return Voronoi_points::map[_id].get_neighbour(_number);
@@ -832,6 +841,22 @@ void Game::start_stop()
     pause = !pause;
 }
 
+void Game::show_menu()
+{
+    start_stop();
+    if (!menu_bool)
+    {
+        menu_bar->setPixmap(QPixmap(":/Menu_bar_02.png"));
+        scene->addItem(menu_bar);
+        menu_bar->setPos(scene_x + resolution_x/2 - menu_bar->pixmap().width()/2, scene_y + resolution_y/2 - menu_bar->pixmap().height()/2);
+    }
+    else
+    {
+        scene->removeItem(menu_bar);
+    }
+    menu_bool = !menu_bool;
+}
+
 void Game::mouse_moved()
 {
     //obszar z ikoną zdrowia
@@ -863,6 +888,21 @@ void Game::mouse_moved()
         hud_temp_bool[4] = 1;
     if (!(view->get_x() > resolution_x/2 +124  && view->get_x() < resolution_x/2 +200 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38))
         hud_temp_bool[4] = 0;
+
+    //obszar przycisku menu
+    if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
+        hud_txt[hud_txt.size()-1]->setDefaultTextColor(Qt::white);
+    if (!(view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 60))
+        hud_txt[hud_txt.size()-1]->setDefaultTextColor(Qt::black);
+}
+
+void Game::mose_pressed()
+{
+    if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
+    {
+        show_menu();
+    }
+    qDebug() << "click";
 }
 
 void Game::reset_timer()
@@ -870,8 +910,14 @@ void Game::reset_timer()
     start_stop();
 }
 
+<<<<<<< HEAD
 void Game::delete_npc(NPC *_ship)
 {
     scene->removeItem(_ship->flag);
     scene->removeItem(_ship);
+=======
+void Game::esc_pressed()
+{
+    show_menu();
+>>>>>>> 9231a327dcd67b4eb158d5770a1c37c44d8eae72
 }

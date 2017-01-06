@@ -22,6 +22,7 @@ INPUT(
 ./debug\qrc_caravel.o
 ./debug\qrc_interface_temps.o
 ./debug\qrc_interface_hud.o
+./debug\qrc_menu_bars.o
 ./debug\moc_player.o
 ./debug\moc_ship.o
 ./debug\moc_npc.o

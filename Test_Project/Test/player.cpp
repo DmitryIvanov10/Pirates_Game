@@ -68,6 +68,8 @@ void Player::keyPressEvent(QKeyEvent *event)
                             emit start_battle(dynamic_cast<Ship *>(item));
             }
             break;
+        case Qt::Key_Escape:
+            emit esc_pressed();
     }
 
     //qDebug() << angle;

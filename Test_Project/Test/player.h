@@ -62,6 +62,7 @@ public slots:
 
 signals:
     void start_battle(Ship * _ship);
+    void esc_pressed();
 };
 
 #endif // PLAYER_H
