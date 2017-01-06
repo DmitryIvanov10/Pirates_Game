@@ -28,6 +28,7 @@
 #include "wind.h"
 #include "island.h"
 #include "view.h"
+#include "battle.h"
 
 class Game : public QObject
 {
@@ -42,6 +43,8 @@ class Game : public QObject
 
     std::vector <QGraphicsPixmapItem *> sea; //kafelki oceanu
     std::vector <Island *> islands; //wszystkie wyspy na mapie
+
+    std::vector <Battle *> battles; //wszystkie walki
 
     std::vector <QGraphicsPixmapItem *> hud_img; //graficzna część HUD'u
     std::vector <QGraphicsTextItem *> hud_txt; //tekstowa część HUD'u
@@ -94,7 +97,12 @@ public slots:
     void count_days();
     void update_states();
     void center_view();
+<<<<<<< HEAD
+    void start_player_battle(Ship * _ship);
+    //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);
+=======
     void mouse_moved();
+>>>>>>> 4a1d8f8179fffd3b7f35126077f1cc495bab66a1
 };
 
 #endif // GAME_H
