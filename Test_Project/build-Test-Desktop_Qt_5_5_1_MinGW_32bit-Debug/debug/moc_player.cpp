@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Player_t {
-    QByteArrayData data[7];
-    char stringdata0[50];
+    QByteArrayData data[8];
+    char stringdata0[62];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,12 +34,13 @@ QT_MOC_LITERAL(1, 7, 12), // "start_battle"
 QT_MOC_LITERAL(2, 20, 0), // ""
 QT_MOC_LITERAL(3, 21, 5), // "Ship*"
 QT_MOC_LITERAL(4, 27, 5), // "_ship"
-QT_MOC_LITERAL(5, 33, 7), // "do_tour"
-QT_MOC_LITERAL(6, 41, 8) // "next_day"
+QT_MOC_LITERAL(5, 33, 11), // "esc_pressed"
+QT_MOC_LITERAL(6, 45, 7), // "do_tour"
+QT_MOC_LITERAL(7, 53, 8) // "next_day"
 
     },
     "Player\0start_battle\0\0Ship*\0_ship\0"
-    "do_tour\0next_day"
+    "esc_pressed\0do_tour\0next_day"
 };
 #undef QT_MOC_LITERAL
 
@@ -49,22 +50,24 @@ static const uint qt_meta_data_Player[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   29,    2, 0x06 /* Public */,
+       1,    1,   34,    2, 0x06 /* Public */,
+       5,    0,   37,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   32,    2, 0x0a /* Public */,
-       6,    0,   33,    2, 0x0a /* Public */,
+       6,    0,   38,    2, 0x0a /* Public */,
+       7,    0,   39,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
@@ -80,8 +83,9 @@ void Player::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->start_battle((*reinterpret_cast< Ship*(*)>(_a[1]))); break;
-        case 1: _t->do_tour(); break;
-        case 2: _t->next_day(); break;
+        case 1: _t->esc_pressed(); break;
+        case 2: _t->do_tour(); break;
+        case 3: _t->next_day(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -102,6 +106,12 @@ void Player::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
             typedef void (Player::*_t)(Ship * );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Player::start_battle)) {
                 *result = 0;
+            }
+        }
+        {
+            typedef void (Player::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Player::esc_pressed)) {
+                *result = 1;
             }
         }
     }
@@ -132,13 +142,13 @@ int Player::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }
@@ -148,5 +158,11 @@ void Player::start_battle(Ship * _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void Player::esc_pressed()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

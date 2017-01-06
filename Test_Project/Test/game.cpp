@@ -49,6 +49,8 @@ Game::Game(QObject *parent) : QObject(parent)
     connect (view, SIGNAL(mouse_moved()), this, SLOT(mouse_moved()));
     //kliknięcia myszki
     connect(view, SIGNAL(mouse_pressed()), this, SLOT(mose_pressed()));
+    //klawisz escape
+    connect(player, SIGNAL(esc_pressed()), this, SLOT(esc_pressed()));
 
     connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));    
 
