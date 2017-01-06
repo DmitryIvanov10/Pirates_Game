@@ -595,11 +595,6 @@ void Game::end_player_battle()
     start_stop();
 }
 
-void Game::end_player_battle()
-{
-
-}
-
 short Game::get_neighbour(short _id, short _number)
 {
     return Voronoi_points::map[_id].get_neighbour(_number);
@@ -910,14 +905,13 @@ void Game::reset_timer()
     start_stop();
 }
 
-<<<<<<< HEAD
 void Game::delete_npc(NPC *_ship)
 {
     scene->removeItem(_ship->flag);
     scene->removeItem(_ship);
-=======
+}
+
 void Game::esc_pressed()
 {
     show_menu();
->>>>>>> 9231a327dcd67b4eb158d5770a1c37c44d8eae72
 }

@@ -110,12 +110,9 @@ public slots:
     void mouse_moved();
     void mose_pressed();
     void reset_timer();
-<<<<<<< HEAD
     void delete_npc(NPC * _ship);
     //void delete_pirate(Pirate * _ship);
-=======
     void esc_pressed();
->>>>>>> 9231a327dcd67b4eb158d5770a1c37c44d8eae72
 };
 
 #endif // GAME_H

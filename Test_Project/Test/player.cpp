@@ -64,7 +64,7 @@ void Player::keyPressEvent(QKeyEvent *event)
 
                     if (typeid(* item) == typeid(NPC) ||
                         typeid(* item) == typeid(Pirate))
-                        if (model)
+                        if (model && health >= max_health / 5)
                             emit start_battle(dynamic_cast<Ship *>(item));
             }
             break;
