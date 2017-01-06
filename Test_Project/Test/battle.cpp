@@ -7,7 +7,8 @@ Battle::Battle(QObject *parent)
 
 Battle::Battle(Player *_player, Ship *_npc)
 {
-    //timer->start(5000);
+    timer->start(5000);
+
     qDebug() << "New player/npc battle.";
     qDebug() << "NPC model - " << _npc->get_model_name();
     morale_effect_1 = set_morale_effect(_player->get_morale());

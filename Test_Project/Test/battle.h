@@ -10,9 +10,9 @@
 #include <time.h>
 
 //pliki
-#include <npc.h>
-#include <pirate.h>
-#include <player.h>
+#include "npc.h"
+#include "pirate.h"
+#include "player.h"
 
 class Battle: public QObject
 {

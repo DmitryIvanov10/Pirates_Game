@@ -101,6 +101,7 @@ public slots:
     void update_states();
     void center_view();
     void start_player_battle(Ship * _ship);
+    void end_player_battle();
     //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);
     void mouse_moved();
     void reset_timer();

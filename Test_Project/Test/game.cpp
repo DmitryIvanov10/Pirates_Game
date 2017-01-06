@@ -48,7 +48,7 @@ Game::Game(QObject *parent) : QObject(parent)
     // ruchy myszki
     connect (view, SIGNAL(mouse_moved()), this, SLOT(mouse_moved()));
 
-    connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));
+    connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));    
 
     // put player to the scene
     scene->addItem(player);
@@ -357,70 +357,6 @@ void Game::new_game()
     set_island(4253, 3325, ":/island_a2_03.png");
     set_island(5583, 1386, ":/island_a4_01.png");
     set_island(1629, 3737, ":/island_a4_02.png");
-
-    /*iterate = 0;
-    islands.push_back(new Island());
-    islands[iterate]->setPixmap(QPixmap(":/island_a1_02.png"));
-    scene->addItem(islands[iterate]);
-    islands[iterate]->setPos(5190, 975);
-    Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;
-
-    islands.push_back(new Island());
-    islands[iterate]->setPixmap(QPixmap(":/island_a1_01.png"));
-    scene->addItem(islands[iterate]);
-    islands[iterate]->setPos(3249, 2694);
-    Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;
-
-    islands.push_back(new Island());
-    islands[iterate]->setPixmap(QPixmap(":/island_a1_03.png"));
-    scene->addItem(islands[iterate]);
-    islands[iterate]->setPos(6096, 3829);
-    Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;
-
-    islands.push_back(new Island());
-    islands[iterate]->setPixmap(QPixmap(":/island_a2_02.png"));
-    scene->addItem(islands[iterate]);
-    islands[iterate]->setPos(1848, 874);
-    Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;
-
-    islands.push_back(new Island());
-    islands[iterate]->setPixmap(QPixmap(":/island_a3_02.png"));
-    scene->addItem(islands[iterate]);
-    islands[iterate]->setPos(4852, 2558);
-    Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;
-
-    islands.push_back(new Island());
-    islands[iterate]->setPixmap(QPixmap(":/island_a3_02.png"));
-    scene->addItem(islands[iterate]);
-    islands[iterate]->setPos(411, 2175);
-    Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;
-
-    islands.push_back(new Island());
-    islands[iterate]->setPixmap(QPixmap(":/island_a2_03.png"));
-    scene->addItem(islands[iterate]);
-    islands[iterate]->setPos(4253, 3325);
-    Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;
-
-    islands.push_back(new Island());
-    islands[iterate]->setPixmap(QPixmap(":/island_a4_01.png"));
-    scene->addItem(islands[iterate]);
-    islands[iterate]->setPos(5583, 1386);
-    Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;
-
-    islands.push_back(new Island());
-    islands[iterate]->setPixmap(QPixmap(":/island_a4_02.png"));
-    scene->addItem(islands[iterate]);
-    islands[iterate]->setPos(1629, 3737);
-    Player::island_coordinates.push_back(islands[iterate]->pos());
-    iterate++;*/
 }
 
 double Game::get_x(short _id)
@@ -643,7 +579,9 @@ void Game::center_view()
 void Game::start_player_battle(Ship *_ship)
 {
     start_stop();
+
     battles.push_back(new Battle(player, _ship));
+    connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(reset_timer()));
 }
 
 short Game::get_neighbour(short _id, short _number)
