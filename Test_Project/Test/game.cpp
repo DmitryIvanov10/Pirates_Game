@@ -50,7 +50,7 @@ Game::Game(QObject *parent) : QObject(parent)
     // ruchy myszki
     connect (view, SIGNAL(mouse_moved()), this, SLOT(mouse_moved()));
     //kliknięcia myszki
-    connect(view, SIGNAL(mouse_pressed()), this, SLOT(mose_pressed()));
+    connect(view, SIGNAL(mouse_pressed()), this, SLOT(mouse_pressed()));
     //klawisz escape
     connect(player, SIGNAL(esc_pressed()), this, SLOT(esc_pressed()));
 
@@ -811,11 +811,23 @@ void Game::set_hud()
     hud_temp_bool.push_back(0);
     iterate++;
 
-
     //Prostokącik na mapie
     map_rect = new QGraphicsRectItem();
     //map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
     scene->addItem(map_rect);
+
+    //tworzenie menu
+    iterate = 0;
+
+    //tekst
+    for(int i = 0; i < 5; i++)
+    {
+        menu_text.push_back(new QGraphicsTextItem());
+        menu_text[i]->setFont(QFont("times", 16));
+        menu_text[i]->setDefaultTextColor(Qt::white);
+    }
+
+
 }
 
 void Game::set_island(short _x, short _y, QString _pixmap_name)
@@ -844,10 +856,36 @@ void Game::show_menu()
         menu_bar->setPixmap(QPixmap(":/Menu_bar_02.png"));
         scene->addItem(menu_bar);
         menu_bar->setPos(scene_x + resolution_x/2 - menu_bar->pixmap().width()/2, scene_y + resolution_y/2 - menu_bar->pixmap().height()/2);
+
+        menu_text[0]->setPlainText(QString("Save game"));
+        scene->addItem(menu_text[0]);
+        menu_text[0]->setPos(scene_x + resolution_x/2 - 50, scene_y + resolution_y/2 - 136);
+
+        menu_text[0]->setDefaultTextColor(Qt::darkGray);
+
+        menu_text[1]->setPlainText(QString("Load game"));
+        scene->addItem(menu_text[1]);
+        menu_text[1]->setPos(scene_x + resolution_x/2 - 50, scene_y + resolution_y/2 - 72);
+
+        menu_text[1]->setDefaultTextColor(Qt::darkGray);
+
+        menu_text[2]->setPlainText(QString("Options"));
+        scene->addItem(menu_text[2]);
+        menu_text[2]->setPos(scene_x + resolution_x/2 - 37, scene_y + resolution_y/2 - 10);
+
+        menu_text[3]->setPlainText(QString("Exit game"));
+        scene->addItem(menu_text[3]);
+        menu_text[3]->setPos(scene_x + resolution_x/2 - 50, scene_y + resolution_y/2 + 50);
+
+        menu_text[4]->setPlainText(QString("Return game"));
+        scene->addItem(menu_text[4]);
+        menu_text[4]->setPos(scene_x + resolution_x/2 - 53, scene_y + resolution_y/2 + 158);
     }
     else
     {
         scene->removeItem(menu_bar);
+        for(int i = 0; i < 5; i++)
+            scene->removeItem(menu_text[i]);
     }
     menu_bool = !menu_bool;
 }
@@ -889,15 +927,57 @@ void Game::mouse_moved()
         hud_txt[hud_txt.size()-1]->setDefaultTextColor(Qt::white);
     if (!(view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 60))
         hud_txt[hud_txt.size()-1]->setDefaultTextColor(Qt::black);
+
+    //obsługa menu
+    if (menu_bool)
+    {
+        /*
+        if (view->get_x() > resolution_x/2 - 120 && view->get_x() < resolution_x/2 +120 && view->get_y() > resolution_y/2 - 140 && view->get_y() < resolution_y/2 -100)
+            menu_text[0]->setDefaultTextColor(Qt::red);
+        if (!(view->get_x() > resolution_x/2 - 120 && view->get_x() < resolution_x/2 + 120 && view->get_y() > resolution_y/2 - 140 && view->get_y() < resolution_y/2 -100))
+            menu_text[0]->setDefaultTextColor(Qt::white);
+
+        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 75 && view->get_y() < resolution_y/2 -25)
+            menu_text[1]->setDefaultTextColor(Qt::red);
+        if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 75 && view->get_y() < resolution_y/2 -25))
+            menu_text[1]->setDefaultTextColor(Qt::white);
+            */
+
+        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40)
+            menu_text[2]->setDefaultTextColor(Qt::red);
+        if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40))
+            menu_text[2]->setDefaultTextColor(Qt::white);
+
+        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
+            menu_text[3]->setDefaultTextColor(Qt::red);
+        if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95))
+            menu_text[3]->setDefaultTextColor(Qt::white);
+
+        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
+            menu_text[4]->setDefaultTextColor(Qt::red);
+        if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200))
+            menu_text[4]->setDefaultTextColor(Qt::white);
+    }
 }
 
-void Game::mose_pressed()
+void Game::mouse_pressed()
 {
+    //obszar przycisku menu
     if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {
         show_menu();
     }
-    qDebug() << "click";
+
+    //obsługa menu
+    if (menu_bool)
+    {
+        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
+            QApplication::quit();
+
+        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
+            show_menu();
+    }
+    //qDebug() << "click";
 }
 
 void Game::reset_timer()

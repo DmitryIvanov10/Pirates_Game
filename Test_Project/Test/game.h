@@ -19,6 +19,7 @@
 #include <QImage>
 #include <QBrush>
 #include <QPointF>
+#include <QApplication> //potrzbne do funkcji zamykającej grę
 
 //pliki
 #include "npc.h"
@@ -54,6 +55,7 @@ class Game : public QObject
     QGraphicsRectItem * map_rect; //prostokącik na mapie
 
     QGraphicsPixmapItem * menu_bar = new QGraphicsPixmapItem(); //grafika menu
+    std::vector<QGraphicsTextItem *> menu_text; //tekst menu
 
     std::vector <NPC *> npc_ships; //statki npc na mapie
 
@@ -108,7 +110,7 @@ public slots:
     void end_player_battle();
     //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);
     void mouse_moved();
-    void mose_pressed();
+    void mouse_pressed();
     void reset_timer();
     void delete_npc(NPC * _ship);
     //void delete_pirate(Pirate * _ship);
