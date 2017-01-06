@@ -97,12 +97,9 @@ public slots:
     void count_days();
     void update_states();
     void center_view();
-<<<<<<< HEAD
     void start_player_battle(Ship * _ship);
     //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);
-=======
     void mouse_moved();
->>>>>>> 4a1d8f8179fffd3b7f35126077f1cc495bab66a1
 };
 
 #endif // GAME_H

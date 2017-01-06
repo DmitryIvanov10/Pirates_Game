@@ -20,6 +20,8 @@ INPUT(
 ./release\qrc_islands4.o
 ./release\qrc_brig.o
 ./release\qrc_caravel.o
+./release\qrc_interface_temps.o
+./release\qrc_interface_hud.o
 ./release\moc_player.o
 ./release\moc_ship.o
 ./release\moc_npc.o
