@@ -642,6 +642,7 @@ void Game::center_view()
 
 void Game::start_player_battle(Ship *_ship)
 {
+    start_stop();
     battles.push_back(new Battle(player, _ship));
 }
 
@@ -877,6 +878,15 @@ void Game::set_island(short _x, short _y, QString _pixmap_name)
     Player::island_coordinates.push_back(islands[islands.size() - 1]->pos());
 }
 
+void Game::start_stop()
+{
+    if (pause)
+        timer->start(frame_time);
+    else
+        timer->stop();
+    pause = !pause;
+}
+
 void Game::mouse_moved()
 {
     //obszar z ikoną zdrowia
@@ -908,4 +918,9 @@ void Game::mouse_moved()
         hud_temp_bool[4] = 1;
     if (!(view->get_x() > resolution_x/2 +124  && view->get_x() < resolution_x/2 +200 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38))
         hud_temp_bool[4] = 0;
+}
+
+void Game::reset_timer()
+{
+    start_stop();
 }

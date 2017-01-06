@@ -12,6 +12,11 @@ Battle::Battle(Player *_player, Ship *_npc)
     qDebug() << "NPC model - " << _npc->get_model_name();
     morale_effect_1 = set_morale_effect(_player->get_morale());
     morale_effect_2 = set_morale_effect();
+    kill();
+}
+
+void Battle::kill()
+{
 
 }
 

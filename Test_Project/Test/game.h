@@ -68,6 +68,8 @@ class Game : public QObject
     double scene_x = player->get_x()-resolution_x/2; //położenie widoku x
     double scene_y = player->get_y()-resolution_y/2; //położenie widoku y
 
+    bool pause = 0; //if game is paused
+
 public:
     //static std::vector <Voronoi_point> map;
 
@@ -87,6 +89,7 @@ public:
     short get_neighbour(short _id, short _number);
     void set_hud();
     void set_island(short _x, short _y, QString _pixmap_name);
+    void start_stop();
 
 signals:
     //void next_tour();
@@ -100,6 +103,7 @@ public slots:
     void start_player_battle(Ship * _ship);
     //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);
     void mouse_moved();
+    void reset_timer();
 };
 
 #endif // GAME_H

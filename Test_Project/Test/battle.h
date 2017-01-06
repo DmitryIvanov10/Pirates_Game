@@ -33,6 +33,7 @@ public:
     Battle(Player * _player, Ship * _npc);
 
     void start_battle();
+    void run_away();
     void abordage();
     void kill();
     float set_morale_effect();
