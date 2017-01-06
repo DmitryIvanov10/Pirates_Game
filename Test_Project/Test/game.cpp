@@ -526,17 +526,17 @@ void Game::center_view()
     switch (player->get_sail_level())
     {
         case 0:
-            hud_img[6]->setPixmap(QPixmap(":/img/Interface/Sails/sail_none_01.png"));
+            hud_img[7]->setPixmap(QPixmap(":/img/Interface/Sails/sail_none_01.png"));
             break;
         case 1:
-            hud_img[6]->setPixmap(QPixmap(":/img/Interface/Sails/sail_half_01.png"));
+            hud_img[7]->setPixmap(QPixmap(":/img/Interface/Sails/sail_half_01.png"));
             break;
         case 2:
-            hud_img[6]->setPixmap(QPixmap(":/img/Interface/Sails/sail_full_01.png"));
+            hud_img[7]->setPixmap(QPixmap(":/img/Interface/Sails/sail_full_01.png"));
             break;
     }
-    hud_img[6]->setPos(scene_x + resolution_x - hud_img[6]->pixmap().width(),
-            scene_y + resolution_y - hud_img[6]->pixmap().height() - hud_img[0]->pixmap().height() + 108);
+    hud_img[7]->setPos(scene_x + resolution_x - hud_img[7]->pixmap().width(),
+            scene_y + resolution_y - hud_img[7]->pixmap().height() - hud_img[0]->pixmap().height() + 108);
 
     //siła wiatru
     hud_txt[0]->setPlainText(QString(QString::number(Wind::strength)));
@@ -569,6 +569,9 @@ void Game::center_view()
     //ilość złota
     hud_txt[7]->setPlainText(QString(QString::number(player->get_gold())));
     hud_txt[7]->setPos(scene_x + resolution_x/2 + 121, scene_y + resolution_y - 40);
+
+    //tekst menu
+    hud_txt[8]->setPos(scene_x + 45, scene_y + 10);
 
     //elementy tymczasowe
 
@@ -770,6 +773,13 @@ void Game::set_hud()
     hud_txt.push_back(new QGraphicsTextItem());
     hud_txt[iterate]->setPlainText(QString(QString::number(player->get_gold())));
     hud_txt[iterate]->setFont(QFont("times", 13));
+    scene->addItem(hud_txt[iterate]);
+    iterate++;
+
+    //tekst menu
+    hud_txt.push_back(new QGraphicsTextItem());
+    hud_txt[iterate]->setPlainText(QString("MENU"));
+    hud_txt[iterate]->setFont(QFont("times", 16));
     scene->addItem(hud_txt[iterate]);
     iterate++;
 
