@@ -13,7 +13,7 @@ Cargo::Cargo(short _id, short _amount)
     if (_id)
         id = _id;
     else
-        id = rand() % 11 + 1;
+        id = rand() % 12 + 1;
     set_name();
 }
 
@@ -75,6 +75,9 @@ void Cargo::set_name()
             break;
         case 11:
             name = "flour";
+            break;
+        case 12:
+            name = "corn";
             break;
     }
 }
