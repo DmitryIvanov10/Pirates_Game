@@ -286,10 +286,10 @@ release/qrc_cargo.cpp: ../Test/img/Interface/Cargo/cargo.qrc \
 		../Test/img/Interface/Cargo/mahogany_01.png \
 		../Test/img/Interface/Cargo/corn_01.png \
 		../Test/img/Interface/Cargo/fruits_01.png \
+		../Test/img/Interface/Cargo/tabacco_01.png \
 		../Test/img/Interface/Cargo/cocoa_01.png \
 		../Test/img/Interface/Cargo/rum_01.png \
-		../Test/img/Interface/Cargo/spices_01.png \
-		../Test/img/Interface/Cargo/tobacco_01.png
+		../Test/img/Interface/Cargo/spices_01.png
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name cargo ..\Test\img\Interface\Cargo\cargo.qrc -o release\qrc_cargo.cpp
 
 compiler_moc_header_make_all: release/moc_player.cpp release/moc_ship.cpp release/moc_npc.cpp release/moc_city.cpp release/moc_wind.cpp release/moc_game.cpp release/moc_island.cpp release/moc_pirate.cpp release/moc_view.cpp release/moc_battle.cpp
