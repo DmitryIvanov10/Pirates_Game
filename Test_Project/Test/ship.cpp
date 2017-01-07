@@ -21,13 +21,49 @@ void Ship::set_model_parameters()
     switch(model)
     {
         case 0:
-            model_name = "Jolly boat";
+            model_name = "Boat";
+            sprite_width = 40;
+            sprite_height = 40;
+            max_health = 5;
+            max_crew = 15;
+            initial_cannons = 0;
+            max_cannons = 0;
+            max_ammo = 0;
+            hold_size = 0;
+            max_speed = 0.4f;
+            bladewind_speed = 0.4f;
+            paddle_speed = 0.4f;
+            max_maneuverability = 2.0f;
             break;
         case 1:
             model_name = "Sloop";
+            sprite_width = 60;
+            sprite_height = 60;
+            max_health = 50;
+            max_crew = 66;
+            initial_cannons = 12;
+            max_cannons = 16;
+            max_ammo = 80;
+            hold_size = 2;
+            max_speed = 4.05f;
+            bladewind_speed = 2.355f;
+            paddle_speed = 0.9f;
+            max_maneuverability = 1.0f;
             break;
         case 2:
             model_name = "Cutter";
+            sprite_width = 60;
+            sprite_height = 60;
+            max_health = 80;
+            max_crew = 100;
+            initial_cannons = 16;
+            max_cannons = 20;
+            max_ammo = 100;
+            hold_size = 2;
+            max_speed = 3.7f;
+            bladewind_speed = 2.0f;
+            paddle_speed = 1.0f;
+            max_maneuverability = 0.9f;
             break;
         case 3:
             model_name = "Caravel";
