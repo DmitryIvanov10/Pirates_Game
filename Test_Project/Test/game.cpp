@@ -889,7 +889,7 @@ void Game::set_hud()
     iterate = 0;
 
     //tekst
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 6; i++)
     {
         menu_text.push_back(new QGraphicsTextItem());
         menu_text[i]->setFont(QFont("times", 16));
@@ -949,11 +949,18 @@ void Game::show_menu()
         menu_text[4]->setPlainText(QString("Continue"));
         scene->addItem(menu_text[4]);
         menu_text[4]->setPos(scene_x + resolution_x/2 - 40, scene_y + resolution_y/2 + 158);
+
+        menu_text[5]->setPlainText(QString("Main menu"));
+        scene->addItem(menu_text[5]);
+        menu_text[5]->setPos(scene_x + resolution_x/2 - 40, scene_y + resolution_y/2 - 205);
+
+        menu_text[5]->setDefaultTextColor(Qt::darkGray);
+        menu_text[5]->setFont(QFont("times", 12));
     }
     else
     {
         scene->removeItem(menu_bar);
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 6; i++)
             scene->removeItem(menu_text[i]);
     }
     menu_bool = !menu_bool;
