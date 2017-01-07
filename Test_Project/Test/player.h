@@ -29,7 +29,7 @@ class Player: public Ship //, public QGraphicsRectItem
     short food;
     short morale;
     short salary;
-    short one_day_salary;
+    int one_day_salary;
     int gold;
     float days_off_harbor_morale;
     float food_morale;
