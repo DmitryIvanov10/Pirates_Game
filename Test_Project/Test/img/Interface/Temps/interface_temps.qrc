@@ -5,5 +5,6 @@
         <file>temp_gold_01.png</file>
         <file>temp_health_01.png</file>
         <file>temp_morale_01.png</file>
+        <file>temp_bg_01.png</file>
     </qresource>
 </RCC>

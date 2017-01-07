@@ -154,23 +154,23 @@ void Player::set_day_salary()
     switch(salary)
     {
         case 1:
-            one_day_salary = crew * 1;
+            one_day_salary = crew * 0.1;
             salary_morale = 0.2f;
             break;
         case 2:
-            one_day_salary = crew * 3;
+            one_day_salary = crew * 0.2;
             salary_morale = 0.6f;
             break;
         case 3:
-            one_day_salary = crew * 5;
+            one_day_salary = crew * 0.5;
             salary_morale = 1.0f;
             break;
         case 4:
-            one_day_salary = crew * 8;
+            one_day_salary = crew * 1.2;
             salary_morale = 1.6f;
             break;
         case 5:
-            one_day_salary = crew * 10;
+            one_day_salary = crew * 3;
             salary_morale = 2.0f;
             break;
     }
@@ -225,9 +225,31 @@ int Player::get_gold()
     return gold;
 }
 
+short Player::get_daily_food()
+{
+    return one_day_food;
+}
+
+short Player::get_max_food()
+{
+    return max_food;
+}
+
+short Player::get_salary()
+{
+    return salary;
+}
+
+int Player::get_daily_salary()
+{
+    return one_day_salary;
+}
+
 void Player::next_day()
 {
     day++;
+    set_day_salary();
+    gold -= one_day_salary;
     if (model)
     {
         one_day_food = ceil(double(crew) / 15);
