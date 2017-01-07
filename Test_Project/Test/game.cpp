@@ -558,6 +558,7 @@ void Game::center_view()
         if(iterate < player->get_hold_size())
         {
             hud_cargo_img[iterate]->setPixmap(QPixmap(":/" + player->get_goods()[iterate]->get_name() + "_01.png"));
+            hud_cargo_txt[iterate]->setPlainText(QString(QString::number(player->get_goods()[iterate]->get_amount())));
             if(iterate == 0)
             {
                 hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  - 253, scene_y + 61);
