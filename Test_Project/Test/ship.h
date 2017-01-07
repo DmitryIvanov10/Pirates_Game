@@ -60,8 +60,11 @@ protected:
 
 public:
     //konstruktory
-    Ship(double _x, double _y, short _model); //konstruktor tworzący okręt w położeniu x, y o modelu statku ship
-    Ship(); //bezargumentowy, raczej nie będzie używany
+    //Ship(double _x, double _y, short _model); //konstruktor tworzący okręt w położeniu x, y o modelu statku ship
+    //Ship(); //bezargumentowy, raczej nie będzie używany
+
+    //destructor
+    virtual ~Ship();
 
     //fukncje dostępu
     double pos (bool i); //funckja zwracająca aktualną pozycję statku dla i=0 x, dla i=1 y

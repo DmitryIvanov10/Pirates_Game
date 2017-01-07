@@ -35,7 +35,7 @@ public:
     Pirate(short _start_id);
 
     //destructor
-    ~Pirate();
+    virtual ~Pirate();
 
     //funkcje dostępu
     short show_fraction(); //funkcja wyświetlająca frakcję jednostki

@@ -1,7 +1,7 @@
 #include "ship.h"
 #include <QDebug>
 
-Ship::Ship(double _x, double _y, short _model)
+/*Ship::Ship(double _x, double _y, short _model)
 {
     X=_x;
     Y=_y;
@@ -9,7 +9,12 @@ Ship::Ship(double _x, double _y, short _model)
     set_model_parameters();
 }
 
-Ship::Ship() : Ship::Ship(0, 0, 1) {}
+Ship::Ship() : Ship::Ship(0, 0, 1) {}*/
+
+Ship::~Ship()
+{
+    //qDebug() << "Ship deleted.";
+}
 
 void Ship::set_model_parameters()
 {

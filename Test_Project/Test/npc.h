@@ -37,7 +37,7 @@ public:
     NPC(double _x, double _y, short _model);
 
     //destructor
-    ~NPC();
+    virtual ~NPC();
 
     //funkcje dostępu
     void find_next (); //funkcja znajdująca kolejny wierzchołek voronoi
