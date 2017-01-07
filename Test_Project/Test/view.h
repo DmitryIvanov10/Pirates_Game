@@ -27,7 +27,8 @@ public:
 
 signals:
     void mouse_moved();
-    void mouse_pressed();
+    void mouse_left_pressed();
+    void mouse_right_pressed();
     void mouse_released();
 
 public slots:

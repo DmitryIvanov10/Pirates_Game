@@ -51,7 +51,7 @@ Game::Game(QObject *parent) : QObject(parent)
     // ruchy myszki
     connect (view, SIGNAL(mouse_moved()), this, SLOT(mouse_moved()));
     // kliknięcia myszki
-    connect(view, SIGNAL(mouse_pressed()), this, SLOT(mouse_pressed()));
+    connect(view, SIGNAL(mouse_left_pressed()), this, SLOT(mouse_pressed()));
     // klawisz escape
     connect(player, SIGNAL(esc_pressed()), this, SLOT(esc_pressed()));
     // renew npc list (up to 30)
@@ -523,6 +523,78 @@ void Game::center_view()
     hud_txt[9]->setPos(scene_x + 45, scene_y + 10);
 
 
+    //stan ładowni
+    for(int iterate = 0; iterate < 7; iterate++)
+    {
+        if(iterate == 0)
+        {
+            hud_cargo_img[iterate]->setPos(scene_x + resolution_x/2  - 321, scene_y);
+        }
+        if(iterate == 1)
+        {
+            hud_cargo_img[iterate]->setPos(scene_x + resolution_x/2 - 234, scene_y);
+        }
+        if(iterate == 2)
+        {
+            hud_cargo_img[iterate]->setPos(scene_x + resolution_x/2 - 146, scene_y);
+        }
+        if(iterate == 3)
+        {
+            hud_cargo_img[iterate]->setPos(scene_x + resolution_x/2 - 58, scene_y);
+        }
+        if(iterate == 4)
+        {
+            hud_cargo_img[iterate]->setPos(scene_x + resolution_x/2 + 30, scene_y);
+        }
+        if(iterate == 5)
+        {
+            hud_cargo_img[iterate]->setPos(scene_x + resolution_x/2 + 118, scene_y);
+        }
+        if(iterate == 6)
+        {
+            hud_cargo_img[iterate]->setPos(scene_x + resolution_x/2 + 206, scene_y);
+        }
+
+        if(iterate < player->get_hold_size())
+        {
+            hud_cargo_img[iterate]->setPixmap(QPixmap(":/" + player->get_goods()[iterate]->get_name() + "_01.png"));
+            if(iterate == 0)
+            {
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  - 253, scene_y + 61);
+            }
+            if(iterate == 1)
+            {
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  - 166, scene_y + 61);
+            }
+            if(iterate == 2)
+            {
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  - 78, scene_y + 61);
+            }
+            if(iterate == 3)
+            {
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 12, scene_y + 61);
+            }
+            if(iterate == 4)
+            {
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 100, scene_y + 61);
+            }
+            if(iterate == 5)
+            {
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 188, scene_y + 61);
+            }
+            if(iterate == 6)
+            {
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 276, scene_y + 61);
+            }
+        }
+        else
+        {
+            hud_cargo_img[iterate]->setPixmap(QPixmap(":/pedlock_03.png"));
+            hud_cargo_txt[iterate]->setPos(0, 0);
+        }
+    }
+
+
     //elementy tymczasowe
     //stan zdrowia
     if (hud_temp_bool[0])
@@ -786,6 +858,32 @@ void Game::set_hud()
     hud_txt[iterate]->setFont(QFont("times", 16));
     scene->addItem(hud_txt[iterate]);
     iterate++;
+
+    //wypełnianie ładowni
+    for(int i = 0; i < 7; i++)
+    {
+        if(i < player->get_hold_size())
+        {
+            hud_cargo_img.push_back(new QGraphicsPixmapItem());
+            hud_cargo_img[i]->setPixmap(QPixmap(":/" + player->get_goods()[i]->get_name() + "_01.png"));
+            scene->addItem(hud_cargo_img[i]);
+            hud_cargo_txt.push_back(new QGraphicsTextItem());
+            hud_cargo_txt[i]->setPlainText(QString(QString::number(player->get_goods()[i]->get_amount())));
+            hud_cargo_txt[i]->setFont(QFont("times", 11));
+            scene->addItem(hud_cargo_txt[i]);
+        }
+        else
+        {
+            hud_cargo_img.push_back(new QGraphicsPixmapItem());
+            hud_cargo_img[i]->setPixmap(QPixmap(":/pedlock_03.png"));
+            scene->addItem(hud_cargo_img[i]);
+            hud_cargo_txt.push_back(new QGraphicsTextItem());
+            hud_cargo_txt[i]->setPlainText(QString("wartosc"));
+            hud_cargo_txt[i]->setFont(QFont("times", 11));
+            scene->addItem(hud_cargo_txt[i]);
+        }
+    }
+
 
     //elementy graficzne tymczasowe, odpowiadające im elementy tekstowe i bool'owskie
     iterate = 0;
@@ -1053,17 +1151,58 @@ void Game::mouse_moved()
     if (view->get_x() > resolution_x/2 - 310 && view->get_x() < resolution_x/2 -220 && view->get_y() > 10 && view->get_y() < 80)
     {
         hud_temp_bool[5] = 1;
-        hud_temp_txt[5]->setPlainText(QString(player->get_goods()[0]->get_name()));
+        if (player->get_hold_size())
+            hud_temp_txt[5]->setPlainText(QString(player->get_goods()[0]->get_name()));
+        else
+            hud_temp_txt[5]->setPlainText(QString("locked slot"));
     }
     else if (view->get_x() > resolution_x/2 - 215 && view->get_x() < resolution_x/2 -135 && view->get_y() > 10 && view->get_y() < 80)
     {
         hud_temp_bool[5] = 1;
-        hud_temp_txt[5]->setPlainText(QString(player->get_goods()[1]->get_name()));
+        if (player->get_hold_size() > 1)
+            hud_temp_txt[5]->setPlainText(QString(player->get_goods()[1]->get_name()));
+        else
+            hud_temp_txt[5]->setPlainText(QString("locked slot"));
     }
     else if (view->get_x() > resolution_x/2 - 130 && view->get_x() < resolution_x/2 - 50 && view->get_y() > 10 && view->get_y() < 80)
     {
         hud_temp_bool[5] = 1;
-        hud_temp_txt[5]->setPlainText(QString(player->get_goods()[2]->get_name()));
+        if (player->get_hold_size() > 2)
+            hud_temp_txt[5]->setPlainText(QString(player->get_goods()[2]->get_name()));
+        else
+            hud_temp_txt[5]->setPlainText(QString("locked slot"));
+    }
+    else if (view->get_x() > resolution_x/2 - 50 && view->get_x() < resolution_x/2 +35 && view->get_y() > 10 && view->get_y() < 80)
+    {
+        hud_temp_bool[5] = 1;
+        if (player->get_hold_size() > 3)
+            hud_temp_txt[5]->setPlainText(QString(player->get_goods()[3]->get_name()));
+        else
+            hud_temp_txt[5]->setPlainText(QString("locked slot"));
+    }
+    else if (view->get_x() > resolution_x/2 + 35 && view->get_x() < resolution_x/2 + 123 && view->get_y() > 10 && view->get_y() < 80)
+    {
+        hud_temp_bool[5] = 1;
+        if (player->get_hold_size() > 4)
+            hud_temp_txt[5]->setPlainText(QString(player->get_goods()[5]->get_name()));
+        else
+            hud_temp_txt[5]->setPlainText(QString("locked slot"));
+    }
+    else if (view->get_x() > resolution_x/2 + 123 && view->get_x() < resolution_x/2 + 211 && view->get_y() > 10 && view->get_y() < 80)
+    {
+        hud_temp_bool[5] = 1;
+        if (player->get_hold_size() > 5)
+            hud_temp_txt[5]->setPlainText(QString(player->get_goods()[6]->get_name()));
+        else
+            hud_temp_txt[5]->setPlainText(QString("locked slot"));
+    }
+    else if (view->get_x() > resolution_x/2 + 211 && view->get_x() < resolution_x/2 + 299 && view->get_y() > 10 && view->get_y() < 80)
+    {
+        hud_temp_bool[5] = 1;
+        if (player->get_hold_size() > 6)
+            hud_temp_txt[5]->setPlainText(QString(player->get_goods()[6]->get_name()));
+        else
+            hud_temp_txt[5]->setPlainText(QString("locked slot"));
     }
 
     //obszar prawego górnego HUD'u

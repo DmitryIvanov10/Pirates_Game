@@ -53,6 +53,8 @@ class Game : public QObject
     std::vector<QGraphicsTextItem *> hud_temp_txt; //elementy tekstowe pojawiające się na scenie tymczasowo
     std::vector<bool> hud_temp_bool; //informacja o użytkowaniu danego elementu tymczasowego
     QGraphicsRectItem * map_rect; //prostokącik na mapie
+    std::vector<QGraphicsPixmapItem *> hud_cargo_img; //obrazki towarów w ładowni
+    std::vector<QGraphicsTextItem *> hud_cargo_txt; //tekst odpowiadający towarom
 
     QGraphicsPixmapItem * menu_bar = new QGraphicsPixmapItem(); //grafika menu
     std::vector<QGraphicsTextItem *> menu_text; //tekst menu
