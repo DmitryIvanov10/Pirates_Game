@@ -13,8 +13,8 @@ Game::Game(QObject *parent) : QObject(parent)
     {
         npc_ships.push_back(new NPC());
         scene->addItem(npc_ships[i]);
-        connect(npc_ships[i], SIGNAL(delete_npc(npc_ships[i])),
-                this, SLOT(delete_npc(npc_ships[i])));
+        connect(npc_ships[i], SIGNAL(delete_npc(NPC *)),
+                this, SLOT(delete_npc(NPC *)));
     }
 
     // create wind to put into the scene
@@ -50,7 +50,7 @@ Game::Game(QObject *parent) : QObject(parent)
     // ruchy myszki
     connect (view, SIGNAL(mouse_moved()), this, SLOT(mouse_moved()));
     //kliknięcia myszki
-    connect(view, SIGNAL(mouse_pressed()), this, SLOT(mose_pressed()));
+    connect(view, SIGNAL(mouse_pressed()), this, SLOT(mouse_pressed()));
     //klawisz escape
     connect(player, SIGNAL(esc_pressed()), this, SLOT(esc_pressed()));
 
@@ -585,13 +585,17 @@ void Game::center_view()
 void Game::start_player_battle(Ship *_ship)
 {
     start_stop();
-
-    battles.push_back(new Battle(player, _ship));
-    connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
+    if (!player_at_battle)
+    {
+        player_at_battle = true;
+        battles.push_back(new Battle(player, _ship));
+        connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
+    }
 }
 
 void Game::end_player_battle()
 {
+    player_at_battle = false;
     start_stop();
 }
 
@@ -891,13 +895,13 @@ void Game::mouse_moved()
         hud_txt[hud_txt.size()-1]->setDefaultTextColor(Qt::black);
 }
 
-void Game::mose_pressed()
+void Game::mouse_pressed()
 {
     if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {
         show_menu();
     }
-    qDebug() << "click";
+    //qDebug() << "click";
 }
 
 void Game::reset_timer()

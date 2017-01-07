@@ -13,6 +13,7 @@ Player::Player()
     crew = 0.75 * max_crew;
     cannons = initial_cannons;
     ammo = 0.5 * max_ammo;
+    maneuverability = max_maneuverability;
     set_angle(90);
     sail_level = 1;
     //morale = 100;

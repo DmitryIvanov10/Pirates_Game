@@ -71,6 +71,7 @@ class Game : public QObject
     double scene_y = player->get_y()-resolution_y/2; //położenie widoku y
 
     bool pause = 0; //if game is paused
+    bool player_at_battle = 0; //if player is in a battle
     bool menu_bool = 0; //czy menu jest włączone
 
 public:
@@ -108,7 +109,7 @@ public slots:
     void end_player_battle();
     //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);
     void mouse_moved();
-    void mose_pressed();
+    void mouse_pressed();
     void reset_timer();
     void delete_npc(NPC * _ship);
     //void delete_pirate(Pirate * _ship);

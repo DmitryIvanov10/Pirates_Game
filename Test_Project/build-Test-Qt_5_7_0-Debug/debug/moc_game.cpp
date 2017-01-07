@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Game_t {
     QByteArrayData data[16];
-    char stringdata0[166];
+    char stringdata0[167];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,17 +40,17 @@ QT_MOC_LITERAL(7, 71, 5), // "Ship*"
 QT_MOC_LITERAL(8, 77, 5), // "_ship"
 QT_MOC_LITERAL(9, 83, 17), // "end_player_battle"
 QT_MOC_LITERAL(10, 101, 11), // "mouse_moved"
-QT_MOC_LITERAL(11, 113, 12), // "mose_pressed"
-QT_MOC_LITERAL(12, 126, 11), // "reset_timer"
-QT_MOC_LITERAL(13, 138, 10), // "delete_npc"
-QT_MOC_LITERAL(14, 149, 4), // "NPC*"
-QT_MOC_LITERAL(15, 154, 11) // "esc_pressed"
+QT_MOC_LITERAL(11, 113, 13), // "mouse_pressed"
+QT_MOC_LITERAL(12, 127, 11), // "reset_timer"
+QT_MOC_LITERAL(13, 139, 10), // "delete_npc"
+QT_MOC_LITERAL(14, 150, 4), // "NPC*"
+QT_MOC_LITERAL(15, 155, 11) // "esc_pressed"
 
     },
     "Game\0new_day\0\0count_days\0update_states\0"
     "center_view\0start_player_battle\0Ship*\0"
     "_ship\0end_player_battle\0mouse_moved\0"
-    "mose_pressed\0reset_timer\0delete_npc\0"
+    "mouse_pressed\0reset_timer\0delete_npc\0"
     "NPC*\0esc_pressed"
 };
 #undef QT_MOC_LITERAL
@@ -114,7 +114,7 @@ void Game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 4: _t->start_player_battle((*reinterpret_cast< Ship*(*)>(_a[1]))); break;
         case 5: _t->end_player_battle(); break;
         case 6: _t->mouse_moved(); break;
-        case 7: _t->mose_pressed(); break;
+        case 7: _t->mouse_pressed(); break;
         case 8: _t->reset_timer(); break;
         case 9: _t->delete_npc((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
         case 10: _t->esc_pressed(); break;
