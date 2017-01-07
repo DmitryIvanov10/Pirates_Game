@@ -44,19 +44,23 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         case Qt::Key_A:
         case Qt::Key_Left:
-            set_angle(angle+2);
+            if (!in_battle)
+                set_angle(angle+2);
             break;
         case Qt::Key_D:
         case Qt::Key_Right:
-            set_angle(angle-2);
+            if (!in_battle)
+                set_angle(angle-2);
             break;
         case Qt::Key_W:
         case Qt::Key_Up:
-            set_sail_level(1);
+            if (!in_battle)
+                set_sail_level(1);
             break;
         case Qt::Key_S:
         case Qt::Key_Down:
-            set_sail_level(0);
+            if (!in_battle)
+                set_sail_level(0);
             break;
         case Qt::Key_Space:
             colliding_items = collidingItems();

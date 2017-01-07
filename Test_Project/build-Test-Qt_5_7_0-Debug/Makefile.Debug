@@ -254,7 +254,8 @@ debug/qrc_interface_temps.cpp: ../Test/img/Interface/Temps/interface_temps.qrc \
 		../Test/img/Interface/Temps/temp_health_01.png \
 		../Test/img/Interface/Temps/temp_crue_01.png \
 		../Test/img/Interface/Temps/temp_food_01.png \
-		../Test/img/Interface/Temps/temp_gold_01.png
+		../Test/img/Interface/Temps/temp_gold_01.png \
+		../Test/img/Interface/Temps/temp_bg_01.png
 	C:\Qt\5.7\mingw53_32\bin\rcc.exe -name interface_temps ..\Test\img\Interface\Temps\interface_temps.qrc -o debug\qrc_interface_temps.cpp
 
 debug/qrc_interface_hud.cpp: ../Test/img/Interface/HUD/interface_hud.qrc \
@@ -848,6 +849,19 @@ debug/moc_game.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QImage \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QBrush \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QPointF \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QApplication \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qcursor.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpalette.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontmetrics.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontinfo.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qinputmethod.h \
 		../Test/npc.h \
 		../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
@@ -866,15 +880,9 @@ debug/moc_game.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpainter.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtextoption.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qfontinfo.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qfontmetrics.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/qwidget.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpalette.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qcursor.h \
 		../Test/battle.h \
 		../Test/game.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
@@ -2106,6 +2114,19 @@ debug/game.o: ../Test/game.cpp ../Test/game.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QImage \
 		C:/Qt/5.7/mingw53_32/include/QtGui/QBrush \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QPointF \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/QApplication \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.7/mingw53_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qcursor.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qpalette.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontmetrics.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qfontinfo.h \
+		C:/Qt/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.7/mingw53_32/include/QtGui/qinputmethod.h \
 		../Test/npc.h \
 		../Test/ship.h \
 		C:/Qt/5.7/mingw53_32/include/QtCore/QString \
@@ -2124,15 +2145,9 @@ debug/game.o: ../Test/game.cpp ../Test/game.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qpainter.h \
 		C:/Qt/5.7/mingw53_32/include/QtGui/qtextoption.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qfontinfo.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qfontmetrics.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/qwidget.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qpalette.h \
-		C:/Qt/5.7/mingw53_32/include/QtWidgets/qsizepolicy.h \
-		C:/Qt/5.7/mingw53_32/include/QtGui/qcursor.h \
 		../Test/battle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\game.o ..\Test\game.cpp
 

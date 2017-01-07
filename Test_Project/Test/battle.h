@@ -50,6 +50,8 @@ public:
     void next_move_sea(Ship *_ship1, Ship *_ship2);
     void next_move_abordage(Ship *_ship1, Ship *_ship2);
 
+    void change_back_type(Ship * _ship);
+
 signals:
     void finish_battle();
 

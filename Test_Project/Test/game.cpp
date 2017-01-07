@@ -638,7 +638,7 @@ void Game::end_player_battle()
     player->in_battle = false;
     player_at_battle = false;
     start_stop();
-    create_new_npc();
+    //create_new_npc();
 }
 
 short Game::get_neighbour(short _id, short _number)
@@ -1090,6 +1090,8 @@ void Game::mouse_moved()
 
 void Game::mouse_pressed()
 {
+    qDebug() << npc_ships.size() << " NPC in the game";
+
     //obszar przycisku menu
     if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {
@@ -1117,6 +1119,7 @@ void Game::delete_npc(NPC *_ship)
 {
     scene->removeItem(_ship->flag);
     scene->removeItem(_ship);
+    create_new_npc();
 }
 
 void Game::esc_pressed()
