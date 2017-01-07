@@ -53,6 +53,10 @@ public:
     short get_morale();
     short get_food();
     int get_gold();
+    int get_daily_salary();
+    short get_daily_food();
+    short get_max_food();
+    short get_salary();
     void set_day_salary();
     void set_morale();
     void revolt();

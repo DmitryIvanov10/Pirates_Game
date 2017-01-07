@@ -260,7 +260,8 @@ release/qrc_interface_temps.cpp: ../Test/img/Interface/Temps/interface_temps.qrc
 		../Test/img/Interface/Temps/temp_health_01.png \
 		../Test/img/Interface/Temps/temp_crue_01.png \
 		../Test/img/Interface/Temps/temp_food_01.png \
-		../Test/img/Interface/Temps/temp_gold_01.png
+		../Test/img/Interface/Temps/temp_gold_01.png \
+		../Test/img/Interface/Temps/temp_bg_01.png
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name interface_temps ..\Test\img\Interface\Temps\interface_temps.qrc -o release\qrc_interface_temps.cpp
 
 release/qrc_interface_hud.cpp: ../Test/img/Interface/HUD/interface_hud.qrc \
@@ -877,6 +878,19 @@ release/moc_game.cpp: ../../../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/QImage \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/QBrush \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QPointF \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		../Test/npc.h \
 		../Test/ship.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QString \
@@ -895,15 +909,9 @@ release/moc_game.cpp: ../../../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qgraphicsview.h \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/qpainter.h \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qscrollarea.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
-		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
-		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
 		../Test/battle.h \
 		../Test/game.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -I"C:/Git/Pirates game/Test_Project/Test" -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore -I. ..\Test\game.h -o release\moc_game.cpp
@@ -2189,6 +2197,19 @@ release/game.o: ../Test/game.cpp ../Test/game.h \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/QImage \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/QBrush \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QPointF \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		../Test/npc.h \
 		../Test/ship.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/QString \
@@ -2207,15 +2228,9 @@ release/game.o: ../Test/game.cpp ../Test/game.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qgraphicsview.h \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/qpainter.h \
 		../../../../Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/qfontinfo.h \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/qfontmetrics.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qscrollarea.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
 		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
-		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/qpalette.h \
-		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qsizepolicy.h \
-		../../../../Qt/5.5/mingw492_32/include/QtGui/qcursor.h \
 		../Test/battle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\game.o ..\Test\game.cpp
 

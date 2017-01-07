@@ -225,9 +225,31 @@ int Player::get_gold()
     return gold;
 }
 
+short Player::get_daily_food()
+{
+    return one_day_food;
+}
+
+short Player::get_max_food()
+{
+    return max_food;
+}
+
+short Player::get_salary()
+{
+    return salary;
+}
+
+int Player::get_daily_salary()
+{
+    return one_day_salary;
+}
+
 void Player::next_day()
 {
     day++;
+    set_day_salary();
+    gold -= one_day_salary;
     if (model)
     {
         one_day_food = ceil(double(crew) / 15);
@@ -235,9 +257,6 @@ void Player::next_day()
             food -= one_day_food;
         else
             food = 0;
-
-        set_day_salary();
-        gold -= one_day_salary;
 
         set_morale();
 
