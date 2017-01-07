@@ -26,6 +26,7 @@ class Battle: public QObject
 
     float recharge_1;
     float recharge_2;
+    short player_morale;
     float morale_effect_1;
     float morale_effect_2;
     short round_ammo_shot_1;
@@ -39,18 +40,25 @@ public:
     Battle(QObject *parent = 0);
     Battle(Player * _player, Ship * _npc);
 
-    void start_battle();
-    void run_away(Ship * _ship);
-    void loose(Ship * _ship);
-    void abordage(Ship *_ship1, Ship *_ship2);
-    void kill(Ship * _ship);
     float set_morale_effect();
     float set_morale_effect(short _morale);
 
-    void next_move_sea(Ship *_ship1, Ship *_ship2);
-    void next_move_abordage(Ship *_ship1, Ship *_ship2);
+    void start_battle();
 
-    void change_back_type(Ship * _ship);
+    void kill();
+    void win_abordage();
+    void run_away();
+    void loose();
+
+    void abordage();
+
+    void next_move_sea();
+    void next_move_abordage();
+
+    void get_goods();
+    void change_crew(bool i);
+
+    //void change_back_type(Ship * _ship);
 
 signals:
     void finish_battle();

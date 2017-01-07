@@ -630,6 +630,7 @@ void Game::start_player_battle(Ship *_ship)
         player->in_battle = true;
         battles.push_back(new Battle(player, _ship));
         connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
+        connect(battles[battles.size()-1], SIGNAL(finish_battle()), _ship, SLOT(reset()));
     }
 }
 
@@ -1119,7 +1120,7 @@ void Game::delete_npc(NPC *_ship)
 {
     scene->removeItem(_ship->flag);
     scene->removeItem(_ship);
-    create_new_npc();
+    //create_new_npc();
 }
 
 void Game::esc_pressed()

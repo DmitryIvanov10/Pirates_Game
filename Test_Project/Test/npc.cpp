@@ -6,7 +6,8 @@ NPC::NPC() : NPC::NPC(0, 0) {}
 NPC::NPC(short _start_id, short _finish_id)
 {
     //qDebug() <<"Created new NPC!";
-    model = rand() % 2 + 3;
+    reset();
+    /*model = rand() % 2 + 3;
     set_model_parameters();
     health = random_value(max_health);
     crew = random_value(short(max_crew*0.25), short(max_crew*0.75));
@@ -44,7 +45,7 @@ NPC::NPC(short _start_id, short _finish_id)
 
     //qDebug() <<"Current location: " << current_location;
     //qDebug() <<"Target location: " << target_location;
-    find_next();
+    find_next();*/
 }
 
 /*NPC::NPC(double _x, double _y, short _model)
@@ -267,6 +268,9 @@ bool NPC::get_state()
 
 void NPC::set_cargo()
 {
+    while (goods.size() > 0)
+        goods.pop_back();
+
     for (int i=0; i<hold_size; i++)
     {
         goods.push_back(new Cargo());
@@ -298,8 +302,42 @@ void NPC::move_to_next_location()
         else
         {
             //qDebug() <<"NPC is at target location: " << next_location;
-            delete this;
+            //delete this;
+            reset();
         }
     }
+}
+
+void NPC::reset()
+{
+    //qDebug() <<"Reseted NPC!";
+    current_location = rand()%(Voronoi_points::map.size()-1) + 1;
+    do
+    {
+        target_location = rand()%(Voronoi_points::map.size()-1) + 1;
+    }
+    while (target_location == current_location);
+
+    X = Voronoi_points::map[current_location].get_x();
+    Y = Voronoi_points::map[current_location].get_y();
+
+    model = rand() % 2 + 3;
+    set_model_parameters();
+    health = random_value(max_health);
+    crew = random_value(short(max_crew*0.25), short(max_crew*0.75));
+    cannons = initial_cannons;
+    ammo = random_value(short(max_ammo*0.25), short(max_ammo*0.5));
+    maneuverability = max_maneuverability;
+
+    // set cargo
+    set_cargo();
+
+    sail_level = 1;
+    fraction=rand()%4 + 1;
+    active = false;
+
+    set_flag();
+
+    find_next();
 }
 

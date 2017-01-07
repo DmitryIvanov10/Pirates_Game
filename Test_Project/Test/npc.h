@@ -54,6 +54,7 @@ signals:
 
 public slots:
     void move_to_next_location();
+    void reset();
 };
 
 #endif // NPC_H

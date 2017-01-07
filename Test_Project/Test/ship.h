@@ -47,9 +47,6 @@ protected:
     short ammo; //ilość amunicji na statku
     short hold_size; //rozmiar łądowni
 
-    //zmienne typu vector klasy Ship
-    std:: vector <Cargo *> goods; //towary, przewożone przez statek
-
     //lista zimennych typu double klasy Ship
     double X; //aktualna pozycja x
     double Y; //aktualna pozycja y
@@ -62,6 +59,7 @@ public:
     //konstruktory
     //Ship(double _x, double _y, short _model); //konstruktor tworzący okręt w położeniu x, y o modelu statku ship
     //Ship(); //bezargumentowy, raczej nie będzie używany
+    std:: vector <Cargo *> goods; //towary, przewożone przez statek
 
     //destructor
     virtual ~Ship();
