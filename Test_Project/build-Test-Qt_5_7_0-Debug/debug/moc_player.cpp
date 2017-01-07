@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Player_t {
-    QByteArrayData data[10];
-    char stringdata0[95];
+    QByteArrayData data[12];
+    char stringdata0[109];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,12 +38,15 @@ QT_MOC_LITERAL(5, 33, 11), // "esc_pressed"
 QT_MOC_LITERAL(6, 45, 7), // "do_tour"
 QT_MOC_LITERAL(7, 53, 8), // "next_day"
 QT_MOC_LITERAL(8, 62, 26), // "set_days_off_harbor_morale"
-QT_MOC_LITERAL(9, 89, 5) // "value"
+QT_MOC_LITERAL(9, 89, 5), // "value"
+QT_MOC_LITERAL(10, 95, 7), // "on_boat"
+QT_MOC_LITERAL(11, 103, 5) // "_crew"
 
     },
     "Player\0start_battle\0\0Ship*\0_ship\0"
     "esc_pressed\0do_tour\0next_day\0"
-    "set_days_off_harbor_morale\0value"
+    "set_days_off_harbor_morale\0value\0"
+    "on_boat\0_crew"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,7 +56,7 @@ static const uint qt_meta_data_Player[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,13 +64,14 @@ static const uint qt_meta_data_Player[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   39,    2, 0x06 /* Public */,
-       5,    0,   42,    2, 0x06 /* Public */,
+       1,    1,   44,    2, 0x06 /* Public */,
+       5,    0,   47,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    0,   43,    2, 0x0a /* Public */,
-       7,    0,   44,    2, 0x0a /* Public */,
-       8,    1,   45,    2, 0x0a /* Public */,
+       6,    0,   48,    2, 0x0a /* Public */,
+       7,    0,   49,    2, 0x0a /* Public */,
+       8,    1,   50,    2, 0x0a /* Public */,
+      10,    1,   53,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -77,6 +81,7 @@ static const uint qt_meta_data_Player[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Float,    9,
+    QMetaType::Void, QMetaType::Short,   11,
 
        0        // eod
 };
@@ -92,6 +97,7 @@ void Player::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 2: _t->do_tour(); break;
         case 3: _t->next_day(); break;
         case 4: _t->set_days_off_harbor_morale((*reinterpret_cast< float(*)>(_a[1]))); break;
+        case 5: _t->on_boat((*reinterpret_cast< short(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -150,13 +156,13 @@ int Player::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

@@ -66,6 +66,7 @@ public slots:
     void do_tour();
     void next_day();
     void set_days_off_harbor_morale(float value);
+    void on_boat(short _crew);
 
 signals:
     void start_battle(Ship * _ship);

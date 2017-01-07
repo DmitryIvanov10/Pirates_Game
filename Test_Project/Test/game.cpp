@@ -704,6 +704,7 @@ void Game::start_player_battle(Ship *_ship)
         battles.push_back(new Battle(player, _ship));
         connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
         connect(battles[battles.size()-1], SIGNAL(finish_battle()), _ship, SLOT(reset()));
+        connect(battles[battles.size()-1], SIGNAL(lost(short)), player, SLOT(on_boat(short)));
     }
 }
 

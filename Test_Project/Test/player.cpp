@@ -202,17 +202,7 @@ void Player::set_morale()
 void Player::revolt()
 {
     qDebug() << "Revolt";
-    model = 0;
-    set_model_parameters();
-    health = max_health;
-    crew = crew / 3;
-    if (crew > max_crew)
-        crew = max_crew;
-    ammo = 0;
-    food = 0;
-    morale = 0;
-    salary = 1;
-    cannons = 0;
+    on_boat(crew / 3);
 }
 
 short Player::get_morale()
@@ -246,6 +236,22 @@ void Player::set_days_off_harbor_morale(float value)
     set_morale();
 }
 
+void Player::on_boat(short _crew)
+{
+    model = 0;
+    set_model_parameters();
+    set_sprite_angle();
+    health = max_health;
+    crew = _crew;
+    if (crew > max_crew)
+        crew = max_crew;
+    ammo = 0;
+    food = 0;
+    morale = 0;
+    salary = 1;
+    cannons = 0;
+}
+
 int Player::get_daily_salary()
 {
     return one_day_salary;
@@ -267,17 +273,19 @@ void Player::next_day()
         set_morale();
 
         if (morale < 0)
+        {
+            short revolt_probability = rand()%101;
             if (morale >= -50)
             {
-                if (rand()%101 <= (rand()%(-morale) + 1))
+                if (revolt_probability <= (rand()%(-morale) + 1))
                 {
                     qDebug() << "Day " << day;
                     revolt();
                 }
             } else
-                if (morale >= -100)
+                if (morale > -100)
                 {
-                    if (rand()%101 <= (rand()%(-morale - 9) + 20))
+                    if (revolt_probability <= (rand()%(-morale - 9) + 20))
                     {
                         qDebug() << "Day " << day;
                         revolt();
@@ -288,5 +296,6 @@ void Player::next_day()
                     qDebug() << "Day " << day;
                     revolt();
                 }
+        }
     }
 }

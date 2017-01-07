@@ -92,6 +92,7 @@ void Battle::loose()
 {
     //change_back_type(ship2);
     qDebug() << "Lost abordage or got drown";
+    emit lost(ship1->get_crew());
     emit finish_battle();
 }
 
