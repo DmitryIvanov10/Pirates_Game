@@ -43,6 +43,7 @@ public:
 
     //zmienne publiczne
     QGraphicsPixmapItem * probe = new QGraphicsPixmapItem;
+    bool in_battle;
     static std::vector<QPointF> island_coordinates;
 
     //funkcje dostępu

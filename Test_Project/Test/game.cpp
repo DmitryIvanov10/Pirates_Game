@@ -8,13 +8,14 @@ Game::Game(QObject *parent) : QObject(parent)
     // create map
     new_game();
 
-    // create NPCs ships and add them to the list of NPC ships
+    // create NPCs ships
     for (int i = 0; i < start_npc_amount; i++)
     {
-        npc_ships.push_back(new NPC());
+        create_new_npc();
+        /*npc_ships.push_back(new NPC());
         scene->addItem(npc_ships[i]);
-        connect(npc_ships[i], SIGNAL(delete_npc(npc_ships[i])),
-                this, SLOT(delete_npc(npc_ships[i])));
+        connect(npc_ships[i], SIGNAL(delete_npc(NPC *)),
+                this, SLOT(delete_npc(NPC *)));*/
     }
 
     // create wind to put into the scene
@@ -26,11 +27,11 @@ Game::Game(QObject *parent) : QObject(parent)
     player->setFocus();
 
     // update all NPC ships
-    foreach (NPC * npc_ship, npc_ships)
+    /*foreach (NPC * npc_ship, npc_ships)
     {
         connect (timer, SIGNAL(timeout()), npc_ship, SLOT(move_to_next_location()));
         scene->addItem(npc_ship->flag);
-    }
+    }*/
 
     //make HUD
     set_hud();
@@ -49,10 +50,12 @@ Game::Game(QObject *parent) : QObject(parent)
     connect (this, SIGNAL(new_day()), player, SLOT(next_day()));
     // ruchy myszki
     connect (view, SIGNAL(mouse_moved()), this, SLOT(mouse_moved()));
-    //kliknięcia myszki
+    // kliknięcia myszki
     connect(view, SIGNAL(mouse_pressed()), this, SLOT(mouse_pressed()));
-    //klawisz escape
+    // klawisz escape
     connect(player, SIGNAL(esc_pressed()), this, SLOT(esc_pressed()));
+    // renew npc list (up to 30)
+    //connect(timer, SIGNAL(timeout()), this, SLOT(create_new_npc()));
 
     connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));    
 
@@ -585,14 +588,21 @@ void Game::center_view()
 void Game::start_player_battle(Ship *_ship)
 {
     start_stop();
-
-    battles.push_back(new Battle(player, _ship));
-    connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
+    if (!player_at_battle)
+    {
+        player_at_battle = true;
+        player->in_battle = true;
+        battles.push_back(new Battle(player, _ship));
+        connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
+    }
 }
 
 void Game::end_player_battle()
 {
+    player->in_battle = false;
+    player_at_battle = false;
     start_stop();
+    create_new_npc();
 }
 
 short Game::get_neighbour(short _id, short _number)
@@ -888,6 +898,19 @@ void Game::show_menu()
             scene->removeItem(menu_text[i]);
     }
     menu_bool = !menu_bool;
+}
+
+void Game::create_new_npc()
+{
+//    if (npc_ships.size() < start_npc_amount)
+//    {
+        npc_ships.push_back(new NPC());
+        scene->addItem(npc_ships[npc_ships.size() - 1]);
+        connect(npc_ships[npc_ships.size() - 1], SIGNAL(delete_npc(NPC *)),
+                this, SLOT(delete_npc(NPC *)));
+        connect (timer, SIGNAL(timeout()), npc_ships[npc_ships.size() - 1], SLOT(move_to_next_location()));
+        scene->addItem(npc_ships[npc_ships.size() - 1]->flag);
+//    }
 }
 
 void Game::mouse_moved()

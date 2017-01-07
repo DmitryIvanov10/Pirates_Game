@@ -4,6 +4,7 @@
 Player::Player()
 {
     std::srand(time(0));
+    in_battle = false;
     day = 0;
     model = 3;
     days_off_harbor_morale = 1.0f / 0.98f;
@@ -13,6 +14,7 @@ Player::Player()
     crew = 0.75 * max_crew;
     cannons = initial_cannons;
     ammo = 0.5 * max_ammo;
+    maneuverability = max_maneuverability;
     set_angle(90);
     sail_level = 1;
     //morale = 100;
@@ -64,7 +66,7 @@ void Player::keyPressEvent(QKeyEvent *event)
 
                     if (typeid(* item) == typeid(NPC) ||
                         typeid(* item) == typeid(Pirate))
-                        if (model && health >= max_health / 5)
+                        if (model && health >= max_health / 5 && !in_battle)
                             emit start_battle(dynamic_cast<Ship *>(item));
             }
             break;

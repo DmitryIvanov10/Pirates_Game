@@ -18,7 +18,8 @@ class Battle: public QObject
 {
     Q_OBJECT
 
-    QTimer * timer = new QTimer();
+    QTimer * timer1 = new QTimer();
+    QTimer * timer2 = new QTimer();
 
     Ship * ship1;
     Ship * ship2;
@@ -39,19 +40,22 @@ public:
     Battle(Player * _player, Ship * _npc);
 
     void start_battle();
-    void run_away();
-    void abordage();
-    void kill();
+    void run_away(Ship * _ship);
+    void loose(Ship * _ship);
+    void abordage(Ship *_ship1, Ship *_ship2);
+    void kill(Ship * _ship);
     float set_morale_effect();
     float set_morale_effect(short _morale);
 
-    void next_move(Ship *_ship1, Ship *_ship2);
+    void next_move_sea(Ship *_ship1, Ship *_ship2);
+    void next_move_abordage(Ship *_ship1, Ship *_ship2);
 
 signals:
     void finish_battle();
 
 public slots:
-    void round();
+    void round_on_sea();
+    void round_of_abordage();
 };
 
 #endif // BATTLE_H
