@@ -24,6 +24,7 @@ INPUT(
 ./debug\qrc_interface_hud.o
 ./debug\qrc_menu_bars.o
 ./debug\qrc_cargo.o
+./debug\qrc_boat.o
 ./debug\moc_player.o
 ./debug\moc_ship.o
 ./debug\moc_npc.o

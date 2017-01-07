@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Player_t {
-    QByteArrayData data[8];
-    char stringdata0[62];
+    QByteArrayData data[10];
+    char stringdata0[95];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,11 +36,14 @@ QT_MOC_LITERAL(3, 21, 5), // "Ship*"
 QT_MOC_LITERAL(4, 27, 5), // "_ship"
 QT_MOC_LITERAL(5, 33, 11), // "esc_pressed"
 QT_MOC_LITERAL(6, 45, 7), // "do_tour"
-QT_MOC_LITERAL(7, 53, 8) // "next_day"
+QT_MOC_LITERAL(7, 53, 8), // "next_day"
+QT_MOC_LITERAL(8, 62, 26), // "set_days_off_harbor_morale"
+QT_MOC_LITERAL(9, 89, 5) // "value"
 
     },
     "Player\0start_battle\0\0Ship*\0_ship\0"
-    "esc_pressed\0do_tour\0next_day"
+    "esc_pressed\0do_tour\0next_day\0"
+    "set_days_off_harbor_morale\0value"
 };
 #undef QT_MOC_LITERAL
 
@@ -50,7 +53,7 @@ static const uint qt_meta_data_Player[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -58,12 +61,13 @@ static const uint qt_meta_data_Player[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   34,    2, 0x06 /* Public */,
-       5,    0,   37,    2, 0x06 /* Public */,
+       1,    1,   39,    2, 0x06 /* Public */,
+       5,    0,   42,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    0,   38,    2, 0x0a /* Public */,
-       7,    0,   39,    2, 0x0a /* Public */,
+       6,    0,   43,    2, 0x0a /* Public */,
+       7,    0,   44,    2, 0x0a /* Public */,
+       8,    1,   45,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -72,6 +76,7 @@ static const uint qt_meta_data_Player[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Float,    9,
 
        0        // eod
 };
@@ -86,6 +91,7 @@ void Player::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 1: _t->esc_pressed(); break;
         case 2: _t->do_tour(); break;
         case 3: _t->next_day(); break;
+        case 4: _t->set_days_off_harbor_morale((*reinterpret_cast< float(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -142,13 +148,13 @@ int Player::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }
