@@ -21,7 +21,15 @@ void View::mouseMoveEvent(QMouseEvent *event)
 void View::mousePressEvent(QMouseEvent *event)
 {
     //qDebug() << "wciskam " << event->x() << " " << event->y();
-    emit mouse_pressed();
+    switch (event->buttons())
+    {
+        case Qt::LeftButton:
+            emit mouse_left_pressed();
+        case Qt::RightButton:
+            emit mouse_right_pressed();
+    }
+
+    //emit mouse_pressed();
 }
 
 void View::mouseReleaseEvent(QMouseEvent *event)
