@@ -9,7 +9,6 @@ Battle::Battle(Player *_player, Ship *_npc)
 {
     timer1->start(17*60);
     player_battle = true;
-    player_morale = _player->get_morale();
 
     qDebug() << "";
     qDebug() << "New player/npc battle.";
@@ -42,6 +41,7 @@ Battle::Battle(Player *_player, Ship *_npc)
 
     connect(timer1, SIGNAL(timeout()), this, SLOT(round_on_sea()));
     connect(timer2, SIGNAL(timeout()), this, SLOT(round_of_abordage()));
+    connect(this, SIGNAL(change_player_morale(float)), _player, SLOT(set_days_off_harbor_morale(float)));
 }
 
 void Battle::kill()
@@ -227,9 +227,9 @@ void Battle::next_move_sea()
         if (ship2->get_health() < 0.2 * ship2->get_max_health() || !ship2->get_ammo())
         {
             timer1->stop();
-            /*timer2->start(17*10);
-            abordage(_ship1, _ship2);*/
-            kill();
+            timer2->start(17*10);
+            abordage();
+            //kill();
             return;
         } else
         if (ship1->get_health() < 0.2 * ship1->get_max_health() || !ship1->get_ammo())
@@ -275,6 +275,8 @@ void Battle::next_move_abordage()
         {
             ship2->set_crew(10);
             timer2->stop();
+            qDebug() << "Drown npc after abordage";
+            change_crew(ship2->get_crew());
             win_abordage();
             return;
         }
@@ -282,6 +284,9 @@ void Battle::next_move_abordage()
         if (ship2->get_crew() < 0.2 * ship2->get_max_crew())
         {
             timer2->stop();
+            qDebug() << "Let npc away after abordage";
+            let_away = true;
+            change_crew(ship2->get_crew() / 2);
             win_abordage();
             return;
         };
@@ -331,10 +336,23 @@ void Battle::get_goods()
         qDebug() << cargo->get_name() << " - " << cargo->get_amount();
 }
 
-void Battle::change_crew(bool i)
+void Battle::change_crew(short _amount)
 {
-    short crew1 = ship1->get_crew();
-
+    qDebug() << "";
+    qDebug() << "Player crew - " << ship1->get_crew();
+    qDebug() << "Add " << _amount << " people to crew.";
+    qDebug() << "Player morale effect - " << morale_effect_1;
+    short new_crew_morale = rand() % 10;
+    if (let_away)
+        new_crew_morale += 20;
+    morale_effect_2 = set_morale_effect(new_crew_morale) * 0.3;
+    qDebug() << "New crew morale - " << new_crew_morale;
+    qDebug() << "Their morale effect - " << morale_effect_2;
+    morale_effect_1 = (morale_effect_1 * ship1->get_crew() + morale_effect_2 * _amount) /
+                      ((ship1->get_crew() + _amount) * morale_effect_1);
+    emit change_player_morale(morale_effect_1);
+    ship1->set_crew(ship1->get_crew() + _amount);
+    qDebug() << "Days off harbor morale - " << morale_effect_1;
 }
 
 /*void Battle::change_back_type(Ship *_ship)

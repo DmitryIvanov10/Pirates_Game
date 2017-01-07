@@ -26,7 +26,6 @@ class Battle: public QObject
 
     float recharge_1;
     float recharge_2;
-    short player_morale;
     float morale_effect_1;
     float morale_effect_2;
     short round_ammo_shot_1;
@@ -34,6 +33,7 @@ class Battle: public QObject
     short round_damage_1;
     short round_damage_2;
 
+    bool let_away = false;
     bool player_battle;
 
 public:
@@ -56,11 +56,12 @@ public:
     void next_move_abordage();
 
     void get_goods();
-    void change_crew(bool i);
+    void change_crew(short _amount);
 
     //void change_back_type(Ship * _ship);
 
 signals:
+    void change_player_morale(float value);
     void finish_battle();
 
 public slots:

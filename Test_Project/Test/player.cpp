@@ -244,6 +244,12 @@ short Player::get_salary()
     return salary;
 }
 
+void Player::set_days_off_harbor_morale(float value)
+{
+    days_off_harbor_morale = value;
+    set_morale();
+}
+
 int Player::get_daily_salary()
 {
     return one_day_salary;

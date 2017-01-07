@@ -37,6 +37,10 @@ class Player: public Ship //, public QGraphicsRectItem
     short day;
     bool collision_with_npc;
 
+    void set_day_salary();
+    void set_morale();
+    void revolt();
+
 public:
     //konstruktory
     Player();
@@ -57,13 +61,11 @@ public:
     short get_daily_food();
     short get_max_food();
     short get_salary();
-    void set_day_salary();
-    void set_morale();
-    void revolt();
 
 public slots:
     void do_tour();
     void next_day();
+    void set_days_off_harbor_morale(float value);
 
 signals:
     void start_battle(Ship * _ship);
