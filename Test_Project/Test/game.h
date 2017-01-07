@@ -19,6 +19,7 @@
 #include <QImage>
 #include <QBrush>
 #include <QPointF>
+#include <QApplication> //potrzbne do funkcji zamykającej grę
 
 //pliki
 #include "npc.h"
@@ -54,6 +55,7 @@ class Game : public QObject
     QGraphicsRectItem * map_rect; //prostokącik na mapie
 
     QGraphicsPixmapItem * menu_bar = new QGraphicsPixmapItem(); //grafika menu
+    std::vector<QGraphicsTextItem *> menu_text; //tekst menu
 
     std::vector <NPC *> npc_ships; //statki npc na mapie
 
