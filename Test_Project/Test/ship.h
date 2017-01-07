@@ -55,6 +55,8 @@ protected:
 
     QList<QGraphicsItem *> colliding_items;
 
+    void set_cargo(); //ustawia towary statku
+
 public:
     //konstruktory
     //Ship(double _x, double _y, short _model); //konstruktor tworzący okręt w położeniu x, y o modelu statku ship

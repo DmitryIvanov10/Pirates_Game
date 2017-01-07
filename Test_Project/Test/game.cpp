@@ -1231,8 +1231,6 @@ void Game::mouse_moved()
 
 void Game::mouse_pressed()
 {
-    qDebug() << npc_ships.size() << " NPC in the game";
-
     //obszar przycisku menu
     if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {

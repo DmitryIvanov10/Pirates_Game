@@ -46,7 +46,6 @@ public:
     void set_flag(); //funkcja która wybiera flagę w zależności od frakcji
     void set_state(bool state); //ustawia stan statku (aktywny czy nie)
     bool get_state(); // zwraca stan statku
-    void set_cargo(); //ustawia towary statku
     bool in_view();
 
 signals:

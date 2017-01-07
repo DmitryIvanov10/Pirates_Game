@@ -26,11 +26,7 @@ Player::Player()
     probe->setPixmap(QPixmap(":/img/probe.png"));
 
     // set cargo
-    for (int i=0; i<hold_size; i++)
-    {
-        goods.push_back(new Cargo());
-        qDebug() << goods[i]->get_name() << ": " << goods[i]->get_amount();
-    }
+    set_cargo();
 
     X = 4000;
     Y = 2000;

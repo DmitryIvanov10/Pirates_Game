@@ -266,17 +266,6 @@ bool NPC::get_state()
     return active;
 }
 
-void NPC::set_cargo()
-{
-    while (goods.size() > 0)
-        goods.pop_back();
-
-    for (int i=0; i<hold_size; i++)
-    {
-        goods.push_back(new Cargo());
-    }
-}
-
 bool NPC::in_view()
 {
     return active;

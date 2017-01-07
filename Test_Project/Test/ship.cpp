@@ -11,6 +11,31 @@
 
 Ship::Ship() : Ship::Ship(0, 0, 1) {}*/
 
+void Ship::set_cargo()
+{
+    while (goods.size() > 0)
+        goods.pop_back();
+
+    for (int i=0; i<hold_size; i++)
+    {
+        bool not_ok = true;
+        while (not_ok)
+        {
+            goods.push_back(new Cargo());
+            for (int j=0; j<i; j++)
+            {
+                if (goods[i]->get_id() == goods[j]->get_id())
+                {
+                    goods.pop_back();
+                    break;
+                }
+            }
+            if (goods.size() == i+1)
+                not_ok = false;
+        }
+    }
+}
+
 Ship::~Ship()
 {
     //qDebug() << "Ship deleted.";
