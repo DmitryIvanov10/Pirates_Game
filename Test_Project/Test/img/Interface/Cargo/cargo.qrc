@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>cocoa_01.png</file>
+        <file>coffee_01.png</file>
+        <file>corn_01.png</file>
+        <file>cotton_01.png</file>
+        <file>ebony_01.png</file>
+        <file>flour_01.png</file>
+        <file>fruits_01.png</file>
+        <file>mahogany_01.png</file>
+        <file>pedlock_03.png</file>
+        <file>rum_01.png</file>
+        <file>spices_01.png</file>
+        <file>sugar_01.png</file>
+        <file>tobacco_01.png</file>
+    </qresource>
+</RCC>

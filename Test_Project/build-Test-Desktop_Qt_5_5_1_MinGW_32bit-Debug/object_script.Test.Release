@@ -23,6 +23,7 @@ INPUT(
 ./release\qrc_interface_temps.o
 ./release\qrc_interface_hud.o
 ./release\qrc_menu_bars.o
+./release\qrc_cargo.o
 ./release\moc_player.o
 ./release\moc_ship.o
 ./release\moc_npc.o
