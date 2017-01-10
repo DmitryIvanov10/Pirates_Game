@@ -1216,7 +1216,7 @@ void Game::mouse_moved()
     else if (view->get_x() > resolution_x - 100 && view->get_y() < 70)
     {
         hud_temp_bool[5] = 1;
-        hud_temp_txt[5]->setPlainText(QString("Canons"));
+        hud_temp_txt[5]->setPlainText(QString("Cannons"));
     }
     else if (view->get_x() > resolution_x - 100 && view->get_y() < 100)
     {
