@@ -57,4 +57,5 @@ RESOURCES += \
     img/Interface/HUD/interface_hud.qrc \
     img/Interface/Bars/Menu/menu_bars.qrc \
     img/Interface/Cargo/cargo.qrc \
-    img/Ships/Boat/boat.qrc
+    img/Ships/Boat/boat.qrc \
+    img/Interface/Battle/battle.qrc
