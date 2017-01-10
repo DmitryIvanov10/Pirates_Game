@@ -49,17 +49,22 @@ class Game : public QObject
 
     std::vector <QGraphicsPixmapItem *> hud_img; //graficzna część HUD'u
     std::vector <QGraphicsTextItem *> hud_txt; //tekstowa część HUD'u
-    std::vector<QGraphicsPixmapItem *> hud_temp_img; //elementy graficzne pojawiające się na scenie tymczasowo
-    std::vector<QGraphicsTextItem *> hud_temp_txt; //elementy tekstowe pojawiające się na scenie tymczasowo
-    std::vector<bool> hud_temp_bool; //informacja o użytkowaniu danego elementu tymczasowego
+    std::vector <QGraphicsPixmapItem *> hud_temp_img; //elementy graficzne pojawiające się na scenie tymczasowo
+    std::vector <QGraphicsTextItem *> hud_temp_txt; //elementy tekstowe pojawiające się na scenie tymczasowo
+    std::vector <bool> hud_temp_bool; //informacja o użytkowaniu danego elementu tymczasowego
     QGraphicsRectItem * map_rect; //prostokącik na mapie
-    std::vector<QGraphicsPixmapItem *> hud_cargo_img; //obrazki towarów w ładowni
-    std::vector<QGraphicsTextItem *> hud_cargo_txt; //tekst odpowiadający towarom
+    std::vector <QGraphicsPixmapItem *> hud_cargo_img; //obrazki towarów w ładowni
+    std::vector <QGraphicsTextItem *> hud_cargo_txt; //tekst odpowiadający towarom
 
     QGraphicsPixmapItem * menu_bar = new QGraphicsPixmapItem(); //grafika menu
-    std::vector<QGraphicsTextItem *> menu_text; //tekst menu
+    std::vector <QGraphicsTextItem *> menu_text; //tekst menu
+
+    std::vector <QGraphicsPixmapItem *> battle_start_menu; // grafika na menu początku walki
+    QGraphicsTextItem * battle_start_menu_text = new QGraphicsTextItem(); // tekst menu początku walki
 
     std::vector <NPC *> npc_ships; //statki npc na mapie
+
+    Ship * battle_ship; // statek z którym walczy player
 
     int frame_time = 17;
     int game_time = 0;
@@ -77,10 +82,13 @@ class Game : public QObject
     bool pause = 0; //if game is paused
     bool player_at_battle = 0; //if player is in a battle
     bool menu_bool = 0; //czy menu jest włączone
+    // pomocnicze zmienne dla sprawdzania dodawania i usuwania przycisków lub innych elementów ze sceny
+    bool element1_in_scene = false;
+    bool element2_in_scene = false;
 
 public:
     //static std::vector <Voronoi_point> map;
-
+    short battle_phase = 0; //faza walki, 0 - nie ma walki
 
     //konstruktory
     Game(QObject *parent = 0); //nowa gra
@@ -99,6 +107,9 @@ public:
     void set_island(short _x, short _y, QString _pixmap_name);
     void start_stop();
     void show_menu();
+    void battle(short _battle_phase);
+    void show_battle_menu(short _battle_phase);
+    void hide_battle_menu(short _battle_phase);
 
 signals:
     //void next_tour();

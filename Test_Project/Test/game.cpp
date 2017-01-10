@@ -57,7 +57,7 @@ Game::Game(QObject *parent) : QObject(parent)
     // renew npc list (up to 30)
     //connect(timer, SIGNAL(timeout()), this, SLOT(create_new_npc()));
 
-    connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));    
+    connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));
 
     // put player to the scene
     scene->addItem(player);
@@ -455,6 +455,7 @@ void Game::center_view()
 
     wind->setPos(scene_x, scene_y);
 
+    // set hud
     hud_img[0]->setPos(scene_x + resolution_x - hud_img[0]->pixmap().width(),
             scene_y + resolution_y - hud_img[0]->pixmap().height());
     hud_img[1]->setPos(scene_x + resolution_x - hud_img[1]->pixmap().width(), scene_y - 2);
@@ -696,8 +697,14 @@ void Game::center_view()
 
 void Game::start_player_battle(Ship *_ship)
 {
-    start_stop();
-    if (!player_at_battle)
+    if (!battle_phase)
+    {
+        start_stop();
+        battle_phase = 1;
+        battle_ship = _ship;
+        battle(battle_phase);
+    }
+    /*if (!player_at_battle)
     {
         player_at_battle = true;
         player->in_battle = true;
@@ -705,11 +712,12 @@ void Game::start_player_battle(Ship *_ship)
         connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
         connect(battles[battles.size()-1], SIGNAL(finish_battle()), _ship, SLOT(reset()));
         connect(battles[battles.size()-1], SIGNAL(lost(short)), player, SLOT(on_boat(short)));
-    }
+    }*/
 }
 
 void Game::end_player_battle()
 {
+    battle_phase = 0;
     player->in_battle = false;
     player_at_battle = false;
     start_stop();
@@ -780,6 +788,33 @@ void Game::set_hud()
     scene->addItem(hud_img[iterate]);
     //hud_img[iterate]->setPos(scene_x + resolution_x - 125, scene_y + resolution_y - 125);
     //iterate++;
+
+    // elementy menu początku walki
+    iterate = 0;
+    battle_start_menu.push_back(new QGraphicsPixmapItem());
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/Message_bar_01.png"));
+    iterate++;
+
+    battle_start_menu.push_back(new QGraphicsPixmapItem());
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/cross_off_01.png"));
+    iterate++;
+
+    battle_start_menu.push_back(new QGraphicsPixmapItem());
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/tick_off_01.png"));
+    iterate++;
+
+    battle_start_menu.push_back(new QGraphicsPixmapItem());
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/cross_on_01.png"));
+    iterate++;
+
+    battle_start_menu.push_back(new QGraphicsPixmapItem());
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/tick_on_01.png"));
+    iterate++;
+
+    battle_start_menu_text->setPlainText(QString("Would you like to start a battle?"));
+    battle_start_menu_text->setDefaultTextColor(Qt::white);
+    battle_start_menu_text->setFont(QFont("times", 12));
+    //qDebug() << battle_start_menu_text->isUnderMouse()
 
     //elementy tekstowe
     iterate = 0;
@@ -858,6 +893,7 @@ void Game::set_hud()
     hud_txt.push_back(new QGraphicsTextItem());
     hud_txt[iterate]->setPlainText(QString("MENU"));
     hud_txt[iterate]->setFont(QFont("times", 16));
+    //qDebug() << hud_txt[iterate]->size();
     scene->addItem(hud_txt[iterate]);
     iterate++;
 
@@ -1020,7 +1056,8 @@ void Game::start_stop()
 
 void Game::show_menu()
 {
-    start_stop();
+    if (!battle_phase)
+        start_stop();
     if (!menu_bool)
     {
         menu_bar->setPixmap(QPixmap(":/Menu_bar_02.png"));
@@ -1067,6 +1104,73 @@ void Game::show_menu()
     menu_bool = !menu_bool;
 }
 
+void Game::battle(short _battle_phase)
+{
+    switch(_battle_phase)
+    {
+        case 1:
+            show_battle_menu(1);
+            break;
+        case 2:
+            if (!player_at_battle)
+            {
+                player_at_battle = true;
+                player->in_battle = true;
+                battles.push_back(new Battle(player, battle_ship));
+                connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
+                connect(battles[battles.size()-1], SIGNAL(finish_battle()), battle_ship, SLOT(reset()));
+                connect(battles[battles.size()-1], SIGNAL(lost(short)), player, SLOT(on_boat(short)));
+            }
+            break;
+    }
+}
+
+void Game::show_battle_menu(short _battle_phase)
+{
+    switch(_battle_phase)
+    {
+        case 1:
+            scene->addItem(battle_start_menu[0]);
+            battle_start_menu[0]->setPos(scene_x + resolution_x/2 - battle_start_menu[0]->pixmap().width()/2,
+                                         scene_y + resolution_y/2 - battle_start_menu[0]->pixmap().height()/2);
+            scene->addItem(battle_start_menu[1]);
+            battle_start_menu[1]->setPos(battle_start_menu[0]->x() + 70, battle_start_menu[0]->y() + 96);
+            scene->addItem(battle_start_menu[2]);
+            battle_start_menu[2]->setPos(battle_start_menu[0]->x() + 229, battle_start_menu[0]->y() + 96);
+            battle_start_menu[3]->setPos(battle_start_menu[1]->x(), battle_start_menu[1]->y());
+            battle_start_menu[4]->setPos(battle_start_menu[2]->x(), battle_start_menu[2]->y());
+            scene->addItem(battle_start_menu_text);
+            battle_start_menu_text->setPos(battle_start_menu[0]->x() + 62, battle_start_menu[0]->y() + 46);
+            break;
+    }
+}
+
+void Game::hide_battle_menu(short _battle_phase)
+{
+    switch(_battle_phase)
+    {
+        case 1:
+            for (size_t i=0; i<3; i++)
+            {
+                scene->removeItem(battle_start_menu[i]);
+            }
+            if (element1_in_scene)
+            {
+                scene->removeItem(battle_start_menu[3]);
+                element1_in_scene = false;
+            }
+            if (element2_in_scene)
+            {
+                scene->removeItem(battle_start_menu[4]);
+                element2_in_scene = false;
+            }
+            scene->removeItem(battle_start_menu_text);
+            break;
+    }
+}
+
+
+
 void Game::create_new_npc()
 {
 //    if (npc_ships.size() < start_npc_amount)
@@ -1082,6 +1186,32 @@ void Game::create_new_npc()
 
 void Game::mouse_moved()
 {
+    // obszar menu dla rozpoczęcia walki
+    if (battle_phase == 1)
+    {
+        if (battle_start_menu[1]->isUnderMouse() && !element1_in_scene)
+        {
+            scene->addItem(battle_start_menu[3]);
+            element1_in_scene = true;
+        }
+        if (!battle_start_menu[1]->isUnderMouse() && element1_in_scene)
+        {
+            scene->removeItem(battle_start_menu[3]);
+            element1_in_scene = false;
+        }
+
+        if (battle_start_menu[2]->isUnderMouse() && !element2_in_scene)
+        {
+            scene->addItem(battle_start_menu[4]);
+            element2_in_scene = true;
+        }
+        if (!battle_start_menu[2]->isUnderMouse() && element2_in_scene)
+        {
+            scene->removeItem(battle_start_menu[4]);
+            element2_in_scene = false;
+        }
+    }
+
     //obszar z ikoną zdrowia
     if (view->get_x() > resolution_x/2 - 220 && view->get_x() < resolution_x/2 - 100 && view->get_y() < resolution_y - 10 && view->get_y() > resolution_y - 38)
         hud_temp_bool[0] = 1;
@@ -1113,9 +1243,11 @@ void Game::mouse_moved()
         hud_temp_bool[4] = 0;
 
     //obszar przycisku menu
-    if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
+    if (hud_img[5]->isUnderMouse())
+    //if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
         hud_txt[hud_txt.size()-1]->setDefaultTextColor(Qt::white);
-    if (!(view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40))
+    else
+    //if (!(view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40))
         hud_txt[hud_txt.size()-1]->setDefaultTextColor(Qt::black);
 
     //obsługa menu
@@ -1132,20 +1264,25 @@ void Game::mouse_moved()
         if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 75 && view->get_y() < resolution_y/2 -25))
             menu_text[1]->setDefaultTextColor(Qt::white);
             */
-
-        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40)
+        if (menu_text[2]->isUnderMouse())
+        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40)
             menu_text[2]->setDefaultTextColor(Qt::red);
-        if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40))
+        else
+        //if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40))
             menu_text[2]->setDefaultTextColor(Qt::white);
 
-        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
+        if (menu_text[3]->isUnderMouse())
+        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
             menu_text[3]->setDefaultTextColor(Qt::red);
-        if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95))
+        else
+        //if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95))
             menu_text[3]->setDefaultTextColor(Qt::white);
 
-        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
+        if (menu_text[4]->isUnderMouse())
+        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
             menu_text[4]->setDefaultTextColor(Qt::red);
-        if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200))
+        else
+        //if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200))
             menu_text[4]->setDefaultTextColor(Qt::white);
     }
 
@@ -1232,8 +1369,25 @@ void Game::mouse_moved()
 
 void Game::mouse_pressed()
 {
+    // obsługa battle menu
+    if (battle_phase == 1)
+    {
+        if (battle_start_menu[3]->isUnderMouse())
+        {
+            end_player_battle();
+            hide_battle_menu(1);
+        }
+        if (battle_start_menu[4]->isUnderMouse())
+        {
+            hide_battle_menu(1);
+            battle_phase = 2;
+            battle(battle_phase);
+        }
+    }
+
     //obszar przycisku menu
-    if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
+    if (hud_img[5]->isUnderMouse())
+    //if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {
         show_menu();
     }
@@ -1241,10 +1395,12 @@ void Game::mouse_pressed()
     //obsługa menu
     if (menu_bool)
     {
-        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
+        if (menu_text[3]->isUnderMouse())
+        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
             QApplication::quit();
 
-        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
+        if (menu_text[4]->isUnderMouse())
+        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
             show_menu();
     }
     //qDebug() << "click";

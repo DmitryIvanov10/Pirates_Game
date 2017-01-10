@@ -79,6 +79,8 @@ void Player::keyPressEvent(QKeyEvent *event)
 
 void Player::do_tour()
 {
+    /*if (isUnderMouse())
+        qDebug() << "Player is under mouse";*/
     probe->setPos(X + sprite_width/2- 60*sin(angle/180*M_PI),
                   Y + sprite_height/2 - 60*cos(angle/180*M_PI));
 
