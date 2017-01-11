@@ -5,5 +5,7 @@
         <file>Message_bar_01.png</file>
         <file>tick_off_01.png</file>
         <file>tick_on_01.png</file>
+        <file>Message_bar_02.png</file>
+        <file>Small_button_01.png</file>
     </qresource>
 </RCC>
