@@ -62,10 +62,12 @@ public:
 
 signals:
     void change_player_morale(float value);
+    void sink_abordage(short _battle_phase);
     void finish_battle();
     void lost(short _crew);
 
 public slots:
+    void after_sea_battle(short _battle_phase);
     void round_on_sea();
     void round_of_abordage();
 };

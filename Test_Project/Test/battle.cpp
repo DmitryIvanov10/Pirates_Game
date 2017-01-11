@@ -7,7 +7,7 @@ Battle::Battle(QObject *parent)
 
 Battle::Battle(Player *_player, Ship *_npc)
 {
-    timer1->start(17*60);
+    timer1->start(17*10);
     player_battle = true;
 
     qDebug() << "";
@@ -47,7 +47,7 @@ Battle::Battle(Player *_player, Ship *_npc)
 void Battle::kill()
 {
     //change_back_type(ship2);
-    qDebug() << "Drown NPC.";
+    qDebug() << "Sank NPC.";
     foreach (Cargo * cargo, ship2->get_goods())
     {
         cargo->change_amount(-short(float(cargo->get_amount()) *
@@ -91,7 +91,7 @@ void Battle::run_away()
 void Battle::loose()
 {
     //change_back_type(ship2);
-    qDebug() << "Lost abordage or got drown";
+    qDebug() << "Lost abordage or got drowned";
     emit lost(ship1->get_crew());
     emit finish_battle();
 }
@@ -228,9 +228,7 @@ void Battle::next_move_sea()
         if (ship2->get_health() < 0.2 * ship2->get_max_health() || !ship2->get_ammo())
         {
             timer1->stop();
-            timer2->start(17*10);
-            abordage();
-            //kill();
+            emit sink_abordage(3);
             return;
         } else
         if (ship1->get_health() < 0.2 * ship1->get_max_health() || !ship1->get_ammo())
@@ -276,7 +274,7 @@ void Battle::next_move_abordage()
         {
             ship2->set_crew(10);
             timer2->stop();
-            qDebug() << "Drown npc after abordage";
+            qDebug() << "Sank npc after abordage";
             change_crew(ship2->get_crew());
             win_abordage();
             return;
@@ -354,6 +352,17 @@ void Battle::change_crew(short _amount)
     emit change_player_morale(morale_effect_1);
     ship1->set_crew(ship1->get_crew() + _amount);
     qDebug() << "Days off harbor morale - " << morale_effect_1;
+}
+
+void Battle::after_sea_battle(short _battle_phase)
+{
+    if (_battle_phase == 5)
+        kill();
+    if (_battle_phase == 4)
+    {
+        timer2->start(17*10);
+        abordage();
+    }
 }
 
 /*void Battle::change_back_type(Ship *_ship)
