@@ -792,11 +792,15 @@ void Game::set_hud()
     // elementy menu początku walki
     iterate = 0;
     battle_start_menu.push_back(new QGraphicsPixmapItem());
-    battle_start_menu[iterate]->setPixmap(QPixmap(":/Message_bar_01.png"));
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/Message_bar_02.png"));
     iterate++;
 
     battle_start_menu.push_back(new QGraphicsPixmapItem());
-    battle_start_menu[iterate]->setPixmap(QPixmap(":/cross_off_01.png"));
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/Small_button_01.png"));
+    iterate++;
+
+    battle_start_menu.push_back(new QGraphicsPixmapItem());
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/Small_button_01.png"));
     iterate++;
 
     battle_start_menu.push_back(new QGraphicsPixmapItem());
@@ -804,12 +808,15 @@ void Game::set_hud()
     iterate++;
 
     battle_start_menu.push_back(new QGraphicsPixmapItem());
-    battle_start_menu[iterate]->setPixmap(QPixmap(":/cross_on_01.png"));
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/cross_off_01.png"));
     iterate++;
 
     battle_start_menu.push_back(new QGraphicsPixmapItem());
     battle_start_menu[iterate]->setPixmap(QPixmap(":/tick_on_01.png"));
     iterate++;
+
+    battle_start_menu.push_back(new QGraphicsPixmapItem());
+    battle_start_menu[iterate]->setPixmap(QPixmap(":/cross_on_01.png"));
 
     battle_start_menu_text->setPlainText(QString("Would you like to start a battle?"));
     battle_start_menu_text->setDefaultTextColor(Qt::white);
@@ -1134,11 +1141,18 @@ void Game::show_battle_menu(short _battle_phase)
             battle_start_menu[0]->setPos(scene_x + resolution_x/2 - battle_start_menu[0]->pixmap().width()/2,
                                          scene_y + resolution_y/2 - battle_start_menu[0]->pixmap().height()/2);
             scene->addItem(battle_start_menu[1]);
-            battle_start_menu[1]->setPos(battle_start_menu[0]->x() + 70, battle_start_menu[0]->y() + 96);
+            battle_start_menu[1]->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/5,
+                                         battle_start_menu[0]->y() + 5*battle_start_menu[0]->pixmap().height()/9);
             scene->addItem(battle_start_menu[2]);
-            battle_start_menu[2]->setPos(battle_start_menu[0]->x() + 229, battle_start_menu[0]->y() + 96);
-            battle_start_menu[3]->setPos(battle_start_menu[1]->x(), battle_start_menu[1]->y());
-            battle_start_menu[4]->setPos(battle_start_menu[2]->x(), battle_start_menu[2]->y());
+            battle_start_menu[2]->setPos(battle_start_menu[0]->x() + 4*battle_start_menu[0]->pixmap().width()/5
+                                         - battle_start_menu[2]->pixmap().width(),
+                                         battle_start_menu[0]->y() + 5*battle_start_menu[0]->pixmap().height()/9);
+            scene->addItem(battle_start_menu[3]);
+            battle_start_menu[3]->setPos(battle_start_menu[1]->x() + 8, battle_start_menu[1]->y() + 7);
+            scene->addItem(battle_start_menu[4]);
+            battle_start_menu[4]->setPos(battle_start_menu[2]->x() + 8, battle_start_menu[2]->y() + 7);
+            battle_start_menu[5]->setPos(battle_start_menu[3]->x(), battle_start_menu[3]->y());
+            battle_start_menu[6]->setPos(battle_start_menu[4]->x(), battle_start_menu[4]->y());
             scene->addItem(battle_start_menu_text);
             battle_start_menu_text->setPos(battle_start_menu[0]->x() + 62, battle_start_menu[0]->y() + 46);
             break;
@@ -1150,18 +1164,18 @@ void Game::hide_battle_menu(short _battle_phase)
     switch(_battle_phase)
     {
         case 1:
-            for (size_t i=0; i<3; i++)
+            for (size_t i=0; i<5; i++)
             {
                 scene->removeItem(battle_start_menu[i]);
             }
             if (element1_in_scene)
             {
-                scene->removeItem(battle_start_menu[3]);
+                scene->removeItem(battle_start_menu[5]);
                 element1_in_scene = false;
             }
             if (element2_in_scene)
             {
-                scene->removeItem(battle_start_menu[4]);
+                scene->removeItem(battle_start_menu[6]);
                 element2_in_scene = false;
             }
             scene->removeItem(battle_start_menu_text);
@@ -1198,23 +1212,23 @@ void Game::mouse_moved()
     {
         if (battle_start_menu[1]->isUnderMouse() && !element1_in_scene)
         {
-            scene->addItem(battle_start_menu[3]);
+            scene->addItem(battle_start_menu[5]);
             element1_in_scene = true;
         }
         if (!battle_start_menu[1]->isUnderMouse() && element1_in_scene)
         {
-            scene->removeItem(battle_start_menu[3]);
+            scene->removeItem(battle_start_menu[5]);
             element1_in_scene = false;
         }
 
         if (battle_start_menu[2]->isUnderMouse() && !element2_in_scene)
         {
-            scene->addItem(battle_start_menu[4]);
+            scene->addItem(battle_start_menu[6]);
             element2_in_scene = true;
         }
         if (!battle_start_menu[2]->isUnderMouse() && element2_in_scene)
         {
-            scene->removeItem(battle_start_menu[4]);
+            scene->removeItem(battle_start_menu[6]);
             element2_in_scene = false;
         }
     }
@@ -1379,12 +1393,12 @@ void Game::mouse_pressed()
     // obsługa battle menu
     if (battle_phase == 1)
     {
-        if (battle_start_menu[3]->isUnderMouse())
+        if (battle_start_menu[6]->isUnderMouse())
         {
             end_player_battle();
             hide_battle_menu(1);
         }
-        if (battle_start_menu[4]->isUnderMouse())
+        if (battle_start_menu[5]->isUnderMouse())
         {
             hide_battle_menu(1);
             battle_phase = 2;
