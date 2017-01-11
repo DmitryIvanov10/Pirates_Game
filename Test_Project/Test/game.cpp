@@ -1169,6 +1169,12 @@ void Game::hide_battle_menu(short _battle_phase)
     }
 }
 
+void Game::show_npc_info(NPC *_ship)
+{
+    /*foreach (Cargo * cargo, _ship->get_goods())
+        qDebug() << cargo->get_name() << " - " << cargo->get_amount();*/
+}
+
 
 
 void Game::create_new_npc()
@@ -1180,6 +1186,7 @@ void Game::create_new_npc()
         connect(npc_ships[npc_ships.size() - 1], SIGNAL(delete_npc(NPC *)),
                 this, SLOT(delete_npc(NPC *)));
         connect (timer, SIGNAL(timeout()), npc_ships[npc_ships.size() - 1], SLOT(move_to_next_location()));
+        connect (npc_ships[npc_ships.size() - 1], SIGNAL(send_info(NPC *)), this, SLOT(show_npc_info(NPC *)));
         scene->addItem(npc_ships[npc_ships.size() - 1]->flag);
 //    }
 }

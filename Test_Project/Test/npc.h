@@ -49,6 +49,7 @@ public:
     bool in_view();
 
 signals:
+    void send_info(NPC * _ship);
     void delete_npc(NPC * _ship);
 
 public slots:

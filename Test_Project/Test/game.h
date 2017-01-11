@@ -117,6 +117,7 @@ signals:
 
 public slots:
     //void check();
+    void show_npc_info(NPC * _ship);
     void count_days();
     void update_states();
     void center_view();

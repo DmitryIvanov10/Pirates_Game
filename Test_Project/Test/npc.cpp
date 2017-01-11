@@ -274,7 +274,7 @@ bool NPC::in_view()
 void NPC::move_to_next_location()
 {
     if (isUnderMouse())
-            qDebug() << "NPC is under mouse";
+        emit send_info(this);
     move();
     setPos(X,Y);
     flag->setPos(X + sprite_width/2, Y);

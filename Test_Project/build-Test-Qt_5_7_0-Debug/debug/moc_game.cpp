@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Game_t {
-    QByteArrayData data[17];
-    char stringdata0[182];
+    QByteArrayData data[18];
+    char stringdata0[196];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,27 +32,28 @@ static const qt_meta_stringdata_Game_t qt_meta_stringdata_Game = {
 QT_MOC_LITERAL(0, 0, 4), // "Game"
 QT_MOC_LITERAL(1, 5, 7), // "new_day"
 QT_MOC_LITERAL(2, 13, 0), // ""
-QT_MOC_LITERAL(3, 14, 10), // "count_days"
-QT_MOC_LITERAL(4, 25, 13), // "update_states"
-QT_MOC_LITERAL(5, 39, 11), // "center_view"
-QT_MOC_LITERAL(6, 51, 19), // "start_player_battle"
-QT_MOC_LITERAL(7, 71, 5), // "Ship*"
-QT_MOC_LITERAL(8, 77, 5), // "_ship"
-QT_MOC_LITERAL(9, 83, 17), // "end_player_battle"
-QT_MOC_LITERAL(10, 101, 11), // "mouse_moved"
-QT_MOC_LITERAL(11, 113, 13), // "mouse_pressed"
-QT_MOC_LITERAL(12, 127, 11), // "reset_timer"
-QT_MOC_LITERAL(13, 139, 10), // "delete_npc"
-QT_MOC_LITERAL(14, 150, 4), // "NPC*"
-QT_MOC_LITERAL(15, 155, 11), // "esc_pressed"
-QT_MOC_LITERAL(16, 167, 14) // "create_new_npc"
+QT_MOC_LITERAL(3, 14, 13), // "show_npc_info"
+QT_MOC_LITERAL(4, 28, 4), // "NPC*"
+QT_MOC_LITERAL(5, 33, 5), // "_ship"
+QT_MOC_LITERAL(6, 39, 10), // "count_days"
+QT_MOC_LITERAL(7, 50, 13), // "update_states"
+QT_MOC_LITERAL(8, 64, 11), // "center_view"
+QT_MOC_LITERAL(9, 76, 19), // "start_player_battle"
+QT_MOC_LITERAL(10, 96, 5), // "Ship*"
+QT_MOC_LITERAL(11, 102, 17), // "end_player_battle"
+QT_MOC_LITERAL(12, 120, 11), // "mouse_moved"
+QT_MOC_LITERAL(13, 132, 13), // "mouse_pressed"
+QT_MOC_LITERAL(14, 146, 11), // "reset_timer"
+QT_MOC_LITERAL(15, 158, 10), // "delete_npc"
+QT_MOC_LITERAL(16, 169, 11), // "esc_pressed"
+QT_MOC_LITERAL(17, 181, 14) // "create_new_npc"
 
     },
-    "Game\0new_day\0\0count_days\0update_states\0"
-    "center_view\0start_player_battle\0Ship*\0"
-    "_ship\0end_player_battle\0mouse_moved\0"
-    "mouse_pressed\0reset_timer\0delete_npc\0"
-    "NPC*\0esc_pressed\0create_new_npc"
+    "Game\0new_day\0\0show_npc_info\0NPC*\0_ship\0"
+    "count_days\0update_states\0center_view\0"
+    "start_player_battle\0Ship*\0end_player_battle\0"
+    "mouse_moved\0mouse_pressed\0reset_timer\0"
+    "delete_npc\0esc_pressed\0create_new_npc"
 };
 #undef QT_MOC_LITERAL
 
@@ -62,7 +63,7 @@ static const uint qt_meta_data_Game[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -70,34 +71,36 @@ static const uint qt_meta_data_Game[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   74,    2, 0x06 /* Public */,
+       1,    0,   79,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   75,    2, 0x0a /* Public */,
-       4,    0,   76,    2, 0x0a /* Public */,
-       5,    0,   77,    2, 0x0a /* Public */,
-       6,    1,   78,    2, 0x0a /* Public */,
-       9,    0,   81,    2, 0x0a /* Public */,
-      10,    0,   82,    2, 0x0a /* Public */,
-      11,    0,   83,    2, 0x0a /* Public */,
-      12,    0,   84,    2, 0x0a /* Public */,
-      13,    1,   85,    2, 0x0a /* Public */,
-      15,    0,   88,    2, 0x0a /* Public */,
-      16,    0,   89,    2, 0x0a /* Public */,
+       3,    1,   80,    2, 0x0a /* Public */,
+       6,    0,   83,    2, 0x0a /* Public */,
+       7,    0,   84,    2, 0x0a /* Public */,
+       8,    0,   85,    2, 0x0a /* Public */,
+       9,    1,   86,    2, 0x0a /* Public */,
+      11,    0,   89,    2, 0x0a /* Public */,
+      12,    0,   90,    2, 0x0a /* Public */,
+      13,    0,   91,    2, 0x0a /* Public */,
+      14,    0,   92,    2, 0x0a /* Public */,
+      15,    1,   93,    2, 0x0a /* Public */,
+      16,    0,   96,    2, 0x0a /* Public */,
+      17,    0,   97,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void, 0x80000000 | 4,    5,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 10,    5,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 14,    8,
+    QMetaType::Void, 0x80000000 | 4,    5,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -111,30 +114,38 @@ void Game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->new_day(); break;
-        case 1: _t->count_days(); break;
-        case 2: _t->update_states(); break;
-        case 3: _t->center_view(); break;
-        case 4: _t->start_player_battle((*reinterpret_cast< Ship*(*)>(_a[1]))); break;
-        case 5: _t->end_player_battle(); break;
-        case 6: _t->mouse_moved(); break;
-        case 7: _t->mouse_pressed(); break;
-        case 8: _t->reset_timer(); break;
-        case 9: _t->delete_npc((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
-        case 10: _t->esc_pressed(); break;
-        case 11: _t->create_new_npc(); break;
+        case 1: _t->show_npc_info((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
+        case 2: _t->count_days(); break;
+        case 3: _t->update_states(); break;
+        case 4: _t->center_view(); break;
+        case 5: _t->start_player_battle((*reinterpret_cast< Ship*(*)>(_a[1]))); break;
+        case 6: _t->end_player_battle(); break;
+        case 7: _t->mouse_moved(); break;
+        case 8: _t->mouse_pressed(); break;
+        case 9: _t->reset_timer(); break;
+        case 10: _t->delete_npc((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
+        case 11: _t->esc_pressed(); break;
+        case 12: _t->create_new_npc(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 4:
+        case 1:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< NPC* >(); break;
+            }
+            break;
+        case 5:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Ship* >(); break;
             }
             break;
-        case 9:
+        case 10:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -180,13 +191,13 @@ int Game::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }
