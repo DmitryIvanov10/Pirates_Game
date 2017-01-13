@@ -7,7 +7,7 @@ Battle::Battle(QObject *parent)
 
 Battle::Battle(Player *_player, Ship *_npc)
 {
-    timer1->start(17*10);
+    timer1->start(round_time);
     player_battle = true;
 
     qDebug() << "";
@@ -183,6 +183,7 @@ void Battle::next_move_sea()
         else
         {
             timer1->stop();
+            emit update_info();
             loose();
             return;
         }
@@ -222,21 +223,25 @@ void Battle::next_move_sea()
         if (ship2->get_health() <= 0)
         {
             timer1->stop();
+            emit update_info();
             kill();
             return;
         } else
         if (ship2->get_health() < 0.2 * ship2->get_max_health() || !ship2->get_ammo())
         {
             timer1->stop();
+            emit update_info();
             emit sink_abordage(3);
             return;
         } else
         if (ship1->get_health() < 0.2 * ship1->get_max_health() || !ship1->get_ammo())
         {
             timer1->stop();
+            emit update_info();
             run_away();
             return;
         }
+        emit update_info();
     }
 }
 
@@ -265,6 +270,7 @@ void Battle::next_move_abordage()
         else
         {
             timer2->stop();
+            emit update_info();
             loose();
             return;
         }
@@ -276,6 +282,7 @@ void Battle::next_move_abordage()
             timer2->stop();
             qDebug() << "Sank npc after abordage";
             change_crew(ship2->get_crew());
+            emit update_info();
             win_abordage();
             return;
         }
@@ -286,9 +293,11 @@ void Battle::next_move_abordage()
             qDebug() << "Let npc away after abordage";
             let_away = true;
             change_crew(ship2->get_crew() / 2);
+            emit update_info();
             win_abordage();
             return;
         };
+        emit update_info();
     }
 }
 
@@ -333,6 +342,7 @@ void Battle::get_goods()
     qDebug() << "NPC goods: ";
     foreach (Cargo * cargo, ship2->goods)
         qDebug() << cargo->get_name() << " - " << cargo->get_amount();
+    emit update_info();
 }
 
 void Battle::change_crew(short _amount)
@@ -356,11 +366,12 @@ void Battle::change_crew(short _amount)
 
 void Battle::after_sea_battle(short _battle_phase)
 {
+    emit update_info();
     if (_battle_phase == 5)
         kill();
     if (_battle_phase == 4)
     {
-        timer2->start(17*10);
+        timer2->start(round_time);
         abordage();
     }
 }

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Battle_t {
-    QByteArrayData data[12];
-    char stringdata0[136];
+    QByteArrayData data[13];
+    char stringdata0[148];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,15 +38,16 @@ QT_MOC_LITERAL(5, 49, 13), // "_battle_phase"
 QT_MOC_LITERAL(6, 63, 13), // "finish_battle"
 QT_MOC_LITERAL(7, 77, 4), // "lost"
 QT_MOC_LITERAL(8, 82, 5), // "_crew"
-QT_MOC_LITERAL(9, 88, 16), // "after_sea_battle"
-QT_MOC_LITERAL(10, 105, 12), // "round_on_sea"
-QT_MOC_LITERAL(11, 118, 17) // "round_of_abordage"
+QT_MOC_LITERAL(9, 88, 11), // "update_info"
+QT_MOC_LITERAL(10, 100, 16), // "after_sea_battle"
+QT_MOC_LITERAL(11, 117, 12), // "round_on_sea"
+QT_MOC_LITERAL(12, 130, 17) // "round_of_abordage"
 
     },
     "Battle\0change_player_morale\0\0value\0"
     "sink_abordage\0_battle_phase\0finish_battle\0"
-    "lost\0_crew\0after_sea_battle\0round_on_sea\0"
-    "round_of_abordage"
+    "lost\0_crew\0update_info\0after_sea_battle\0"
+    "round_on_sea\0round_of_abordage"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,29 +57,31 @@ static const uint qt_meta_data_Battle[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       4,       // signalCount
+       5,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   49,    2, 0x06 /* Public */,
-       4,    1,   52,    2, 0x06 /* Public */,
-       6,    0,   55,    2, 0x06 /* Public */,
-       7,    1,   56,    2, 0x06 /* Public */,
+       1,    1,   54,    2, 0x06 /* Public */,
+       4,    1,   57,    2, 0x06 /* Public */,
+       6,    0,   60,    2, 0x06 /* Public */,
+       7,    1,   61,    2, 0x06 /* Public */,
+       9,    0,   64,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       9,    1,   59,    2, 0x0a /* Public */,
-      10,    0,   62,    2, 0x0a /* Public */,
-      11,    0,   63,    2, 0x0a /* Public */,
+      10,    1,   65,    2, 0x0a /* Public */,
+      11,    0,   68,    2, 0x0a /* Public */,
+      12,    0,   69,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Float,    3,
     QMetaType::Void, QMetaType::Short,    5,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Short,    8,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Short,    5,
@@ -98,9 +101,10 @@ void Battle::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 1: _t->sink_abordage((*reinterpret_cast< short(*)>(_a[1]))); break;
         case 2: _t->finish_battle(); break;
         case 3: _t->lost((*reinterpret_cast< short(*)>(_a[1]))); break;
-        case 4: _t->after_sea_battle((*reinterpret_cast< short(*)>(_a[1]))); break;
-        case 5: _t->round_on_sea(); break;
-        case 6: _t->round_of_abordage(); break;
+        case 4: _t->update_info(); break;
+        case 5: _t->after_sea_battle((*reinterpret_cast< short(*)>(_a[1]))); break;
+        case 6: _t->round_on_sea(); break;
+        case 7: _t->round_of_abordage(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -134,6 +138,13 @@ void Battle::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
                 return;
             }
         }
+        {
+            typedef void (Battle::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Battle::update_info)) {
+                *result = 4;
+                return;
+            }
+        }
     }
 }
 
@@ -162,13 +173,13 @@ int Battle::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }
@@ -198,5 +209,11 @@ void Battle::lost(short _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
+}
+
+// SIGNAL 4
+void Battle::update_info()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

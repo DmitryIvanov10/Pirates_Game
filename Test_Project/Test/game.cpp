@@ -1129,6 +1129,7 @@ void Game::battle(short _battle_phase)
                 battles.push_back(new Battle(player, battle_ship));
                 connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
                 connect(battles[battles.size()-1], SIGNAL(finish_battle()), battle_ship, SLOT(reset()));
+                connect(battles[battles.size()-1], SIGNAL(update_info()), this, SLOT(center_view()));
                 connect(battles[battles.size()-1], SIGNAL(lost(short)), player, SLOT(on_boat(short)));
                 connect(battles[battles.size()-1], SIGNAL(sink_abordage(short)), this, SLOT(show_battle_menu(short)));
                 connect(this, SIGNAL(sink_abordage(short)), battles[battles.size()-1], SLOT(after_sea_battle(short)));
@@ -1163,7 +1164,7 @@ void Game::show_battle_menu(short _battle_phase)
             break;
         case 3:
             battle_phase = 3;
-            center_view();
+            //center_view();
             scene->addItem(battle_start_menu[0]);
             scene->addItem(battle_start_menu[1]);
             scene->addItem(battle_start_menu[2]);

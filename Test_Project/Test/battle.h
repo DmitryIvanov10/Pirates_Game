@@ -32,6 +32,7 @@ class Battle: public QObject
     short round_ammo_shot_2;
     short round_damage_1;
     short round_damage_2;
+    short round_time = 17*180;
 
     bool let_away = false;
     bool player_battle;
@@ -65,6 +66,7 @@ signals:
     void sink_abordage(short _battle_phase);
     void finish_battle();
     void lost(short _crew);
+    void update_info();
 
 public slots:
     void after_sea_battle(short _battle_phase);
