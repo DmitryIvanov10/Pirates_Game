@@ -23,6 +23,7 @@ class NPC: public Ship //, public QGraphicsRectItem
     short previous_location; //wierzchołek voronoi z którego statek zmierza
     short target_location; //cel statku, wierzchołek voronoi
     bool active; //czy jest we view
+    bool showing_info = false; //czy jest pokazywana informacja o statku w grze
 
     //funkcja poszukiwania odległości
     int find_distance(short _id1, short _id2); //zwraca odległość pomiędzy dwoma punktami voronoi
@@ -50,6 +51,7 @@ public:
 
 signals:
     void send_info(NPC * _ship);
+    void hide_info();
     void delete_npc(NPC * _ship);
 
 public slots:

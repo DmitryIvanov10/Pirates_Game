@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_NPC_t {
-    QByteArrayData data[8];
-    char stringdata0[65];
+    QByteArrayData data[9];
+    char stringdata0[75];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,13 +34,14 @@ QT_MOC_LITERAL(1, 4, 9), // "send_info"
 QT_MOC_LITERAL(2, 14, 0), // ""
 QT_MOC_LITERAL(3, 15, 4), // "NPC*"
 QT_MOC_LITERAL(4, 20, 5), // "_ship"
-QT_MOC_LITERAL(5, 26, 10), // "delete_npc"
-QT_MOC_LITERAL(6, 37, 21), // "move_to_next_location"
-QT_MOC_LITERAL(7, 59, 5) // "reset"
+QT_MOC_LITERAL(5, 26, 9), // "hide_info"
+QT_MOC_LITERAL(6, 36, 10), // "delete_npc"
+QT_MOC_LITERAL(7, 47, 21), // "move_to_next_location"
+QT_MOC_LITERAL(8, 69, 5) // "reset"
 
     },
-    "NPC\0send_info\0\0NPC*\0_ship\0delete_npc\0"
-    "move_to_next_location\0reset"
+    "NPC\0send_info\0\0NPC*\0_ship\0hide_info\0"
+    "delete_npc\0move_to_next_location\0reset"
 };
 #undef QT_MOC_LITERAL
 
@@ -50,23 +51,25 @@ static const uint qt_meta_data_NPC[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   34,    2, 0x06 /* Public */,
-       5,    1,   37,    2, 0x06 /* Public */,
+       1,    1,   39,    2, 0x06 /* Public */,
+       5,    0,   42,    2, 0x06 /* Public */,
+       6,    1,   43,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    0,   40,    2, 0x0a /* Public */,
-       7,    0,   41,    2, 0x0a /* Public */,
+       7,    0,   46,    2, 0x0a /* Public */,
+       8,    0,   47,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void,
     QMetaType::Void, 0x80000000 | 3,    4,
 
  // slots: parameters
@@ -83,9 +86,10 @@ void NPC::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->send_info((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
-        case 1: _t->delete_npc((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
-        case 2: _t->move_to_next_location(); break;
-        case 3: _t->reset(); break;
+        case 1: _t->hide_info(); break;
+        case 2: _t->delete_npc((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
+        case 3: _t->move_to_next_location(); break;
+        case 4: _t->reset(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -98,7 +102,7 @@ void NPC::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< NPC* >(); break;
             }
             break;
-        case 1:
+        case 2:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -117,9 +121,16 @@ void NPC::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
             }
         }
         {
+            typedef void (NPC::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&NPC::hide_info)) {
+                *result = 1;
+                return;
+            }
+        }
+        {
             typedef void (NPC::*_t)(NPC * );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&NPC::delete_npc)) {
-                *result = 1;
+                *result = 2;
                 return;
             }
         }
@@ -151,13 +162,13 @@ int NPC::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }
@@ -170,9 +181,15 @@ void NPC::send_info(NPC * _t1)
 }
 
 // SIGNAL 1
+void NPC::hide_info()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, Q_NULLPTR);
+}
+
+// SIGNAL 2
 void NPC::delete_npc(NPC * _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
-    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 QT_END_MOC_NAMESPACE

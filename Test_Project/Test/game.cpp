@@ -789,6 +789,9 @@ void Game::set_hud()
     //hud_img[iterate]->setPos(scene_x + resolution_x - 125, scene_y + resolution_y - 125);
     //iterate++;
 
+    // parametry npc
+    npc_info_bar->setPixmap(QPixmap(":/Message_bar_02.png"));
+
     // elementy menu początku walki
     iterate = 0;
     battle_start_menu.push_back(new QGraphicsPixmapItem());
@@ -1208,22 +1211,45 @@ void Game::show_npc_info(NPC *_ship)
 {
     /*foreach (Cargo * cargo, _ship->get_goods())
         qDebug() << cargo->get_name() << " - " << cargo->get_amount();*/
+    // placing info_bar
+    if (_ship->get_x() < scene_x + npc_info_bar->pixmap().width()/2)
+        npc_info_bar_x = _ship->get_x() - _ship->get_sprite_width()/2;
+    else
+    if (_ship->get_x() > scene_x + resolution_x - npc_info_bar->pixmap().width()/2)
+        npc_info_bar_x = _ship->get_x() + _ship->get_sprite_width()/2 - npc_info_bar->pixmap().width();
+    else
+        npc_info_bar_x = _ship->get_x() - npc_info_bar->pixmap().width()/2;
+
+    if (_ship->get_y() < scene_y + npc_info_bar->pixmap().height() + _ship->get_sprite_height()/2)
+        npc_info_bar_y = _ship->get_y() + _ship->get_sprite_height()/2;
+    else
+        npc_info_bar_y = _ship->get_y() - _ship->get_sprite_height()/2 - npc_info_bar->pixmap().height();
+
+    npc_info_bar->setPos(npc_info_bar_x, npc_info_bar_y);
+
+    if (!showing_npc_info)
+    {
+        scene->addItem(npc_info_bar);
+        showing_npc_info = true;
+    }
 }
 
-
+void Game::hide_npc_info()
+{
+    showing_npc_info = false;
+    scene->removeItem(npc_info_bar);
+}
 
 void Game::create_new_npc()
 {
-//    if (npc_ships.size() < start_npc_amount)
-//    {
-        npc_ships.push_back(new NPC());
-        scene->addItem(npc_ships[npc_ships.size() - 1]);
-        connect(npc_ships[npc_ships.size() - 1], SIGNAL(delete_npc(NPC *)),
-                this, SLOT(delete_npc(NPC *)));
-        connect (timer, SIGNAL(timeout()), npc_ships[npc_ships.size() - 1], SLOT(move_to_next_location()));
-        connect (npc_ships[npc_ships.size() - 1], SIGNAL(send_info(NPC *)), this, SLOT(show_npc_info(NPC *)));
-        scene->addItem(npc_ships[npc_ships.size() - 1]->flag);
-//    }
+    npc_ships.push_back(new NPC());
+    scene->addItem(npc_ships[npc_ships.size() - 1]);
+    connect(npc_ships[npc_ships.size() - 1], SIGNAL(delete_npc(NPC *)),
+            this, SLOT(delete_npc(NPC *)));
+    connect (timer, SIGNAL(timeout()), npc_ships[npc_ships.size() - 1], SLOT(move_to_next_location()));
+    connect (npc_ships[npc_ships.size() - 1], SIGNAL(send_info(NPC *)), this, SLOT(show_npc_info(NPC *)));
+    connect (npc_ships[npc_ships.size() - 1], SIGNAL(hide_info()), this, SLOT(hide_npc_info()));
+    scene->addItem(npc_ships[npc_ships.size() - 1]->flag);
 }
 
 void Game::mouse_moved()

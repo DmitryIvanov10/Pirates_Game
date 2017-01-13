@@ -59,6 +59,8 @@ class Game : public QObject
     QGraphicsPixmapItem * menu_bar = new QGraphicsPixmapItem(); //grafika menu
     std::vector <QGraphicsTextItem *> menu_text; //tekst menu
 
+    QGraphicsPixmapItem * npc_info_bar = new QGraphicsPixmapItem(); //grafika info npc
+
     std::vector <QGraphicsPixmapItem *> battle_start_menu; // grafika na menu początku walki
     QGraphicsTextItem * battle_start_menu_text = new QGraphicsTextItem(); // tekst menu początku walki
     QGraphicsTextItem * sink_abordage_menu_text = new QGraphicsTextItem(); // czy grać chcę zacząć abordaż
@@ -83,9 +85,15 @@ class Game : public QObject
     bool pause = 0; //if game is paused
     bool player_at_battle = 0; //if player is in a battle
     bool menu_bool = 0; //czy menu jest włączone
+
     // pomocnicze zmienne dla sprawdzania dodawania i usuwania przycisków lub innych elementów ze sceny
     bool element1_in_scene = false;
     bool element2_in_scene = false;
+
+    bool showing_npc_info = false; // czy pokazuje się info npc w grze
+    // position of the npc info bar
+    short npc_info_bar_x;
+    short npc_info_bar_y;
 
 public:
     //static std::vector <Voronoi_point> map;
@@ -120,6 +128,7 @@ public slots:
     //void check();
     void show_battle_menu(short _battle_phase);
     void show_npc_info(NPC * _ship);
+    void hide_npc_info();
     void count_days();
     void update_states();
     void center_view();

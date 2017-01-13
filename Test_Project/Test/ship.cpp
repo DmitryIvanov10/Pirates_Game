@@ -16,13 +16,13 @@ void Ship::set_cargo()
     while (goods.size() > 0)
         goods.pop_back();
 
-    for (int i=0; i<hold_size; i++)
+    for (size_t i=0; i<hold_size; i++)
     {
         bool not_ok = true;
         while (not_ok)
         {
             goods.push_back(new Cargo());
-            for (int j=0; j<i; j++)
+            for (size_t j=0; j<i; j++)
             {
                 if (goods[i]->get_id() == goods[j]->get_id())
                 {

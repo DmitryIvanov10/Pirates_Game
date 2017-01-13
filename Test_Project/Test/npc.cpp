@@ -274,7 +274,17 @@ bool NPC::in_view()
 void NPC::move_to_next_location()
 {
     if (isUnderMouse())
+    {
+        showing_info = true;
         emit send_info(this);
+    } else
+    {
+        if (showing_info)
+        {
+            showing_info = false;
+            emit hide_info();
+        }
+    }
     move();
     setPos(X,Y);
     flag->setPos(X + sprite_width/2, Y);
