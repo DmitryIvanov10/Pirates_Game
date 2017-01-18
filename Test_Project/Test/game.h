@@ -64,6 +64,10 @@ class Game : public QObject
     std::vector <QGraphicsPixmapItem *> battle_start_menu; // grafika na menu początku walki
     QGraphicsTextItem * battle_start_menu_text = new QGraphicsTextItem(); // tekst menu początku walki
     QGraphicsTextItem * sink_abordage_menu_text = new QGraphicsTextItem(); // czy grać chcę zacząć abordaż
+    QGraphicsTextItem * sink_let_go_menu_text = new QGraphicsTextItem(); // czy grać chcę odpyścić statek
+
+    QGraphicsTextItem * test_health_text = new QGraphicsTextItem();
+    QGraphicsTextItem * test_crew_text = new QGraphicsTextItem();
 
     std::vector <NPC *> npc_ships; //statki npc na mapie
 
@@ -123,6 +127,7 @@ signals:
     //void next_tour();
     void new_day();
     void sink_abordage(short _battle_phase);
+    void sink_let_go(bool _let_go);
 
 public slots:
     //void check();

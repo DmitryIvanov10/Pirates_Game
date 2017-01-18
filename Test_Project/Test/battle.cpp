@@ -63,10 +63,21 @@ void Battle::kill()
     emit finish_battle();
 }
 
-void Battle::win_abordage()
+void Battle::win_abordage(bool _let_go)
 {
     //change_back_type(ship2);
     qDebug() << "Won abordage!";
+    if (_let_go)
+    {
+        qDebug() << "Let npc away after abordage";
+        let_away = true;
+        change_crew(ship2->get_crew() / 2);
+    } else
+    {
+        qDebug() << "Sank npc after abordage";
+        change_crew(ship2->get_crew());
+    }
+
     get_goods();
 
     ship1->set_ammo(ship1->get_ammo() + ship2->get_ammo());
@@ -265,6 +276,18 @@ void Battle::next_move_abordage()
         qDebug() << "Player damage - " << round_damage_1;
         qDebug() << "NPC damage - " << round_damage_2;
 
+        if (ship2->get_crew() > round_damage_1)
+
+            ship2->set_crew(ship2->get_crew() - round_damage_1);
+        else
+        {
+            ship2->set_crew(10);
+            timer2->stop();
+            emit update_info();
+            emit sink_let_go(5);
+            //win_abordage();
+            return;
+        }
         if (ship1->get_crew() > 10 + round_damage_2)
             ship1->set_crew(ship1->get_crew() - round_damage_2);
         else
@@ -274,27 +297,13 @@ void Battle::next_move_abordage()
             loose();
             return;
         }
-        if (ship2->get_crew() > round_damage_1)
-            ship2->set_crew(ship2->get_crew() - round_damage_1);
-        else
-        {
-            ship2->set_crew(10);
-            timer2->stop();
-            qDebug() << "Sank npc after abordage";
-            change_crew(ship2->get_crew());
-            emit update_info();
-            win_abordage();
-            return;
-        }
 
         if (ship2->get_crew() < 0.2 * ship2->get_max_crew())
         {
             timer2->stop();
-            qDebug() << "Let npc away after abordage";
-            let_away = true;
-            change_crew(ship2->get_crew() / 2);
             emit update_info();
-            win_abordage();
+            emit sink_let_go(5);
+            //win_abordage();
             return;
         };
         emit update_info();
@@ -367,7 +376,7 @@ void Battle::change_crew(short _amount)
 void Battle::after_sea_battle(short _battle_phase)
 {
     emit update_info();
-    if (_battle_phase == 5)
+    if (_battle_phase == 6)
         kill();
     if (_battle_phase == 4)
     {
