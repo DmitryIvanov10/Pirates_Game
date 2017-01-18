@@ -392,7 +392,8 @@ double Game::get_harbor(short _id)
 
 void Game::count_days()
 {
-    game_time ++;
+    if (!player_at_battle)
+        game_time ++;
     if (game_time > game_day)
     {
         game_time = 0;
@@ -1163,6 +1164,7 @@ void Game::show_battle_menu(short _battle_phase)
     switch(_battle_phase)
     {
         case 1:
+            center_view();
             scene->addItem(battle_start_menu[0]);
             battle_start_menu[0]->setPos(scene_x + resolution_x/2 - battle_start_menu[0]->pixmap().width()/2,
                                          scene_y + resolution_y/2 - battle_start_menu[0]->pixmap().height()/2);
@@ -1190,6 +1192,7 @@ void Game::show_battle_menu(short _battle_phase)
             scene->addItem(test_health_text);
             break;
         case 3:
+            center_view();
             hide_battle_menu(battle_phase);
             battle_phase = _battle_phase;
             scene->addItem(battle_start_menu[0]);
@@ -1206,6 +1209,7 @@ void Game::show_battle_menu(short _battle_phase)
             scene->addItem(test_crew_text);
             break;
         case 5:
+            center_view();
             hide_battle_menu(battle_phase);
             battle_phase = _battle_phase;
             scene->addItem(battle_start_menu[0]);
@@ -1218,6 +1222,7 @@ void Game::show_battle_menu(short _battle_phase)
             break;
         case 6:
         case 7:
+            center_view();
             hide_battle_menu(4);
             break;
     }

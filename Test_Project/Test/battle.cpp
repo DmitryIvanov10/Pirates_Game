@@ -277,9 +277,10 @@ void Battle::next_move_abordage()
         qDebug() << "NPC damage - " << round_damage_2;
 
         if (ship2->get_crew() > round_damage_1)
-
+        {
             ship2->set_crew(ship2->get_crew() - round_damage_1);
-        else
+            emit update_info();
+        } else
         {
             ship2->set_crew(10);
             timer2->stop();
