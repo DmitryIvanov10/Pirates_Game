@@ -22,7 +22,7 @@ class Ship: public QObject, public QGraphicsPixmapItem
 protected:
     //lista zmiennych typu short klasy Ship
     //zmienne statku, ważne dla gry w widoku podróży
-    //short fraction; //frakcja do której okręt należy
+    short fraction; //frakcja do której okręt należy
     QString name; // nazwa statku
     double angle; //aktualny kąt o jaki statek jest obrócony
     short model; //id modelu statku
@@ -86,6 +86,8 @@ public:
     int get_sprite_height(); // get height of the ship pixmap
     QString get_model_name(); // get the name of the model
     QString get_name(); // get the name of the ship
+    short show_fraction(); //funkcja wyświetlająca frakcję jednostki
+    QString get_fraction();
     short get_ammo();
     void set_ammo(short _ammo);
     short get_health();

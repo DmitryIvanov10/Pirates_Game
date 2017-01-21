@@ -38,8 +38,8 @@ void Ship::set_cargo()
 
 void Ship::set_name()
 {
-    /*// create vectors with names for the ships
-    std::vector<QString> english_names =
+    // create vectors with names for the ships
+    std::vector<QString> british_names =
     {"Argonaute", "Pluto", "Flame", "Friday", "Hotspur",
      "Lotus", "Surprise", "Avenger", "Bounty", "Providence",
      "Saint Peter", "Saint Vincent", "Saint George", "Saint Mary",
@@ -67,7 +67,21 @@ void Ship::set_name()
      "Vrijheid", "Mercurius", "Vogelstruis", "Sint Matheeus", "Rosenkrans",
      "Middelburg", "Dordrecht", "Jupiter", "Westergo", "Amsterdam",
      "Duivenvoorde", "Prinses Maria", "Gouda", "Leyden"};
-    switch(fraction)*/
+    switch(fraction)
+    {
+        case 1:
+            name = british_names[rand() % (british_names.size()-1)];
+            break;
+        case 2:
+            name = spanish_names[rand() % (spanish_names.size()-1)];
+            break;
+        case 3:
+            name = french_names[rand() % (french_names.size()-1)];
+            break;
+        case 4:
+            name = dutch_names[rand() % (dutch_names.size()-1)];
+            break;
+    }
 }
 
 Ship::~Ship()
@@ -254,6 +268,28 @@ QString Ship::get_model_name()
 QString Ship::get_name()
 {
     return name;
+}
+
+short Ship::show_fraction()
+{
+    return fraction;
+}
+
+QString Ship::get_fraction()
+{
+    switch (fraction)
+    {
+    case 1:
+        return QString("British");
+    case 2:
+        return QString("Spanish");
+    case 3:
+        return QString("French");
+    case 4:
+        return QString("Dutch");
+    default:
+        return QString("Fraction Error");
+    }
 }
 
 short Ship::find_sprite_angle()

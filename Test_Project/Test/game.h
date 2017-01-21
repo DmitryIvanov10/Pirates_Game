@@ -67,10 +67,10 @@ class Game : public QObject
     QGraphicsTextItem * sink_abordage_menu_text = new QGraphicsTextItem(); // czy grać chcę zacząć abordaż
     QGraphicsTextItem * sink_let_go_menu_text = new QGraphicsTextItem(); // czy grać chcę odpyścić statek
 
-    QGraphicsTextItem * test_name_text = new QGraphicsTextItem();
-    QGraphicsTextItem * test_model_text = new QGraphicsTextItem();
-    QGraphicsTextItem * test_health_text = new QGraphicsTextItem();
-    QGraphicsTextItem * test_crew_text = new QGraphicsTextItem();
+    QGraphicsTextItem * info_name_text = new QGraphicsTextItem();
+    QGraphicsTextItem * info_model_text = new QGraphicsTextItem();
+    QGraphicsTextItem * info_health_text = new QGraphicsTextItem();
+    QGraphicsTextItem * info_crew_text = new QGraphicsTextItem();
     std::vector <QGraphicsRectItem *> npc_status_bars;
 
     std::vector <NPC *> npc_ships; //statki npc na mapie
