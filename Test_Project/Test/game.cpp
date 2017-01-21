@@ -1313,8 +1313,8 @@ void Game::show_npc_info(NPC *_ship)
     info_crew_text->setPlainText(QString("crew - " + QString::number(_ship->get_crew())));
 
     //ustawianie pozycji elementow
-    info_model_text->setPos(npc_info_bar_x, npc_info_bar_y);
-    info_name_text->setPos(npc_info_bar_x, npc_info_bar_y + 20);
+    info_name_text->setPos(npc_info_bar_x, npc_info_bar_y);
+    info_model_text->setPos(npc_info_bar_x, npc_info_bar_y + 20);
     info_health_text->setPos(npc_info_bar_x, npc_info_bar_y + 39);
     info_crew_text->setPos(npc_info_bar_x, npc_info_bar_y + 75);
 
