@@ -1309,19 +1309,21 @@ void Game::show_npc_info(NPC *_ship)
     npc_info_bar->setPos(npc_info_bar_x, npc_info_bar_y);
 
     //ustawianie napisow
+    test_name_text->setPlainText(QString("Some name"));
     test_model_text->setPlainText(_ship->get_fraction() + QString(" ") + _ship->get_model_name());
     test_health_text->setPlainText(QString("health - " + QString::number(_ship->get_health())));
     test_crew_text->setPlainText(QString("crew - " + QString::number(_ship->get_crew())));
 
     //ustawianie pozycji elementow
-    test_model_text->setPos(npc_info_bar_x, npc_info_bar_y);
-    test_health_text->setPos(npc_info_bar_x, npc_info_bar_y + 35);
+    test_name_text->setPos(npc_info_bar_x, npc_info_bar_y);
+    test_model_text->setPos(npc_info_bar_x, npc_info_bar_y + 20);
+    test_health_text->setPos(npc_info_bar_x, npc_info_bar_y + 39);
     test_crew_text->setPos(npc_info_bar_x, npc_info_bar_y + 75);
 
     //npc_status_bars[0]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 60);
-    npc_status_bars[0]->setRect(npc_info_bar_x + 10, npc_info_bar_y + 60, (int)(100.0*(float)_ship->get_health()/(float)_ship->get_max_health()), 12);
+    npc_status_bars[0]->setRect(npc_info_bar_x + 10, npc_info_bar_y + 65, (int)(100.0*(float)_ship->get_health()/(float)_ship->get_max_health()), 12);
     //map_rect->setRect(x,y,w,h);
-    npc_status_bars[1]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 60);
+    npc_status_bars[1]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 65);
     //npc_status_bars[2]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 100);
     npc_status_bars[2]->setRect(npc_info_bar_x + 10, npc_info_bar_y + 100, (int)(100.0*(float)_ship->get_crew()/(float)_ship->get_max_crew()), 12);
     npc_status_bars[3]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 100);
@@ -1329,6 +1331,7 @@ void Game::show_npc_info(NPC *_ship)
     if (!showing_npc_info)
     {
         scene->addItem(npc_info_bar);
+        scene->addItem(test_name_text);
         scene->addItem(test_model_text);
         scene->addItem(test_crew_text);
         scene->addItem(test_health_text);
@@ -1344,6 +1347,7 @@ void Game::hide_npc_info()
 {
     showing_npc_info = false;
     scene->removeItem(npc_info_bar);
+    scene->removeItem(test_name_text);
     scene->removeItem(test_model_text);
     scene->removeItem(test_crew_text);
     scene->removeItem(test_health_text);
