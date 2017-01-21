@@ -1016,14 +1016,6 @@ void Game::set_hud()
     battle_screen_txt[iterate]->setFont(QFont("times", 12));
     iterate++;
 
-    battle_screen_txt.push_back(new QGraphicsTextItem());
-    battle_screen_txt.push_back(new QGraphicsTextItem());
-    battle_screen_txt.push_back(new QGraphicsTextItem());
-    battle_screen_txt.push_back(new QGraphicsTextItem());
-    battle_screen_txt.push_back(new QGraphicsTextItem());
-    battle_screen_txt.push_back(new QGraphicsTextItem());
-    //debugowe to powyzej
-
     //obiekty paskow
     iterate = 0;
     battle_screen_rect.push_back(new QGraphicsRectItem(0,0,10,10));
@@ -1579,6 +1571,13 @@ void Game::hide_battle_menu(short _battle_phase)
     switch(_battle_phase)
     {
         case 1:
+        case 2:
+            for(int i = 0; i < battle_screen_img.size(); i++)
+                scene->removeItem(battle_screen_img[i]);
+            for(int i = 0; i < battle_screen_txt.size(); i++)
+                scene->removeItem(battle_screen_txt[i]);
+             for(int i = 0; i < battle_screen_rect.size(); i++)
+                 scene->removeItem(battle_screen_rect[i]);
         case 3:
         case 5:
             for (size_t i=0; i<5; i++)
@@ -1607,12 +1606,6 @@ void Game::hide_battle_menu(short _battle_phase)
             if (_battle_phase == 5) {
                 //qDebug() << "Removing sink let go menu text";
                 scene->removeItem(sink_let_go_menu_text);}
-            break;
-        case 2:
-            //qDebug() << "Removing main menu";
-            scene->removeItem(battle_start_menu[0]);
-            //qDebug() << "Removing health text";
-            scene->removeItem(info_health_text);
             break;
         case 4:
             //qDebug() << "removing main menu";
