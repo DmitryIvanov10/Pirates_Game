@@ -940,12 +940,13 @@ void Game::set_hud()
     //tutul
     battle_screen_txt.push_back(new QGraphicsTextItem());
     battle_screen_txt[iterate]->setPlainText(QString("Sea battle"));
+    battle_screen_txt[iterate]->setDefaultTextColor(Qt::white);
     battle_screen_txt[iterate]->setFont(QFont("times", 18));
     iterate++;
 
     //napis guzika
     battle_screen_txt.push_back(new QGraphicsTextItem());
-    battle_screen_txt[iterate]->setPlainText(QString("Run!"));
+    battle_screen_txt[iterate]->setPlainText(QString("Run away!"));
     battle_screen_txt[iterate]->setDefaultTextColor(Qt::white);
     battle_screen_txt[iterate]->setFont(QFont("times", 16));
     iterate++;
@@ -1434,7 +1435,7 @@ void Game::show_battle_menu(short _battle_phase)
 
             //przycisk guzika "Run!"
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(scene_x + resolution_x/2 - 25, scene_y + resolution_y/2 + 80);
+            battle_screen_txt[iter]->setPos(scene_x + resolution_x/2 - 55, scene_y + resolution_y/2 + 80);
             iter++;
 
             //nazwa player
@@ -1743,6 +1744,18 @@ void Game::mouse_moved()
         {
             scene->removeItem(battle_start_menu[6]);
             element2_in_scene = false;
+        }
+    }
+
+    if (battle_phase == 2)
+    {
+        if(battle_screen_img[1]->isUnderMouse())
+        {
+            battle_screen_txt[1]->setDefaultTextColor(Qt::red);
+        }
+        else
+        {
+            battle_screen_txt[1]->setDefaultTextColor(Qt::white);
         }
     }
 
