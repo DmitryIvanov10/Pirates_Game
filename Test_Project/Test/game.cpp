@@ -694,10 +694,30 @@ void Game::center_view()
 
     //inne elementy HUD'u
     map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
+
     if (battle_phase)
     {
         info_health_text->setPlainText(QString("NPC health - " + QString::number(battle_ship->get_health())));
         info_crew_text->setPlainText(QString("NPC crew - " + QString::number(battle_ship->get_crew())));
+
+        //
+        battle_screen_img[2]->setPixmap(QPixmap(":/" + player->get_model_name() + "_SE_01.png"));
+        battle_screen_img[3]->setPixmap(QPixmap(":/" + battle_ship->get_model_name() + "_SW_01.png"));
+
+        battle_screen_rect[0]->setRect(0, 0, (int)(100.0 * (int)player->get_health()/(float)player->get_max_health()), 15);
+        battle_screen_rect[1]->setRect(0, 0, (int)(100.0 * (int)player->get_crew()/(float)player->get_max_crew()), 15);
+        battle_screen_rect[2]->setRect(0, 0, (int)(100.0 * (int)battle_ship->get_health()/(float)battle_ship->get_max_health()), 15);
+        battle_screen_rect[3]->setRect(0, 0, (int)(100.0 * (int)battle_ship->get_crew()/(float)battle_ship->get_max_crew()), 15);
+
+        battle_screen_txt[3]->setPlainText(QString("health - " + QString::number(player->get_health())));
+        battle_screen_txt[4]->setPlainText(QString("crew - " + QString::number(player->get_crew())));
+        battle_screen_txt[5]->setPlainText(QString("Cannons: ") + QString::number(player->get_cannons()));
+        battle_screen_txt[6]->setPlainText(QString("Ammo: ") + QString::number(player->get_ammo()));
+        battle_screen_txt[7]->setPlainText(battle_ship->get_name());
+        battle_screen_txt[8]->setPlainText(QString("health - ") + QString::number(battle_ship->get_health()));
+        battle_screen_txt[9]->setPlainText(QString("crew - ") + QString::number(battle_ship->get_crew()));
+        battle_screen_txt[10]->setPlainText(QString("Cannons - ") + QString::number(battle_ship->get_cannons()));
+        battle_screen_txt[11]->setPlainText(QString("Ammo - ") + QString::number(battle_ship->get_ammo()));
     }
 }
 
@@ -858,12 +878,125 @@ void Game::set_hud()
     iterate = 0;
 
     battle_screen_img.push_back(new QGraphicsPixmapItem());
-    battle_screen_img[0]->setPixmap(QPixmap(":/battle_screen_02.png"));
+    battle_screen_img[iterate]->setPixmap(QPixmap(":/battle_screen_02.png"));
     iterate++;
 
     battle_screen_img.push_back(new QGraphicsPixmapItem());
-    battle_screen_img[0]->setPixmap(QPixmap(":/medium_button_01.png"));
+    battle_screen_img[iterate]->setPixmap(QPixmap(":/medium_button_01.png"));
     iterate++;
+
+    battle_screen_img.push_back(new QGraphicsPixmapItem());
+    iterate++;
+
+    battle_screen_img.push_back(new QGraphicsPixmapItem());
+    iterate++;
+
+    //czesc tekstowa
+    iterate = 0;
+
+    //tutul
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt[iterate]->setPlainText(QString("Sea battle"));
+    battle_screen_txt[iterate]->setFont(QFont("times", 18));
+    iterate++;
+
+    //napis guzika
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt[iterate]->setPlainText(QString("Run!"));
+    battle_screen_txt[iterate]->setDefaultTextColor(Qt::white);
+    battle_screen_txt[iterate]->setFont(QFont("times", 16));
+    iterate++;
+
+    //you
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt[iterate]->setPlainText(QString("You"));
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    //twoje zdrowie
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt[iterate]->setPlainText(QString("health - " + QString::number(player->get_health())));
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    //twoja zaloga
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt[iterate]->setPlainText(QString("crew - " + QString::number(player->get_crew())));
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    //twoj model
+    //battle_screen_txt.push_back(new QGraphicsTextItem());
+    //battle_screen_txt[iterate]->setPlainText(player->get_model_name());
+    //battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    //iterate++;
+
+    //twoje armaty
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt[iterate]->setPlainText(QString("Cannons: ") + QString::number(player->get_cannons()));
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    //twoja amunicja
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt[iterate]->setPlainText(QString("Ammo: ") + QString::number(player->get_ammo()));
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    //wrog
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    //battle_screen_txt[iterate]->setPlainText(battle_ship->get_name());
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    //zdrowie wroga
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    //battle_screen_txt[iterate]->setPlainText(QString("health - ") + QString::number(battle_ship->get_health()));
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    //zaloga wroga
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    //battle_screen_txt[iterate]->setPlainText(QString("crew - ") + QString::number(battle_ship->get_crew()));
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    //armaty wroga
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    //battle_screen_txt[iterate]->setPlainText(QString("Cannons - ") + QString::number(battle_ship->get_cannons()));
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    //ammo wroga
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    //battle_screen_txt[iterate]->setPlainText(QString("Ammo - ") + QString::number(battle_ship->get_ammo()));
+    battle_screen_txt[iterate]->setFont(QFont("times", 12));
+    iterate++;
+
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    battle_screen_txt.push_back(new QGraphicsTextItem());
+    //debugowe to powyzej
+
+    //obiekty paskow
+    iterate = 0;
+    battle_screen_rect.push_back(new QGraphicsRectItem(0,0,10,10));
+    battle_screen_rect[iterate]->setBrush(QBrush(QImage(":/red_01.png")));
+    iterate++;
+    battle_screen_rect.push_back(new QGraphicsRectItem(0,0,10,10));
+    battle_screen_rect[iterate]->setBrush(QBrush(QImage(":/red_01.png")));
+    iterate++;
+    battle_screen_rect.push_back(new QGraphicsRectItem(0,0,10,10));
+    battle_screen_rect[iterate]->setBrush(QBrush(QImage(":/red_01.png")));
+    iterate++;
+    battle_screen_rect.push_back(new QGraphicsRectItem(0,0,10,10));
+    battle_screen_rect[iterate]->setBrush(QBrush(QImage(":/red_01.png")));
+    iterate++;
+
+
 
 
     //elementy fazy abordażu
@@ -1209,6 +1342,7 @@ void Game::show_battle_menu(short _battle_phase)
     9 - loose either in sea battle or abordage
     10 - show and change ship holds / get crew from NPC (?)
 */
+    int iter;
     switch(_battle_phase)
     {
         case 1:
@@ -1236,8 +1370,115 @@ void Game::show_battle_menu(short _battle_phase)
             break;
         case 2:
             center_view();
-            scene->addItem(battle_start_menu[0]);
-            scene->addItem(info_health_text);
+            //to do
+            //elementy graficzne
+            iter =  0;
+            scene->addItem(battle_screen_img[iter]);
+            battle_screen_img[iter]->setPos(scene_x + resolution_x/2 - battle_screen_img[iter]->pixmap().width()/2,scene_y + resolution_y/2 - battle_screen_img[iter]->pixmap().height()/2);
+            iter++;
+
+            scene->addItem(battle_screen_img[iter]);
+            battle_screen_img[iter]->setPos(scene_x + resolution_x/2 - battle_screen_img[iter]->pixmap().width()/2,scene_y + resolution_y/2 - battle_screen_img[iter]->pixmap().height()/2 + 100);
+            iter++;
+
+            scene->addItem(battle_screen_img[iter]);
+            battle_screen_img[iter]->setPos(battle_screen_img[0]->x() + 70, battle_screen_img[0]->y() + 54);
+            iter++;
+
+            scene->addItem(battle_screen_img[iter]);
+            battle_screen_img[iter]->setPos(battle_screen_img[0]->x() + 445, battle_screen_img[0]->y() + 54);
+            iter++;
+
+            //elementy tekstowe
+            iter = 0;
+
+            //tytul
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(scene_x + resolution_x/2 - 60, scene_y + resolution_y/2 - 150);
+            iter++;
+
+            //przycisk guzika "Run!"
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(scene_x + resolution_x/2 - 25, scene_y + resolution_y/2 + 80);
+            iter++;
+
+            //nazwa player
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 145);
+            iter++;
+
+            //stan zdrowia
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 175);
+            iter++;
+
+            //stan zalogi
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 215);
+            iter++;
+
+            //armaty
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 260);
+            iter++;
+
+            //ammo
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 280);
+            iter++;
+
+            //nazwa wroga
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 145);
+            iter++;
+
+            //stan zdrowia
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 175);
+            iter++;
+
+            //stan zalogi
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 215);
+            iter++;
+
+            //armaty
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 260);
+            iter++;
+
+            //ammo
+            scene->addItem(battle_screen_txt[iter]);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 280);
+            iter++;
+
+            //elementy paskow
+            iter = 0;
+
+            scene->addItem(battle_screen_rect[iter]);
+            //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 200, 150, 15);
+            battle_screen_rect[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 200);
+            iter++;
+
+            scene->addItem(battle_screen_rect[iter]);
+            //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 238, 150, 15);
+            battle_screen_rect[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 238);
+            iter++;
+
+            scene->addItem(battle_screen_rect[iter]);
+            //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 200, 150, 15);
+            battle_screen_rect[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 200);
+            iter++;
+
+            scene->addItem(battle_screen_rect[iter]);
+            //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 238, 150, 15);
+            battle_screen_rect[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 238);
+            iter++;
+
+
+
+            //scene->addItem(battle_start_menu[0]);
+            //scene->addItem(info_health_text);
             break;
         case 3:
             center_view();
