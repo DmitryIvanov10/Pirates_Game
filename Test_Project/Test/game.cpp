@@ -800,7 +800,7 @@ void Game::set_hud()
     // parametry npc
     npc_info_bar->setPixmap(QPixmap(":/temp__npc_info_02.png"));
 
-    test_fraction_text->setFont(QFont("times", 12));
+    test_name_text->setFont(QFont("times", 12));
     test_model_text->setFont(QFont("times", 12));
     //test_health_text->setDefaultTextColor(Qt::white);
     test_health_text->setFont(QFont("times", 12));
@@ -1309,7 +1309,7 @@ void Game::show_npc_info(NPC *_ship)
     npc_info_bar->setPos(npc_info_bar_x, npc_info_bar_y);
 
     //ustawianie napisow
-    test_model_text->setPlainText(QString(_ship->get_model_name()));
+    test_model_text->setPlainText(_ship->get_fraction() + QString(" ") + _ship->get_model_name());
     test_health_text->setPlainText(QString("health - " + QString::number(_ship->get_health())));
     test_crew_text->setPlainText(QString("crew - " + QString::number(_ship->get_crew())));
 

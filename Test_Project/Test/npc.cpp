@@ -342,3 +342,19 @@ void NPC::reset()
     find_next();
 }
 
+QString NPC::get_fraction()
+{
+    switch (fraction)
+    {
+    case 1:
+        return QString("British");
+    case 2:
+        return QString("Spanish");
+    case 3:
+        return QString("French");
+    case 4:
+        return QString("Dutch");
+    default:
+        return QString("Fraction Error");
+    }
+}
