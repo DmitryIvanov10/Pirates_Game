@@ -69,6 +69,7 @@ class Game : public QObject
     std::vector<QGraphicsRectItem *> battle_screen_rect; //paski do walki
     QGraphicsTextItem * sink_abordage_menu_text = new QGraphicsTextItem(); // czy grać chcę zacząć abordaż
     QGraphicsTextItem * sink_let_go_menu_text = new QGraphicsTextItem(); // czy grać chcę odpyścić statek
+    QGraphicsTextItem * end_battle_menu_text = new QGraphicsTextItem(); // tekst wynika walki
 
     QGraphicsTextItem * info_name_text = new QGraphicsTextItem();
     QGraphicsTextItem * info_model_text = new QGraphicsTextItem();
@@ -80,6 +81,7 @@ class Game : public QObject
 
     Ship * battle_ship; // statek z którym walczy player
 
+    bool clicked = false;
     int frame_time = 17;
     int game_time = 0;
     int resolution_x = 1366 - 2;
@@ -145,10 +147,11 @@ public slots:
     void update_states();
     void center_view();
     void start_player_battle(Ship * _ship);
-    void end_player_battle();
+    void end_player_battle(short _status); //0 - don't start battle; 1 - loose, on boat; 2 - loose, ran away; 3 - win, kill; 4 - win, let go
     //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);
     void mouse_moved();
     void mouse_pressed();
+    void mouse_released();
     void reset_timer();
     void delete_npc(NPC * _ship);
     //void delete_pirate(Pirate * _ship);

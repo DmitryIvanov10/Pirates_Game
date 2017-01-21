@@ -10,3 +10,4 @@
 8 - run away from sea battle
 9 - loose either in sea battle or abordage
 10 - show and change ship holds / get crew from NPC (?)
+11 - show end battle status

@@ -63,7 +63,7 @@ public:
 signals:
     void change_player_morale(float value);
     void sink_abordage(short _battle_phase);
-    void finish_battle();
+    void finish_battle(short _status); //1 - loose, on boat; 2 - loose, ran away; 3 - win, kill; 4 - win, let go
     void lost(short _crew);
     void update_info();
     void sink_let_go(short _battle_phase);
