@@ -60,7 +60,7 @@ void Battle::kill()
     if (morale_effect_1 > 1.5)
         morale_effect_1 = 1.5;
 
-    emit finish_battle();
+    emit finish_battle(3);
 }
 
 void Battle::win_abordage(bool _let_go)
@@ -89,14 +89,17 @@ void Battle::win_abordage(bool _let_go)
 
     morale_effect_2 = 0;
 
-    emit finish_battle();
+    if (let_away)
+        emit finish_battle(4);
+    else
+        emit finish_battle(3);
 }
 
 void Battle::run_away()
 {
     //change_back_type(ship2);
     qDebug() << "Ran away.";
-    emit finish_battle();
+    emit finish_battle(2);
 }
 
 void Battle::loose()
@@ -104,7 +107,7 @@ void Battle::loose()
     //change_back_type(ship2);
     qDebug() << "Lost abordage or got drowned";
     emit lost(ship1->get_crew());
-    emit finish_battle();
+    emit finish_battle(1);
 }
 
 void Battle::abordage()
