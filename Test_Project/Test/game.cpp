@@ -1459,7 +1459,7 @@ void Game::show_battle_menu(short _battle_phase)
             {
                 battle_screen_txt[0]->setPlainText(QString("Abordage"));
             }
-            hide_battle_menu(battle_phase);
+            hide_battle_menu(1);
             center_view();
             //to do
             //elementy graficzne
@@ -1621,7 +1621,6 @@ void Game::hide_battle_menu(short _battle_phase)
     //qDebug() << "Battle phase - " << _battle_phase;
     switch(_battle_phase)
     {
-        case 1:
         case 2:
         case 4:
             for(int i = 0; i < battle_screen_img.size(); i++)
@@ -1631,6 +1630,7 @@ void Game::hide_battle_menu(short _battle_phase)
              for(int i = 0; i < battle_screen_rect.size(); i++)
                  scene->removeItem(battle_screen_rect[i]);
             break;
+        case 1:
         case 3:
         case 5:
             for (size_t i=0; i<5; i++)
