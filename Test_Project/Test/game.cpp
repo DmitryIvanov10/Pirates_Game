@@ -1332,22 +1332,22 @@ void Game::mouse_moved()
         if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 75 && view->get_y() < resolution_y/2 -25))
             menu_text[1]->setDefaultTextColor(Qt::white);
             */
-        if (menu_text[2]->isUnderMouse())
-        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40)
+        //if (menu_text[2]->isUnderMouse())
+        if (view->get_x() > resolution_x/2 - 120 && view->get_x() < resolution_x/2 +120 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40)
             menu_text[2]->setDefaultTextColor(Qt::red);
         else
         //if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40))
             menu_text[2]->setDefaultTextColor(Qt::white);
 
-        if (menu_text[3]->isUnderMouse())
-        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
+        //if (menu_text[3]->isUnderMouse())
+        if (view->get_x() > resolution_x/2 - 120 && view->get_x() < resolution_x/2 +120 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
             menu_text[3]->setDefaultTextColor(Qt::red);
         else
         //if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95))
             menu_text[3]->setDefaultTextColor(Qt::white);
 
-        if (menu_text[4]->isUnderMouse())
-        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
+        //if (menu_text[4]->isUnderMouse())
+        if (view->get_x() > resolution_x/2 - 120 && view->get_x() < resolution_x/2 +120 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
             menu_text[4]->setDefaultTextColor(Qt::red);
         else
         //if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200))
@@ -1479,12 +1479,12 @@ void Game::mouse_pressed()
     //obsługa menu
     if (menu_bool)
     {
-        if (menu_text[3]->isUnderMouse())
-        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
+        //if (menu_text[3]->isUnderMouse())
+        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
             QApplication::quit();
 
-        if (menu_text[4]->isUnderMouse())
-        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
+        //if (menu_text[4]->isUnderMouse())
+        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
             show_menu();
     }
 }
