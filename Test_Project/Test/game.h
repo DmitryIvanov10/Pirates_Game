@@ -70,6 +70,7 @@ class Game : public QObject
     QGraphicsTextItem * test_model_text = new QGraphicsTextItem();
     QGraphicsTextItem * test_health_text = new QGraphicsTextItem();
     QGraphicsTextItem * test_crew_text = new QGraphicsTextItem();
+    std::vector <QGraphicsRectItem *> npc_status_bars;
 
     std::vector <NPC *> npc_ships; //statki npc na mapie
 

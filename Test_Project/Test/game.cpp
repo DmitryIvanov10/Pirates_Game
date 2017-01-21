@@ -796,8 +796,30 @@ void Game::set_hud()
     //hud_img[iterate]->setPos(scene_x + resolution_x - 125, scene_y + resolution_y - 125);
     //iterate++;
 
+
     // parametry npc
     npc_info_bar->setPixmap(QPixmap(":/temp__npc_info_02.png"));
+
+    test_fraction_text->setFont(QFont("times", 12));
+    test_model_text->setFont(QFont("times", 12));
+    //test_health_text->setDefaultTextColor(Qt::white);
+    test_health_text->setFont(QFont("times", 12));
+    //test_crew_text->setDefaultTextColor(Qt::white);
+    test_crew_text->setFont(QFont("times", 12));
+
+    //paski parametrów
+    //pasek zdrowia
+    npc_status_bars.push_back(new QGraphicsRectItem(0,0,100,12));
+    npc_status_bars[0]->setBrush(QBrush(QImage(":/red_01.png")));
+    npc_status_bars[0]->setOpacity(0.75);
+    //map_rect->setOpacity(0.5);
+    npc_status_bars.push_back(new QGraphicsRectItem(0,0,100,12));
+    //pasek zalogi
+    npc_status_bars.push_back(new QGraphicsRectItem(0,0,100,12));
+    npc_status_bars[2]->setBrush(QBrush(QImage(":/red_01.png")));
+    npc_status_bars[2]->setOpacity(0.75);
+    npc_status_bars.push_back(new QGraphicsRectItem(0,0,100,12));
+
 
     // elementy menu początku walki
     iterate = 0;
@@ -840,12 +862,6 @@ void Game::set_hud()
     sink_let_go_menu_text->setDefaultTextColor(Qt::white);
     sink_let_go_menu_text->setFont(QFont("times", 12));
 
-    test_fraction_text->setFont(QFont("times", 12));
-    test_model_text->setFont(QFont("times", 12));
-    //test_health_text->setDefaultTextColor(Qt::white);
-    test_health_text->setFont(QFont("times", 12));
-    //test_crew_text->setDefaultTextColor(Qt::white);
-    test_crew_text->setFont(QFont("times", 12));
 
     //elementy tekstowe
     iterate = 0;
@@ -1052,6 +1068,10 @@ void Game::set_hud()
     map_rect = new QGraphicsRectItem();
     //map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
     scene->addItem(map_rect);
+
+    //ważne poniżej
+    //map_rect->setOpacity(0.1);
+    //map_rect->setBrush(QBrush(QImage(":/img/Sea/sea_01.png")));
 
     //tworzenie menu
     iterate = 0;
@@ -1288,13 +1308,23 @@ void Game::show_npc_info(NPC *_ship)
 
     npc_info_bar->setPos(npc_info_bar_x, npc_info_bar_y);
 
+    //ustawianie napisow
     test_model_text->setPlainText(QString(_ship->get_model_name()));
     test_health_text->setPlainText(QString("health - " + QString::number(_ship->get_health())));
     test_crew_text->setPlainText(QString("crew - " + QString::number(_ship->get_crew())));
 
+    //ustawianie pozycji elementow
     test_model_text->setPos(npc_info_bar_x, npc_info_bar_y);
-    test_health_text->setPos(npc_info_bar_x, npc_info_bar_y + 40);
-    test_crew_text->setPos(npc_info_bar_x, npc_info_bar_y + 60);
+    test_health_text->setPos(npc_info_bar_x, npc_info_bar_y + 35);
+    test_crew_text->setPos(npc_info_bar_x, npc_info_bar_y + 75);
+
+    //npc_status_bars[0]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 60);
+    npc_status_bars[0]->setRect(npc_info_bar_x + 10, npc_info_bar_y + 60, (int)(100.0*(float)_ship->get_health()/(float)_ship->get_max_health()), 12);
+    //map_rect->setRect(x,y,w,h);
+    npc_status_bars[1]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 60);
+    //npc_status_bars[2]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 100);
+    npc_status_bars[2]->setRect(npc_info_bar_x + 10, npc_info_bar_y + 100, (int)(100.0*(float)_ship->get_crew()/(float)_ship->get_max_crew()), 12);
+    npc_status_bars[3]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 100);
 
     if (!showing_npc_info)
     {
@@ -1302,6 +1332,10 @@ void Game::show_npc_info(NPC *_ship)
         scene->addItem(test_model_text);
         scene->addItem(test_crew_text);
         scene->addItem(test_health_text);
+        scene->addItem(npc_status_bars[0]);
+        scene->addItem(npc_status_bars[1]);
+        scene->addItem(npc_status_bars[2]);
+        scene->addItem(npc_status_bars[3]);
         showing_npc_info = true;
     }
 }
@@ -1313,6 +1347,10 @@ void Game::hide_npc_info()
     scene->removeItem(test_model_text);
     scene->removeItem(test_crew_text);
     scene->removeItem(test_health_text);
+    scene->removeItem(npc_status_bars[0]);
+    scene->removeItem(npc_status_bars[1]);
+    scene->removeItem(npc_status_bars[2]);
+    scene->removeItem(npc_status_bars[3]);
 }
 
 void Game::create_new_npc()
