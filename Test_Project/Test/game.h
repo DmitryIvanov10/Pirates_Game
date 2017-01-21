@@ -70,6 +70,7 @@ class Game : public QObject
     QGraphicsTextItem * sink_abordage_menu_text = new QGraphicsTextItem(); // czy grać chcę zacząć abordaż
     QGraphicsTextItem * sink_let_go_menu_text = new QGraphicsTextItem(); // czy grać chcę odpyścić statek
     QGraphicsTextItem * end_battle_menu_text = new QGraphicsTextItem(); // tekst wynika walki
+    short end_battle_menu_text_offset; // przemieszczenie tekstu wynika walki
 
     QGraphicsTextItem * info_name_text = new QGraphicsTextItem();
     QGraphicsTextItem * info_model_text = new QGraphicsTextItem();
@@ -137,6 +138,7 @@ signals:
     void new_day();
     void sink_abordage(short _battle_phase);
     void sink_let_go(bool _let_go);
+    void run_away();
 
 public slots:
     //void check();

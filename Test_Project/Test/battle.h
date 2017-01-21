@@ -47,7 +47,6 @@ public:
     void start_battle();
 
     void kill();
-    void run_away();
     void loose();
 
     void abordage();
@@ -69,6 +68,7 @@ signals:
     void sink_let_go(short _battle_phase);
 
 public slots:
+    void run_away();
     void win_abordage(bool _let_go);
     void after_sea_battle(short _battle_phase);
     void round_on_sea();

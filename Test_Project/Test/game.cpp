@@ -760,15 +760,19 @@ void Game::end_player_battle(short _status)
         {
             case 1:
                 end_battle_menu_text->setPlainText(QString("You lost and ran away on a boat."));
+                end_battle_menu_text_offset = 17;
                 break;
             case 2:
                 end_battle_menu_text->setPlainText(QString("You lost but fortunately ran away."));
+                end_battle_menu_text_offset = 13;
                 break;
             case 3:
                 end_battle_menu_text->setPlainText(QString("You won and sank the opponent's ship!"));
+                end_battle_menu_text_offset = 3;
                 break;
             case 4:
                 end_battle_menu_text->setPlainText(QString("You won and let the opponent's ship go!"));
+                end_battle_menu_text_offset = 0;
                 break;
         }
         hide_battle_menu(battle_phase);
@@ -1358,6 +1362,7 @@ void Game::battle(short _battle_phase)
                 connect(this, SIGNAL(sink_abordage(short)), battles[battles.size()-1], SLOT(after_sea_battle(short)));
                 connect(battles[battles.size()-1], SIGNAL(sink_let_go(short)), this, SLOT(show_battle_menu(short)));
                 connect(this, SIGNAL(sink_let_go(bool)), battles[battles.size()-1], SLOT(win_abordage(bool)));
+                connect(this, SIGNAL(run_away()), battles[battles.size()-1], SLOT(run_away()));
             }
             break;
     }
@@ -1422,8 +1427,7 @@ void Game::show_battle_menu(short _battle_phase)
             iter++;
 
             scene->addItem(battle_screen_img[iter]);
-            battle_screen_img[iter]->setPos(battle_screen_img[0]->x() + 445, battle_screen_img[0]->y() + 54);
-            iter++;
+            battle_screen_img[iter]->setPos(battle_screen_img[0]->x() + 445, battle_screen_img[2]->y());
 
             //elementy tekstowe
             iter = 0;
@@ -1445,72 +1449,69 @@ void Game::show_battle_menu(short _battle_phase)
 
             //stan zdrowia
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 175);
+            battle_screen_txt[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_img[0]->y() + 175);
             iter++;
 
             //stan zalogi
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 215);
+            battle_screen_txt[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_img[0]->y() + 215);
             iter++;
 
             //armaty
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 260);
+            battle_screen_txt[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_img[0]->y() + 260);
             iter++;
 
             //ammo
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 280);
+            battle_screen_txt[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_img[0]->y() + 280);
             iter++;
 
             //nazwa wroga
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 145);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_txt[2]->y());
             iter++;
 
             //stan zdrowia
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 175);
+            battle_screen_txt[iter]->setPos(battle_screen_txt[7]->x(), battle_screen_txt[3]->y());
             iter++;
 
             //stan zalogi
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 215);
+            battle_screen_txt[iter]->setPos(battle_screen_txt[7]->x(), battle_screen_txt[4]->y());
             iter++;
 
             //armaty
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 260);
+            battle_screen_txt[iter]->setPos(battle_screen_txt[7]->x(), battle_screen_txt[5]->y());
             iter++;
 
             //ammo
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 280);
-            iter++;
+            battle_screen_txt[iter]->setPos(battle_screen_txt[7]->x(), battle_screen_txt[6]->y());
 
             //elementy paskow
             iter = 0;
 
             scene->addItem(battle_screen_rect[iter]);
             //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 200, 150, 15);
-            battle_screen_rect[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 200);
+            battle_screen_rect[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_txt[3]->y() + 25);
             iter++;
 
             scene->addItem(battle_screen_rect[iter]);
             //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 238, 150, 15);
-            battle_screen_rect[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 238);
+            battle_screen_rect[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_txt[4]->y() + 23);
             iter++;
 
             scene->addItem(battle_screen_rect[iter]);
             //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 200, 150, 15);
-            battle_screen_rect[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 200);
+            battle_screen_rect[iter]->setPos(battle_screen_txt[7]->x(), battle_screen_rect[0]->y());
             iter++;
 
             scene->addItem(battle_screen_rect[iter]);
             //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 238, 150, 15);
-            battle_screen_rect[iter]->setPos(battle_screen_img[0]->x() + 410, battle_screen_img[0]->y() + 238);
-            iter++;
-
+            battle_screen_rect[iter]->setPos(battle_screen_txt[7]->x(), battle_screen_rect[1]->y());
 
 
             //scene->addItem(battle_start_menu[0]);
@@ -1561,7 +1562,7 @@ void Game::show_battle_menu(short _battle_phase)
                                          battle_start_menu[1]->y() + 11);
             battle_start_menu[9]->setPos(battle_start_menu[8]->x(), battle_start_menu[8]->y());
             scene->addItem(end_battle_menu_text);
-            end_battle_menu_text->setPos(battle_start_menu[0]->x() + 40, battle_start_menu[0]->y() + 45);
+            end_battle_menu_text->setPos(battle_start_menu[0]->x() + 38 + end_battle_menu_text_offset, battle_start_menu[0]->y() + 45);
             break;
     }
 }
@@ -1949,6 +1950,17 @@ void Game::mouse_pressed()
         }
     }
 
+    if (battle_phase == 2)
+    {
+        if (battle_screen_img[1]->isUnderMouse() && !clicked)
+        {
+            clicked = true;
+            hide_battle_menu(battle_phase);
+            battle_phase = 8;
+            emit run_away();
+        }
+    }
+
     if (battle_phase == 3)
     {
         if (battle_start_menu[2]->isUnderMouse() && !clicked)
@@ -1997,7 +2009,7 @@ void Game::mouse_pressed()
     }
 
     //obszar przycisku menu
-    if (hud_img[5]->isUnderMouse() && !clicked)
+    if (hud_img[5]->isUnderMouse() && !clicked && !player_at_battle)
     //if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {
         clicked = true;
@@ -2039,5 +2051,6 @@ void Game::delete_npc(NPC *_ship)
 
 void Game::esc_pressed()
 {
-    show_menu();
+    if (!player_at_battle)
+        show_menu();
 }
