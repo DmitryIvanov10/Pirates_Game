@@ -325,7 +325,9 @@ release/qrc_battle.cpp: ../Test/img/Interface/Battle/battle.qrc \
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name battle ..\Test\img\Interface\Battle\battle.qrc -o release\qrc_battle.cpp
 
 release/qrc_brushes.cpp: ../Test/img/Interface/Brushes/brushes.qrc \
-		../Test/img/Interface/Brushes/red_01.png
+		../Test/img/Interface/Brushes/yellow_02.png \
+		../Test/img/Interface/Brushes/red_01.png \
+		../Test/img/Interface/Brushes/green_02.png
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name brushes ..\Test\img\Interface\Brushes\brushes.qrc -o release\qrc_brushes.cpp
 
 compiler_moc_header_make_all: release/moc_player.cpp release/moc_ship.cpp release/moc_npc.cpp release/moc_city.cpp release/moc_wind.cpp release/moc_game.cpp release/moc_island.cpp release/moc_pirate.cpp release/moc_view.cpp release/moc_battle.cpp
