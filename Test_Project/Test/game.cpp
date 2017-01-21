@@ -1459,6 +1459,7 @@ void Game::show_battle_menu(short _battle_phase)
             {
                 battle_screen_txt[0]->setPlainText(QString("Abordage"));
             }
+            hide_battle_menu(battle_phase);
             center_view();
             //to do
             //elementy graficzne
