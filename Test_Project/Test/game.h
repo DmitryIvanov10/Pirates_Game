@@ -22,6 +22,7 @@
 #include <QApplication> //potrzbne do funkcji zamykającej grę
 
 //pliki
+#include "ship.h"
 #include "npc.h"
 #include "player.h"
 #include "voronoi_point.h"

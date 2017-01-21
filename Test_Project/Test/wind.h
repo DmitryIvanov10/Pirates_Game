@@ -9,7 +9,6 @@
 #include <time.h>
 
 //pliki
-//#include "game.h"
 
 class Wind : public QGraphicsTextItem
 {

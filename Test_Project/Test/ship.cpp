@@ -36,6 +36,40 @@ void Ship::set_cargo()
     }
 }
 
+void Ship::set_name()
+{
+    /*// create vectors with names for the ships
+    std::vector<QString> english_names =
+    {"Argonaute", "Pluto", "Flame", "Friday", "Hotspur",
+     "Lotus", "Surprise", "Avenger", "Bounty", "Providence",
+     "Saint Peter", "Saint Vincent", "Saint George", "Saint Mary",
+     "Saint Joseph", "Saint Patrick", "Saint John", "Venus",
+     "Prince", "Lydia", "Sophie", "Flower", "Monarch", "Challenger",
+     "Mary Rose", "Mayflower", "Sussex", "Victory", "Ariel", "Conqueror"};
+    std::vector<QString> spanish_names =
+    {"La Amistad", "La Nina", "El Nino", "La Seniora", "Virgo",
+     "Numancia", "La Pinta", "Santa Maria", "Santa Clara", "Catalan",
+     "San Jose", "Victoria", "San Alberto", "Amelia", "San Andres",
+     "Angel", "Santa Catalina", "Carmen", "El Carlito", "Cristina",
+     "San Jose", "San Miguel", "Santa Ana", "Santa Rosa", "Hermione",
+     "Lanfranco", "Infante", "Incendio", "Princesa", "Esperanza"};
+    std::vector<QString> french_names =
+    {"Frigorifique", "La Belle", "La Gloire", "Medusa", "Ville de Paris",
+     "Saint Louis", "Fortune", "Neptune", "Saint Charles", "Madeleine",
+     "Cauronne", "Triomphe", "Faucon", "Victoire", "Triton", "Saint Thomas",
+     "Saint Philippe", "Monarque", "Magnifique", "Intrepide", "Orgueilleux",
+     "Admirable", "Lis", "Vainqueur", "Fier", "Madame", "Joli", "Courtisan",
+     "Bourbone", "Frederic"};
+    std::vector<QString> dutch_names =
+    {"De Halve Maen", "Vrouw Maria", "Engel", "Eenhoorn", "Salamander",
+     "Aemilia", "Gelderland", "Eendracht", "Groningen", "Utrecht",
+     "Maan", "Haarlem", "Brederode", "Kameel", "Vrede", "Jaarsveld",
+     "Vrijheid", "Mercurius", "Vogelstruis", "Sint Matheeus", "Rosenkrans",
+     "Middelburg", "Dordrecht", "Jupiter", "Westergo", "Amsterdam",
+     "Duivenvoorde", "Prinses Maria", "Gouda", "Leyden"};
+    switch(fraction)*/
+}
+
 Ship::~Ship()
 {
     //qDebug() << "Ship deleted.";
@@ -215,6 +249,11 @@ int Ship::get_sprite_height()
 QString Ship::get_model_name()
 {
     return model_name;
+}
+
+QString Ship::get_name()
+{
+    return name;
 }
 
 short Ship::find_sprite_angle()
