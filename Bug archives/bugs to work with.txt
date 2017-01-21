@@ -7,10 +7,10 @@
 
 4.	gra raz na jakiś czas się wysypuje
 
-5.	znaleziono nieruchomą flagę holenderską na morzu
+5.	znaleziono nieruchomą flagę holenderską na morzu (żadnego razu nie zobaczyłem)
 
 6.	statek mi zniknął :( mogłem nadal pływać, ale mój obrazek nie był widoczny.
-	nie pomogła zmiana kąty statku
+	nie pomogła zmiana kąty statku (chyba było przed tym, jak dodaliśmy Pixmap łódzi - dlatego nie było widać statku)
 
 
 

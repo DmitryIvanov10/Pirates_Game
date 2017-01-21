@@ -392,7 +392,8 @@ double Game::get_harbor(short _id)
 
 void Game::count_days()
 {
-    game_time ++;
+    if (!player_at_battle)
+        game_time ++;
     if (game_time > game_day)
     {
         game_time = 0;
@@ -693,6 +694,11 @@ void Game::center_view()
 
     //inne elementy HUD'u
     map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
+    if (battle_phase)
+    {
+        test_health_text->setPlainText(QString("NPC health - " + QString::number(battle_ship->get_health())));
+        test_crew_text->setPlainText(QString("NPC crew - " + QString::number(battle_ship->get_crew())));
+    }
 }
 
 void Game::start_player_battle(Ship *_ship)
@@ -717,6 +723,7 @@ void Game::start_player_battle(Ship *_ship)
 
 void Game::end_player_battle()
 {
+    hide_battle_menu(battle_phase);
     battle_phase = 0;
     player->in_battle = false;
     player_at_battle = false;
@@ -828,6 +835,15 @@ void Game::set_hud()
     sink_abordage_menu_text->setPlainText(QString("Would you like to start abordage?"));
     sink_abordage_menu_text->setDefaultTextColor(Qt::white);
     sink_abordage_menu_text->setFont(QFont("times", 12));
+
+    sink_let_go_menu_text->setPlainText(QString("Would you like to let the ship go?"));
+    sink_let_go_menu_text->setDefaultTextColor(Qt::white);
+    sink_let_go_menu_text->setFont(QFont("times", 12));
+
+    test_health_text->setDefaultTextColor(Qt::white);
+    test_health_text->setFont(QFont("times", 12));
+    test_crew_text->setDefaultTextColor(Qt::white);
+    test_crew_text->setFont(QFont("times", 12));
 
     //elementy tekstowe
     iterate = 0;
@@ -1136,6 +1152,8 @@ void Game::battle(short _battle_phase)
                 connect(battles[battles.size()-1], SIGNAL(lost(short)), player, SLOT(on_boat(short)));
                 connect(battles[battles.size()-1], SIGNAL(sink_abordage(short)), this, SLOT(show_battle_menu(short)));
                 connect(this, SIGNAL(sink_abordage(short)), battles[battles.size()-1], SLOT(after_sea_battle(short)));
+                connect(battles[battles.size()-1], SIGNAL(sink_let_go(short)), this, SLOT(show_battle_menu(short)));
+                connect(this, SIGNAL(sink_let_go(bool)), battles[battles.size()-1], SLOT(win_abordage(bool)));
             }
             break;
     }
@@ -1146,6 +1164,7 @@ void Game::show_battle_menu(short _battle_phase)
     switch(_battle_phase)
     {
         case 1:
+            center_view();
             scene->addItem(battle_start_menu[0]);
             battle_start_menu[0]->setPos(scene_x + resolution_x/2 - battle_start_menu[0]->pixmap().width()/2,
                                          scene_y + resolution_y/2 - battle_start_menu[0]->pixmap().height()/2);
@@ -1164,10 +1183,18 @@ void Game::show_battle_menu(short _battle_phase)
             battle_start_menu[6]->setPos(battle_start_menu[4]->x(), battle_start_menu[4]->y());
             scene->addItem(battle_start_menu_text);
             battle_start_menu_text->setPos(battle_start_menu[0]->x() + 60, battle_start_menu[0]->y() + 45);
+            test_crew_text->setPos(battle_start_menu[0]->x() + 115, battle_start_menu[0]->y() + 45);
+            test_health_text->setPos(battle_start_menu[0]->x() + 115, battle_start_menu[0]->y() + 45);
+            break;
+        case 2:
+            center_view();
+            scene->addItem(battle_start_menu[0]);
+            scene->addItem(test_health_text);
             break;
         case 3:
-            battle_phase = 3;
-            //center_view();
+            center_view();
+            hide_battle_menu(battle_phase);
+            battle_phase = _battle_phase;
             scene->addItem(battle_start_menu[0]);
             scene->addItem(battle_start_menu[1]);
             scene->addItem(battle_start_menu[2]);
@@ -1175,6 +1202,28 @@ void Game::show_battle_menu(short _battle_phase)
             scene->addItem(battle_start_menu[4]);
             scene->addItem(sink_abordage_menu_text);
             sink_abordage_menu_text->setPos(battle_start_menu[0]->x() + 54, battle_start_menu[0]->y() + 45);
+            break;
+        case 4:
+            center_view();
+            scene->addItem(battle_start_menu[0]);
+            scene->addItem(test_crew_text);
+            break;
+        case 5:
+            center_view();
+            hide_battle_menu(battle_phase);
+            battle_phase = _battle_phase;
+            scene->addItem(battle_start_menu[0]);
+            scene->addItem(battle_start_menu[1]);
+            scene->addItem(battle_start_menu[2]);
+            scene->addItem(battle_start_menu[3]);
+            scene->addItem(battle_start_menu[4]);
+            scene->addItem(sink_let_go_menu_text);
+            sink_let_go_menu_text->setPos(battle_start_menu[0]->x() + 54, battle_start_menu[0]->y() + 45);
+            break;
+        case 6:
+        case 7:
+            center_view();
+            hide_battle_menu(4);
             break;
     }
 }
@@ -1185,6 +1234,7 @@ void Game::hide_battle_menu(short _battle_phase)
     {
         case 1:
         case 3:
+        case 5:
             for (size_t i=0; i<5; i++)
             {
                 scene->removeItem(battle_start_menu[i]);
@@ -1203,7 +1253,16 @@ void Game::hide_battle_menu(short _battle_phase)
                 scene->removeItem(battle_start_menu_text);
             if (_battle_phase == 3)
                 scene->removeItem(sink_abordage_menu_text);
+            if (_battle_phase == 5)
+                scene->removeItem(sink_let_go_menu_text);
             break;
+        case 2:
+            scene->removeItem(battle_start_menu[0]);
+            scene->removeItem(test_health_text);
+            break;
+        case 4:
+            scene->removeItem(battle_start_menu[0]);
+            scene->removeItem(test_crew_text);
     }
 }
 
@@ -1227,9 +1286,17 @@ void Game::show_npc_info(NPC *_ship)
 
     npc_info_bar->setPos(npc_info_bar_x, npc_info_bar_y);
 
+    test_health_text->setPlainText(QString("NPC health - " + QString::number(_ship->get_health())));
+    test_crew_text->setPlainText(QString("NPC crew - " + QString::number(_ship->get_crew())));
+
+    test_health_text->setPos(npc_info_bar_x + 115, npc_info_bar_y + 80);
+    test_crew_text->setPos(npc_info_bar_x + 120, npc_info_bar_y + 100);
+
     if (!showing_npc_info)
     {
         scene->addItem(npc_info_bar);
+        scene->addItem(test_crew_text);
+        scene->addItem(test_health_text);
         showing_npc_info = true;
     }
 }
@@ -1238,6 +1305,8 @@ void Game::hide_npc_info()
 {
     showing_npc_info = false;
     scene->removeItem(npc_info_bar);
+    scene->removeItem(test_crew_text);
+    scene->removeItem(test_health_text);
 }
 
 void Game::create_new_npc()
@@ -1255,7 +1324,7 @@ void Game::create_new_npc()
 void Game::mouse_moved()
 {
     // obszar menu dla rozpoczęcia walki
-    if (battle_phase == 1 || battle_phase == 3)
+    if (battle_phase == 1 || battle_phase == 3 || battle_phase == 5)
     {
         if (battle_start_menu[1]->isUnderMouse() && !element1_in_scene)
         {
@@ -1449,6 +1518,7 @@ void Game::mouse_pressed()
         {
             hide_battle_menu(battle_phase);
             battle_phase = 2;
+            show_battle_menu(battle_phase);
             battle(battle_phase);
         }
     }
@@ -1458,14 +1528,31 @@ void Game::mouse_pressed()
         if (battle_start_menu[2]->isUnderMouse())
         {
             hide_battle_menu(battle_phase);
-            battle_phase = 5;
+            battle_phase = 6;
             emit sink_abordage(battle_phase);
         }
         if (battle_start_menu[1]->isUnderMouse())
         {
             hide_battle_menu(battle_phase);
             battle_phase = 4;
+            show_battle_menu(battle_phase);
             emit sink_abordage(battle_phase);
+        }
+    }
+
+    if (battle_phase == 5)
+    {
+        if (battle_start_menu[2]->isUnderMouse())
+        {
+            hide_battle_menu(battle_phase);
+            battle_phase = 6;
+            emit sink_let_go(false);
+        }
+        if (battle_start_menu[1]->isUnderMouse())
+        {
+            hide_battle_menu(battle_phase);
+            battle_phase = 7;
+            emit sink_let_go(true);
         }
     }
 
