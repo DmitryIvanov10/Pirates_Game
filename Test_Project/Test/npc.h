@@ -48,6 +48,7 @@ public:
     void set_state(bool state); //ustawia stan statku (aktywny czy nie)
     bool get_state(); // zwraca stan statku
     bool in_view();
+    QString get_fraction();
 
 signals:
     void send_info(NPC * _ship);
