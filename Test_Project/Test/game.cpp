@@ -1286,9 +1286,17 @@ void Game::show_npc_info(NPC *_ship)
 
     npc_info_bar->setPos(npc_info_bar_x, npc_info_bar_y);
 
+    test_health_text->setPlainText(QString("NPC health - " + QString::number(_ship->get_health())));
+    test_crew_text->setPlainText(QString("NPC crew - " + QString::number(_ship->get_crew())));
+
+    test_health_text->setPos(npc_info_bar_x + 115, npc_info_bar_y + 80);
+    test_crew_text->setPos(npc_info_bar_x + 120, npc_info_bar_y + 100);
+
     if (!showing_npc_info)
     {
         scene->addItem(npc_info_bar);
+        scene->addItem(test_crew_text);
+        scene->addItem(test_health_text);
         showing_npc_info = true;
     }
 }
@@ -1297,6 +1305,8 @@ void Game::hide_npc_info()
 {
     showing_npc_info = false;
     scene->removeItem(npc_info_bar);
+    scene->removeItem(test_crew_text);
+    scene->removeItem(test_health_text);
 }
 
 void Game::create_new_npc()
