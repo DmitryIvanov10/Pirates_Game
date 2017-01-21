@@ -706,10 +706,58 @@ void Game::center_view()
         battle_screen_img[2]->setPixmap(QPixmap(":/" + player->get_model_name() + "_SE_01.png"));
         battle_screen_img[3]->setPixmap(QPixmap(":/" + battle_ship->get_model_name() + "_SW_01.png"));
 
-        battle_screen_rect[0]->setRect(0, 0, (int)(100.0 * (int)player->get_health()/(float)player->get_max_health()), 14);
-        battle_screen_rect[1]->setRect(0, 0, (int)(100.0 * (int)player->get_crew()/(float)player->get_max_crew()), 14);
-        battle_screen_rect[2]->setRect(0, 0, (int)(100.0 * (int)battle_ship->get_health()/(float)battle_ship->get_max_health()), 14);
-        battle_screen_rect[3]->setRect(0, 0, (int)(100.0 * (int)battle_ship->get_crew()/(float)battle_ship->get_max_crew()), 14);
+        battle_screen_rect[0]->setRect(0, 0, (int)(150.0 * (float)player->get_health()/(float)player->get_max_health()), 14);
+        if((int)(100.0 * (float)player->get_health()/(float)player->get_max_health()) >= 70)
+        {
+            battle_screen_rect[0]->setBrush(QBrush(QImage(":/green_02.png")));
+        }
+        else if((int)(100.0 * (float)player->get_health()/(float)player->get_max_health()) >= 40)
+        {
+            battle_screen_rect[0]->setBrush(QBrush(QImage(":/yellow_02.png")));
+        }
+        else
+        {
+            battle_screen_rect[0]->setBrush(QBrush(QImage(":/red_01.png")));
+        }
+        battle_screen_rect[1]->setRect(0, 0, (int)(150.0 * (float)player->get_crew()/(float)player->get_max_crew()), 14);
+        if((int)(100.0 * (float)player->get_crew()/(float)player->get_max_crew()) >= 70)
+        {
+            battle_screen_rect[1]->setBrush(QBrush(QImage(":/green_02.png")));
+        }
+        else if((int)(100.0 * (float)player->get_crew()/(float)player->get_max_crew()) >= 40)
+        {
+            battle_screen_rect[1]->setBrush(QBrush(QImage(":/yellow_02.png")));
+        }
+        else
+        {
+            battle_screen_rect[1]->setBrush(QBrush(QImage(":/red_01.png")));
+        }
+        battle_screen_rect[2]->setRect(0, 0, (int)(150.0 * (float)battle_ship->get_health()/(float)battle_ship->get_max_health()), 14);
+        if((int)(100.0 * (float)battle_ship->get_health()/(float)battle_ship->get_max_health()) >= 70)
+        {
+            battle_screen_rect[2]->setBrush(QBrush(QImage(":/green_02.png")));
+        }
+        else if((int)(100.0 * (float)battle_ship->get_health()/(float)battle_ship->get_max_health()) >= 40)
+        {
+            battle_screen_rect[2]->setBrush(QBrush(QImage(":/yellow_02.png")));
+        }
+        else
+        {
+            battle_screen_rect[2]->setBrush(QBrush(QImage(":/red_01.png")));
+        }
+        battle_screen_rect[3]->setRect(0, 0, (int)(150.0 * (float)battle_ship->get_crew()/(float)battle_ship->get_max_crew()), 14);
+        if((int)(100.0 * (float)battle_ship->get_crew()/(float)battle_ship->get_max_crew()) >= 70)
+        {
+            battle_screen_rect[3]->setBrush(QBrush(QImage(":/green_02.png")));
+        }
+        else if((int)(100.0 * (float)battle_ship->get_crew()/(float)battle_ship->get_max_crew()) >= 40)
+        {
+            battle_screen_rect[3]->setBrush(QBrush(QImage(":/yellow_02.png")));
+        }
+        else
+        {
+            battle_screen_rect[3]->setBrush(QBrush(QImage(":/red_01.png")));
+        }
 
         battle_screen_txt[3]->setPlainText(QString("health - " + QString::number(player->get_health())));
         battle_screen_txt[4]->setPlainText(QString("crew - " + QString::number(player->get_crew())));
@@ -1405,6 +1453,12 @@ void Game::show_battle_menu(short _battle_phase)
             info_health_text->setPos(battle_start_menu[0]->x() + 115, battle_start_menu[0]->y() + 45);
             break;
         case 2:
+            battle_screen_txt[0]->setPlainText(QString("Sea battle"));
+        case 4:
+            if(battle_phase == 4)
+            {
+                battle_screen_txt[0]->setPlainText(QString("Abordage"));
+            }
             center_view();
             //to do
             //elementy graficzne
@@ -1528,11 +1582,6 @@ void Game::show_battle_menu(short _battle_phase)
             scene->addItem(sink_abordage_menu_text);
             sink_abordage_menu_text->setPos(battle_start_menu[0]->x() + 54, battle_start_menu[0]->y() + 45);
             break;
-        case 4:
-            center_view();
-            scene->addItem(battle_start_menu[0]);
-            scene->addItem(info_crew_text);
-            break;
         case 5:
             center_view();
             hide_battle_menu(battle_phase);
@@ -1573,12 +1622,14 @@ void Game::hide_battle_menu(short _battle_phase)
     {
         case 1:
         case 2:
+        case 4:
             for(int i = 0; i < battle_screen_img.size(); i++)
                 scene->removeItem(battle_screen_img[i]);
             for(int i = 0; i < battle_screen_txt.size(); i++)
                 scene->removeItem(battle_screen_txt[i]);
              for(int i = 0; i < battle_screen_rect.size(); i++)
                  scene->removeItem(battle_screen_rect[i]);
+            break;
         case 3:
         case 5:
             for (size_t i=0; i<5; i++)
@@ -1608,11 +1659,6 @@ void Game::hide_battle_menu(short _battle_phase)
                 //qDebug() << "Removing sink let go menu text";
                 scene->removeItem(sink_let_go_menu_text);}
             break;
-        case 4:
-            //qDebug() << "removing main menu";
-            scene->removeItem(battle_start_menu[0]);
-            //qDebug() << "Removing crew text";
-            scene->removeItem(info_crew_text);
         case 11:
             if (battle_phase == 11)
             {
