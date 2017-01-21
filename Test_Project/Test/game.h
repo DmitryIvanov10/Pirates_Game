@@ -66,6 +66,8 @@ class Game : public QObject
     QGraphicsTextItem * sink_abordage_menu_text = new QGraphicsTextItem(); // czy grać chcę zacząć abordaż
     QGraphicsTextItem * sink_let_go_menu_text = new QGraphicsTextItem(); // czy grać chcę odpyścić statek
 
+    QGraphicsTextItem * test_fraction_text = new QGraphicsTextItem();
+    QGraphicsTextItem * test_model_text = new QGraphicsTextItem();
     QGraphicsTextItem * test_health_text = new QGraphicsTextItem();
     QGraphicsTextItem * test_crew_text = new QGraphicsTextItem();
 
