@@ -854,6 +854,21 @@ void Game::set_hud()
     battle_start_menu_text->setDefaultTextColor(Qt::white);
     battle_start_menu_text->setFont(QFont("times", 12));
 
+
+    //elementy walki morskiej
+    //czesc graficzna
+    iterate = 0;
+
+    battle_screen_img.push_back(new QGraphicsPixmapItem());
+    battle_screen_img[0]->setPixmap(QPixmap(":/battle_screen_02.png"));
+    iterate++;
+
+    battle_screen_img.push_back(new QGraphicsPixmapItem());
+    battle_screen_img[0]->setPixmap(QPixmap(":/medium_button_01.png"));
+    iterate++;
+
+
+    //elementy fazy abordażu
     sink_abordage_menu_text->setPlainText(QString("Would you like to start abordage?"));
     sink_abordage_menu_text->setDefaultTextColor(Qt::white);
     sink_abordage_menu_text->setFont(QFont("times", 12));
@@ -1183,6 +1198,19 @@ void Game::battle(short _battle_phase)
 
 void Game::show_battle_menu(short _battle_phase)
 {
+    /*
+     * 0 - no battle
+    1 - question if start battle
+    2 - sea battle
+    3 - question if start abordage
+    4 - abordage
+    5 - question if let the ship go
+    6 - sink (kill) the ship
+    7 - let the ship go
+    8 - run away from sea battle
+    9 - loose either in sea battle or abordage
+    10 - show and change ship holds / get crew from NPC (?)
+*/
     switch(_battle_phase)
     {
         case 1:
