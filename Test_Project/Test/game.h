@@ -64,6 +64,9 @@ class Game : public QObject
 
     std::vector <QGraphicsPixmapItem *> battle_start_menu; // grafika na menu początku walki
     QGraphicsTextItem * battle_start_menu_text = new QGraphicsTextItem(); // tekst menu początku walki
+    std::vector <QGraphicsPixmapItem *> battle_screen_img; //obrazki do walki
+    std::vector <QGraphicsTextItem *> battle_screen_txt; //tekst do walki
+    std::vector<QGraphicsRectItem *> battle_screen_rect; //paski do walki
     QGraphicsTextItem * sink_abordage_menu_text = new QGraphicsTextItem(); // czy grać chcę zacząć abordaż
     QGraphicsTextItem * sink_let_go_menu_text = new QGraphicsTextItem(); // czy grać chcę odpyścić statek
 

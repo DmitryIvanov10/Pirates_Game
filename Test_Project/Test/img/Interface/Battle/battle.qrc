@@ -7,5 +7,8 @@
         <file>tick_on_01.png</file>
         <file>Message_bar_02.png</file>
         <file>Small_button_01.png</file>
+        <file>battle_screen_02.png</file>
+        <file>big_button_01.png</file>
+        <file>medium_button_01.png</file>
     </qresource>
 </RCC>
