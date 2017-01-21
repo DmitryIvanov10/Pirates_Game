@@ -17,7 +17,7 @@ class NPC: public Ship //, public QGraphicsRectItem
     Q_OBJECT
 
     //zmienne typu short klasy NPC
-    short fraction; //frakcja do której okręt należy
+    //short fraction; //frakcja do której okręt należy
     short current_location; //wierzchołek voronoi na którym statek się ostatnio meldował
     short next_location; //wierzchołek voronoi na który statek zmierza
     short previous_location; //wierzchołek voronoi z którego statek zmierza
@@ -42,13 +42,13 @@ public:
 
     //funkcje dostępu
     void find_next (); //funkcja znajdująca kolejny wierzchołek voronoi
-    short show_fraction(); //funkcja wyświetlająca frakcję jednostki
+    //short show_fraction(); //funkcja wyświetlająca frakcję jednostki
     void set_direction(); // funkcja zmienia kąt tak, żeby płynął do next_location
     void set_flag(); //funkcja która wybiera flagę w zależności od frakcji
     void set_state(bool state); //ustawia stan statku (aktywny czy nie)
     bool get_state(); // zwraca stan statku
     bool in_view();
-    QString get_fraction();
+    //QString get_fraction();
 
 signals:
     void send_info(NPC * _ship);

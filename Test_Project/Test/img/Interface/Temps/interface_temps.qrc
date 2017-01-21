@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>temp_crue_01.png</file>
         <file>temp_food_01.png</file>
         <file>temp_gold_01.png</file>
         <file>temp_health_01.png</file>
@@ -8,5 +7,6 @@
         <file>temp_bg_01.png</file>
         <file>temp__npc_info_01.png</file>
         <file>temp__npc_info_02.png</file>
+        <file>temp_crew_01.png</file>
     </qresource>
 </RCC>

@@ -26,6 +26,7 @@ INPUT(
 ./release\qrc_cargo.o
 ./release\qrc_boat.o
 ./release\qrc_battle.o
+./release\qrc_brushes.o
 ./release\moc_player.o
 ./release\moc_ship.o
 ./release\moc_npc.o

@@ -617,7 +617,7 @@ void Game::center_view()
     {
         hud_temp_img[1]->setPos(scene_x + resolution_x/2 - 132, scene_y + resolution_y - 134);
         hud_temp_txt[1]->setPos(scene_x + resolution_x/2 - 132, scene_y + resolution_y - 136);
-        hud_temp_txt[1]->setPlainText(QString("Crue\n" + QString::number((int)(100*(float)player->get_crew()/(float)player->get_max_crew())) + "%\nMax\n" + QString::number(player->get_max_crew())));
+        hud_temp_txt[1]->setPlainText(QString("Crew\n" + QString::number((int)(100*(float)player->get_crew()/(float)player->get_max_crew())) + "%\nMax\n" + QString::number(player->get_max_crew())));
     }
     else
     {
@@ -696,8 +696,8 @@ void Game::center_view()
     map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
     if (battle_phase)
     {
-        test_health_text->setPlainText(QString("NPC health - " + QString::number(battle_ship->get_health())));
-        test_crew_text->setPlainText(QString("NPC crew - " + QString::number(battle_ship->get_crew())));
+        info_health_text->setPlainText(QString("NPC health - " + QString::number(battle_ship->get_health())));
+        info_crew_text->setPlainText(QString("NPC crew - " + QString::number(battle_ship->get_crew())));
     }
 }
 
@@ -800,12 +800,10 @@ void Game::set_hud()
     // parametry npc
     npc_info_bar->setPixmap(QPixmap(":/temp__npc_info_02.png"));
 
-    test_name_text->setFont(QFont("times", 12));
-    test_model_text->setFont(QFont("times", 12));
-    //test_health_text->setDefaultTextColor(Qt::white);
-    test_health_text->setFont(QFont("times", 12));
-    //test_crew_text->setDefaultTextColor(Qt::white);
-    test_crew_text->setFont(QFont("times", 12));
+    info_name_text->setFont(QFont("times", 12));
+    info_model_text->setFont(QFont("times", 12));
+    info_health_text->setFont(QFont("times", 12));
+    info_crew_text->setFont(QFont("times", 12));
 
     //paski parametrów
     //pasek zdrowia
@@ -1005,12 +1003,12 @@ void Game::set_hud()
 
     //stan załogi
     hud_temp_img.push_back(new QGraphicsPixmapItem());
-    hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_crue_01.png"));
+    hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_crew_01.png"));
     scene->addItem(hud_temp_img[iterate]);
     //hud_temp_img[iterate]->setPos(0,0);
 
     hud_temp_txt.push_back(new QGraphicsTextItem());
-    hud_temp_txt[iterate]->setPlainText(QString("Crue\n" + QString::number((int)(100*(float)player->get_crew()/(float)player->get_max_crew())) + "%\nMax\n" + QString::number(player->get_max_crew())));
+    hud_temp_txt[iterate]->setPlainText(QString("Crew\n" + QString::number((int)(100*(float)player->get_crew()/(float)player->get_max_crew())) + "%\nMax\n" + QString::number(player->get_max_crew())));
     hud_temp_txt[iterate]->setFont(QFont("times", 12));
     scene->addItem(hud_temp_txt[iterate]);
     //hud_temp_txt[iterate]->setPos(0,0);
@@ -1233,13 +1231,13 @@ void Game::show_battle_menu(short _battle_phase)
             battle_start_menu[6]->setPos(battle_start_menu[4]->x(), battle_start_menu[4]->y());
             scene->addItem(battle_start_menu_text);
             battle_start_menu_text->setPos(battle_start_menu[0]->x() + 60, battle_start_menu[0]->y() + 45);
-            test_crew_text->setPos(battle_start_menu[0]->x() + 115, battle_start_menu[0]->y() + 45);
-            test_health_text->setPos(battle_start_menu[0]->x() + 115, battle_start_menu[0]->y() + 45);
+            info_crew_text->setPos(battle_start_menu[0]->x() + 115, battle_start_menu[0]->y() + 45);
+            info_health_text->setPos(battle_start_menu[0]->x() + 115, battle_start_menu[0]->y() + 45);
             break;
         case 2:
             center_view();
             scene->addItem(battle_start_menu[0]);
-            scene->addItem(test_health_text);
+            scene->addItem(info_health_text);
             break;
         case 3:
             center_view();
@@ -1256,7 +1254,7 @@ void Game::show_battle_menu(short _battle_phase)
         case 4:
             center_view();
             scene->addItem(battle_start_menu[0]);
-            scene->addItem(test_crew_text);
+            scene->addItem(info_crew_text);
             break;
         case 5:
             center_view();
@@ -1308,11 +1306,11 @@ void Game::hide_battle_menu(short _battle_phase)
             break;
         case 2:
             scene->removeItem(battle_start_menu[0]);
-            scene->removeItem(test_health_text);
+            scene->removeItem(info_health_text);
             break;
         case 4:
             scene->removeItem(battle_start_menu[0]);
-            scene->removeItem(test_crew_text);
+            scene->removeItem(info_crew_text);
     }
 }
 
@@ -1337,16 +1335,16 @@ void Game::show_npc_info(NPC *_ship)
     npc_info_bar->setPos(npc_info_bar_x, npc_info_bar_y);
 
     //ustawianie napisow
-    test_name_text->setPlainText(QString("Some name"));
-    test_model_text->setPlainText(_ship->get_fraction() + QString(" ") + _ship->get_model_name());
-    test_health_text->setPlainText(QString("health - " + QString::number(_ship->get_health())));
-    test_crew_text->setPlainText(QString("crew - " + QString::number(_ship->get_crew())));
+    info_name_text->setPlainText(_ship->get_name());
+    info_model_text->setPlainText(_ship->get_fraction() + QString(" ") + _ship->get_model_name());
+    info_health_text->setPlainText(QString("health - " + QString::number(_ship->get_health())));
+    info_crew_text->setPlainText(QString("crew - " + QString::number(_ship->get_crew())));
 
     //ustawianie pozycji elementow
-    test_name_text->setPos(npc_info_bar_x, npc_info_bar_y);
-    test_model_text->setPos(npc_info_bar_x, npc_info_bar_y + 20);
-    test_health_text->setPos(npc_info_bar_x, npc_info_bar_y + 39);
-    test_crew_text->setPos(npc_info_bar_x, npc_info_bar_y + 75);
+    info_model_text->setPos(npc_info_bar_x, npc_info_bar_y);
+    info_name_text->setPos(npc_info_bar_x, npc_info_bar_y + 20);
+    info_health_text->setPos(npc_info_bar_x, npc_info_bar_y + 39);
+    info_crew_text->setPos(npc_info_bar_x, npc_info_bar_y + 75);
 
     //npc_status_bars[0]->setPos(npc_info_bar_x + 10, npc_info_bar_y + 60);
     npc_status_bars[0]->setRect(npc_info_bar_x + 10, npc_info_bar_y + 65, (int)(100.0*(float)_ship->get_health()/(float)_ship->get_max_health()), 12);
@@ -1359,10 +1357,10 @@ void Game::show_npc_info(NPC *_ship)
     if (!showing_npc_info)
     {
         scene->addItem(npc_info_bar);
-        scene->addItem(test_name_text);
-        scene->addItem(test_model_text);
-        scene->addItem(test_crew_text);
-        scene->addItem(test_health_text);
+        scene->addItem(info_name_text);
+        scene->addItem(info_model_text);
+        scene->addItem(info_crew_text);
+        scene->addItem(info_health_text);
         scene->addItem(npc_status_bars[0]);
         scene->addItem(npc_status_bars[1]);
         scene->addItem(npc_status_bars[2]);
@@ -1375,10 +1373,10 @@ void Game::hide_npc_info()
 {
     showing_npc_info = false;
     scene->removeItem(npc_info_bar);
-    scene->removeItem(test_name_text);
-    scene->removeItem(test_model_text);
-    scene->removeItem(test_crew_text);
-    scene->removeItem(test_health_text);
+    scene->removeItem(info_name_text);
+    scene->removeItem(info_model_text);
+    scene->removeItem(info_crew_text);
+    scene->removeItem(info_health_text);
     scene->removeItem(npc_status_bars[0]);
     scene->removeItem(npc_status_bars[1]);
     scene->removeItem(npc_status_bars[2]);

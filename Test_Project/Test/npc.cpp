@@ -232,10 +232,10 @@ void NPC::set_direction()
                     Voronoi_points::map[next_location].get_x() - get_x()) * 180 / M_PI - 90);
 }
 
-short NPC::show_fraction()
+/*short NPC::show_fraction()
 {
     return fraction;
-}
+}*/
 
 void NPC::set_flag()
 {
@@ -335,6 +335,7 @@ void NPC::reset()
 
     sail_level = 1;
     fraction=rand()%4 + 1;
+    set_name();
     active = false;
 
     set_flag();
@@ -342,7 +343,7 @@ void NPC::reset()
     find_next();
 }
 
-QString NPC::get_fraction()
+/*QString NPC::get_fraction()
 {
     switch (fraction)
     {
@@ -357,4 +358,4 @@ QString NPC::get_fraction()
     default:
         return QString("Fraction Error");
     }
-}
+}*/
