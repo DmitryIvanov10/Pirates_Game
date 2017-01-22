@@ -17,7 +17,7 @@ Player::Player()
     cannons = initial_cannons;
     ammo = 0.5 * max_ammo;
     maneuverability = max_maneuverability;
-    set_angle(90);
+    set_angle(180);
     sail_level = 1;
     food = max_food / 2;
     gold = 10000;

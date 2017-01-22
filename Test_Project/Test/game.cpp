@@ -87,7 +87,7 @@ Game::Game(std::string a)
 void Game::new_game()
 {
     // create wind
-    Wind::angle = 0;
+    Wind::angle = rand() % 360;
     Wind::strength = 50;
 
     short iterate = 0;
