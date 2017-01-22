@@ -98,6 +98,10 @@ void Battle::win_abordage(bool _let_go)
 void Battle::run_away()
 {
     //change_back_type(ship2);
+    if (timer1->isActive())
+        timer1->stop();
+    if (timer2->isActive())
+        timer2->stop();
     qDebug() << "Ran away.";
     emit finish_battle(2);
 }
@@ -137,8 +141,12 @@ float Battle::set_morale_effect(short _morale)
 
 void Battle::next_move_sea()
 {
+    qDebug() << "";
+    qDebug() << timer1->isActive();
     if (timer1->isActive())
     {
+        qDebug() << "";
+        qDebug() << timer1->isActive();
         qDebug() << "";
         qDebug() << "New round on sea.";
 

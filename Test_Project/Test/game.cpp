@@ -60,6 +60,7 @@ Game::Game(QObject *parent) : QObject(parent)
     //connect(timer, SIGNAL(timeout()), this, SLOT(create_new_npc()));
 
     connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));
+    connect(player, SIGNAL(revolt_signal()), this, SLOT(show_revolt_menu()));
 
     // put player to the scene
     scene->addItem(player);
@@ -808,15 +809,15 @@ void Game::end_player_battle(short _status)
         {
             case 1:
                 end_battle_menu_text->setPlainText(QString("You lost and ran away on a boat."));
-                end_battle_menu_text_offset = 17;
+                end_battle_menu_text_offset = 22;
                 break;
             case 2:
                 end_battle_menu_text->setPlainText(QString("You lost but fortunately ran away."));
-                end_battle_menu_text_offset = 13;
+                end_battle_menu_text_offset = 20;
                 break;
             case 3:
                 end_battle_menu_text->setPlainText(QString("You won and sank the opponent's ship!"));
-                end_battle_menu_text_offset = 3;
+                end_battle_menu_text_offset = 2;
                 break;
             case 4:
                 end_battle_menu_text->setPlainText(QString("You won and let the opponent's ship go!"));
@@ -963,6 +964,10 @@ void Game::set_hud()
     battle_start_menu_text->setPlainText(QString("Would you like to start a battle?"));
     battle_start_menu_text->setDefaultTextColor(Qt::white);
     battle_start_menu_text->setFont(QFont("times", 12));
+
+    revolt_text->setPlainText(QString("Revolt on the ship. Ran away on a boat."));
+    revolt_text->setDefaultTextColor(Qt::white);
+    revolt_text->setFont(QFont("times", 12));
 
     end_battle_menu_text->setDefaultTextColor(Qt::white);
     end_battle_menu_text->setFont(QFont("times", 12));
@@ -1551,12 +1556,12 @@ void Game::show_battle_menu(short _battle_phase)
 
             scene->addItem(battle_screen_rect[iter]);
             //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 200, 150, 15);
-            battle_screen_rect[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_txt[3]->y() + 25);
+            battle_screen_rect[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_txt[3]->y() + 27);
             iter++;
 
             scene->addItem(battle_screen_rect[iter]);
             //battle_screen_rect[iter]->setRect(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 238, 150, 15);
-            battle_screen_rect[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_txt[4]->y() + 23);
+            battle_screen_rect[iter]->setPos(battle_screen_txt[2]->x(), battle_screen_txt[4]->y() + 25);
             iter++;
 
             scene->addItem(battle_screen_rect[iter]);
@@ -1608,11 +1613,11 @@ void Game::show_battle_menu(short _battle_phase)
             battle_start_menu[7]->setPos(scene_x + resolution_x/2 - battle_start_menu[7]->pixmap().width()/2,
                                          battle_start_menu[0]->y() + 100);
             scene->addItem(battle_start_menu[8]);
-            battle_start_menu[8]->setPos(battle_start_menu[7]->x() + battle_start_menu[7]->pixmap().width()/2 - battle_start_menu[3]->pixmap().width()/2,
-                                         battle_start_menu[1]->y() + 11);
+            battle_start_menu[8]->setPos(battle_start_menu[7]->x() + battle_start_menu[7]->pixmap().width()/2 - battle_start_menu[8]->pixmap().width()/2,
+                                         battle_start_menu[7]->y() + 5);
             battle_start_menu[9]->setPos(battle_start_menu[8]->x(), battle_start_menu[8]->y());
             scene->addItem(end_battle_menu_text);
-            end_battle_menu_text->setPos(battle_start_menu[0]->x() + 38 + end_battle_menu_text_offset, battle_start_menu[0]->y() + 45);
+            end_battle_menu_text->setPos(battle_start_menu[0]->x() + 32 + end_battle_menu_text_offset, battle_start_menu[0]->y() + 45);
             break;
     }
 }
@@ -1624,11 +1629,11 @@ void Game::hide_battle_menu(short _battle_phase)
     {
         case 2:
         case 4:
-            for(int i = 0; i < battle_screen_img.size(); i++)
+            for(size_t i = 0; i < battle_screen_img.size(); i++)
                 scene->removeItem(battle_screen_img[i]);
-            for(int i = 0; i < battle_screen_txt.size(); i++)
+            for(size_t i = 0; i < battle_screen_txt.size(); i++)
                 scene->removeItem(battle_screen_txt[i]);
-             for(int i = 0; i < battle_screen_rect.size(); i++)
+             for(size_t i = 0; i < battle_screen_rect.size(); i++)
                  scene->removeItem(battle_screen_rect[i]);
             break;
         case 1:
@@ -1684,6 +1689,34 @@ void Game::hide_battle_menu(short _battle_phase)
             }
             break;
     }
+}
+
+void Game::show_revolt_menu()
+{
+    reset_timer();
+    showing_revolt_menu = true;
+    scene->addItem(battle_start_menu[0]);
+    battle_start_menu[0]->setPos(scene_x + resolution_x/2 - battle_start_menu[0]->pixmap().width()/2,
+                                 scene_y + resolution_y/2 - battle_start_menu[0]->pixmap().height()/2);
+    scene->addItem(battle_start_menu[7]);
+    battle_start_menu[7]->setPos(scene_x + resolution_x/2 - battle_start_menu[7]->pixmap().width()/2,
+                                 battle_start_menu[0]->y() + 100);
+    scene->addItem(battle_start_menu[8]);
+    battle_start_menu[8]->setPos(battle_start_menu[7]->x() + battle_start_menu[7]->pixmap().width()/2 - battle_start_menu[8]->pixmap().width()/2,
+                                 battle_start_menu[7]->y() + 5);
+    battle_start_menu[9]->setPos(battle_start_menu[8]->x(), battle_start_menu[8]->y());
+    scene->addItem(revolt_text);
+    revolt_text->setPos(battle_start_menu[0]->x() + 33, battle_start_menu[0]->y() + 45);
+}
+
+void Game::hide_revolt_menu()
+{
+    showing_revolt_menu = false;
+    scene->removeItem(battle_start_menu[0]);
+    scene->removeItem(battle_start_menu[7]);
+    scene->removeItem(battle_start_menu[8]);
+    scene->removeItem(battle_start_menu[9]);
+    scene->removeItem(revolt_text);
 }
 
 void Game::show_npc_info(NPC *_ship)
@@ -1808,6 +1841,20 @@ void Game::mouse_moved()
     }
 
     if (battle_phase == 11)
+    {
+        if (battle_start_menu[7]->isUnderMouse() && !element1_in_scene)
+        {
+            scene->addItem(battle_start_menu[9]);
+            element1_in_scene = true;
+        }
+        if (!battle_start_menu[7]->isUnderMouse() && element1_in_scene)
+        {
+            scene->removeItem(battle_start_menu[9]);
+            element1_in_scene = false;
+        }
+    }
+
+    if (showing_revolt_menu)
     {
         if (battle_start_menu[7]->isUnderMouse() && !element1_in_scene)
         {
@@ -2055,8 +2102,18 @@ void Game::mouse_pressed()
         }
     }
 
+    if (showing_revolt_menu)
+    {
+        if (battle_start_menu[7]->isUnderMouse() && !clicked)
+        {
+            clicked = true;
+            hide_revolt_menu();
+            reset_timer();
+        }
+    }
+
     //obszar przycisku menu
-    if (hud_img[5]->isUnderMouse() && !clicked && !player_at_battle)
+    if (hud_img[5]->isUnderMouse() && !clicked && !player_at_battle && !showing_revolt_menu)
     //if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {
         clicked = true;
@@ -2098,6 +2155,6 @@ void Game::delete_npc(NPC *_ship)
 
 void Game::esc_pressed()
 {
-    if (!player_at_battle)
+    if (!player_at_battle && !showing_revolt_menu)
         show_menu();
 }

@@ -17,7 +17,6 @@ Player::Player()
     maneuverability = max_maneuverability;
     set_angle(90);
     sail_level = 1;
-    //morale = 100;
     food = max_food / 2;
     gold = 10000;
     salary = 3;
@@ -204,6 +203,7 @@ void Player::set_morale()
 void Player::revolt()
 {
     qDebug() << "Revolt";
+    emit revolt_signal();
     on_boat(crew / 3);
 }
 

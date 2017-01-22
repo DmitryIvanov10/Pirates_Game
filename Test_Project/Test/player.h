@@ -69,6 +69,7 @@ public slots:
     void on_boat(short _crew);
 
 signals:
+    void revolt_signal();
     void start_battle(Ship * _ship);
     void esc_pressed();
 };

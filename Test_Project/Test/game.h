@@ -72,6 +72,8 @@ class Game : public QObject
     QGraphicsTextItem * end_battle_menu_text = new QGraphicsTextItem(); // tekst wynika walki
     short end_battle_menu_text_offset; // przemieszczenie tekstu wynika walki
 
+    QGraphicsTextItem * revolt_text = new QGraphicsTextItem();
+
     QGraphicsTextItem * info_name_text = new QGraphicsTextItem();
     QGraphicsTextItem * info_model_text = new QGraphicsTextItem();
     QGraphicsTextItem * info_health_text = new QGraphicsTextItem();
@@ -105,9 +107,12 @@ class Game : public QObject
     bool element2_in_scene = false;
 
     bool showing_npc_info = false; // czy pokazuje się info npc w grze
+    bool showing_revolt_menu = false; // czy jest otwarte menu buntu
     // position of the npc info bar
     short npc_info_bar_x;
     short npc_info_bar_y;
+
+    void hide_revolt_menu();
 
 public:
     //static std::vector <Voronoi_point> map;
@@ -142,6 +147,7 @@ signals:
 
 public slots:
     //void check();
+    void show_revolt_menu();
     void show_battle_menu(short _battle_phase);
     void show_npc_info(NPC * _ship);
     void hide_npc_info();
