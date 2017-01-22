@@ -7,6 +7,7 @@
 #include "npc.h"
 #include "pirate.h"
 #include "island.h"
+#include "city.h"
 
 //biblioteki
 #include <QObject>
@@ -48,6 +49,7 @@ public:
     //zmienne publiczne
     QGraphicsPixmapItem * probe = new QGraphicsPixmapItem;
     bool in_battle;
+    bool in_city;
     static std::vector<QPointF> island_coordinates;
 
     //funkcje dostępu
@@ -71,6 +73,7 @@ public slots:
 signals:
     void revolt_signal();
     void start_battle(Ship * _ship);
+    void start_city(City * _city);
     void esc_pressed();
 };
 

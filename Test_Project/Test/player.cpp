@@ -5,6 +5,7 @@ Player::Player()
 {
     std::srand(time(0));
     in_battle = false;
+    in_city = false;
     day = 0;
     model = 3;
     fraction = rand() % 4 + 1;
@@ -64,11 +65,20 @@ void Player::keyPressEvent(QKeyEvent *event)
             if (colliding_items.size() != 0)
             {
                 foreach (QGraphicsItem * item, colliding_items)
-
+                {
                     if (typeid(* item) == typeid(NPC) ||
                         typeid(* item) == typeid(Pirate))
+                    {
                         if (model && health >= max_health / 5 && !in_battle)
                             emit start_battle(dynamic_cast<Ship *>(item));
+                    }
+
+                    if (typeid(* item) == typeid(City))
+                    {
+                        if (!in_city && !in_battle)
+                            emit start_city(dynamic_cast<City *>(item));
+                    }
+                }
             }
             break;
         case Qt::Key_Escape:
@@ -104,7 +114,8 @@ void Player::do_tour()
         go = true;
     if (go)
     {
-        move();
+        if (!in_battle)
+            move();
         clamp();
         setPos(X,Y);
     }

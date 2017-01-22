@@ -1,0 +1,10 @@
+// Lista stanów dla menu w mieście
+
+0 - poza miastem
+1 - główne menu
+2 - gubernator
+3 - stoczek
+4 - tawerna
+5 - sklep
+6 - czy chcę grać wyjść z punktu menu
+7 - czy chcę grać wyjść z miasta

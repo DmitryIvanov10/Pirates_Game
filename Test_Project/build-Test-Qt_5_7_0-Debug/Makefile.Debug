@@ -325,7 +325,9 @@ debug/qrc_battle.cpp: ../Test/img/Interface/Battle/battle.qrc \
 
 debug/qrc_brushes.cpp: ../Test/img/Interface/Brushes/brushes.qrc \
 		C:/Qt/5.7/mingw53_32/bin/rcc.exe \
-		../Test/img/Interface/Brushes/red_01.png
+		../Test/img/Interface/Brushes/yellow_02.png \
+		../Test/img/Interface/Brushes/red_01.png \
+		../Test/img/Interface/Brushes/green_02.png
 	C:\Qt\5.7\mingw53_32\bin\rcc.exe -name brushes ..\Test\img\Interface\Brushes\brushes.qrc -o debug\qrc_brushes.cpp
 
 compiler_moc_header_make_all: debug/moc_player.cpp debug/moc_ship.cpp debug/moc_npc.cpp debug/moc_city.cpp debug/moc_wind.cpp debug/moc_game.cpp debug/moc_island.cpp debug/moc_pirate.cpp debug/moc_view.cpp debug/moc_battle.cpp
@@ -942,6 +944,7 @@ debug/moc_game.cpp: C:/Qt/5.7/mingw53_32/include/QtCore/QObject \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
 		../Test/battle.h \
+		../Test/city.h \
 		../Test/game.h \
 		C:/Qt/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/Dmitry/Documents/MINE/Prog/C++/Project_Pirates/Test_Project/Test -IC:/Qt/5.7/mingw53_32/include -IC:/Qt/5.7/mingw53_32/include/QtWidgets -IC:/Qt/5.7/mingw53_32/include/QtGui -IC:/Qt/5.7/mingw53_32/include/QtANGLE -IC:/Qt/5.7/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\Test\game.h -o debug\moc_game.cpp
@@ -1530,7 +1533,8 @@ debug/main.o: ../Test/main.cpp C:/Qt/5.7/mingw53_32/include/QtWidgets/QApplicati
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
-		../Test/battle.h
+		../Test/battle.h \
+		../Test/city.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\Test\main.cpp
 
 debug/player.o: ../Test/player.cpp ../Test/player.h \
@@ -2206,7 +2210,8 @@ debug/game.o: ../Test/game.cpp ../Test/game.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
-		../Test/battle.h
+		../Test/battle.h \
+		../Test/city.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\game.o ..\Test\game.cpp
 
 debug/newgame.o: ../Test/newgame.cpp ../Test/newgame.h

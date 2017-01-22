@@ -5,7 +5,7 @@
 #include <QObject> //potrzebne do slotów i sygnałów
 #include <vector> //obsługa wektorów
 
-class City: QObject
+class City: public QObject
 {
     Q_OBJECT
 
@@ -29,7 +29,7 @@ public:
     void change_prices(); //funkcja losowej zmiany cen
     void set_state(bool state); // zmienia stan miasta - czy jest aktywny
     bool in_view();
-    float show_price(short _good); //funkcja pokazująca cenę obiektu a
+    float show_price(short _good); //funkcja pokazująca cenę obiektu _good
 
 signals:
 
