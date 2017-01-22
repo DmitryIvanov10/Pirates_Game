@@ -32,10 +32,10 @@ class Player: public Ship //, public QGraphicsRectItem
     short salary;
     int one_day_salary;
     int gold;
+    short day;
     float days_off_harbor_morale;
     float food_morale;
     float salary_morale;
-    short day;
     bool collision_with_npc;
 
     void set_day_salary();
@@ -63,6 +63,7 @@ public:
     short get_daily_food();
     short get_max_food();
     short get_salary();
+    void reset_day();
 
 public slots:
     void do_tour();

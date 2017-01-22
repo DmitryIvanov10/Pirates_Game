@@ -6,11 +6,10 @@ Player::Player()
     std::srand(time(0));
     in_battle = false;
     in_city = false;
-    day = 0;
+    reset_day();
     model = 3;
     fraction = rand() % 4 + 1;
     set_name();
-    days_off_harbor_morale = 1.0f / 0.98f;
     set_model_parameters();
     max_food = 60 * ceil(double (max_crew) / 15);
     health = max_health;
@@ -42,22 +41,22 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         case Qt::Key_A:
         case Qt::Key_Left:
-            if (!in_battle)
+            if (!in_battle && !in_city)
                 set_angle(angle+2);
             break;
         case Qt::Key_D:
         case Qt::Key_Right:
-            if (!in_battle)
+            if (!in_battle && !in_city)
                 set_angle(angle-2);
             break;
         case Qt::Key_W:
         case Qt::Key_Up:
-            if (!in_battle)
+            if (!in_battle && !in_city)
                 set_sail_level(1);
             break;
         case Qt::Key_S:
         case Qt::Key_Down:
-            if (!in_battle)
+            if (!in_battle && !in_city)
                 set_sail_level(0);
             break;
         case Qt::Key_Space:
@@ -73,10 +72,15 @@ void Player::keyPressEvent(QKeyEvent *event)
                             emit start_battle(dynamic_cast<Ship *>(item));
                     }
 
-                    if (typeid(* item) == typeid(City))
+                    /*if (typeid(* item) == typeid(City))
                     {
                         if (!in_city && !in_battle)
                             emit start_city(dynamic_cast<City *>(item));
+                    }*/
+                    if (typeid(* item) == typeid(Island))
+                    {
+                        if (!in_city && !in_battle)
+                            emit start_city(new City(0));
                     }
                 }
             }
@@ -114,7 +118,7 @@ void Player::do_tour()
         go = true;
     if (go)
     {
-        if (!in_battle)
+        if (!in_battle && !in_city)
             move();
         clamp();
         setPos(X,Y);
@@ -243,6 +247,12 @@ short Player::get_max_food()
 short Player::get_salary()
 {
     return salary;
+}
+
+void Player::reset_day()
+{
+    day = 0;
+    days_off_harbor_morale = 1.0f / 0.98f;
 }
 
 void Player::set_days_off_harbor_morale(float value)
