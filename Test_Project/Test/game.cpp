@@ -521,7 +521,7 @@ void Game::center_view()
     hud_txt[7]->setPos(scene_x + resolution_x/2 + 121, scene_y + resolution_y - 40);
 
     //nazwa statku
-    hud_txt[8]->setPlainText(QString(player->get_model_name()));
+    hud_txt[8]->setPlainText(QString(player->get_name()));
     hud_txt[8]->setPos(scene_x + resolution_x - 145, scene_y + 3);
 
     //tekst menu

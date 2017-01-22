@@ -7,6 +7,8 @@ Player::Player()
     in_battle = false;
     day = 0;
     model = 3;
+    fraction = rand() % 4 + 1;
+    set_name();
     days_off_harbor_morale = 1.0f / 0.98f;
     set_model_parameters();
     max_food = 60 * ceil(double (max_crew) / 15);
