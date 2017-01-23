@@ -501,15 +501,15 @@ void Game::center_view()
 
     //stan załogi
     hud_txt[2]->setPlainText(QString(QString::number(player->get_crew())));
-    hud_txt[2]->setPos(scene_x + resolution_x/2 - 134, scene_y + resolution_y - 40);
+    hud_txt[2]->setPos(scene_x + resolution_x/2 - 134, hud_txt[1]->y());
 
     //ilość jedzenia
     hud_txt[3]->setPlainText(QString(QString::number(player->get_food())));
-    hud_txt[3]->setPos(scene_x + resolution_x/2 - 53, scene_y + resolution_y - 40);
+    hud_txt[3]->setPos(scene_x + resolution_x/2 - 53,  hud_txt[1]->y());
 
     //ilość stan morale
     hud_txt[4]->setPlainText(QString(QString::number(player->get_morale())));
-    hud_txt[4]->setPos(scene_x + resolution_x/2 + 34, scene_y + resolution_y - 40);
+    hud_txt[4]->setPos(scene_x + resolution_x/2 + 34,  hud_txt[1]->y());
 
     //ilość armat
     hud_txt[5]->setPlainText(QString(QString::number(player->get_cannons())));
@@ -521,7 +521,7 @@ void Game::center_view()
 
     //ilość złota
     hud_txt[7]->setPlainText(QString(QString::number(player->get_gold())));
-    hud_txt[7]->setPos(scene_x + resolution_x/2 + 121, scene_y + resolution_y - 40);
+    hud_txt[7]->setPos(scene_x + resolution_x/2 + 121,  hud_txt[1]->y());
 
     //nazwa statku
     hud_txt[8]->setPlainText(QString(player->get_name()));
@@ -573,27 +573,27 @@ void Game::center_view()
             }
             if(iterate == 1)
             {
-                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  - 166, scene_y + 61);
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  - 166, hud_cargo_txt[0]->y());
             }
             if(iterate == 2)
             {
-                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  - 78, scene_y + 61);
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  - 78, hud_cargo_txt[0]->y());
             }
             if(iterate == 3)
             {
-                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 12, scene_y + 61);
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 12, hud_cargo_txt[0]->y());
             }
             if(iterate == 4)
             {
-                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 100, scene_y + 61);
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 100, hud_cargo_txt[0]->y());
             }
             if(iterate == 5)
             {
-                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 188, scene_y + 61);
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 188, hud_cargo_txt[0]->y());
             }
             if(iterate == 6)
             {
-                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 276, scene_y + 61);
+                hud_cargo_txt[iterate]->setPos(scene_x + resolution_x/2  + 276, hud_cargo_txt[0]->y());
             }
         }
         else
@@ -608,46 +608,39 @@ void Game::center_view()
     //stan zdrowia
     if (hud_temp_bool[0])
     {
-        hud_temp_img[0]->setPos(scene_x + resolution_x/2 - 220, scene_y + resolution_y - 134);
         hud_temp_txt[0]->setPos(scene_x + resolution_x/2 - 220, scene_y + resolution_y - 136);
         hud_temp_txt[0]->setPlainText(QString("Health\n" + QString::number((int)(((float)player->get_health()/(float)player->get_max_health()) *100)) + "%\nMax\n" + QString::number(player->get_max_health())));
     }
     else
     {
-        hud_temp_img[0]->setPos(0,0);
         hud_temp_txt[0]->setPos(0,0);
     }
 
     //stan załogi
     if (hud_temp_bool[1])
     {
-        hud_temp_img[1]->setPos(scene_x + resolution_x/2 - 132, scene_y + resolution_y - 134);
         hud_temp_txt[1]->setPos(scene_x + resolution_x/2 - 132, scene_y + resolution_y - 136);
         hud_temp_txt[1]->setPlainText(QString("Crew\n" + QString::number((int)(100*(float)player->get_crew()/(float)player->get_max_crew())) + "%\nMax\n" + QString::number(player->get_max_crew())));
     }
     else
     {
-        hud_temp_img[1]->setPos(0,0);
         hud_temp_txt[1]->setPos(0,0);
     }
 
     //stan jedzenia
     if (hud_temp_bool[2])
     {
-        hud_temp_img[2]->setPos(scene_x + resolution_x/2 - 51, scene_y + resolution_y - 134);
         hud_temp_txt[2]->setPos(scene_x + resolution_x/2 - 51, scene_y + resolution_y - 136);
         hud_temp_txt[2]->setPlainText(QString("Food\n"+ QString::number((int)(100*(float)player->get_food()/(float)player->get_max_food())) + "%\nper day\n- " + QString::number(player->get_daily_food())));
     }
     else
     {
-        hud_temp_img[2]->setPos(0,0);
         hud_temp_txt[2]->setPos(0,0);
     }
 
     //stan morale
     if (hud_temp_bool[3])
     {
-        hud_temp_img[3]->setPos(scene_x + resolution_x/2 + 37, scene_y + resolution_y - 134);
         hud_temp_txt[3]->setPos(scene_x + resolution_x/2 + 37, scene_y + resolution_y - 136);
         switch (player->get_salary())
         {
@@ -670,31 +663,26 @@ void Game::center_view()
     }
     else
     {
-        hud_temp_img[3]->setPos(0,0);
         hud_temp_txt[3]->setPos(0,0);
     }
 
     //stan złota
     if (hud_temp_bool[4])
     {
-        hud_temp_img[4]->setPos(scene_x + resolution_x/2 + 124, scene_y + resolution_y - 134);
         hud_temp_txt[4]->setPos(scene_x + resolution_x/2 + 124, scene_y + resolution_y - 136);
     }
     else
     {
-        hud_temp_img[4]->setPos(0,0);
         hud_temp_txt[4]->setPos(0,0);
     }
 
     //opisy
     if (hud_temp_bool[5])
     {
-        hud_temp_img[5]->setPos(scene_x + view->get_x(), scene_y + view->get_y()+10);
         hud_temp_txt[5]->setPos(scene_x + view->get_x(), scene_y + view->get_y()+7);
     }
     else
     {
-        hud_temp_img[5]->setPos(0,0);
         hud_temp_txt[5]->setPos(0,0);
     }
 
@@ -786,6 +774,7 @@ void Game::got_to_city(City *_city)
 
 void Game::leave_city()
 {
+    hide_city_menu(city_phase);
     city_phase = 0;
     player->in_city = false;
     player_in_city = false;
@@ -821,19 +810,15 @@ void Game::end_player_battle(short _status)
         {
             case 1:
                 end_battle_menu_text->setPlainText(QString("You lost and ran away on a boat."));
-                end_battle_menu_text_offset = 24;
                 break;
             case 2:
                 end_battle_menu_text->setPlainText(QString("You lost but fortunately ran away."));
-                end_battle_menu_text_offset = 20;
                 break;
             case 3:
                 end_battle_menu_text->setPlainText(QString("You won and sank the opponent's ship!"));
-                end_battle_menu_text_offset = 2;
                 break;
             case 4:
                 end_battle_menu_text->setPlainText(QString("You won and let the opponent's ship go!"));
-                end_battle_menu_text_offset = 0;
                 break;
         }
         hide_battle_menu(battle_phase);
@@ -1118,6 +1103,13 @@ void Game::set_hud()
     sink_let_go_menu_text->setFont(QFont("times", 12));
 
 
+    menu_bar->setPixmap(QPixmap(":/Menu_bar_03.png"));
+    for (iterate = 0; iterate < 5; iterate++)
+    {
+        menu_buttons.push_back(new QGraphicsPixmapItem());
+        menu_buttons[iterate]->setPixmap(QPixmap(":/big_button_02.png"));
+    }
+
     //elementy tekstowe
     iterate = 0;
 
@@ -1331,7 +1323,7 @@ void Game::set_hud()
     //tworzenie menu
     iterate = 0;
 
-    //tekst
+    //tekst głównego menu
     for(int i = 0; i < 6; i++)
     {
         menu_text.push_back(new QGraphicsTextItem());
@@ -1339,7 +1331,46 @@ void Game::set_hud()
         menu_text[i]->setDefaultTextColor(Qt::white);
     }
 
+    menu_text[0]->setPlainText(QString("Save game"));
+    menu_text[0]->setDefaultTextColor(Qt::darkGray);
 
+    menu_text[1]->setPlainText(QString("Load game"));
+    menu_text[1]->setDefaultTextColor(Qt::darkGray);
+
+    menu_text[2]->setPlainText(QString("Options"));
+
+    menu_text[3]->setPlainText(QString("Exit game"));
+
+    menu_text[4]->setPlainText(QString("Continue"));
+
+    menu_text[5]->setPlainText(QString("Main menu"));
+    menu_text[5]->setDefaultTextColor(Qt::darkGray);
+    menu_text[5]->setFont(QFont("times", 12));
+
+    //tekst menu miasta
+    for(int i = 0; i < 6; i++)
+    {
+        city_menu_text.push_back(new QGraphicsTextItem());
+        city_menu_text[i]->setFont(QFont("times", 16));
+        city_menu_text[i]->setDefaultTextColor(Qt::darkGray);
+    }
+
+    city_menu_text[0]->setPlainText(QString("Governor"));
+    //city_menu_text[0]->setDefaultTextColor(Qt::darkGray);
+
+    city_menu_text[1]->setPlainText(QString("Tradesman"));
+    //city_menu_text[1]->setDefaultTextColor(Qt::darkGray);
+
+    city_menu_text[2]->setPlainText(QString("Tavern"));
+
+    city_menu_text[3]->setPlainText(QString("Shipyard"));
+
+    city_menu_text[4]->setPlainText(QString("Leave city"));
+    city_menu_text[4]->setDefaultTextColor(Qt::white);
+
+    city_menu_text[5]->setPlainText(QString("City menu"));
+    city_menu_text[5]->setDefaultTextColor(Qt::darkGray);
+    city_menu_text[5]->setFont(QFont("times", 12));
 }
 
 void Game::set_island(short _x, short _y, QString _pixmap_name)
@@ -1366,46 +1397,33 @@ void Game::show_menu()
         reset_timer();
     if (!menu_bool)
     {
-        menu_bar->setPixmap(QPixmap(":/Menu_bar_02.png"));
         scene->addItem(menu_bar);
         menu_bar->setPos(scene_x + resolution_x/2 - menu_bar->pixmap().width()/2, scene_y + resolution_y/2 - menu_bar->pixmap().height()/2);
 
-        menu_text[0]->setPlainText(QString("Save game"));
-        scene->addItem(menu_text[0]);
-        menu_text[0]->setPos(scene_x + resolution_x/2 - 50, scene_y + resolution_y/2 - 136);
+        for (short i = 0; i < 5; i++)
+        {
+            scene->addItem(menu_buttons[i]);
+            if (i == 4)
+                menu_buttons[i]->setPos(menu_bar->x() + menu_bar->pixmap().width()/2 - menu_buttons[i]->pixmap().width()/2,
+                                        menu_bar->y() + 400);
+            else
+                menu_buttons[i]->setPos(menu_bar->x() + menu_bar->pixmap().width()/2 - menu_buttons[i]->pixmap().width()/2,
+                                        menu_bar->y() + 113 + i*63);
+            scene->addItem(menu_text[i]);
+            menu_text[i]->setPos(menu_buttons[i]->x() + menu_buttons[i]->pixmap().width()/2 - menu_text[i]->boundingRect().width()/2,
+                                 menu_buttons[i]->y() + 6);
+        }
 
-        menu_text[0]->setDefaultTextColor(Qt::darkGray);
-
-        menu_text[1]->setPlainText(QString("Load game"));
-        scene->addItem(menu_text[1]);
-        menu_text[1]->setPos(scene_x + resolution_x/2 - 50, scene_y + resolution_y/2 - 72);
-
-        menu_text[1]->setDefaultTextColor(Qt::darkGray);
-
-        menu_text[2]->setPlainText(QString("Options"));
-        scene->addItem(menu_text[2]);
-        menu_text[2]->setPos(scene_x + resolution_x/2 - 37, scene_y + resolution_y/2 - 10);
-
-        menu_text[3]->setPlainText(QString("Exit game"));
-        scene->addItem(menu_text[3]);
-        menu_text[3]->setPos(scene_x + resolution_x/2 - 50, scene_y + resolution_y/2 + 50);
-
-        menu_text[4]->setPlainText(QString("Continue"));
-        scene->addItem(menu_text[4]);
-        menu_text[4]->setPos(scene_x + resolution_x/2 - 40, scene_y + resolution_y/2 + 158);
-
-        menu_text[5]->setPlainText(QString("Main menu"));
         scene->addItem(menu_text[5]);
-        menu_text[5]->setPos(scene_x + resolution_x/2 - 40, scene_y + resolution_y/2 - 205);
-
-        menu_text[5]->setDefaultTextColor(Qt::darkGray);
-        menu_text[5]->setFont(QFont("times", 12));
+        menu_text[5]->setPos(menu_bar->x() + menu_bar->pixmap().width()/2 - menu_text[5]->boundingRect().width()/2, menu_bar->y() + 45);
     }
     else
     {
         scene->removeItem(menu_bar);
         for(int i = 0; i < 6; i++)
             scene->removeItem(menu_text[i]);
+        for(int i = 0; i < 5; i++)
+            scene->removeItem(menu_buttons[i]);
     }
     menu_bool = !menu_bool;
 }
@@ -1449,11 +1467,32 @@ void Game::show_city_menu(short _city_phase)
     6 - czy chcę grać wyjść z punktu menu
     7 - czy chcę grać wyjść z miasta
     */
-    short iter;
+    //short iter;
     switch(_city_phase)
     {
         case 1:
             show_first_menu();
+            break;
+        case 2:
+            scene->addItem(menu_bar);
+            menu_bar->setPos(scene_x + resolution_x/2 - menu_bar->pixmap().width()/2, scene_y + resolution_y/2 - menu_bar->pixmap().height()/2);
+
+            for (short i = 0; i < 5; i++)
+            {
+                scene->addItem(menu_buttons[i]);
+                if (i == 4)
+                    menu_buttons[i]->setPos(menu_bar->x() + menu_bar->pixmap().width()/2 - menu_buttons[i]->pixmap().width()/2,
+                                            menu_bar->y() + 400);
+                else
+                    menu_buttons[i]->setPos(menu_bar->x() + menu_bar->pixmap().width()/2 - menu_buttons[i]->pixmap().width()/2,
+                                            menu_bar->y() + 113 + i*63);
+                scene->addItem(city_menu_text[i]);
+                city_menu_text[i]->setPos(menu_buttons[i]->x() + menu_buttons[i]->pixmap().width()/2 - city_menu_text[i]->boundingRect().width()/2,
+                                     menu_buttons[i]->y() + 6);
+            }
+
+            scene->addItem(city_menu_text[5]);
+            city_menu_text[5]->setPos(menu_bar->x() + menu_bar->pixmap().width()/2 - city_menu_text[5]->boundingRect().width()/2, menu_bar->y() + 45);
             break;
     }
 }
@@ -1462,19 +1501,8 @@ void Game::hide_city_menu(short _city_phase)
 {
     switch(_city_phase)
     {
-        /*case 2:
-        case 4:
-            for(size_t i = 0; i < battle_screen_img.size(); i++)
-                scene->removeItem(battle_screen_img[i]);
-            for(size_t i = 0; i < battle_screen_txt.size(); i++)
-                scene->removeItem(battle_screen_txt[i]);
-             for(size_t i = 0; i < battle_screen_rect.size(); i++)
-                 scene->removeItem(battle_screen_rect[i]);
-            break;*/
         case 1:
-        case 3:
-        case 5:
-            for (size_t i=0; i<5; i++)
+            for (short i=0; i<5; i++)
             {
                 scene->removeItem(battle_start_menu[i]);
             }
@@ -1488,31 +1516,15 @@ void Game::hide_city_menu(short _city_phase)
                 scene->removeItem(battle_start_menu[6]);
                 element2_in_scene = false;
             }
-            if (_city_phase == 1)
-                scene->removeItem(city_start_menu_text);
+            scene->removeItem(city_start_menu_text);
             break;
-        /*case 11:
-            if (battle_phase == 11)
-            {
-                //qDebug() << "Removing main menu";
-                scene->removeItem(battle_start_menu[0]);
-                //qDebug() << "Removing button";
-                scene->removeItem(battle_start_menu[7]);
-                //qDebug() << "Removing off click";
-                scene->removeItem(battle_start_menu[8]);
-                if (element1_in_scene)
-                {
-                    //qDebug() << "Removing on click";
-                    scene->removeItem(battle_start_menu[9]);
-                    element1_in_scene = false;
-                }
-                //qDebug() << "Removing end battle text.";
-                scene->removeItem(end_battle_menu_text);
-                player->in_battle = false;
-                player_at_battle = false;
-                battle_phase = 0;
-            }
-            break;*/
+        case 2:
+            scene->removeItem(menu_bar);
+            for(int i = 0; i < 6; i++)
+                scene->removeItem(city_menu_text[i]);
+            for(int i = 0; i < 5; i++)
+                scene->removeItem(menu_buttons[i]);
+            break;
     }
 }
 
@@ -1571,12 +1583,16 @@ void Game::show_battle_menu(short _battle_phase)
 
             //tytul
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(scene_x + resolution_x/2 - 70, scene_y + resolution_y/2 - 150);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + battle_screen_img[0]->pixmap().width()/2
+                                                                      - battle_screen_txt[iter]->boundingRect().width()/2,
+                                            battle_screen_img[0]->y() + 25);
             iter++;
 
             //przycisk guzika "Run!"
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(scene_x + resolution_x/2 - 55, scene_y + resolution_y/2 + 80);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + battle_screen_img[0]->pixmap().width()/2
+                                                                      - battle_screen_txt[iter]->boundingRect().width()/2,
+                                            battle_screen_img[1]->y() + 8);
             iter++;
 
             //nazwa player
@@ -1664,7 +1680,9 @@ void Game::show_battle_menu(short _battle_phase)
             scene->addItem(battle_start_menu[3]);
             scene->addItem(battle_start_menu[4]);
             scene->addItem(sink_abordage_menu_text);
-            sink_abordage_menu_text->setPos(battle_start_menu[0]->x() + 54, battle_start_menu[0]->y() + 45);
+            sink_abordage_menu_text->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2
+                                                                      - sink_abordage_menu_text->boundingRect().width()/2,
+                                            battle_start_menu[0]->y() + 45);
             break;
         case 5:
             center_view();
@@ -1676,7 +1694,9 @@ void Game::show_battle_menu(short _battle_phase)
             scene->addItem(battle_start_menu[3]);
             scene->addItem(battle_start_menu[4]);
             scene->addItem(sink_let_go_menu_text);
-            sink_let_go_menu_text->setPos(battle_start_menu[0]->x() + 54, battle_start_menu[0]->y() + 45);
+            sink_let_go_menu_text->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2
+                                                                    - sink_let_go_menu_text->boundingRect().width()/2,
+                                          battle_start_menu[0]->y() + 45);
             break;
         case 6:
         case 7:
@@ -1694,7 +1714,9 @@ void Game::show_battle_menu(short _battle_phase)
                                          battle_start_menu[7]->y() + 5);
             battle_start_menu[9]->setPos(battle_start_menu[8]->x(), battle_start_menu[8]->y());
             scene->addItem(end_battle_menu_text);
-            end_battle_menu_text->setPos(battle_start_menu[0]->x() + 32 + end_battle_menu_text_offset, battle_start_menu[0]->y() + 45);
+            end_battle_menu_text->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2
+                                                                   - end_battle_menu_text->boundingRect().width()/2,
+                                         battle_start_menu[0]->y() + 45);
             break;
     }
 }
@@ -1790,12 +1812,16 @@ void Game::show_first_menu()
     if (battle_phase == 1)
     {
         scene->addItem(battle_start_menu_text);
-        battle_start_menu_text->setPos(battle_start_menu[0]->x() + 60, battle_start_menu[0]->y() + 45);
+        battle_start_menu_text->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2
+                                                                 - battle_start_menu_text->boundingRect().width()/2,
+                                       battle_start_menu[0]->y() + 45);
     }
     if (city_phase == 1)
     {
         scene->addItem(city_start_menu_text);
-        city_start_menu_text->setPos(battle_start_menu[0]->x() + 53, battle_start_menu[0]->y() + 45);
+        city_start_menu_text->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2
+                                                               - city_start_menu_text->boundingRect().width()/2,
+                                     battle_start_menu[0]->y() + 45);
     }
 }
 
@@ -1814,7 +1840,9 @@ void Game::show_revolt_menu()
                                  battle_start_menu[7]->y() + 5);
     battle_start_menu[9]->setPos(battle_start_menu[8]->x(), battle_start_menu[8]->y());
     scene->addItem(revolt_text);
-    revolt_text->setPos(battle_start_menu[0]->x() + 33, battle_start_menu[0]->y() + 45);
+    revolt_text->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2
+                                                  - revolt_text->boundingRect().width()/2,
+                        battle_start_menu[0]->y() + 45);
 }
 
 void Game::hide_revolt_menu()
@@ -1890,10 +1918,8 @@ void Game::hide_npc_info()
     scene->removeItem(info_model_text);
     scene->removeItem(info_crew_text);
     scene->removeItem(info_health_text);
-    scene->removeItem(npc_status_bars[0]);
-    scene->removeItem(npc_status_bars[1]);
-    scene->removeItem(npc_status_bars[2]);
-    scene->removeItem(npc_status_bars[3]);
+    for (short i = 0; i <4; i++)
+        scene->removeItem(npc_status_bars[i]);
 }
 
 void Game::create_new_npc()
@@ -2058,7 +2084,7 @@ void Game::mouse_moved()
             menu_text[1]->setDefaultTextColor(Qt::white);
             */
         //if (menu_text[2]->isUnderMouse())
-        if (view->get_x() > resolution_x/2 - 120 && view->get_x() < resolution_x/2 +120 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40)
+        /*if (view->get_x() > resolution_x/2 - 120 && view->get_x() < resolution_x/2 +120 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40)
             menu_text[2]->setDefaultTextColor(Qt::red);
         else
         //if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 - 10 && view->get_y() < resolution_y/2 + 40))
@@ -2076,7 +2102,25 @@ void Game::mouse_moved()
             menu_text[4]->setDefaultTextColor(Qt::red);
         else
         //if (!(view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200))
-            menu_text[4]->setDefaultTextColor(Qt::white);
+            menu_text[4]->setDefaultTextColor(Qt::white);*/
+        for (short i = 2; i < 5; i++)
+        {
+            if (menu_buttons[i]->isUnderMouse())
+                menu_text[i]->setDefaultTextColor(Qt::red);
+            else
+                menu_text[i]->setDefaultTextColor(Qt::white);
+        }
+    }
+
+    if (player_in_city)
+    {
+        for (short i = 4; i < 5; i++)
+        {
+            if (menu_buttons[i]->isUnderMouse())
+                city_menu_text[i]->setDefaultTextColor(Qt::red);
+            else
+                city_menu_text[i]->setDefaultTextColor(Qt::white);
+        }
     }
 
     //obszar ładowni
@@ -2175,8 +2219,10 @@ void Game::mouse_pressed()
         {
             clicked = true;
             hide_city_menu(city_phase);
-            /*city_phase = 2;
-            show_city_menu(battle_phase);*/
+            city_phase = 2;
+            player->in_city = true;
+            player_in_city = true;
+            show_city_menu(city_phase);
         }
     }
 
@@ -2269,7 +2315,7 @@ void Game::mouse_pressed()
     }
 
     //obszar przycisku menu
-    if (hud_img[5]->isUnderMouse() && !clicked && !player_at_battle && !showing_revolt_menu && !player_in_city)
+    if (hud_img[5]->isUnderMouse() && !clicked && !player_at_battle && !showing_revolt_menu && city_phase != 2)
     //if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {
         clicked = true;
@@ -2280,13 +2326,20 @@ void Game::mouse_pressed()
     if (menu_bool)
     {
         clicked = true;
-        //if (menu_text[3]->isUnderMouse())
-        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
+        if (menu_buttons[3]->isUnderMouse())
+        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
             QApplication::quit();
 
-        //if (menu_text[4]->isUnderMouse())
-        if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
+        if (menu_buttons[4]->isUnderMouse())
+        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
             show_menu();
+    }
+
+    //obsługa menu miasta
+    if (player_in_city)
+    {
+        if (menu_buttons[4]->isUnderMouse())
+            leave_city();
     }
 }
 
@@ -2311,6 +2364,6 @@ void Game::delete_npc(NPC *_ship)
 
 void Game::esc_pressed()
 {
-    if (!player_at_battle && !showing_revolt_menu && !player_in_city)
+    if (!player_at_battle && !showing_revolt_menu && city_phase != 2)
         show_menu();
 }
