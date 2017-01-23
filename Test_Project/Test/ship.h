@@ -46,7 +46,7 @@ protected:
     float maneuverability; // zdolność manewrować statku (przydatne w walcę)
     short max_ammo; //maksymalna ilość amunicji na statku
     short ammo; //ilość amunicji na statku
-    short hold_size; //rozmiar łądowni
+    size_t hold_size; //rozmiar łądowni
 
     //lista zimennych typu double klasy Ship
     double X; //aktualna pozycja x

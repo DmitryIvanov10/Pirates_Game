@@ -60,6 +60,7 @@ Game::Game(QObject *parent) : QObject(parent)
     //connect(timer, SIGNAL(timeout()), this, SLOT(create_new_npc()));
 
     connect(player, SIGNAL(start_battle(Ship*)), this, SLOT(start_player_battle(Ship*)));
+    connect(player, SIGNAL(start_city(City*)), this, SLOT(got_to_city(City*)));
     connect(player, SIGNAL(revolt_signal()), this, SLOT(show_revolt_menu()));
 
     // put player to the scene
@@ -86,7 +87,7 @@ Game::Game(std::string a)
 void Game::new_game()
 {
     // create wind
-    Wind::angle = 0;
+    Wind::angle = rand() % 360;
     Wind::strength = 50;
 
     short iterate = 0;
@@ -395,7 +396,7 @@ double Game::get_harbor(short _id)
 
 void Game::count_days()
 {
-    if (!player_at_battle)
+    if (!player_at_battle && !player_in_city)
         game_time ++;
     if (game_time > game_day)
     {
@@ -700,10 +701,6 @@ void Game::center_view()
 
     if (battle_phase)
     {
-        info_health_text->setPlainText(QString("NPC health - " + QString::number(battle_ship->get_health())));
-        info_crew_text->setPlainText(QString("NPC crew - " + QString::number(battle_ship->get_crew())));
-
-        //
         battle_screen_img[2]->setPixmap(QPixmap(":/" + player->get_model_name() + "_SE_01.png"));
         battle_screen_img[3]->setPixmap(QPixmap(":/" + battle_ship->get_model_name() + "_SW_01.png"));
 
@@ -772,6 +769,28 @@ void Game::center_view()
     }
 }
 
+void Game::got_to_city(City *_city)
+{
+    if (!city_phase)
+    {
+        if (showing_npc_info)
+            hide_npc_info();
+        reset_timer();
+        city_phase = 1;
+        actual_city = _city;
+        show_city_menu(city_phase);
+    }
+}
+
+void Game::leave_city()
+{
+    city_phase = 0;
+    player->in_city = false;
+    player_in_city = false;
+    player->reset_day();
+    reset_timer();
+}
+
 void Game::start_player_battle(Ship *_ship)
 {
     if (!battle_phase)
@@ -783,15 +802,6 @@ void Game::start_player_battle(Ship *_ship)
         battle_ship = _ship;
         battle(battle_phase);
     }
-    /*if (!player_at_battle)
-    {
-        player_at_battle = true;
-        player->in_battle = true;
-        battles.push_back(new Battle(player, _ship));
-        connect(battles[battles.size()-1], SIGNAL(finish_battle()), this, SLOT(end_player_battle()));
-        connect(battles[battles.size()-1], SIGNAL(finish_battle()), _ship, SLOT(reset()));
-        connect(battles[battles.size()-1], SIGNAL(lost(short)), player, SLOT(on_boat(short)));
-    }*/
 }
 
 void Game::end_player_battle(short _status)
@@ -809,7 +819,7 @@ void Game::end_player_battle(short _status)
         {
             case 1:
                 end_battle_menu_text->setPlainText(QString("You lost and ran away on a boat."));
-                end_battle_menu_text_offset = 22;
+                end_battle_menu_text_offset = 24;
                 break;
             case 2:
                 end_battle_menu_text->setPlainText(QString("You lost but fortunately ran away."));
@@ -964,6 +974,10 @@ void Game::set_hud()
     battle_start_menu_text->setPlainText(QString("Would you like to start a battle?"));
     battle_start_menu_text->setDefaultTextColor(Qt::white);
     battle_start_menu_text->setFont(QFont("times", 12));
+
+    city_start_menu_text->setPlainText(QString("Would you like to land in the city?"));
+    city_start_menu_text->setDefaultTextColor(Qt::white);
+    city_start_menu_text->setFont(QFont("times", 12));
 
     revolt_text->setPlainText(QString("Revolt on the ship. Ran away on a boat."));
     revolt_text->setDefaultTextColor(Qt::white);
@@ -1346,7 +1360,7 @@ void Game::start_stop()
 
 void Game::show_menu()
 {
-    if (!battle_phase)
+    if (!battle_phase && !city_phase)
         reset_timer();
     if (!menu_bool)
     {
@@ -1421,10 +1435,90 @@ void Game::battle(short _battle_phase)
     }
 }
 
+void Game::show_city_menu(short _city_phase)
+{
+    /*
+    0 - poza miastem
+    1 - główne menu
+    2 - gubernator
+    3 - stoczek
+    4 - tawerna
+    5 - sklep
+    6 - czy chcę grać wyjść z punktu menu
+    7 - czy chcę grać wyjść z miasta
+    */
+    short iter;
+    switch(_city_phase)
+    {
+        case 1:
+            show_first_menu();
+            break;
+    }
+}
+
+void Game::hide_city_menu(short _city_phase)
+{
+    switch(_city_phase)
+    {
+        /*case 2:
+        case 4:
+            for(size_t i = 0; i < battle_screen_img.size(); i++)
+                scene->removeItem(battle_screen_img[i]);
+            for(size_t i = 0; i < battle_screen_txt.size(); i++)
+                scene->removeItem(battle_screen_txt[i]);
+             for(size_t i = 0; i < battle_screen_rect.size(); i++)
+                 scene->removeItem(battle_screen_rect[i]);
+            break;*/
+        case 1:
+        case 3:
+        case 5:
+            for (size_t i=0; i<5; i++)
+            {
+                scene->removeItem(battle_start_menu[i]);
+            }
+            if (element1_in_scene)
+            {
+                scene->removeItem(battle_start_menu[5]);
+                element1_in_scene = false;
+            }
+            if (element2_in_scene)
+            {
+                scene->removeItem(battle_start_menu[6]);
+                element2_in_scene = false;
+            }
+            if (_city_phase == 1)
+                scene->removeItem(city_start_menu_text);
+            break;
+        /*case 11:
+            if (battle_phase == 11)
+            {
+                //qDebug() << "Removing main menu";
+                scene->removeItem(battle_start_menu[0]);
+                //qDebug() << "Removing button";
+                scene->removeItem(battle_start_menu[7]);
+                //qDebug() << "Removing off click";
+                scene->removeItem(battle_start_menu[8]);
+                if (element1_in_scene)
+                {
+                    //qDebug() << "Removing on click";
+                    scene->removeItem(battle_start_menu[9]);
+                    element1_in_scene = false;
+                }
+                //qDebug() << "Removing end battle text.";
+                scene->removeItem(end_battle_menu_text);
+                player->in_battle = false;
+                player_at_battle = false;
+                battle_phase = 0;
+            }
+            break;*/
+    }
+}
+
+
 void Game::show_battle_menu(short _battle_phase)
 {
     /*
-     * 0 - no battle
+    0 - no battle
     1 - question if start battle
     2 - sea battle
     3 - question if start abordage
@@ -1435,32 +1529,13 @@ void Game::show_battle_menu(short _battle_phase)
     8 - run away from sea battle
     9 - loose either in sea battle or abordage
     10 - show and change ship holds / get crew from NPC (?)
-*/
-    int iter;
+    11 - end battle message
+    */
+    short iter;
     switch(_battle_phase)
     {
         case 1:
-            center_view();
-            scene->addItem(battle_start_menu[0]);
-            battle_start_menu[0]->setPos(scene_x + resolution_x/2 - battle_start_menu[0]->pixmap().width()/2,
-                                         scene_y + resolution_y/2 - battle_start_menu[0]->pixmap().height()/2);
-            scene->addItem(battle_start_menu[1]);
-            battle_start_menu[1]->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/5,
-                                         battle_start_menu[0]->y() + 5*battle_start_menu[0]->pixmap().height()/9);
-            scene->addItem(battle_start_menu[2]);
-            battle_start_menu[2]->setPos(battle_start_menu[0]->x() + 4*battle_start_menu[0]->pixmap().width()/5
-                                         - battle_start_menu[2]->pixmap().width(),
-                                         battle_start_menu[0]->y() + 5*battle_start_menu[0]->pixmap().height()/9);
-            scene->addItem(battle_start_menu[3]);
-            battle_start_menu[3]->setPos(battle_start_menu[1]->x() + 8, battle_start_menu[1]->y() + 7);
-            scene->addItem(battle_start_menu[4]);
-            battle_start_menu[4]->setPos(battle_start_menu[2]->x() + 8, battle_start_menu[2]->y() + 7);
-            battle_start_menu[5]->setPos(battle_start_menu[3]->x(), battle_start_menu[3]->y());
-            battle_start_menu[6]->setPos(battle_start_menu[4]->x(), battle_start_menu[4]->y());
-            scene->addItem(battle_start_menu_text);
-            battle_start_menu_text->setPos(battle_start_menu[0]->x() + 60, battle_start_menu[0]->y() + 45);
-            info_crew_text->setPos(battle_start_menu[0]->x() + 115, battle_start_menu[0]->y() + 45);
-            info_health_text->setPos(battle_start_menu[0]->x() + 115, battle_start_menu[0]->y() + 45);
+            show_first_menu();
             break;
         case 2:
             battle_screen_txt[0]->setPlainText(QString("Sea battle"));
@@ -1610,7 +1685,7 @@ void Game::show_battle_menu(short _battle_phase)
             center_view();
             scene->addItem(battle_start_menu[0]);
             scene->addItem(battle_start_menu[7]);
-            battle_start_menu[7]->setPos(scene_x + resolution_x/2 - battle_start_menu[7]->pixmap().width()/2,
+            battle_start_menu[7]->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2 - battle_start_menu[7]->pixmap().width()/2,
                                          battle_start_menu[0]->y() + 100);
             scene->addItem(battle_start_menu[8]);
             battle_start_menu[8]->setPos(battle_start_menu[7]->x() + battle_start_menu[7]->pixmap().width()/2 - battle_start_menu[8]->pixmap().width()/2,
@@ -1688,6 +1763,37 @@ void Game::hide_battle_menu(short _battle_phase)
                 battle_phase = 0;
             }
             break;
+    }
+}
+
+void Game::show_first_menu()
+{
+    center_view();
+    scene->addItem(battle_start_menu[0]);
+    battle_start_menu[0]->setPos(scene_x + resolution_x/2 - battle_start_menu[0]->pixmap().width()/2,
+                                 scene_y + resolution_y/2 - battle_start_menu[0]->pixmap().height()/2);
+    scene->addItem(battle_start_menu[1]);
+    battle_start_menu[1]->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/5,
+                                 battle_start_menu[0]->y() + 5*battle_start_menu[0]->pixmap().height()/9);
+    scene->addItem(battle_start_menu[2]);
+    battle_start_menu[2]->setPos(battle_start_menu[0]->x() + 4*battle_start_menu[0]->pixmap().width()/5
+                                 - battle_start_menu[2]->pixmap().width(),
+                                 battle_start_menu[0]->y() + 5*battle_start_menu[0]->pixmap().height()/9);
+    scene->addItem(battle_start_menu[3]);
+    battle_start_menu[3]->setPos(battle_start_menu[1]->x() + 8, battle_start_menu[1]->y() + 7);
+    scene->addItem(battle_start_menu[4]);
+    battle_start_menu[4]->setPos(battle_start_menu[2]->x() + 8, battle_start_menu[2]->y() + 7);
+    battle_start_menu[5]->setPos(battle_start_menu[3]->x(), battle_start_menu[3]->y());
+    battle_start_menu[6]->setPos(battle_start_menu[4]->x(), battle_start_menu[4]->y());
+    if (battle_phase == 1)
+    {
+        scene->addItem(battle_start_menu_text);
+        battle_start_menu_text->setPos(battle_start_menu[0]->x() + 60, battle_start_menu[0]->y() + 45);
+    }
+    if (city_phase == 1)
+    {
+        scene->addItem(city_start_menu_text);
+        city_start_menu_text->setPos(battle_start_menu[0]->x() + 53, battle_start_menu[0]->y() + 45);
     }
 }
 
@@ -1802,8 +1908,8 @@ void Game::create_new_npc()
 
 void Game::mouse_moved()
 {
-    // obszar menu dla rozpoczęcia walki
-    if (battle_phase == 1 || battle_phase == 3 || battle_phase == 5)
+    // obszar dla landowania w mieście
+    if (city_phase == 1 && !menu_bool)
     {
         if (battle_start_menu[1]->isUnderMouse() && !element1_in_scene)
         {
@@ -1828,7 +1934,34 @@ void Game::mouse_moved()
         }
     }
 
-    if (battle_phase == 2)
+    // obszar menu dla rozpoczęcia walki
+    if ((battle_phase == 1 || battle_phase == 3 || battle_phase == 5) && !menu_bool)
+    {
+        if (battle_start_menu[1]->isUnderMouse() && !element1_in_scene)
+        {
+            scene->addItem(battle_start_menu[5]);
+            element1_in_scene = true;
+        }
+        if (!battle_start_menu[1]->isUnderMouse() && element1_in_scene)
+        {
+            scene->removeItem(battle_start_menu[5]);
+            element1_in_scene = false;
+        }
+
+        if (battle_start_menu[2]->isUnderMouse() && !element2_in_scene)
+        {
+            scene->addItem(battle_start_menu[6]);
+            element2_in_scene = true;
+        }
+        if (!battle_start_menu[2]->isUnderMouse() && element2_in_scene)
+        {
+            scene->removeItem(battle_start_menu[6]);
+            element2_in_scene = false;
+        }
+    }
+
+    // obszar podczas walki statkami lub abordażu
+    if (battle_phase == 2 || battle_phase == 4)
     {
         if(battle_screen_img[1]->isUnderMouse())
         {
@@ -1840,6 +1973,7 @@ void Game::mouse_moved()
         }
     }
 
+    // obszar ostatniego powiadomienia walki
     if (battle_phase == 11)
     {
         if (battle_start_menu[7]->isUnderMouse() && !element1_in_scene)
@@ -1854,6 +1988,7 @@ void Game::mouse_moved()
         }
     }
 
+    // menu buntu
     if (showing_revolt_menu)
     {
         if (battle_start_menu[7]->isUnderMouse() && !element1_in_scene)
@@ -2025,16 +2160,34 @@ void Game::mouse_moved()
 
 void Game::mouse_pressed()
 {
-    // obsługa battle menu
-    if (battle_phase == 1)
+    // obsługa menu miasta
+    if (city_phase == 1 && !menu_bool && !clicked)
     {
-        if (battle_start_menu[2]->isUnderMouse() && !clicked)
+        if (battle_start_menu[2]->isUnderMouse())
+        {
+            clicked = true;
+            hide_city_menu(city_phase);
+            leave_city();
+        }
+        if (battle_start_menu[1]->isUnderMouse())
+        {
+            clicked = true;
+            hide_city_menu(city_phase);
+            /*city_phase = 2;
+            show_city_menu(battle_phase);*/
+        }
+    }
+
+    // obsługa battle menu
+    if (battle_phase == 1 && !menu_bool && !clicked)
+    {
+        if (battle_start_menu[2]->isUnderMouse())
         {
             clicked = true;
             hide_battle_menu(battle_phase);
             end_player_battle(0);
         }
-        if (battle_start_menu[1]->isUnderMouse() && !clicked)
+        if (battle_start_menu[1]->isUnderMouse())
         {
             clicked = true;
             hide_battle_menu(battle_phase);
@@ -2044,9 +2197,9 @@ void Game::mouse_pressed()
         }
     }
 
-    if (battle_phase == 2)
+    if ((battle_phase == 2 || battle_phase == 4) && !clicked)
     {
-        if (battle_screen_img[1]->isUnderMouse() && !clicked)
+        if (battle_screen_img[1]->isUnderMouse())
         {
             clicked = true;
             hide_battle_menu(battle_phase);
@@ -2055,16 +2208,16 @@ void Game::mouse_pressed()
         }
     }
 
-    if (battle_phase == 3)
+    if (battle_phase == 3 && !clicked)
     {
-        if (battle_start_menu[2]->isUnderMouse() && !clicked)
+        if (battle_start_menu[2]->isUnderMouse())
         {
             clicked = true;
             hide_battle_menu(battle_phase);
             battle_phase = 6;
             emit sink_abordage(battle_phase);
         }
-        if (battle_start_menu[1]->isUnderMouse() && !clicked)
+        if (battle_start_menu[1]->isUnderMouse())
         {
             clicked = true;
             hide_battle_menu(battle_phase);
@@ -2074,16 +2227,16 @@ void Game::mouse_pressed()
         }
     }
 
-    if (battle_phase == 5)
+    if (battle_phase == 5 && !clicked)
     {
-        if (battle_start_menu[2]->isUnderMouse() && !clicked)
+        if (battle_start_menu[2]->isUnderMouse())
         {
             clicked = true;
             hide_battle_menu(battle_phase);
             battle_phase = 6;
             emit sink_let_go(false);
         }
-        if (battle_start_menu[1]->isUnderMouse() && !clicked)
+        if (battle_start_menu[1]->isUnderMouse())
         {
             clicked = true;
             hide_battle_menu(battle_phase);
@@ -2092,9 +2245,9 @@ void Game::mouse_pressed()
         }
     }
 
-    if (battle_phase == 11)
+    if (battle_phase == 11 && !clicked)
     {
-        if (battle_start_menu[7]->isUnderMouse() && !clicked)
+        if (battle_start_menu[7]->isUnderMouse())
         {
             clicked = true;
             hide_battle_menu(battle_phase);
@@ -2102,9 +2255,10 @@ void Game::mouse_pressed()
         }
     }
 
-    if (showing_revolt_menu)
+    // obsługa menu buntu
+    if (showing_revolt_menu && !menu_bool && !clicked)
     {
-        if (battle_start_menu[7]->isUnderMouse() && !clicked)
+        if (battle_start_menu[7]->isUnderMouse())
         {
             clicked = true;
             hide_revolt_menu();
@@ -2113,7 +2267,7 @@ void Game::mouse_pressed()
     }
 
     //obszar przycisku menu
-    if (hud_img[5]->isUnderMouse() && !clicked && !player_at_battle && !showing_revolt_menu)
+    if (hud_img[5]->isUnderMouse() && !clicked && !player_at_battle && !showing_revolt_menu && !player_in_city)
     //if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {
         clicked = true;
@@ -2155,6 +2309,6 @@ void Game::delete_npc(NPC *_ship)
 
 void Game::esc_pressed()
 {
-    if (!player_at_battle && !showing_revolt_menu)
+    if (!player_at_battle && !showing_revolt_menu && !player_in_city)
         show_menu();
 }

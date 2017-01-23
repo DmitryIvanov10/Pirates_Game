@@ -7,6 +7,7 @@
 #include "npc.h"
 #include "pirate.h"
 #include "island.h"
+#include "city.h"
 
 //biblioteki
 #include <QObject>
@@ -31,10 +32,10 @@ class Player: public Ship //, public QGraphicsRectItem
     short salary;
     int one_day_salary;
     int gold;
+    short day;
     float days_off_harbor_morale;
     float food_morale;
     float salary_morale;
-    short day;
     bool collision_with_npc;
 
     void set_day_salary();
@@ -48,6 +49,7 @@ public:
     //zmienne publiczne
     QGraphicsPixmapItem * probe = new QGraphicsPixmapItem;
     bool in_battle;
+    bool in_city;
     static std::vector<QPointF> island_coordinates;
 
     //funkcje dostępu
@@ -61,6 +63,7 @@ public:
     short get_daily_food();
     short get_max_food();
     short get_salary();
+    void reset_day();
 
 public slots:
     void do_tour();
@@ -71,6 +74,7 @@ public slots:
 signals:
     void revolt_signal();
     void start_battle(Ship * _ship);
+    void start_city(City * _city);
     void esc_pressed();
 };
 

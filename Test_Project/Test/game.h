@@ -31,6 +31,7 @@
 #include "island.h"
 #include "view.h"
 #include "battle.h"
+#include "city.h"
 
 class Game : public QObject
 {
@@ -72,6 +73,8 @@ class Game : public QObject
     QGraphicsTextItem * end_battle_menu_text = new QGraphicsTextItem(); // tekst wynika walki
     short end_battle_menu_text_offset; // przemieszczenie tekstu wynika walki
 
+    QGraphicsTextItem * city_start_menu_text = new QGraphicsTextItem(); // tekst menu przy przybyciu do miasta
+
     QGraphicsTextItem * revolt_text = new QGraphicsTextItem();
 
     QGraphicsTextItem * info_name_text = new QGraphicsTextItem();
@@ -83,6 +86,9 @@ class Game : public QObject
     std::vector <NPC *> npc_ships; //statki npc na mapie
 
     Ship * battle_ship; // statek z którym walczy player
+
+    City * actual_city; // miasto, do którego dopłynął grać
+
 
     bool clicked = false;
     int frame_time = 17;
@@ -100,6 +106,7 @@ class Game : public QObject
 
     bool pause = 0; //if game is paused
     bool player_at_battle = 0; //if player is in a battle
+    bool player_in_city = 0; //if player in the city
     bool menu_bool = 0; //czy menu jest włączone
 
     // pomocnicze zmienne dla sprawdzania dodawania i usuwania przycisków lub innych elementów ze sceny
@@ -117,6 +124,7 @@ class Game : public QObject
 public:
     //static std::vector <Voronoi_point> map;
     short battle_phase = 0; //faza walki, 0 - nie ma walki
+    short city_phase = 0; //faza miasta, 0 - nie w mieście
 
     //konstruktory
     Game(QObject *parent = 0); //nowa gra
@@ -137,6 +145,8 @@ public:
     void show_menu();
     void battle(short _battle_phase);
     void hide_battle_menu(short _battle_phase);
+    void hide_city_menu(short _city_phase);
+    void show_first_menu();
 
 signals:
     //void next_tour();
@@ -149,11 +159,14 @@ public slots:
     //void check();
     void show_revolt_menu();
     void show_battle_menu(short _battle_phase);
+    void show_city_menu(short _city_phase);
     void show_npc_info(NPC * _ship);
     void hide_npc_info();
     void count_days();
     void update_states();
     void center_view();
+    void got_to_city(City * _city);
+    void leave_city();
     void start_player_battle(Ship * _ship);
     void end_player_battle(short _status); //0 - don't start battle; 1 - loose, on boat; 2 - loose, ran away; 3 - win, kill; 4 - win, let go
     //void start_nonplayer_battle(Ship * _ship1, Ship * _ship2);

@@ -5,11 +5,11 @@ Player::Player()
 {
     std::srand(time(0));
     in_battle = false;
-    day = 0;
+    in_city = false;
+    reset_day();
     model = 3;
     fraction = rand() % 4 + 1;
     set_name();
-    days_off_harbor_morale = 1.0f / 0.98f;
     set_model_parameters();
     max_food = 60 * ceil(double (max_crew) / 15);
     health = max_health;
@@ -17,7 +17,7 @@ Player::Player()
     cannons = initial_cannons;
     ammo = 0.5 * max_ammo;
     maneuverability = max_maneuverability;
-    set_angle(90);
+    set_angle(180);
     sail_level = 1;
     food = max_food / 2;
     gold = 10000;
@@ -41,22 +41,22 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         case Qt::Key_A:
         case Qt::Key_Left:
-            if (!in_battle)
+            if (!in_battle && !in_city)
                 set_angle(angle+2);
             break;
         case Qt::Key_D:
         case Qt::Key_Right:
-            if (!in_battle)
+            if (!in_battle && !in_city)
                 set_angle(angle-2);
             break;
         case Qt::Key_W:
         case Qt::Key_Up:
-            if (!in_battle)
+            if (!in_battle && !in_city)
                 set_sail_level(1);
             break;
         case Qt::Key_S:
         case Qt::Key_Down:
-            if (!in_battle)
+            if (!in_battle && !in_city)
                 set_sail_level(0);
             break;
         case Qt::Key_Space:
@@ -64,11 +64,25 @@ void Player::keyPressEvent(QKeyEvent *event)
             if (colliding_items.size() != 0)
             {
                 foreach (QGraphicsItem * item, colliding_items)
-
+                {
                     if (typeid(* item) == typeid(NPC) ||
                         typeid(* item) == typeid(Pirate))
+                    {
                         if (model && health >= max_health / 5 && !in_battle)
                             emit start_battle(dynamic_cast<Ship *>(item));
+                    }
+
+                    /*if (typeid(* item) == typeid(City))
+                    {
+                        if (!in_city && !in_battle)
+                            emit start_city(dynamic_cast<City *>(item));
+                    }*/
+                    if (typeid(* item) == typeid(Island))
+                    {
+                        if (!in_city && !in_battle)
+                            emit start_city(new City(0));
+                    }
+                }
             }
             break;
         case Qt::Key_Escape:
@@ -104,7 +118,8 @@ void Player::do_tour()
         go = true;
     if (go)
     {
-        move();
+        if (!in_battle && !in_city)
+            move();
         clamp();
         setPos(X,Y);
     }
@@ -232,6 +247,12 @@ short Player::get_max_food()
 short Player::get_salary()
 {
     return salary;
+}
+
+void Player::reset_day()
+{
+    day = 0;
+    days_off_harbor_morale = 1.0f / 0.98f;
 }
 
 void Player::set_days_off_harbor_morale(float value)

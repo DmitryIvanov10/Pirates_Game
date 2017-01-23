@@ -98,7 +98,7 @@ void Wind::do_tour()
         change_all(5,2);
         setPlainText(QString("Wiatr\nKąt: " + QString::number(angle) + "\nSiła: " + QString::number(strength)));
     }
-    //Wind::angle = 0;
+    //Wind::angle = 180;
     //Wind::strength = 99;
 
     signal();
