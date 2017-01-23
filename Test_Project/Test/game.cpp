@@ -1391,7 +1391,14 @@ void Game::set_island(short _x, short _y, QString _pixmap_name)
     islands[islands.size() - 1]->setPixmap(QPixmap(_pixmap_name));
     scene->addItem(islands[islands.size() - 1]);
     islands[islands.size() - 1]->setPos(_x, _y);
-    Player::island_coordinates.push_back(islands[islands.size() - 1]->pos());
+}
+
+void Game::set_city(short _x, short _y, short _voronoi_id, QString _pixmap_name, short _fraction)
+{
+    cities.push_back(new City(_voronoi_id, _fraction, cities.size() + 1));
+    cities[cities.size() - 1]->setPixmap(QPixmap(_pixmap_name));
+    scene->addItem(cities[cities.size() - 1]);
+    cities[cities.size() - 1]->setPos(_x, _y);
 }
 
 void Game::start_stop()

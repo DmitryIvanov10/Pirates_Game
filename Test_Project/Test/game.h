@@ -46,6 +46,7 @@ class Game : public QObject
 
     std::vector <QGraphicsPixmapItem *> sea; //kafelki oceanu
     std::vector <Island *> islands; //wszystkie wyspy na mapie
+    std::vector <City *> cities; //wszystkie miasta na mapie
 
     std::vector <Battle *> battles; //wszystkie walki
 
@@ -143,6 +144,7 @@ public:
     short get_neighbour(short _id, short _number);
     void set_hud();
     void set_island(short _x, short _y, QString _pixmap_name);
+    void set_city(short _x, short _y, short _voronoi_id, QString _pixmap_name, short _fraction);
     void start_stop();
     void show_menu();
     void battle(short _battle_phase);

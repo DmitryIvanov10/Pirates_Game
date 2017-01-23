@@ -50,7 +50,6 @@ public:
     QGraphicsPixmapItem * probe = new QGraphicsPixmapItem;
     bool in_battle;
     bool in_city;
-    static std::vector<QPointF> island_coordinates;
 
     //funkcje dostępu
     void keyPressEvent(QKeyEvent * event);
