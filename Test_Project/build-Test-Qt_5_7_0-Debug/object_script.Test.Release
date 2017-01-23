@@ -28,6 +28,8 @@ INPUT(
 ./release\qrc_battle.o
 ./release\qrc_brushes.o
 ./release\qrc_city.o
+./release\qrc_islands5.o
+./release\qrc_islands6.o
 ./release\moc_player.o
 ./release\moc_ship.o
 ./release\moc_npc.o
