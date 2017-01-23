@@ -370,6 +370,8 @@ void Game::new_game()
     set_island(4253, 3325, ":/island_a2_03.png");
     set_island(5583, 1386, ":/island_a4_01.png");
     set_island(1629, 3737, ":/island_a4_02.png");
+    set_island(2952, 103, "/:island_a5_01.png");
+    set_island(5749, 26, ":/island_a6_01.png");
 }
 
 double Game::get_x(short _id)

@@ -28,6 +28,8 @@ INPUT(
 ./debug\qrc_battle.o
 ./debug\qrc_brushes.o
 ./debug\qrc_city.o
+./debug\qrc_islands5.o
+./debug\qrc_islands6.o
 ./debug\moc_player.o
 ./debug\moc_ship.o
 ./debug\moc_npc.o

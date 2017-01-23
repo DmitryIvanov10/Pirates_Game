@@ -62,4 +62,6 @@ RESOURCES += \
     img/Ships/Boat/boat.qrc \
     img/Interface/Battle/battle.qrc \
     img/Interface/Brushes/brushes.qrc \
-    img/Interface/City/city.qrc
+    img/Interface/City/city.qrc \
+    img/Islands/islands5.qrc \
+    img/Islands/islands6.qrc
