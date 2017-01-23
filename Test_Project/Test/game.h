@@ -59,6 +59,7 @@ class Game : public QObject
     std::vector <QGraphicsTextItem *> hud_cargo_txt; //tekst odpowiadający towarom
 
     QGraphicsPixmapItem * menu_bar = new QGraphicsPixmapItem(); //grafika menu
+    std::vector <QGraphicsPixmapItem *> menu_buttons; // przyciski dla menu
     std::vector <QGraphicsTextItem *> menu_text; //tekst menu
 
     QGraphicsPixmapItem * npc_info_bar = new QGraphicsPixmapItem(); //grafika info npc
@@ -73,6 +74,7 @@ class Game : public QObject
     QGraphicsTextItem * end_battle_menu_text = new QGraphicsTextItem(); // tekst wynika walki
     short end_battle_menu_text_offset; // przemieszczenie tekstu wynika walki
 
+    std::vector <QGraphicsTextItem *> city_menu_text; //tekst menu miasta
     QGraphicsTextItem * city_start_menu_text = new QGraphicsTextItem(); // tekst menu przy przybyciu do miasta
 
     QGraphicsTextItem * revolt_text = new QGraphicsTextItem();
