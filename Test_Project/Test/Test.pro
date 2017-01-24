@@ -64,4 +64,5 @@ RESOURCES += \
     img/Interface/Brushes/brushes.qrc \
     img/Interface/City/city.qrc \
     img/Islands/islands5.qrc \
-    img/Islands/islands6.qrc
+    img/Islands/islands6.qrc \
+    img/City/harbors.qrc
