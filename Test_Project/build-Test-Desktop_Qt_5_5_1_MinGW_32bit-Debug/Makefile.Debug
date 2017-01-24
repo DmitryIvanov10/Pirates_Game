@@ -752,6 +752,41 @@ debug/moc_city.cpp: ../../../../Qt/5.5/mingw492_32/include/QtCore/QObject \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsPixmapItem \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qgraphicsitem.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qrect.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qsize.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qregion.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qline.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qimage.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h \
 		../Test/city.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -I"C:/Git/Pirates game/Test_Project/Test" -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore -I. ..\Test\city.h -o debug\moc_city.cpp
 
@@ -2073,7 +2108,42 @@ debug/city.o: ../Test/city.cpp ../Test/city.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
 		../../../../Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
-		../../../../Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsPixmapItem \
+		../../../../Qt/5.5/mingw492_32/include/QtWidgets/qgraphicsitem.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qrect.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qsize.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpainterpath.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qmatrix.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpolygon.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qregion.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qline.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpixmap.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpaintdevice.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qcolor.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qrgb.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		../../../../Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qimage.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qtransform.h \
+		../../../../Qt/5.5/mingw492_32/include/QtGui/qpixelformat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\city.o ..\Test\city.cpp
 
 debug/wind.o: ../Test/wind.cpp ../Test/wind.h \
