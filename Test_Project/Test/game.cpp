@@ -374,7 +374,7 @@ void Game::new_game()
     set_island(5749, 26, ":/island_a6_01.png");
 
     //ustawianie miast
-    set_city(3444, 3108, 17, ":/twon4.png", 1);
+    set_city(3444, 3108, 17, ":/town5.png", 1);
 }
 
 double Game::get_x(short _id)

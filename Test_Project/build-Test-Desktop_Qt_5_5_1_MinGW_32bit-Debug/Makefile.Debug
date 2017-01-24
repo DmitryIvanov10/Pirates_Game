@@ -352,6 +352,7 @@ debug/qrc_islands6.cpp: ../Test/img/Islands/islands6.qrc \
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name islands6 ..\Test\img\Islands\islands6.qrc -o debug\qrc_islands6.cpp
 
 debug/qrc_harbors.cpp: ../Test/img/City/harbors.qrc \
+		../Test/img/City/town5.png \
 		../Test/img/City/twon4.png
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name harbors ..\Test\img\City\harbors.qrc -o debug\qrc_harbors.cpp
 
