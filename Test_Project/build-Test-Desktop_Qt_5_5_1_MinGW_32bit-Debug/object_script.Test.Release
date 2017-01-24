@@ -31,6 +31,8 @@ INPUT(
 ./release\qrc_islands5.o
 ./release\qrc_islands6.o
 ./release\qrc_harbors.o
+./release\qrc_Harbour.o
+./release\qrc_harbour_menu.o
 ./release\moc_player.o
 ./release\moc_ship.o
 ./release\moc_npc.o

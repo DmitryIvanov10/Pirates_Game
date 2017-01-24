@@ -374,7 +374,11 @@ void Game::new_game()
     set_island(5749, 26, ":/island_a6_01.png");
 
     //ustawianie miast
-    set_city(3444, 3108, 17, ":/town5.png", 1);
+    set_city(3444, 3108, 17, ":/town6.png", 1);
+    set_city(5878, 308, 74, ":/town6.png", 2);
+    set_city(5348, 3199, 37, ":/town6.png", 4);
+    set_city(3140,580, 26, ":/town6.png", 4);
+    set_city(5995, 1981, 65, ":/town6.png", 3);
 }
 
 double Game::get_x(short _id)
@@ -1387,11 +1391,14 @@ void Game::set_hud()
     //city_menu_text[0]->setDefaultTextColor(Qt::darkGray);
 
     city_menu_text[1]->setPlainText(QString("Tradesman"));
+    city_menu_text[1]->setDefaultTextColor(Qt::white);
     //city_menu_text[1]->setDefaultTextColor(Qt::darkGray);
 
     city_menu_text[2]->setPlainText(QString("Tavern"));
+    city_menu_text[2]->setDefaultTextColor(Qt::white);
 
     city_menu_text[3]->setPlainText(QString("Shipyard"));
+    city_menu_text[3]->setDefaultTextColor(Qt::white);
 
     city_menu_text[4]->setPlainText(QString("Leave city"));
     city_menu_text[4]->setDefaultTextColor(Qt::white);
@@ -2149,7 +2156,7 @@ void Game::mouse_moved()
 
     if (player_in_city)
     {
-        for (short i = 4; i < 5; i++)
+        for (short i = 1; i < 5; i++)
         {
             if (menu_buttons[i]->isUnderMouse())
                 city_menu_text[i]->setDefaultTextColor(Qt::red);

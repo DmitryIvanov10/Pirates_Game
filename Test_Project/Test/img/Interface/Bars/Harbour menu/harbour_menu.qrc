@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>shipyard_screen_01.png</file>
+        <file>minus_on_02.png</file>
+        <file>minus_on_02.png</file>
+        <file>plus_off_02.png</file>
+        <file>plus_on_02.png</file>
+    </qresource>
+</RCC>

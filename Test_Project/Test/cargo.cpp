@@ -42,6 +42,7 @@ void Cargo::set_name()
     switch(id)
     {
         case 0:
+            name = "empty slot";
             break;
         case 1:
             name = "sugar";

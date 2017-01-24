@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>twon4.png</file>
         <file>town5.png</file>
+        <file>town6.png</file>
     </qresource>
 </RCC>
