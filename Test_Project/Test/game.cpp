@@ -533,6 +533,9 @@ void Game::center_view()
     //tekst menu
     hud_txt[9]->setPos(scene_x + 45, scene_y + 10);
 
+    //oznaczenie wersji
+    hud_txt[10]->setPos(scene_x + 17, scene_y + 40);
+
 
     //stan ładowni
     for(int iterate = 0; iterate < 7; iterate++)
@@ -1202,6 +1205,16 @@ void Game::set_hud()
     hud_txt.push_back(new QGraphicsTextItem());
     hud_txt[iterate]->setPlainText(QString("MENU"));
     hud_txt[iterate]->setFont(QFont("times", 16));
+    //qDebug() << hud_txt[iterate]->size();
+    scene->addItem(hud_txt[iterate]);
+    iterate++;
+
+    //tekst wersji
+    hud_txt.push_back(new QGraphicsTextItem());
+    hud_txt[iterate]->setPlainText(QString("Version ") + QString("Pre Alpha ") + QString::number(version));
+    hud_txt[iterate]->setFont(QFont("times", 8));
+    hud_txt[iterate]->setDefaultTextColor(Qt::lightGray);
+    hud_txt[iterate]->setOpacity(0.5);
     //qDebug() << hud_txt[iterate]->size();
     scene->addItem(hud_txt[iterate]);
     iterate++;

@@ -100,6 +100,7 @@ class Game : public QObject
     int resolution_y = 768 - 3;
     int border_x = resolution_x / 4;
     int border_y = resolution_y / 4;
+    float version = 0.09f;
 
     const int start_npc_amount = 30; //ilość statków NPC
     const int game_day = 200;
