@@ -106,14 +106,6 @@ void Player::do_tour()
         if (typeid(* (probe->collidingItems()[0])) == typeid(Island))
             if (collidingItems().size() != 0)
                 go = false;
-        /*short i = 0;
-        while (i<Player::island_coordinates.size() && go)
-        {
-            if (probe->collidingItems()[0]->pos() == Player::island_coordinates[i])
-                if (collidingItems().size() != 0)
-                    go = false;
-            i++;
-        }*/
     } else
         go = true;
     if (go)

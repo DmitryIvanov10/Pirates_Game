@@ -608,39 +608,46 @@ void Game::center_view()
     //stan zdrowia
     if (hud_temp_bool[0])
     {
+        hud_temp_img[0]->setPos(scene_x + resolution_x/2 - 220, scene_y + resolution_y - 134);
         hud_temp_txt[0]->setPos(scene_x + resolution_x/2 - 220, scene_y + resolution_y - 136);
         hud_temp_txt[0]->setPlainText(QString("Health\n" + QString::number((int)(((float)player->get_health()/(float)player->get_max_health()) *100)) + "%\nMax\n" + QString::number(player->get_max_health())));
     }
     else
     {
+        hud_temp_img[0]->setPos(0,0);
         hud_temp_txt[0]->setPos(0,0);
     }
 
     //stan załogi
     if (hud_temp_bool[1])
     {
+        hud_temp_img[1]->setPos(scene_x + resolution_x/2 - 132, scene_y + resolution_y - 134);
         hud_temp_txt[1]->setPos(scene_x + resolution_x/2 - 132, scene_y + resolution_y - 136);
         hud_temp_txt[1]->setPlainText(QString("Crew\n" + QString::number((int)(100*(float)player->get_crew()/(float)player->get_max_crew())) + "%\nMax\n" + QString::number(player->get_max_crew())));
     }
     else
     {
+        hud_temp_img[1]->setPos(0,0);
         hud_temp_txt[1]->setPos(0,0);
     }
 
     //stan jedzenia
     if (hud_temp_bool[2])
     {
+        hud_temp_img[2]->setPos(scene_x + resolution_x/2 - 51, scene_y + resolution_y - 134);
         hud_temp_txt[2]->setPos(scene_x + resolution_x/2 - 51, scene_y + resolution_y - 136);
         hud_temp_txt[2]->setPlainText(QString("Food\n"+ QString::number((int)(100*(float)player->get_food()/(float)player->get_max_food())) + "%\nper day\n- " + QString::number(player->get_daily_food())));
     }
     else
     {
+        hud_temp_img[2]->setPos(0,0);
         hud_temp_txt[2]->setPos(0,0);
     }
 
     //stan morale
     if (hud_temp_bool[3])
     {
+        hud_temp_img[3]->setPos(scene_x + resolution_x/2 + 37, scene_y + resolution_y - 134);
         hud_temp_txt[3]->setPos(scene_x + resolution_x/2 + 37, scene_y + resolution_y - 136);
         switch (player->get_salary())
         {
@@ -663,26 +670,31 @@ void Game::center_view()
     }
     else
     {
+        hud_temp_img[3]->setPos(0,0);
         hud_temp_txt[3]->setPos(0,0);
     }
 
     //stan złota
     if (hud_temp_bool[4])
     {
+        hud_temp_img[4]->setPos(scene_x + resolution_x/2 + 124, scene_y + resolution_y - 134);
         hud_temp_txt[4]->setPos(scene_x + resolution_x/2 + 124, scene_y + resolution_y - 136);
     }
     else
     {
+        hud_temp_img[4]->setPos(0,0);
         hud_temp_txt[4]->setPos(0,0);
     }
 
     //opisy
     if (hud_temp_bool[5])
     {
+        hud_temp_img[5]->setPos(scene_x + view->get_x(), scene_y + view->get_y()+10);
         hud_temp_txt[5]->setPos(scene_x + view->get_x(), scene_y + view->get_y()+7);
     }
     else
     {
+        hud_temp_img[5]->setPos(0,0);
         hud_temp_txt[5]->setPos(0,0);
     }
 
@@ -1379,7 +1391,14 @@ void Game::set_island(short _x, short _y, QString _pixmap_name)
     islands[islands.size() - 1]->setPixmap(QPixmap(_pixmap_name));
     scene->addItem(islands[islands.size() - 1]);
     islands[islands.size() - 1]->setPos(_x, _y);
-    Player::island_coordinates.push_back(islands[islands.size() - 1]->pos());
+}
+
+void Game::set_city(short _x, short _y, short _voronoi_id, QString _pixmap_name, short _fraction)
+{
+    cities.push_back(new City(_voronoi_id, _fraction, cities.size() + 1));
+    cities[cities.size() - 1]->setPixmap(QPixmap(_pixmap_name));
+    scene->addItem(cities[cities.size() - 1]);
+    cities[cities.size() - 1]->setPos(_x, _y);
 }
 
 void Game::start_stop()

@@ -3,9 +3,10 @@
 
 //biblioteki
 #include <QObject> //potrzebne do slotów i sygnałów
+#include <QGraphicsPixmapItem>
 #include <vector> //obsługa wektorów
 
-class City: public QObject
+class City: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
