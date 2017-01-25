@@ -1221,7 +1221,13 @@ void Game::set_hud()
         shipyard_txt[iterate]->setDefaultTextColor(Qt::black);
     }
 
-    iterate++;
+    // tekst zdrowia [3], tekst armat [4], tekst amunicji [5]
+    for (iterate = 3; iterate < 6; iterate++)
+    {
+        shipyard_txt.push_back(new QGraphicsTextItem());
+        shipyard_txt[iterate]->setFont(QFont("times", 14));
+        shipyard_txt[iterate]->setDefaultTextColor(Qt::black);
+    }
 
     //elementy tekstowe
     iterate = 0;
@@ -1647,7 +1653,7 @@ void Game::show_city_menu(short _city_phase)
             shipyard_img[3]->setPos(shipyard_img[0]->x() + 284, shipyard_img[0]->y() + 169);
             shipyard_img[4]->setPos(shipyard_img[3]->x(), shipyard_img[3]->y() + 126);
             shipyard_img[5]->setPos(shipyard_img[0]->x() + 516, shipyard_img[0]->y() + 51);
-            shipyard_img[6]->setPos(shipyard_img[5]->x(), shipyard_img[5]->y() + 79);
+            shipyard_img[6]->setPos(shipyard_img[5]->x(), shipyard_img[5]->y() + 80);
             shipyard_img[7]->setPos(shipyard_img[6]->x(), shipyard_img[6]->y() + 87);
             shipyard_img[8]->setPos(shipyard_img[5]->x() - 83, shipyard_img[5]->y());
             shipyard_img[9]->setPos(shipyard_img[8]->x(), shipyard_img[6]->y());
@@ -1657,11 +1663,22 @@ void Game::show_city_menu(short _city_phase)
             for (short i = 0; i < 3; i++)
             {
                 scene->addItem(shipyard_txt[i]);
-                shipyard_txt[i]->setPos(shipyard_img[i+8]->x() - 11, shipyard_img[i+5]->y() - 42);
+                shipyard_txt[i]->setPos(shipyard_img[i+8]->x() - 11, shipyard_img[i+8]->y() - 42);
             }
             shipyard_txt[0]->setPlainText(QString("Repair your ship \n   100 " + currency));
-            shipyard_txt[1]->setPlainText(QString("Buy/sell cannons \n35 " + currency + QString("/item")));
-            shipyard_txt[2]->setPlainText(QString(" Buy/sell ammo \n10 " + currency + QString("/item")));
+            shipyard_txt[1]->setPlainText(QString("Buy/sell cannons \n35 " + currency + "/item"));
+            shipyard_txt[2]->setPlainText(QString(" Buy/sell ammo \n10 " + currency + "/item"));
+
+            shipyard_txt[3]->setPlainText(QString::number(short(100 * double(player->get_health()) /
+                                                                             player->get_max_health())) + QString("%"));
+            shipyard_txt[4]->setPlainText(QString::number(player->get_cannons()));
+            shipyard_txt[5]->setPlainText(QString::number(player->get_ammo()));
+            for (short i = 3; i < 6; i++)
+            {
+                scene->addItem(shipyard_txt[i]);
+                shipyard_txt[i]->setPos(shipyard_img[i+5]->x() + 55 - shipyard_txt[i]->boundingRect().width()/2,
+                                        shipyard_img[i+5]->y()-5);
+            }
             break;
         case 7:
             show_first_menu();
@@ -2388,21 +2405,40 @@ void Game::mouse_pressed()
 
         // zmiana zdrowia
         if (shipyard_img[5]->isUnderMouse() && player->get_health() < player->get_max_health())
+        {
             player->set_health(player->get_health() + 1);
+            shipyard_txt[3]->setPlainText(QString::number(short(100 * double(player->get_health()) /
+                                                                             player->get_max_health())) + QString("%"));
+        }
         if (shipyard_img[8]->isUnderMouse() && player->get_health() > player_city_start_health)
+        {
             player->set_health(player->get_health() - 1);
-
+            shipyard_txt[3]->setPlainText(QString::number(short(100 * double(player->get_health()) /
+                                                                             player->get_max_health())) + QString("%"));
+        }
         // zmiana armat
         if (shipyard_img[6]->isUnderMouse() && player->get_cannons() < player->get_max_cannons())
+        {
             player->set_cannons(player->get_cannons() + 1);
+            shipyard_txt[4]->setPlainText(QString::number(player->get_cannons()));
+        }
         if (shipyard_img[9]->isUnderMouse() && player->get_cannons() > 0)
+        {
             player->set_cannons(player->get_cannons() - 1);
+            shipyard_txt[4]->setPlainText(QString::number(player->get_cannons()));
+        }
 
         // zmiana armat
         if (shipyard_img[7]->isUnderMouse() && player->get_ammo() < player->get_max_ammo())
+        {
             player->set_ammo(player->get_ammo() + 1);
+            shipyard_txt[5]->setPlainText(QString::number(player->get_ammo()));
+        }
         if (shipyard_img[10]->isUnderMouse() && player->get_ammo() > 0)
+        {
             player->set_ammo(player->get_ammo() - 1);
+            shipyard_txt[5]->setPlainText(QString::number(player->get_ammo()));
+        }
 
         center_view();
     }
