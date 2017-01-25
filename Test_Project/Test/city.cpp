@@ -106,6 +106,38 @@ QString City::get_selling_ship_description(int number)
     }
 }
 
+QString City::get_selling_ship_img(int number)
+{
+    if(number < 0 || number > ship_models.size())
+        return "Wrong number";
+    switch (ship_models[number])
+    {
+    case 1:
+        return QString("");
+        break;
+    case 2:
+        return QString("");
+        break;
+    case 3:
+        return QString(":/Caravel_SE_01.png");
+        break;
+    case 4:
+        return QString(":/Brig_SE_01.png");
+        break;
+    case 5:
+        return QString("Galeon");
+        break;
+    case 6:
+        return QString("Fregat");
+        break;
+    case 7:
+        return QString("Battleship");
+        break;
+    default:
+        return QString("Wrong model img");
+    }
+}
+
 void City::set_state(bool state)
 {
     active = state;
