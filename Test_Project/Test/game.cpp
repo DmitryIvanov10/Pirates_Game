@@ -370,7 +370,7 @@ void Game::new_game()
     set_island(4253, 3325, ":/island_a2_03.png");
     set_island(5583, 1386, ":/island_a4_01.png");
     set_island(1629, 3737, ":/island_a4_02.png");
-    set_island(2952, 103, "/:island_a5_01.png");
+    set_island(2952, 103, ":/island_a5_01.png");
     set_island(5749, 26, ":/island_a6_01.png");
 
     //ustawianie miast
@@ -709,7 +709,12 @@ void Game::center_view()
     }
 
     //inne elementy HUD'u
-    map_rect->setRect(scene_x + 15 + 265 * ((float)scene_x / (8196 + 2 * border_x)), scene_y + resolution_y - 156 + 148 * ((float)scene_y / (4608 + 2* border_y)), (int)(267 * ((float)resolution_x / (8196 + 2* border_x))), (int)(151 * ((float)resolution_y / (4608 + 2* border_y))));
+    map_rect->setRect(
+                (int)(scene_x + 8 + 285 * ((float)scene_x / (float)(8196 + 2 * border_x))),   //x
+                (int)(scene_y + resolution_y - 160 - 11 + 160 * ((float)scene_y / (float)(4608 + 2* border_y))),    //y
+                (int)(285 * ((float)resolution_x / (float)(8196 + 2* border_x))),   //szerokosc
+                (int)(160 * ((float)resolution_y / (float)(4608 + 2* border_y)))    //wysokosc
+    );
 
     if (battle_phase)
     {
@@ -892,7 +897,7 @@ void Game::set_hud()
 
     //HUD z mapą w lewym dolnym rogu
     hud_img.push_back(new QGraphicsPixmapItem());
-    hud_img[iterate]->setPixmap(QPixmap(":/img/Interface/HUD/Interface_LD_02.png"));
+    hud_img[iterate]->setPixmap(QPixmap(":/Interface_LD_03.png"));
     scene->addItem(hud_img[iterate]);
     //hud_img[iterate]->setPos(scene_x, scene_y + resolution_y - 219);
     iterate++;

@@ -3,5 +3,6 @@
         <file>interface_LG_01.png</file>
         <file>Interface_SD_03.png</file>
         <file>Interface_SG_03.png</file>
+        <file>Interface_LD_03.png</file>
     </qresource>
 </RCC>
