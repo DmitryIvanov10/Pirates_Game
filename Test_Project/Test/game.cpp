@@ -1685,6 +1685,8 @@ void Game::hide_city_menu(short _city_phase)
         case 4:
             for (size_t i = 0; i < shipyard_img.size(); i++)
                 scene->removeItem(shipyard_img[i]);
+            for (size_t i = 0; i < shipyard_txt.size(); i++)
+                scene->removeItem(shipyard_txt[i]);
             scene->removeItem(city_menu_text[6]);
         case 7:
             hide_first_menu();
