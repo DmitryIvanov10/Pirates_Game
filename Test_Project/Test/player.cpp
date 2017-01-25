@@ -17,8 +17,8 @@ Player::Player()
     cannons = initial_cannons;
     ammo = 0.5 * max_ammo;
     maneuverability = max_maneuverability;
-    set_angle(180);
-    sail_level = 1;
+    set_angle(225);
+    sail_level = 0;
     food = max_food / 2;
     gold = 10000;
     salary = 3;
@@ -29,8 +29,8 @@ Player::Player()
     // set cargo
     set_cargo();
 
-    X = 4000;
-    Y = 2000;
+    X = 3655;
+    Y = 3290;
 
     //setPixmap(QPixmap(":/Caravel_E_01.png"));
 }
@@ -68,19 +68,14 @@ void Player::keyPressEvent(QKeyEvent *event)
                     if (typeid(* item) == typeid(NPC) ||
                         typeid(* item) == typeid(Pirate))
                     {
-                        if (model && health >= max_health / 5 && !in_battle)
+                        if (model && health >= max_health / 5 && !in_battle && !in_city)
                             emit start_battle(dynamic_cast<Ship *>(item));
                     }
 
-                    /*if (typeid(* item) == typeid(City))
+                    if (typeid(* item) == typeid(City))
                     {
                         if (!in_city && !in_battle)
                             emit start_city(dynamic_cast<City *>(item));
-                    }*/
-                    if (typeid(* item) == typeid(Island))
-                    {
-                        if (!in_city && !in_battle)
-                            emit start_city(new City(0));
                     }
                 }
             }

@@ -4,8 +4,7 @@
 1 - czy chcę grać wejść do miasta
 2 - główne menu
 3 - gubernator
-4 - stoczek
+4 - stocznia
 5 - tawerna
 6 - sklep
-7 - czy chcę grać wyjść z punktu menu
-8 - czy chcę grać wyjść z miasta
+7 - czy chcę grać wyjść z miasta

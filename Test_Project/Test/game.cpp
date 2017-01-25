@@ -789,6 +789,7 @@ void Game::got_to_city(City *_city)
             hide_npc_info();
         reset_timer();
         city_phase = 1;
+        player->in_city = true;
         actual_city = _city;
         show_city_menu(city_phase);
     }
@@ -798,8 +799,8 @@ void Game::leave_city()
 {
     hide_city_menu(city_phase);
     city_phase = 0;
-    player->in_city = false;
     player_in_city = false;
+    player->in_city = false;
     player->reset_day();
     reset_timer();
 }
@@ -988,6 +989,10 @@ void Game::set_hud()
     city_start_menu_text->setDefaultTextColor(Qt::white);
     city_start_menu_text->setFont(QFont("times", 12));
 
+    leave_city_text->setPlainText(QString("Would you like to leave the city?"));
+    leave_city_text->setDefaultTextColor(Qt::white);
+    leave_city_text->setFont(QFont("times", 12));
+
     revolt_text->setPlainText(QString("Revolt on the ship. Ran away on a boat."));
     revolt_text->setDefaultTextColor(Qt::white);
     revolt_text->setFont(QFont("times", 12));
@@ -1112,9 +1117,6 @@ void Game::set_hud()
     battle_screen_rect[iterate]->setBrush(QBrush(QImage(":/red_01.png")));
     iterate++;
 
-
-
-
     //elementy fazy abordażu
     sink_abordage_menu_text->setPlainText(QString("Would you like to start abordage?"));
     sink_abordage_menu_text->setDefaultTextColor(Qt::white);
@@ -1124,13 +1126,23 @@ void Game::set_hud()
     sink_let_go_menu_text->setDefaultTextColor(Qt::white);
     sink_let_go_menu_text->setFont(QFont("times", 12));
 
-
     menu_bar->setPixmap(QPixmap(":/Menu_bar_03.png"));
     for (iterate = 0; iterate < 5; iterate++)
     {
         menu_buttons.push_back(new QGraphicsPixmapItem());
         menu_buttons[iterate]->setPixmap(QPixmap(":/big_button_02.png"));
     }
+
+    // elementy miasta
+    // stocznia
+    iterate = 0;
+
+    shipyard_img.push_back(new QGraphicsPixmapItem);
+    shipyard_img[iterate]->setPixmap(QPixmap(":/shipyard_screen_01.png"));
+    iterate++;
+
+    shipyard_img.push_back(new QGraphicsPixmapItem);
+    shipyard_img[iterate]->setPixmap(QPixmap(":/medium_button_01.png"));
 
     //elementy tekstowe
     iterate = 0;
@@ -1221,7 +1233,6 @@ void Game::set_hud()
     hud_txt[iterate]->setOpacity(0.5);
     //qDebug() << hud_txt[iterate]->size();
     scene->addItem(hud_txt[iterate]);
-    iterate++;
 
     //wypełnianie ładowni
     for(int i = 0; i < 7; i++)
@@ -1380,7 +1391,7 @@ void Game::set_hud()
     menu_text[5]->setFont(QFont("times", 12));
 
     //tekst menu miasta
-    for(int i = 0; i < 6; i++)
+    for(int i = 0; i < 7; i++)
     {
         city_menu_text.push_back(new QGraphicsTextItem());
         city_menu_text[i]->setFont(QFont("times", 16));
@@ -1406,6 +1417,9 @@ void Game::set_hud()
     city_menu_text[5]->setPlainText(QString("City menu"));
     city_menu_text[5]->setDefaultTextColor(Qt::darkGray);
     city_menu_text[5]->setFont(QFont("times", 12));
+
+    city_menu_text[6]->setPlainText(QString("To city"));
+    city_menu_text[6]->setDefaultTextColor(Qt::white);
 }
 
 void Game::set_island(short _x, short _y, QString _pixmap_name)
@@ -1476,12 +1490,12 @@ void Game::battle(short _battle_phase)
     {
         case 1:
             show_battle_menu(1);
+            player->in_battle = true;
             break;
         case 2:
             if (!player_at_battle)
             {
                 player_at_battle = true;
-                player->in_battle = true;
                 battles.push_back(new Battle(player, battle_ship));
                 connect(battles[battles.size()-1], SIGNAL(finish_battle(short)), this, SLOT(end_player_battle(short)));
                 connect(battles[battles.size()-1], SIGNAL(finish_battle(short)), battle_ship, SLOT(reset()));
@@ -1501,12 +1515,12 @@ void Game::show_city_menu(short _city_phase)
 {
     /*
     0 - poza miastem
-    1 - główne menu
-    2 - gubernator
-    3 - stoczek
-    4 - tawerna
-    5 - sklep
-    6 - czy chcę grać wyjść z punktu menu
+    1 - czy chcę grać wejść do miasta
+    2 - główne menu
+    3 - gubernator
+    4 - stocznia
+    5 - tawerna
+    6 - sklep
     7 - czy chcę grać wyjść z miasta
     */
     //short iter;
@@ -1517,7 +1531,8 @@ void Game::show_city_menu(short _city_phase)
             break;
         case 2:
             scene->addItem(menu_bar);
-            menu_bar->setPos(scene_x + resolution_x/2 - menu_bar->pixmap().width()/2, scene_y + resolution_y/2 - menu_bar->pixmap().height()/2);
+            menu_bar->setPos(scene_x + resolution_x/2 - menu_bar->pixmap().width()/2,
+                             scene_y + resolution_y/2 - menu_bar->pixmap().height()/2);
 
             for (short i = 0; i < 5; i++)
             {
@@ -1536,6 +1551,19 @@ void Game::show_city_menu(short _city_phase)
             scene->addItem(city_menu_text[5]);
             city_menu_text[5]->setPos(menu_bar->x() + menu_bar->pixmap().width()/2 - city_menu_text[5]->boundingRect().width()/2, menu_bar->y() + 45);
             break;
+        case 4:
+            scene->addItem(shipyard_img[0]);
+            shipyard_img[0]->setPos(scene_x + resolution_x/2 - shipyard_img[0]->pixmap().width()/2,
+                             scene_y + resolution_y/2 - shipyard_img[0]->pixmap().height()/2);
+            scene->addItem(shipyard_img[1]);
+            shipyard_img[1]->setPos(shipyard_img[0]->x() + 413, shipyard_img[0]->y() + 275);
+            scene->addItem(city_menu_text[6]);
+            city_menu_text[6]->setPos(shipyard_img[1]->x() + shipyard_img[1]->pixmap().width()/2
+                                                           - city_menu_text[6]->boundingRect().width()/2,
+                                      shipyard_img[1]->y() + 7);
+            break;
+        case 7:
+            show_first_menu();
     }
 }
 
@@ -1544,28 +1572,21 @@ void Game::hide_city_menu(short _city_phase)
     switch(_city_phase)
     {
         case 1:
-            for (short i=0; i<5; i++)
-            {
-                scene->removeItem(battle_start_menu[i]);
-            }
-            if (element1_in_scene)
-            {
-                scene->removeItem(battle_start_menu[5]);
-                element1_in_scene = false;
-            }
-            if (element2_in_scene)
-            {
-                scene->removeItem(battle_start_menu[6]);
-                element2_in_scene = false;
-            }
-            scene->removeItem(city_start_menu_text);
+            hide_first_menu();
             break;
         case 2:
             scene->removeItem(menu_bar);
-            for(int i = 0; i < 6; i++)
+            for(short i = 0; i < 6; i++)
                 scene->removeItem(city_menu_text[i]);
-            for(int i = 0; i < 5; i++)
+            for(short i = 0; i < 5; i++)
                 scene->removeItem(menu_buttons[i]);
+            break;
+        case 4:
+            for (size_t i = 0; i < shipyard_img.size(); i++)
+                scene->removeItem(shipyard_img[i]);
+            scene->removeItem(city_menu_text[6]);
+        case 7:
+            hide_first_menu();
             break;
     }
 }
@@ -1639,7 +1660,7 @@ void Game::show_battle_menu(short _battle_phase)
 
             //nazwa player
             scene->addItem(battle_screen_txt[iter]);
-            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 145);
+            battle_screen_txt[iter]->setPos(battle_screen_img[0]->x() + 40, battle_screen_img[0]->y() + 147);
             iter++;
 
             //stan zdrowia
@@ -1780,32 +1801,7 @@ void Game::hide_battle_menu(short _battle_phase)
         case 1:
         case 3:
         case 5:
-            for (size_t i=0; i<5; i++)
-            {
-                //qDebug() << "Removing " << i << " item.";
-                scene->removeItem(battle_start_menu[i]);
-            }
-            if (element1_in_scene)
-            {
-                //qDebug() << "Removing 1 item.";
-                scene->removeItem(battle_start_menu[5]);
-                element1_in_scene = false;
-            }
-            if (element2_in_scene)
-            {
-                //qDebug() << "Removing 2 item.";
-                scene->removeItem(battle_start_menu[6]);
-                element2_in_scene = false;
-            }
-            if (_battle_phase == 1){
-                //qDebug() << "Removing start menu text";
-                scene->removeItem(battle_start_menu_text);}
-            if (_battle_phase == 3){
-                //qDebug() << "Removing sink abordage menu text.";
-                scene->removeItem(sink_abordage_menu_text);}
-            if (_battle_phase == 5) {
-                //qDebug() << "Removing sink let go menu text";
-                scene->removeItem(sink_let_go_menu_text);}
+            hide_first_menu();
             break;
         case 11:
             if (battle_phase == 11)
@@ -1865,6 +1861,41 @@ void Game::show_first_menu()
                                                                - city_start_menu_text->boundingRect().width()/2,
                                      battle_start_menu[0]->y() + 45);
     }
+    if (city_phase == 7)
+    {
+        scene->addItem(leave_city_text);
+        leave_city_text->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2
+                                                               - leave_city_text->boundingRect().width()/2,
+                                     battle_start_menu[0]->y() + 45);
+    }
+}
+
+void Game::hide_first_menu()
+{
+    for (short i=0; i<5; i++)
+    {
+        scene->removeItem(battle_start_menu[i]);
+    }
+    if (element1_in_scene)
+    {
+        scene->removeItem(battle_start_menu[5]);
+        element1_in_scene = false;
+    }
+    if (element2_in_scene)
+    {
+        scene->removeItem(battle_start_menu[6]);
+        element2_in_scene = false;
+    }
+    if (battle_phase == 1)
+        scene->removeItem(battle_start_menu_text);
+    if (battle_phase == 3)
+        scene->removeItem(sink_abordage_menu_text);
+    if (battle_phase == 5)
+        scene->removeItem(sink_let_go_menu_text);
+    if (city_phase == 1)
+        scene->removeItem(city_start_menu_text);
+    if (city_phase == 7)
+        scene->removeItem(leave_city_text);
 }
 
 void Game::show_revolt_menu()
@@ -1979,7 +2010,7 @@ void Game::create_new_npc()
 void Game::mouse_moved()
 {
     // obszar dla landowania w mieście
-    if (city_phase == 1 && !menu_bool)
+    /*if (city_phase == 1 && !menu_bool)
     {
         if (battle_start_menu[1]->isUnderMouse() && !element1_in_scene)
         {
@@ -2002,10 +2033,18 @@ void Game::mouse_moved()
             scene->removeItem(battle_start_menu[6]);
             element2_in_scene = false;
         }
+    }*/
+
+    if (city_phase == 4)
+    {
+        if (shipyard_img[1]->isUnderMouse())
+            city_menu_text[6]->setDefaultTextColor(Qt::red);
+        else
+            city_menu_text[6]->setDefaultTextColor(Qt::white);
     }
 
-    // obszar menu dla rozpoczęcia walki
-    if ((battle_phase == 1 || battle_phase == 3 || battle_phase == 5) && !menu_bool)
+    // obszar menu dla rozpoczęcia walki, landowania w mieście i wypływaniu z miasta
+    if ((city_phase == 1 || city_phase == 7 || battle_phase == 1 || battle_phase == 3 || battle_phase == 5) && !menu_bool)
     {
         if (battle_start_menu[1]->isUnderMouse() && !element1_in_scene)
         {
@@ -2106,10 +2145,10 @@ void Game::mouse_moved()
     //obszar przycisku menu
     if (hud_img[5]->isUnderMouse())
     //if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
-        hud_txt[hud_txt.size()-1]->setDefaultTextColor(Qt::white);
+        hud_txt[hud_txt.size()-2]->setDefaultTextColor(Qt::white);
     else
     //if (!(view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40))
-        hud_txt[hud_txt.size()-1]->setDefaultTextColor(Qt::black);
+        hud_txt[hud_txt.size()-2]->setDefaultTextColor(Qt::black);
 
     //obsługa menu
     if (menu_bool)
@@ -2262,8 +2301,35 @@ void Game::mouse_pressed()
             clicked = true;
             hide_city_menu(city_phase);
             city_phase = 2;
-            player->in_city = true;
             player_in_city = true;
+            show_city_menu(city_phase);
+        }
+    }
+
+    if (city_phase == 7 && !menu_bool && !clicked)
+    {
+        if (battle_start_menu[1]->isUnderMouse())
+        {
+            clicked = true;
+            hide_city_menu(city_phase);
+            leave_city();
+        }
+        if (battle_start_menu[2]->isUnderMouse())
+        {
+            clicked = true;
+            hide_city_menu(city_phase);
+            city_phase = 2;
+            show_city_menu(city_phase);
+        }
+    }
+
+    if (city_phase == 4 && !clicked)
+    {
+        if (shipyard_img[1]->isUnderMouse())
+        {
+            clicked = true;
+            hide_city_menu(city_phase);
+            city_phase = 2;
             show_city_menu(city_phase);
         }
     }
@@ -2381,7 +2447,18 @@ void Game::mouse_pressed()
     if (player_in_city)
     {
         if (menu_buttons[4]->isUnderMouse())
-            leave_city();
+        {
+            //leave_city();
+            hide_city_menu(city_phase);
+            city_phase = 7;
+            show_city_menu(city_phase);
+        }
+        if (menu_buttons[3]->isUnderMouse())
+        {
+            hide_city_menu(city_phase);
+            city_phase = 4;
+            show_city_menu(city_phase);
+        }
     }
 }
 
