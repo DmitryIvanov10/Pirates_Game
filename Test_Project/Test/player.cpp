@@ -247,6 +247,14 @@ void Player::lower_the_sails()
     sail_level = 0;
 }
 
+bool Player::change_gold(int _gold)
+{
+    if (gold + _gold < 0)
+        return 1;
+    gold += _gold;
+    return 0;
+}
+
 void Player::set_days_off_harbor_morale(float value)
 {
     days_off_harbor_morale = value;
