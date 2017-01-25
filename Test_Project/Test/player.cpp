@@ -311,3 +311,20 @@ void Player::next_day()
         }
     }
 }
+
+void Player::buy_new_ship(short _model)
+{
+    model = _model;
+    set_model_parameters();
+    if (cannons > max_cannons)
+        cannons = max_cannons;
+    if (ammo > max_ammo)
+        ammo = max_ammo;
+    if (crew > max_crew)
+        crew = max_crew;
+    max_food = 60 * ceil(double (max_crew) / 15);
+    if (food > max_food)
+        food = max_food;
+    health = max_health;
+    maneuverability = max_maneuverability;
+}

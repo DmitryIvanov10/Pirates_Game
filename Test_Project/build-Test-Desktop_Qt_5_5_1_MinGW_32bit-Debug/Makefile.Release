@@ -363,6 +363,7 @@ release/qrc_harbors.cpp: ../Test/img/City/harbors.qrc \
 release/qrc_harbour_menu.cpp: ../Test/img/Interface/Bars/Harbour_menu/harbour_menu.qrc \
 		../Test/img/Interface/Bars/Harbour_menu/minus_on_02.png \
 		../Test/img/Interface/Bars/Harbour_menu/minus_on_02.png \
+		../Test/img/Interface/Bars/Harbour_menu/shipyard_screen_02.png \
 		../Test/img/Interface/Bars/Harbour_menu/plus_off_02.png \
 		../Test/img/Interface/Bars/Harbour_menu/minus_off_02.png \
 		../Test/img/Interface/Bars/Harbour_menu/shipyard_screen_01.png \
