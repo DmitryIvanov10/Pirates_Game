@@ -17,6 +17,9 @@ class City: public QObject, public QGraphicsPixmapItem
     bool active; //czy jest we view
 
     std::vector <float> prices; //ceny konkretnych dóbr
+    std::vector <int>  stretegic_prices; //ceny surowców strategicznych, kolejno - food, cannons, ammo
+    std::vector <int> ship_prices; //ceny statków
+    std::vector <short> ship_models; //modele statków do kupienia
 
 public:
     //konstrukory
@@ -31,6 +34,12 @@ public:
     void set_state(bool state); // zmienia stan miasta - czy jest aktywny
     bool in_view();
     float show_price(short _good); //funkcja pokazująca cenę obiektu _good
+
+    short get_selling_ship_model(int number);
+    int get_selling_ship_price(int number);
+    QString get_selling_ship_name(int number);
+    QString get_selling_ship_description(int number);
+
 
 signals:
 
