@@ -37,6 +37,9 @@ public:
 
     short get_selling_ship_model(int number);
     int get_selling_ship_price(int number);
+    QString get_selling_ship_name(int number);
+    QString get_selling_ship_description(int number);
+
 
 signals:
 

@@ -41,6 +41,71 @@ int City::get_selling_ship_price(int number)
     return ship_prices[number];
 }
 
+QString City::get_selling_ship_name(int number)
+{
+    if(number < 0 || number > ship_models.size())
+        return "Wrong number";
+    switch (ship_models[number])
+    {
+    case 1:
+        return QString("Sloop");
+        break;
+    case 2:
+        return QString("Cutter");
+        break;
+    case 3:
+        return QString("Caravel");
+        break;
+    case 4:
+        return QString("Brig");
+        break;
+    case 5:
+        return QString("Galeon");
+        break;
+    case 6:
+        return QString("Fregat");
+        break;
+    case 7:
+        return QString("Battleship");
+        break;
+    default:
+        return QString("Wrong model");
+    }
+}
+
+QString City::get_selling_ship_description(int number)
+{
+    if(number < 0 || number > ship_models.size())
+        return "Wrong number";
+    switch (ship_models[number])
+    {
+    case 1:
+        return QString("Sloop descripion");
+        break;
+    case 2:
+        return QString("Cutter descripion");
+        break;
+    case 3:
+        return QString("Caravel descripion");
+        break;
+    case 4:
+        return QString("Brig descripion");
+        break;
+    case 5:
+        return QString("Galeon descripion");
+        break;
+    case 6:
+        return QString("Fregat descripion");
+        break;
+    case 7:
+        return QString("Battleship descripion");
+        break;
+    default:
+        return QString("Wrong model descripion");
+
+    }
+}
+
 void City::set_state(bool state)
 {
     active = state;
