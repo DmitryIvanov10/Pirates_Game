@@ -2501,6 +2501,12 @@ void Game::mouse_pressed()
             shipyard_txt[5]->setPlainText(QString::number(player->get_ammo()));
         }
 
+        //kupowanie statkow
+        if (shipyard_img[3]->isUnderMouse())
+            player->buy_new_ship(actual_city->get_selling_ship_model(0));
+        if (shipyard_img[4]->isUnderMouse())
+            player->buy_new_ship(actual_city->get_selling_ship_model(1));
+
         center_view();
     }
 
