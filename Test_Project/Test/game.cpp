@@ -796,6 +796,13 @@ void Game::got_to_city(City *_city)
         city_phase = 1;
         player->in_city = true;
         actual_city = _city;
+        player_city_start_gold = player->get_gold();
+        player_city_start_health = player->get_health();
+        player_city_start_ammo = player->get_ammo();
+        player_city_start_cannons = player->get_cannons();
+        player_city_start_crew = player->get_crew();
+        player_city_start_salary = player->get_salary();
+        player_city_start_goods = player->get_goods();
         show_city_menu(city_phase);
     }
 }
@@ -1557,6 +1564,7 @@ void Game::battle(short _battle_phase)
             if (!player_at_battle)
             {
                 player_at_battle = true;
+                player->lower_the_sails();
                 battles.push_back(new Battle(player, battle_ship));
                 connect(battles[battles.size()-1], SIGNAL(finish_battle(short)), this, SLOT(end_player_battle(short)));
                 connect(battles[battles.size()-1], SIGNAL(finish_battle(short)), battle_ship, SLOT(reset()));
@@ -1840,8 +1848,8 @@ void Game::show_battle_menu(short _battle_phase)
             scene->addItem(battle_start_menu[5]);
             battle_start_menu[5]->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2 - battle_start_menu[5]->pixmap().width()/2,
                                          battle_start_menu[0]->y() + 100);
-            scene->addItem(battle_start_menu[8]);
-            battle_start_menu[8]->setPos(battle_start_menu[5]->x() + battle_start_menu[5]->pixmap().width()/2 - battle_start_menu[6]->pixmap().width()/2,
+            scene->addItem(battle_start_menu[6]);
+            battle_start_menu[6]->setPos(battle_start_menu[5]->x() + battle_start_menu[5]->pixmap().width()/2 - battle_start_menu[6]->pixmap().width()/2,
                                          battle_start_menu[5]->y() + 5);
             scene->addItem(end_battle_menu_text);
             end_battle_menu_text->setPos(battle_start_menu[0]->x() + battle_start_menu[0]->pixmap().width()/2
@@ -2286,7 +2294,7 @@ void Game::mouse_moved()
 
 void Game::mouse_pressed()
 {
-    // obsługa menu miasta
+    // czy chcę gracz wejść w miasto
     if (city_phase == 1 && !menu_bool && !clicked)
     {
         if (battle_start_menu[2]->isUnderMouse())
@@ -2301,10 +2309,30 @@ void Game::mouse_pressed()
             hide_city_menu(city_phase);
             city_phase = 2;
             player_in_city = true;
+            player->lower_the_sails();
             show_city_menu(city_phase);
         }
     }
 
+    // obsługa głownego menu miasta
+    if (city_phase == 2)
+    {
+        if (menu_buttons[4]->isUnderMouse())
+        {
+            //leave_city();
+            hide_city_menu(city_phase);
+            city_phase = 7;
+            show_city_menu(city_phase);
+        }
+        if (menu_buttons[3]->isUnderMouse())
+        {
+            hide_city_menu(city_phase);
+            city_phase = 4;
+            show_city_menu(city_phase);
+        }
+    }
+
+    // czy gracz chcę wyjść z miasta
     if (city_phase == 7 && !menu_bool && !clicked)
     {
         if (battle_start_menu[1]->isUnderMouse())
@@ -2322,8 +2350,10 @@ void Game::mouse_pressed()
         }
     }
 
+    // obsługa stoczni
     if (city_phase == 4 && !clicked)
     {
+        // wyjście ze stoczni
         if (shipyard_img[1]->isUnderMouse())
         {
             clicked = true;
@@ -2331,6 +2361,26 @@ void Game::mouse_pressed()
             city_phase = 2;
             show_city_menu(city_phase);
         }
+
+        // zmiana zdrowia
+        if (shipyard_img[5]->isUnderMouse() && player->get_health() < player->get_max_health())
+            player->set_health(player->get_health() + 1);
+        if (shipyard_img[8]->isUnderMouse() && player->get_health() > player_city_start_health)
+            player->set_health(player->get_health() - 1);
+
+        // zmiana armat
+        if (shipyard_img[6]->isUnderMouse() && player->get_cannons() < player->get_max_cannons())
+            player->set_cannons(player->get_cannons() + 1);
+        if (shipyard_img[9]->isUnderMouse() && player->get_cannons() > 0)
+            player->set_cannons(player->get_cannons() - 1);
+
+        // zmiana armat
+        if (shipyard_img[7]->isUnderMouse() && player->get_ammo() < player->get_max_ammo())
+            player->set_ammo(player->get_ammo() + 1);
+        if (shipyard_img[10]->isUnderMouse() && player->get_ammo() > 0)
+            player->set_ammo(player->get_ammo() - 1);
+
+        center_view();
     }
 
     // obsługa battle menu
@@ -2352,6 +2402,7 @@ void Game::mouse_pressed()
         }
     }
 
+    // obsługa walki statkami lub abordażu
     if ((battle_phase == 2 || battle_phase == 4) && !clicked)
     {
         if (battle_screen_img[1]->isUnderMouse())
@@ -2363,6 +2414,7 @@ void Game::mouse_pressed()
         }
     }
 
+    // czy chcę gracz zacząć abordaż
     if (battle_phase == 3 && !clicked)
     {
         if (battle_start_menu[2]->isUnderMouse())
@@ -2382,6 +2434,7 @@ void Game::mouse_pressed()
         }
     }
 
+    // czy chcę gracz odpuścić statek po wygranej
     if (battle_phase == 5 && !clicked)
     {
         if (battle_start_menu[2]->isUnderMouse())
@@ -2400,6 +2453,7 @@ void Game::mouse_pressed()
         }
     }
 
+    // potwierdzenie końca walki na morzu
     if (battle_phase == 11 && !clicked)
     {
         if (battle_start_menu[5]->isUnderMouse())
@@ -2422,7 +2476,7 @@ void Game::mouse_pressed()
     }
 
     //obszar przycisku menu
-    if (hud_img[5]->isUnderMouse() && !clicked && !player_at_battle && !showing_revolt_menu && city_phase != 2)
+    if (hud_img[5]->isUnderMouse() && !clicked && !player_at_battle && !showing_revolt_menu && !player->in_city)
     //if (view->get_x() > 10 && view->get_x() < 150 && view->get_y() > 5 && view->get_y() < 40)
     {
         clicked = true;
@@ -2440,24 +2494,6 @@ void Game::mouse_pressed()
         if (menu_buttons[4]->isUnderMouse())
         //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
             show_menu();
-    }
-
-    //obsługa menu miasta
-    if (player_in_city)
-    {
-        if (menu_buttons[4]->isUnderMouse())
-        {
-            //leave_city();
-            hide_city_menu(city_phase);
-            city_phase = 7;
-            show_city_menu(city_phase);
-        }
-        if (menu_buttons[3]->isUnderMouse())
-        {
-            hide_city_menu(city_phase);
-            city_phase = 4;
-            show_city_menu(city_phase);
-        }
     }
 }
 
@@ -2482,6 +2518,6 @@ void Game::delete_npc(NPC *_ship)
 
 void Game::esc_pressed()
 {
-    if (!player_at_battle && !showing_revolt_menu && city_phase != 2)
+    if (!player_at_battle && !showing_revolt_menu && !player->in_city)
         show_menu();
 }

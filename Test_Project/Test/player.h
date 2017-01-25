@@ -63,6 +63,7 @@ public:
     short get_max_food();
     short get_salary();
     void reset_day();
+    void lower_the_sails();
 
 public slots:
     void do_tour();

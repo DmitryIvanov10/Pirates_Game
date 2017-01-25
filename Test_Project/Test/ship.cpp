@@ -353,6 +353,11 @@ short Ship::get_cannons()
     return cannons;
 }
 
+short Ship::get_max_cannons()
+{
+    return max_cannons;
+}
+
 void Ship::set_cannons(short _cannons)
 {
     cannons = _cannons;
@@ -416,6 +421,11 @@ short Ship::get_sail_level()
 short Ship::get_ammo()
 {
     return ammo;
+}
+
+short Ship::get_max_ammo()
+{
+    return max_ammo;
 }
 
 void Ship::set_ammo(short _ammo)
