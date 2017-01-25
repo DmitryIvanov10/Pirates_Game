@@ -94,6 +94,7 @@ class Game : public QObject
 
     // dla miasta
     City * actual_city; // miasto, do którego dopłynął grać
+    QString currency = "goldens"; // game currency
 
     short player_city_start_gold; // początkowe złoto gracza przed kupowaniem
     short player_city_end_gold; // złoto gracza po kupowaniu

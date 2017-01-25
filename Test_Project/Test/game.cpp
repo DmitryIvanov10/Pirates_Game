@@ -1146,12 +1146,12 @@ void Game::set_hud()
     }
 
     // elementy miasta
-    // stocznia
+    // stocznia img
     iterate = 0;
 
     // main menu [0]
     shipyard_img.push_back(new QGraphicsPixmapItem);
-    shipyard_img[iterate]->setPixmap(QPixmap(":/shipyard_screen_01.png"));
+    shipyard_img[iterate]->setPixmap(QPixmap(":/shipyard_screen_02.png"));
     iterate++;
 
     // button back [1]
@@ -1210,6 +1210,17 @@ void Game::set_hud()
 
     // ship2 [12]
     shipyard_img.push_back(new QGraphicsPixmapItem);
+    iterate++;
+
+    // stocznia txt
+    // tekst nad zdrowiem [0], tekst nad armatami [1], tekst nad amunicją [2]
+    for (iterate = 0; iterate < 3; iterate++)
+    {
+        shipyard_txt.push_back(new QGraphicsTextItem());
+        shipyard_txt[iterate]->setFont(QFont("times", 12));
+        shipyard_txt[iterate]->setDefaultTextColor(Qt::black);
+    }
+
     iterate++;
 
     //elementy tekstowe
@@ -1486,7 +1497,7 @@ void Game::set_hud()
     city_menu_text[5]->setDefaultTextColor(Qt::darkGray);
     city_menu_text[5]->setFont(QFont("times", 12));
 
-    city_menu_text[6]->setPlainText(QString("To city"));
+    city_menu_text[6]->setPlainText(QString("Back"));
     city_menu_text[6]->setDefaultTextColor(Qt::white);
 }
 
@@ -1630,16 +1641,27 @@ void Game::show_city_menu(short _city_phase)
             city_menu_text[6]->setPos(shipyard_img[1]->x() + shipyard_img[1]->pixmap().width()/2
                                                            - city_menu_text[6]->boundingRect().width()/2,
                                       shipyard_img[1]->y() + 7);
+            // elementy img
             for (short i = 3; i < 11; i++)
                 scene->addItem(shipyard_img[i]);
             shipyard_img[3]->setPos(shipyard_img[0]->x() + 284, shipyard_img[0]->y() + 169);
             shipyard_img[4]->setPos(shipyard_img[3]->x(), shipyard_img[3]->y() + 126);
-            shipyard_img[5]->setPos(shipyard_img[0]->x() + 516, shipyard_img[0]->y() + 60);
-            shipyard_img[6]->setPos(shipyard_img[5]->x(), shipyard_img[5]->y() + 74);
-            shipyard_img[7]->setPos(shipyard_img[6]->x(), shipyard_img[6]->y() + 83);
+            shipyard_img[5]->setPos(shipyard_img[0]->x() + 516, shipyard_img[0]->y() + 51);
+            shipyard_img[6]->setPos(shipyard_img[5]->x(), shipyard_img[5]->y() + 79);
+            shipyard_img[7]->setPos(shipyard_img[6]->x(), shipyard_img[6]->y() + 87);
             shipyard_img[8]->setPos(shipyard_img[5]->x() - 83, shipyard_img[5]->y());
             shipyard_img[9]->setPos(shipyard_img[8]->x(), shipyard_img[6]->y());
             shipyard_img[10]->setPos(shipyard_img[8]->x(), shipyard_img[7]->y());
+
+            // elementy txt
+            for (short i = 0; i < 3; i++)
+            {
+                scene->addItem(shipyard_txt[i]);
+                shipyard_txt[i]->setPos(shipyard_img[i+8]->x() - 11, shipyard_img[i+5]->y() - 42);
+            }
+            shipyard_txt[0]->setPlainText(QString("Repair your ship \n   100 " + currency));
+            shipyard_txt[1]->setPlainText(QString("Buy/sell cannons \n35 " + currency + QString("/item")));
+            shipyard_txt[2]->setPlainText(QString(" Buy/sell ammo \n10 " + currency + QString("/item")));
             break;
         case 7:
             show_first_menu();
