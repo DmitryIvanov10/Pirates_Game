@@ -2503,9 +2503,15 @@ void Game::mouse_pressed()
 
         //kupowanie statkow
         if (shipyard_img[3]->isUnderMouse())
-            player->buy_new_ship(actual_city->get_selling_ship_model(0));
+        {
+            if (!player->change_gold(-actual_city->get_selling_ship_price(0)))
+                player->buy_new_ship(actual_city->get_selling_ship_model(0));
+        }
         if (shipyard_img[4]->isUnderMouse())
-            player->buy_new_ship(actual_city->get_selling_ship_model(1));
+        {
+            if (!player->change_gold(-actual_city->get_selling_ship_price(1)))
+                player->buy_new_ship(actual_city->get_selling_ship_model(1));
+        }
 
         center_view();
     }

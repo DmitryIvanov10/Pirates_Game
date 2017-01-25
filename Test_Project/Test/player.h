@@ -64,6 +64,8 @@ public:
     short get_salary();
     void reset_day();
     void buy_new_ship(short _model);    void lower_the_sails();
+    bool change_gold(int _gold);
+
 public slots:
     void do_tour();
     void next_day();
