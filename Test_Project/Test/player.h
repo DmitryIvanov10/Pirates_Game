@@ -63,8 +63,7 @@ public:
     short get_max_food();
     short get_salary();
     void reset_day();
-    void buy_new_ship(short _model);
-
+    void buy_new_ship(short _model);    void lower_the_sails();
 public slots:
     void do_tour();
     void next_day();

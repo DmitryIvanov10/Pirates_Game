@@ -89,6 +89,7 @@ public:
     short show_fraction(); //funkcja wyświetlająca frakcję jednostki
     QString get_fraction();
     short get_ammo();
+    short get_max_ammo();
     void set_ammo(short _ammo);
     short get_health();
     short get_max_health();
@@ -98,6 +99,7 @@ public:
     short get_max_crew();
     void set_crew(short _crew);
     short get_cannons();
+    short get_max_cannons();
     void set_cannons(short _cannons);
     float get_maneuverability();
     void set_maneuverability(short _health);

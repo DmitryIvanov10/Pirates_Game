@@ -242,6 +242,11 @@ void Player::reset_day()
     days_off_harbor_morale = 1.0f / 0.98f;
 }
 
+void Player::lower_the_sails()
+{
+    sail_level = 0;
+}
+
 void Player::set_days_off_harbor_morale(float value)
 {
     days_off_harbor_morale = value;

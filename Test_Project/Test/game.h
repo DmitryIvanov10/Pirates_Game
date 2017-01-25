@@ -92,8 +92,29 @@ class Game : public QObject
 
     Ship * battle_ship; // statek z którym walczy player
 
+    // dla miasta
     City * actual_city; // miasto, do którego dopłynął grać
 
+    short player_city_start_gold; // początkowe złoto gracza przed kupowaniem
+    short player_city_end_gold; // złoto gracza po kupowaniu
+
+    // dla stoczni
+    short player_city_start_health; // początkowe zdrowie gracza w mieście
+    short player_city_end_health; // zdrowie gracza po użyciu stoczni
+    short player_city_start_ammo; // początkowa amunicja gracza w mieście
+    short player_city_end_ammo; // amunicja gracza po użyciu stoczni
+    short player_city_start_cannons; // początkowa ilość armat gracza w mieście
+    short player_city_end_cannons; // ilość armat gracza po użyciu stoczni
+
+    // dla taverny
+    short player_city_start_crew; // początkowa załoga gracza w mieście
+    short player_city_end_crew; // załóga gracza po tawernie
+    short player_city_start_salary; // początkowa wypłata załodze gracza w mieście
+    short player_city_end_salary; // wypłata załodze gracza po tawernie
+
+    // dla targu
+    std::vector<Cargo *> player_city_start_goods; // początkowe towary gracza w mieście
+    std::vector<Cargo *> player_city_end_goods; // towary załodze gracza po targu
 
     bool clicked = false;
     int frame_time = 17;
