@@ -27,6 +27,16 @@ float City::show_price(short _good)
     return prices[_good];
 }
 
+void City::set_name(QString _name)
+{
+    name = _name;
+}
+
+QString City::get_name()
+{
+    return name;
+}
+
 short City::get_selling_ship_model(int number)
 {
     if(number < 0 || number > ship_models.size())

@@ -379,6 +379,12 @@ void Game::new_game()
     set_city(5348, 3199, 37, ":/town6.png", 4);
     set_city(3140,580, 26, ":/town6.png", 4);
     set_city(5995, 1981, 65, ":/town6.png", 3);
+
+    cities[0]->set_name(QString("Saint Kitts"));
+    cities[1]->set_name(QString("San Escobar"));
+    cities[2]->set_name(QString("Sint Marten"));
+    cities[3]->set_name(QString("Curacao"));
+    cities[4]->set_name(QString("La Desirade"));
 }
 
 double Game::get_x(short _id)
@@ -1659,6 +1665,7 @@ void Game::show_city_menu(short _city_phase)
                                      menu_buttons[i]->y() + 6);
             }
 
+            city_menu_text[5]->setPlainText(actual_city->get_name());
             scene->addItem(city_menu_text[5]);
             city_menu_text[5]->setPos(menu_bar->x() + menu_bar->pixmap().width()/2 - city_menu_text[5]->boundingRect().width()/2, menu_bar->y() + 45);
             break;
@@ -1690,14 +1697,15 @@ void Game::show_city_menu(short _city_phase)
             shipyard_img[12]->setPos(shipyard_img[0]->x() + 55, shipyard_img[0]->y()+225);
 
             // elementy txt
+            shipyard_txt[0]->setPlainText(QString("Repair your ship \n100 " + currency + "/unit"));
+            shipyard_txt[1]->setPlainText(QString("Buy/sell cannons \n35 " + currency + "/item"));
+            shipyard_txt[2]->setPlainText(QString(" Buy/sell ammo \n10 " + currency + "/item"));
             for (short i = 0; i < 3; i++)
             {
                 scene->addItem(shipyard_txt[i]);
-                shipyard_txt[i]->setPos(shipyard_img[i+8]->x() - 11, shipyard_img[i+8]->y() - 42);
+                shipyard_txt[i]->setPos(shipyard_img[i+8]->x() + 54 - shipyard_txt[i]->boundingRect().width()/2,
+                                        shipyard_img[i+8]->y() - 42);
             }
-            shipyard_txt[0]->setPlainText(QString("Repair your ship \n   100 " + currency));
-            shipyard_txt[1]->setPlainText(QString("Buy/sell cannons \n35 " + currency + "/item"));
-            shipyard_txt[2]->setPlainText(QString(" Buy/sell ammo \n10 " + currency + "/item"));
 
             shipyard_txt[3]->setPlainText(QString::number(short(100 * double(player->get_health()) /
                                                                              player->get_max_health())) + QString("%"));

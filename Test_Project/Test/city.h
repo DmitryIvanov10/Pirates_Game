@@ -4,6 +4,7 @@
 //biblioteki
 #include <QObject> //potrzebne do slotów i sygnałów
 #include <QGraphicsPixmapItem>
+#include <QString>
 #include <vector> //obsługa wektorów
 
 class City: public QObject, public QGraphicsPixmapItem
@@ -14,6 +15,7 @@ class City: public QObject, public QGraphicsPixmapItem
     short id_voronoi; //najbliższy wierzchołek voronoi
     short fraction; //frakcja do której miasto przynależy
     short id; //niepowtarzalne id portu
+    QString name; // nazwa miasta
     bool active; //czy jest we view
 
     std::vector <float> prices; //ceny konkretnych dóbr
@@ -34,6 +36,8 @@ public:
     void set_state(bool state); // zmienia stan miasta - czy jest aktywny
     bool in_view();
     float show_price(short _good); //funkcja pokazująca cenę obiektu _good
+    void set_name(QString _name);
+    QString get_name();
 
     short get_selling_ship_model(int number);
     int get_selling_ship_price(int number);
