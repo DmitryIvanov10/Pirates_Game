@@ -183,6 +183,12 @@ void Player::set_day_salary()
 
 void Player::set_morale()
 {
+    if (day < 5)
+    {
+        qDebug() << salary_morale;
+        qDebug() << food_morale;
+        qDebug() << days_off_harbor_morale;
+    }
     if (food < max_food/6)
         food_morale = 6 * float(food) / max_food;
     else
@@ -328,7 +334,9 @@ void Player::next_day()
 void Player::buy_new_ship(short _model)
 {
     model = _model;
+    salary = 3;
     set_model_parameters();
+    set_morale();
     if (cannons > max_cannons)
         cannons = max_cannons;
     if (ammo > max_ammo)
@@ -338,6 +346,8 @@ void Player::buy_new_ship(short _model)
     max_food = 60 * ceil(double (max_crew) / 15);
     if (food > max_food)
         food = max_food;
+    if (food < max_food / 4)
+        food = max_food / 4;
     health = max_health;
     maneuverability = max_maneuverability;
 }
