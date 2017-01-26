@@ -175,6 +175,8 @@ public:
     void battle(short _battle_phase);
     void hide_battle_menu(short _battle_phase);
     void hide_city_menu(short _city_phase);
+    void reset_start_city_parameters();
+    void reset_shipyard_text();
     void show_first_menu();
     void hide_first_menu();
 

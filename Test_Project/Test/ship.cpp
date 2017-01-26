@@ -260,6 +260,11 @@ int Ship::get_sprite_height()
     return sprite_height;
 }
 
+short Ship::get_model()
+{
+    return model;
+}
+
 QString Ship::get_model_name()
 {
     return model_name;

@@ -15,6 +15,13 @@ City::City(short _id_voronoi, short _fraction, short _id)
     ship_prices.push_back(6500);
     ship_models.push_back(4);
     ship_prices.push_back(8000);
+
+    // health [0]
+    prices.push_back(100);
+    // cannons [1]
+    prices.push_back(35);
+    // ammunition [2]
+    prices.push_back(10);
 }
 
 short City::show_fraction()
@@ -22,9 +29,16 @@ short City::show_fraction()
     return fraction;
 }
 
-float City::show_price(short _good)
+short City::show_price(QString _good)
 {
-    return prices[_good];
+    if (_good ==  "health")
+        return prices[0];
+
+    if (_good ==  "cannons")
+        return prices[1];
+
+    if (_good ==  "ammo")
+        return prices[2];
 }
 
 void City::set_name(QString _name)
@@ -37,21 +51,21 @@ QString City::get_name()
     return name;
 }
 
-short City::get_selling_ship_model(int number)
+short City::get_selling_ship_model(size_t number)
 {
     if(number < 0 || number > ship_models.size())
         return -1;
     return ship_models[number];
 }
 
-int City::get_selling_ship_price(int number)
+int City::get_selling_ship_price(size_t number)
 {
     if(number < 0 || number > ship_prices.size())
         return -1;
     return ship_prices[number];
 }
 
-QString City::get_selling_ship_name(int number)
+QString City::get_selling_ship_name(size_t number)
 {
     if(number < 0 || number > ship_models.size())
         return "Wrong number";
@@ -83,7 +97,7 @@ QString City::get_selling_ship_name(int number)
     }
 }
 
-QString City::get_selling_ship_description(int number)
+QString City::get_selling_ship_description(size_t number)
 {
     if(number < 0 || number > ship_models.size())
         return "Wrong number";
@@ -116,7 +130,7 @@ QString City::get_selling_ship_description(int number)
     }
 }
 
-QString City::get_selling_ship_img(int number)
+QString City::get_selling_ship_img(size_t number)
 {
     if(number < 0 || number > ship_models.size())
         return "Wrong number";

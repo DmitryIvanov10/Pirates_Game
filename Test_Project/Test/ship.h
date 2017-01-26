@@ -56,7 +56,6 @@ protected:
 
     QList<QGraphicsItem *> colliding_items;
 
-    void set_cargo(); //ustawia towary statku
     void set_name(); // ustawia imię statku
 
 public:
@@ -84,6 +83,7 @@ public:
     double get_y(); // get y coordinate of a ship
     int get_sprite_width(); // get width of the ship pixmap
     int get_sprite_height(); // get height of the ship pixmap
+    short get_model(); // get the number of the model
     QString get_model_name(); // get the name of the model
     QString get_name(); // get the name of the ship
     short show_fraction(); //funkcja wyświetlająca frakcję jednostki
@@ -114,6 +114,7 @@ public:
     short find_sprite_angle(); //dobieranie kątu statku za pomocą zmiennej angle
     short random_value(short _interval, short _value); //zwraca liczbę losową w okolicach _interval od _value z przeciążeniem do _value
     short random_value(short _interval); //zwraca liczbę losową od 0 do _interval przeciążoną do _interval
+    void set_cargo(); //ustawia towary statku
 
 signals:
 

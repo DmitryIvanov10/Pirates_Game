@@ -18,9 +18,9 @@ class City: public QObject, public QGraphicsPixmapItem
     QString name; // nazwa miasta
     bool active; //czy jest we view
 
-    std::vector <float> prices; //ceny konkretnych dóbr
-    std::vector <int>  stretegic_prices; //ceny surowców strategicznych, kolejno - food, cannons, ammo
-    std::vector <int> ship_prices; //ceny statków
+    std::vector <short> prices; //ceny konkretnych dóbr
+    std::vector <short>  stretegic_prices; //ceny surowców strategicznych, kolejno - food, cannons, ammo
+    std::vector <short> ship_prices; //ceny statków
     std::vector <short> ship_models; //modele statków do kupienia
 
 public:
@@ -35,15 +35,15 @@ public:
     void change_prices(); //funkcja losowej zmiany cen
     void set_state(bool state); // zmienia stan miasta - czy jest aktywny
     bool in_view();
-    float show_price(short _good); //funkcja pokazująca cenę obiektu _good
+    short show_price(QString _good); //funkcja pokazująca cenę obiektu _good
     void set_name(QString _name);
     QString get_name();
 
-    short get_selling_ship_model(int number);
-    int get_selling_ship_price(int number);
-    QString get_selling_ship_name(int number);
-    QString get_selling_ship_description(int number);
-    QString get_selling_ship_img(int number);
+    short get_selling_ship_model(size_t number);
+    int get_selling_ship_price(size_t number);
+    QString get_selling_ship_name(size_t number);
+    QString get_selling_ship_description(size_t number);
+    QString get_selling_ship_img(size_t number);
 
 
 signals:
