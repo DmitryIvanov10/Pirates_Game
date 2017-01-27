@@ -183,12 +183,6 @@ void Player::set_day_salary()
 
 void Player::set_morale()
 {
-    if (day < 5)
-    {
-        qDebug() << salary_morale;
-        qDebug() << food_morale;
-        qDebug() << days_off_harbor_morale;
-    }
     if (food < max_food/6)
         food_morale = 6 * float(food) / max_food;
     else
@@ -213,8 +207,8 @@ void Player::set_morale()
 void Player::revolt()
 {
     qDebug() << "Revolt";
-    emit revolt_signal();
     on_boat(crew / 3);
+    emit revolt_signal();
 }
 
 short Player::get_morale()
@@ -270,6 +264,11 @@ void Player::set_days_off_harbor_morale(float value)
 void Player::on_boat(short _crew)
 {
     model = 0;
+    sail_level = 0;
+    qDebug() << "Before : (" << X << ", " << Y << ")";
+    X = X + get_sprite_width()/2 - get_sprite_width(model)/2;
+    Y = Y + get_sprite_height()/2 - get_sprite_height(model)/2;
+    qDebug() << "After : (" << X << ", " << Y << ")";
     set_model_parameters();
     set_sprite_angle();
     health = max_health;
@@ -334,9 +333,12 @@ void Player::next_day()
 void Player::buy_new_ship(short _model)
 {
     model = _model;
-    salary = 3;
+    qDebug() << "Before : (" << X << ", " << Y << ")";
+    X = X + get_sprite_width()/2 - get_sprite_width(model)/2;
+    Y = Y + get_sprite_height()/2 - get_sprite_height(model)/2;
+    qDebug() << "After : (" << X << ", " << Y << ")";
     set_model_parameters();
-    set_morale();
+    set_sprite_angle();
     if (cannons > max_cannons)
         cannons = max_cannons;
     if (ammo > max_ammo)
@@ -350,4 +352,7 @@ void Player::buy_new_ship(short _model)
         food = max_food / 4;
     health = max_health;
     maneuverability = max_maneuverability;
+    salary = 3;
+    reset_day();
+    set_morale();
 }

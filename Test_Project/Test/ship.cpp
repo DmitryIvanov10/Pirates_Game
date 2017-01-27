@@ -260,6 +260,74 @@ int Ship::get_sprite_height()
     return sprite_height;
 }
 
+int Ship::get_sprite_width(short _model)
+{
+    switch(_model)
+    {
+        case 0:
+            return 40;
+            break;
+        case 1:
+            return 60;
+            break;
+        case 2:
+            return 60;
+            break;
+        case 3:
+            return 80;
+            break;
+        case 4:
+            return 80;
+            break;
+        case 5:
+            return 100;
+            break;
+        case 6:
+            return 100;
+            break;
+        case 7:
+            return 100;
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
+
+int Ship::get_sprite_height(short _model)
+{
+    switch(_model)
+    {
+        case 0:
+            return 40;
+            break;
+        case 1:
+            return 60;
+            break;
+        case 2:
+            return 60;
+            break;
+        case 3:
+            return 80;
+            break;
+        case 4:
+            return 80;
+            break;
+        case 5:
+            return 100;
+            break;
+        case 6:
+            return 100;
+            break;
+        case 7:
+            return 100;
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
+
 short Ship::get_model()
 {
     return model;

@@ -452,6 +452,9 @@ void Game::update_states()
 
 void Game::center_view()
 {
+    qDebug() << "X = " << player->get_x() - player->get_sprite_width()/2 << ", Y = " <<
+                          player->get_y() - player->get_sprite_height()/2;
+    qDebug() << player->get_model_name();
     player->setFocus();
 
     if (player->get_x() - scene_x < border_x)
@@ -2076,6 +2079,7 @@ void Game::show_revolt_menu()
 {
     reset_timer();
     showing_revolt_menu = true;
+    center_view();
     scene->addItem(battle_start_menu[0]);
     battle_start_menu[0]->setPos(scene_x + resolution_x/2 - battle_start_menu[0]->pixmap().width()/2,
                                  scene_y + resolution_y/2 - battle_start_menu[0]->pixmap().height()/2);
@@ -2531,7 +2535,6 @@ void Game::mouse_pressed()
                         reset_start_city_parameters();
                         reset_shipyard_text();
                         player->set_cargo();
-                        player->set_sprite_angle();
                     } else
                     {
                         player->change_gold(actual_city->get_selling_ship_price(i));
@@ -2630,6 +2633,10 @@ void Game::mouse_pressed()
         {
             clicked = true;
             hide_revolt_menu();
+            //player->set_sprite_angle();
+            /*qDebug() << "X = " << player->get_x() - player->get_sprite_width()/2 << ", Y = " <<
+                                  player->get_y() - player->get_sprite_height()/2;
+            qDebug() << player->get_model_name();*/
             reset_timer();
         }
     }

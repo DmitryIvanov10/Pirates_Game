@@ -83,6 +83,8 @@ public:
     double get_y(); // get y coordinate of a ship
     int get_sprite_width(); // get width of the ship pixmap
     int get_sprite_height(); // get height of the ship pixmap
+    int get_sprite_width(short _model); // get width of the ship pixmap
+    int get_sprite_height(short _model); // get height of the ship pixmap
     short get_model(); // get the number of the model
     QString get_model_name(); // get the name of the model
     QString get_name(); // get the name of the ship
