@@ -22,6 +22,7 @@ Player::Player()
     food = max_food / 2;
     gold = 10000;
     salary = 3;
+    set_day_salary();
     set_morale();
 
     probe->setPixmap(QPixmap(":/img/probe.png"));
@@ -265,10 +266,10 @@ void Player::on_boat(short _crew)
 {
     model = 0;
     sail_level = 0;
-    qDebug() << "Before : (" << X << ", " << Y << ")";
+    //qDebug() << "Before : (" << X << ", " << Y << ")";
     X = X + get_sprite_width()/2 - get_sprite_width(model)/2;
     Y = Y + get_sprite_height()/2 - get_sprite_height(model)/2;
-    qDebug() << "After : (" << X << ", " << Y << ")";
+    //qDebug() << "After : (" << X << ", " << Y << ")";
     set_model_parameters();
     set_sprite_angle();
     health = max_health;
@@ -279,6 +280,8 @@ void Player::on_boat(short _crew)
     food = 0;
     morale = 0;
     salary = 1;
+    set_day_salary();
+    one_day_food = 0;
     cannons = 0;
 }
 
@@ -291,7 +294,10 @@ void Player::next_day()
 {
     day++;
     set_day_salary();
-    gold -= one_day_salary;
+    if (gold > one_day_salary)
+        gold -= one_day_salary;
+    else
+        gold = 0;
     if (model)
     {
         one_day_food = ceil(double(crew) / 15);
@@ -333,10 +339,10 @@ void Player::next_day()
 void Player::buy_new_ship(short _model)
 {
     model = _model;
-    qDebug() << "Before : (" << X << ", " << Y << ")";
+    //qDebug() << "Before : (" << X << ", " << Y << ")";
     X = X + get_sprite_width()/2 - get_sprite_width(model)/2;
     Y = Y + get_sprite_height()/2 - get_sprite_height(model)/2;
-    qDebug() << "After : (" << X << ", " << Y << ")";
+    //qDebug() << "After : (" << X << ", " << Y << ")";
     set_model_parameters();
     set_sprite_angle();
     if (cannons > max_cannons)
@@ -354,5 +360,6 @@ void Player::buy_new_ship(short _model)
     maneuverability = max_maneuverability;
     salary = 3;
     reset_day();
+    set_day_salary();
     set_morale();
 }

@@ -452,9 +452,11 @@ void Game::update_states()
 
 void Game::center_view()
 {
-    qDebug() << "X = " << player->get_x() - player->get_sprite_width()/2 << ", Y = " <<
-                          player->get_y() - player->get_sprite_height()/2;
-    qDebug() << player->get_model_name();
+    //qDebug() << "X = " << player->get_x() - player->get_sprite_width()/2 << ", Y = " <<
+    //                      player->get_y() - player->get_sprite_height()/2;
+    //qDebug() << player->get_model_name();
+    if (battle_phase || city_phase || showing_revolt_menu || menu_bool)
+        hide_temp();
     player->setFocus();
 
     if (player->get_x() - scene_x < border_x)
@@ -698,6 +700,7 @@ void Game::center_view()
     {
         hud_temp_img[4]->setPos(scene_x + resolution_x/2 + 124, scene_y + resolution_y - 134);
         hud_temp_txt[4]->setPos(scene_x + resolution_x/2 + 124, scene_y + resolution_y - 136);
+        hud_temp_txt[4]->setPlainText(QString("Gold\n- " + QString::number(player->get_daily_salary()) + "\nper day"));
     }
     else
     {
@@ -1376,14 +1379,14 @@ void Game::set_hud()
     //elementy graficzne tymczasowe, odpowiadające im elementy tekstowe i bool'owskie
     iterate = 0;
 
-    //stan zdrowia
+    //stan zdrowia [0]
     hud_temp_img.push_back(new QGraphicsPixmapItem());
     hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_health_01.png"));
     scene->addItem(hud_temp_img[iterate]);
     //hud_temp_img[iterate]->setPos(0,0);
 
     hud_temp_txt.push_back(new QGraphicsTextItem());
-    hud_temp_txt[iterate]->setPlainText(QString("Health\n" + QString::number((int)(((float)player->get_health()/(float)player->get_max_health()) *100)) + "%\nMax\n" + QString::number(player->get_max_health())));
+    //hud_temp_txt[iterate]->setPlainText(QString("Health\n" + QString::number((int)(((float)player->get_health()/(float)player->get_max_health()) *100)) + "%\nMax\n" + QString::number(player->get_max_health())));
     hud_temp_txt[iterate]->setFont(QFont("times", 12));
     scene->addItem(hud_temp_txt[iterate]);
     //hud_temp_txt[iterate]->setPos(0,0);
@@ -1391,14 +1394,14 @@ void Game::set_hud()
     hud_temp_bool.push_back(0);
     iterate++;
 
-    //stan załogi
+    //stan załogi [1]
     hud_temp_img.push_back(new QGraphicsPixmapItem());
     hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_crew_01.png"));
     scene->addItem(hud_temp_img[iterate]);
     //hud_temp_img[iterate]->setPos(0,0);
 
     hud_temp_txt.push_back(new QGraphicsTextItem());
-    hud_temp_txt[iterate]->setPlainText(QString("Crew\n" + QString::number((int)(100*(float)player->get_crew()/(float)player->get_max_crew())) + "%\nMax\n" + QString::number(player->get_max_crew())));
+    //hud_temp_txt[iterate]->setPlainText(QString("Crew\n" + QString::number((int)(100*(float)player->get_crew()/(float)player->get_max_crew())) + "%\nMax\n" + QString::number(player->get_max_crew())));
     hud_temp_txt[iterate]->setFont(QFont("times", 12));
     scene->addItem(hud_temp_txt[iterate]);
     //hud_temp_txt[iterate]->setPos(0,0);
@@ -1406,14 +1409,14 @@ void Game::set_hud()
     hud_temp_bool.push_back(0);
     iterate++;
 
-    //stan jedzenia
+    //stan jedzenia [2]
     hud_temp_img.push_back(new QGraphicsPixmapItem());
     hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_food_01.png"));
     scene->addItem(hud_temp_img[iterate]);
     //hud_temp_img[iterate]->setPos(0,0);
 
     hud_temp_txt.push_back(new QGraphicsTextItem());
-    hud_temp_txt[iterate]->setPlainText(QString("Food\n"+ QString::number((int)(100*(float)player->get_food()/(float)player->get_max_food())) + "%\nper day\n- " + QString::number(player->get_daily_food())));
+    //hud_temp_txt[iterate]->setPlainText(QString("Food\n"+ QString::number((int)(100*(float)player->get_food()/(float)player->get_max_food())) + "%\nper day\n- " + QString::number(player->get_daily_food())));
     hud_temp_txt[iterate]->setFont(QFont("times", 12));
     scene->addItem(hud_temp_txt[iterate]);
     //hud_temp_txt[iterate]->setPos(0,0);
@@ -1421,7 +1424,7 @@ void Game::set_hud()
     hud_temp_bool.push_back(0);
     iterate++;
 
-    //stan morale
+    //stan morale [3]
     hud_temp_img.push_back(new QGraphicsPixmapItem());
     hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_morale_01.png"));
     scene->addItem(hud_temp_img[iterate]);
@@ -1436,14 +1439,14 @@ void Game::set_hud()
     hud_temp_bool.push_back(0);
     iterate++;
 
-    //stan złota
+    //stan złota [4]
     hud_temp_img.push_back(new QGraphicsPixmapItem());
     hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_gold_01.png"));
     scene->addItem(hud_temp_img[iterate]);
     //hud_temp_img[iterate]->setPos(0,0);
 
     hud_temp_txt.push_back(new QGraphicsTextItem());
-    hud_temp_txt[iterate]->setPlainText(QString("Gold\n- " + QString::number(player->get_daily_salary()) + "\nper day"));
+    //hud_temp_txt[iterate]->setPlainText(QString("Gold\n- " + QString::number(player->get_daily_salary()) + "\nper day"));
     hud_temp_txt[iterate]->setFont(QFont("times", 13));
     scene->addItem(hud_temp_txt[iterate]);
     //hud_temp_txt[iterate]->setPos(0,0);
@@ -1451,7 +1454,7 @@ void Game::set_hud()
     hud_temp_bool.push_back(0);
     iterate++;
 
-    //opis
+    //opis [5]
     hud_temp_img.push_back(new QGraphicsPixmapItem());
     hud_temp_img[iterate]->setPixmap(QPixmap(":/temp_bg_01.png"));
     scene->addItem(hud_temp_img[iterate]);
@@ -2102,6 +2105,12 @@ void Game::hide_revolt_menu()
     scene->removeItem(battle_start_menu[5]);
     scene->removeItem(battle_start_menu[6]);
     scene->removeItem(revolt_text);
+}
+
+void Game::hide_temp()
+{
+    for (short i = 0; i < hud_temp_bool.size(); i++)
+        hud_temp_bool[i] = false;
 }
 
 void Game::show_npc_info(NPC *_ship)

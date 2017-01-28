@@ -148,6 +148,7 @@ class Game : public QObject
     short npc_info_bar_y;
 
     void hide_revolt_menu();
+    void hide_temp();
 
 public:
     //static std::vector <Voronoi_point> map;

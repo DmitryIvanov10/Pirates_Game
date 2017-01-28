@@ -141,12 +141,8 @@ float Battle::set_morale_effect(short _morale)
 
 void Battle::next_move_sea()
 {
-    qDebug() << "";
-    qDebug() << timer1->isActive();
     if (timer1->isActive())
     {
-        qDebug() << "";
-        qDebug() << timer1->isActive();
         qDebug() << "";
         qDebug() << "New round on sea.";
 
