@@ -81,8 +81,51 @@ void Player::keyPressEvent(QKeyEvent *event)
                 }
             }
             break;
+        case Qt::Key_E:
+            colliding_items = collidingItems();
+            if (colliding_items.size() != 0)
+            {
+                foreach (QGraphicsItem * item, colliding_items)
+                {
+                    if (typeid(* item) == typeid(NPC) ||
+                        typeid(* item) == typeid(Pirate))
+                    {
+                        if (in_battle)
+                            emit click_yes(true, false);
+                    }
+
+                    if (typeid(* item) == typeid(City))
+                    {
+                        if (in_city)
+                            emit click_yes(false, true);
+                    }
+                }
+            }
+            break;
+        case Qt::Key_Q:
+            colliding_items = collidingItems();
+            if (colliding_items.size() != 0)
+            {
+                foreach (QGraphicsItem * item, colliding_items)
+                {
+                    if (typeid(* item) == typeid(NPC) ||
+                        typeid(* item) == typeid(Pirate))
+                    {
+                        if (in_battle)
+                            emit click_no(true, false);
+                    }
+
+                    if (typeid(* item) == typeid(City))
+                    {
+                        if (in_city)
+                            emit click_no(false, true);
+                    }
+                }
+            }
+            break;
         case Qt::Key_Escape:
             emit esc_pressed();
+            break;
     }
 
     //qDebug() << angle;

@@ -56,6 +56,10 @@ Game::Game(QObject *parent) : QObject(parent)
     connect(view, SIGNAL(mouse_released()), this, SLOT(mouse_released()));
     // klawisz escape
     connect(player, SIGNAL(esc_pressed()), this, SLOT(esc_pressed()));
+
+    // yes and no decision on small menu
+    connect(player, SIGNAL(click_yes(bool, bool)), this, SLOT(clicked_yes(bool,bool)));
+    connect(player, SIGNAL(click_no(bool, bool)), this, SLOT(clicked_no(bool,bool)));
     // renew npc list (up to 30)
     //connect(timer, SIGNAL(timeout()), this, SLOT(create_new_npc()));
 
@@ -2192,8 +2196,52 @@ void Game::create_new_npc()
     scene->addItem(npc_ships[npc_ships.size() - 1]->flag);
 }
 
+void Game::clicked_yes(bool _battle, bool _city)
+{
+    if (_battle)
+    {
+        if (battle_phase == 1)
+        {
+            hide_battle_menu(battle_phase);
+            battle_phase = 2;
+            show_battle_menu(battle_phase);
+            battle(battle_phase);
+            player_at_battle = true;
+        }
+    }
+    if (_city)
+    {
+        if (city_phase == 1)
+        {
+            hide_city_menu(city_phase);
+            city_phase = 2;
+            show_city_menu(city_phase);
+            player_in_city = true;
+        }
+    }
+}
+
+void Game::clicked_no(bool _battle, bool _city)
+{
+    if (_battle)
+    {
+        if (battle_phase == 1)
+        {
+            end_player_battle(0);
+        }
+    }
+    if (_city)
+    {
+        if (city_phase == 1)
+        {
+            leave_city();
+        }
+    }
+}
+
 void Game::mouse_moved()
 {
+    // shipyard menu
     if (city_phase == 4)
     {
         if (shipyard_img[1]->isUnderMouse())

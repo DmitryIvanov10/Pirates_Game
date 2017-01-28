@@ -211,6 +211,8 @@ public slots:
     //void delete_pirate(Pirate * _ship);
     void esc_pressed();
     void create_new_npc();
+    void clicked_yes(bool _battle, bool _city);
+    void clicked_no(bool _battle, bool _city);
 };
 
 #endif // GAME_H

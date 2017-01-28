@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Game_t {
-    QByteArrayData data[34];
-    char stringdata0[386];
+    QByteArrayData data[37];
+    char stringdata0[417];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -62,7 +62,10 @@ QT_MOC_LITERAL(29, 321, 14), // "mouse_released"
 QT_MOC_LITERAL(30, 336, 11), // "reset_timer"
 QT_MOC_LITERAL(31, 348, 10), // "delete_npc"
 QT_MOC_LITERAL(32, 359, 11), // "esc_pressed"
-QT_MOC_LITERAL(33, 371, 14) // "create_new_npc"
+QT_MOC_LITERAL(33, 371, 14), // "create_new_npc"
+QT_MOC_LITERAL(34, 386, 11), // "clicked_yes"
+QT_MOC_LITERAL(35, 398, 7), // "_battle"
+QT_MOC_LITERAL(36, 406, 10) // "clicked_no"
 
     },
     "Game\0new_day\0\0sink_abordage\0_battle_phase\0"
@@ -75,7 +78,8 @@ QT_MOC_LITERAL(33, 371, 14) // "create_new_npc"
     "Ship*\0end_player_battle\0_status\0"
     "mouse_moved\0mouse_pressed\0mouse_released\0"
     "reset_timer\0delete_npc\0esc_pressed\0"
-    "create_new_npc"
+    "create_new_npc\0clicked_yes\0_battle\0"
+    "clicked_no"
 };
 #undef QT_MOC_LITERAL
 
@@ -85,7 +89,7 @@ static const uint qt_meta_data_Game[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      23,   14, // methods
+      25,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -93,31 +97,33 @@ static const uint qt_meta_data_Game[] = {
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,  129,    2, 0x06 /* Public */,
-       3,    1,  130,    2, 0x06 /* Public */,
-       5,    1,  133,    2, 0x06 /* Public */,
-       7,    0,  136,    2, 0x06 /* Public */,
+       1,    0,  139,    2, 0x06 /* Public */,
+       3,    1,  140,    2, 0x06 /* Public */,
+       5,    1,  143,    2, 0x06 /* Public */,
+       7,    0,  146,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       8,    0,  137,    2, 0x0a /* Public */,
-       9,    1,  138,    2, 0x0a /* Public */,
-      10,    1,  141,    2, 0x0a /* Public */,
-      12,    1,  144,    2, 0x0a /* Public */,
-      15,    0,  147,    2, 0x0a /* Public */,
-      16,    0,  148,    2, 0x0a /* Public */,
-      17,    0,  149,    2, 0x0a /* Public */,
-      18,    0,  150,    2, 0x0a /* Public */,
-      19,    1,  151,    2, 0x0a /* Public */,
-      22,    0,  154,    2, 0x0a /* Public */,
-      23,    1,  155,    2, 0x0a /* Public */,
-      25,    1,  158,    2, 0x0a /* Public */,
-      27,    0,  161,    2, 0x0a /* Public */,
-      28,    0,  162,    2, 0x0a /* Public */,
-      29,    0,  163,    2, 0x0a /* Public */,
-      30,    0,  164,    2, 0x0a /* Public */,
-      31,    1,  165,    2, 0x0a /* Public */,
-      32,    0,  168,    2, 0x0a /* Public */,
-      33,    0,  169,    2, 0x0a /* Public */,
+       8,    0,  147,    2, 0x0a /* Public */,
+       9,    1,  148,    2, 0x0a /* Public */,
+      10,    1,  151,    2, 0x0a /* Public */,
+      12,    1,  154,    2, 0x0a /* Public */,
+      15,    0,  157,    2, 0x0a /* Public */,
+      16,    0,  158,    2, 0x0a /* Public */,
+      17,    0,  159,    2, 0x0a /* Public */,
+      18,    0,  160,    2, 0x0a /* Public */,
+      19,    1,  161,    2, 0x0a /* Public */,
+      22,    0,  164,    2, 0x0a /* Public */,
+      23,    1,  165,    2, 0x0a /* Public */,
+      25,    1,  168,    2, 0x0a /* Public */,
+      27,    0,  171,    2, 0x0a /* Public */,
+      28,    0,  172,    2, 0x0a /* Public */,
+      29,    0,  173,    2, 0x0a /* Public */,
+      30,    0,  174,    2, 0x0a /* Public */,
+      31,    1,  175,    2, 0x0a /* Public */,
+      32,    0,  178,    2, 0x0a /* Public */,
+      33,    0,  179,    2, 0x0a /* Public */,
+      34,    2,  180,    2, 0x0a /* Public */,
+      36,    2,  185,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -145,6 +151,8 @@ static const uint qt_meta_data_Game[] = {
     QMetaType::Void, 0x80000000 | 13,   14,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool, QMetaType::Bool,   35,   21,
+    QMetaType::Void, QMetaType::Bool, QMetaType::Bool,   35,   21,
 
        0        // eod
 };
@@ -178,6 +186,8 @@ void Game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 20: _t->delete_npc((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
         case 21: _t->esc_pressed(); break;
         case 22: _t->create_new_npc(); break;
+        case 23: _t->clicked_yes((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 24: _t->clicked_no((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -271,13 +281,13 @@ int Game::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 23)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 25;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 23)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 25;
     }
     return _id;
 }
