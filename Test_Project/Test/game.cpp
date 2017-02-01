@@ -58,8 +58,8 @@ Game::Game(QObject *parent) : QObject(parent)
     connect(player, SIGNAL(esc_pressed()), this, SLOT(esc_pressed()));
 
     // yes and no decision on small menu
-    connect(player, SIGNAL(click_yes(bool, bool)), this, SLOT(clicked_yes(bool,bool)));
-    connect(player, SIGNAL(click_no(bool, bool)), this, SLOT(clicked_no(bool,bool)));
+    connect(player, SIGNAL(click_yes()), this, SLOT(clicked_yes()));
+    connect(player, SIGNAL(click_no()), this, SLOT(clicked_no()));
     // renew npc list (up to 30)
     //connect(timer, SIGNAL(timeout()), this, SLOT(create_new_npc()));
 
@@ -2196,9 +2196,9 @@ void Game::create_new_npc()
     scene->addItem(npc_ships[npc_ships.size() - 1]->flag);
 }
 
-void Game::clicked_yes(bool _battle, bool _city)
+void Game::clicked_yes()
 {
-    if (_battle)
+    if (player->in_battle)
     {
         if (battle_phase == 1)
         {
@@ -2208,34 +2208,90 @@ void Game::clicked_yes(bool _battle, bool _city)
             battle(battle_phase);
             player_at_battle = true;
         }
+        if (battle_phase == 3)
+        {
+            hide_battle_menu(battle_phase);
+            battle_phase = 4;
+            show_battle_menu(battle_phase);
+            emit sink_abordage(battle_phase);
+        }
+        if (battle_phase == 5)
+        {
+            hide_battle_menu(battle_phase);
+            battle_phase = 7;
+            emit sink_let_go(true);
+        }
+        if (battle_phase == 11)
+        {
+            hide_battle_menu(battle_phase);
+            reset_timer();
+        }
     }
-    if (_city)
+    if (player->in_city)
     {
         if (city_phase == 1)
         {
             hide_city_menu(city_phase);
             city_phase = 2;
             show_city_menu(city_phase);
+            player->lower_the_sails();
             player_in_city = true;
         }
+        if (city_phase == 7)
+        {
+            leave_city();
+        }
+    }
+    if (showing_revolt_menu)
+    {
+        hide_revolt_menu();
+        reset_timer();
     }
 }
 
-void Game::clicked_no(bool _battle, bool _city)
+void Game::clicked_no()
 {
-    if (_battle)
+    if (player->in_battle)
     {
+        if (battle_phase == 2 || battle_phase == 4)
+        {
+            hide_battle_menu(battle_phase);
+            battle_phase = 8;
+            emit run_away();
+        }
         if (battle_phase == 1)
         {
             end_player_battle(0);
         }
+        if (battle_phase == 3)
+        {
+            hide_battle_menu(battle_phase);
+            battle_phase = 6;
+            emit sink_abordage(battle_phase);
+        }
+        if (battle_phase == 5)
+        {
+            hide_battle_menu(battle_phase);
+            battle_phase = 6;
+            emit sink_let_go(false);
+        }
     }
-    if (_city)
+    if (player->in_city)
     {
         if (city_phase == 1)
         {
             leave_city();
         }
+        if (city_phase == 7)
+        {
+            hide_city_menu(city_phase);
+            city_phase = 2;
+            show_city_menu(city_phase);
+        }
+    }
+    if (menu_bool)
+    {
+        QApplication::quit();
     }
 }
 
@@ -2477,32 +2533,36 @@ void Game::mouse_pressed()
         if (battle_start_menu[2]->isUnderMouse())
         {
             clicked = true;
-            hide_city_menu(city_phase);
-            leave_city();
+            /*hide_city_menu(city_phase);
+            leave_city();*/
+            clicked_no();
         }
         if (battle_start_menu[1]->isUnderMouse())
         {
             clicked = true;
-            hide_city_menu(city_phase);
+            /*hide_city_menu(city_phase);
             city_phase = 2;
             player_in_city = true;
             player->lower_the_sails();
-            show_city_menu(city_phase);
+            show_city_menu(city_phase);*/
+            clicked_yes();
         }
     }
 
     // obsługa głownego menu miasta
-    if (city_phase == 2)
+    if (city_phase == 2 && !clicked)
     {
         if (menu_buttons[4]->isUnderMouse())
         {
-            //leave_city();
-            hide_city_menu(city_phase);
+            /*hide_city_menu(city_phase);
             city_phase = 7;
-            show_city_menu(city_phase);
+            show_city_menu(city_phase);*/
+            clicked = true;
+            esc_pressed();
         }
         if (menu_buttons[3]->isUnderMouse())
         {
+            clicked = true;
             hide_city_menu(city_phase);
             city_phase = 4;
             show_city_menu(city_phase);
@@ -2515,15 +2575,17 @@ void Game::mouse_pressed()
         if (battle_start_menu[1]->isUnderMouse())
         {
             clicked = true;
-            hide_city_menu(city_phase);
-            leave_city();
+            /*hide_city_menu(city_phase);
+            leave_city();*/
+            clicked_yes();
         }
         if (battle_start_menu[2]->isUnderMouse())
         {
             clicked = true;
-            hide_city_menu(city_phase);
+            /*hide_city_menu(city_phase);
             city_phase = 2;
-            show_city_menu(city_phase);
+            show_city_menu(city_phase);*/
+            clicked_no();
         }
     }
 
@@ -2534,20 +2596,23 @@ void Game::mouse_pressed()
         if (shipyard_img[1]->isUnderMouse())
         {
             clicked = true;
-            hide_city_menu(city_phase);
+            /*hide_city_menu(city_phase);
             city_phase = 2;
-            show_city_menu(city_phase);
+            show_city_menu(city_phase);*/
+            esc_pressed();
         }
 
         // zmiana zdrowia
         if (shipyard_img[5]->isUnderMouse() && player->get_health() < player->get_max_health())
         {
+            clicked = true;
             player->set_health(player->get_health() + 1);
             player->change_gold(-actual_city->show_price(QString("health")));
             reset_shipyard_text();
         }
         if (shipyard_img[8]->isUnderMouse() && player->get_health() > player_city_start_health)
         {
+            clicked = true;
             player->set_health(player->get_health() - 1);
             player->change_gold(actual_city->show_price(QString("health")));
             reset_shipyard_text();
@@ -2555,12 +2620,14 @@ void Game::mouse_pressed()
         // zmiana armat
         if (shipyard_img[6]->isUnderMouse() && player->get_cannons() < player->get_max_cannons())
         {
+            clicked = true;
             player->set_cannons(player->get_cannons() + 1);
             player->change_gold(-actual_city->show_price(QString("cannons")));
             reset_shipyard_text();
         }
         if (shipyard_img[9]->isUnderMouse() && player->get_cannons() > 0)
         {
+            clicked = true;
             player->set_cannons(player->get_cannons() - 1);
             player->change_gold(actual_city->show_price(QString("cannons")));
             reset_shipyard_text();
@@ -2569,12 +2636,14 @@ void Game::mouse_pressed()
         // zmiana armat
         if (shipyard_img[7]->isUnderMouse() && player->get_ammo() < player->get_max_ammo())
         {
+            clicked = true;
             player->set_ammo(player->get_ammo() + 1);
             player->change_gold(-actual_city->show_price(QString("ammo")));
             reset_shipyard_text();
         }
         if (shipyard_img[10]->isUnderMouse() && player->get_ammo() > 0)
         {
+            clicked = true;
             player->set_ammo(player->get_ammo() - 1);
             player->change_gold(actual_city->show_price(QString("ammo")));
             reset_shipyard_text();
@@ -2584,6 +2653,7 @@ void Game::mouse_pressed()
         for (short i = 0; i < 2; i++)
             if (shipyard_img[i+3]->isUnderMouse())
             {
+                clicked = true;
                 if (!player->change_gold(-actual_city->get_selling_ship_price(i)))
                 {
                     if (actual_city->get_selling_ship_model(i) != player->get_model())
@@ -2608,16 +2678,18 @@ void Game::mouse_pressed()
         if (battle_start_menu[2]->isUnderMouse())
         {
             clicked = true;
-            hide_battle_menu(battle_phase);
-            end_player_battle(0);
+            /*hide_battle_menu(battle_phase);
+            end_player_battle(0);*/
+            clicked_no();
         }
         if (battle_start_menu[1]->isUnderMouse())
         {
             clicked = true;
-            hide_battle_menu(battle_phase);
+            /*hide_battle_menu(battle_phase);
             battle_phase = 2;
             show_battle_menu(battle_phase);
-            battle(battle_phase);
+            battle(battle_phase);*/
+            clicked_yes();
         }
     }
 
@@ -2627,9 +2699,10 @@ void Game::mouse_pressed()
         if (battle_screen_img[1]->isUnderMouse())
         {
             clicked = true;
-            hide_battle_menu(battle_phase);
+            /*hide_battle_menu(battle_phase);
             battle_phase = 8;
-            emit run_away();
+            emit run_away();*/
+            clicked_no();
         }
     }
 
@@ -2639,17 +2712,19 @@ void Game::mouse_pressed()
         if (battle_start_menu[2]->isUnderMouse())
         {
             clicked = true;
-            hide_battle_menu(battle_phase);
+            /*hide_battle_menu(battle_phase);
             battle_phase = 6;
-            emit sink_abordage(battle_phase);
+            emit sink_abordage(battle_phase);*/
+            clicked_no();
         }
         if (battle_start_menu[1]->isUnderMouse())
         {
             clicked = true;
-            hide_battle_menu(battle_phase);
+            /*hide_battle_menu(battle_phase);
             battle_phase = 4;
             show_battle_menu(battle_phase);
-            emit sink_abordage(battle_phase);
+            emit sink_abordage(battle_phase);*/
+            clicked_yes();
         }
     }
 
@@ -2659,16 +2734,18 @@ void Game::mouse_pressed()
         if (battle_start_menu[2]->isUnderMouse())
         {
             clicked = true;
-            hide_battle_menu(battle_phase);
+            /*hide_battle_menu(battle_phase);
             battle_phase = 6;
-            emit sink_let_go(false);
+            emit sink_let_go(false);*/
+            clicked_no();
         }
         if (battle_start_menu[1]->isUnderMouse())
         {
             clicked = true;
-            hide_battle_menu(battle_phase);
+            /*hide_battle_menu(battle_phase);
             battle_phase = 7;
-            emit sink_let_go(true);
+            emit sink_let_go(true);*/
+            clicked_yes();
         }
     }
 
@@ -2678,8 +2755,9 @@ void Game::mouse_pressed()
         if (battle_start_menu[5]->isUnderMouse())
         {
             clicked = true;
-            hide_battle_menu(battle_phase);
-            reset_timer();
+            /*hide_battle_menu(battle_phase);
+            reset_timer();*/
+            clicked_yes();
         }
     }
 
@@ -2689,12 +2767,9 @@ void Game::mouse_pressed()
         if (battle_start_menu[5]->isUnderMouse())
         {
             clicked = true;
-            hide_revolt_menu();
-            //player->set_sprite_angle();
-            /*qDebug() << "X = " << player->get_x() - player->get_sprite_width()/2 << ", Y = " <<
-                                  player->get_y() - player->get_sprite_height()/2;
-            qDebug() << player->get_model_name();*/
-            reset_timer();
+            /*hide_revolt_menu();
+            reset_timer();*/
+            clicked_yes();
         }
     }
 
@@ -2711,11 +2786,9 @@ void Game::mouse_pressed()
     {
         clicked = true;
         if (menu_buttons[3]->isUnderMouse())
-        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 45 && view->get_y() < resolution_y/2 + 95)
             QApplication::quit();
 
         if (menu_buttons[4]->isUnderMouse())
-        //if (view->get_x() > resolution_x/2 - 200 && view->get_x() < resolution_x/2 +200 && view->get_y() > resolution_y/2 + 155 && view->get_y() < resolution_y/2 + 200)
             show_menu();
     }
 }
@@ -2743,4 +2816,16 @@ void Game::esc_pressed()
 {
     if (!player_at_battle && !showing_revolt_menu && !player->in_city)
         show_menu();
+    if (city_phase == 2)
+    {
+        hide_city_menu(city_phase);
+        city_phase = 7;
+        show_city_menu(city_phase);
+    }
+    if (city_phase == 4)
+    {
+        hide_city_menu(city_phase);
+        city_phase = 2;
+        show_city_menu(city_phase);
+    }
 }

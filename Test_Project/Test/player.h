@@ -78,8 +78,8 @@ signals:
     void start_battle(Ship * _ship);
     void start_city(City * _city);
     void esc_pressed();
-    void click_yes(bool _battle, bool _city);
-    void click_no(bool _battle, bool _city);
+    void click_yes();
+    void click_no();
 };
 
 #endif // PLAYER_H

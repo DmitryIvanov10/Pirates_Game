@@ -32,8 +32,6 @@ Player::Player()
 
     X = 3655;
     Y = 3290;
-
-    //setPixmap(QPixmap(":/Caravel_E_01.png"));
 }
 
 void Player::keyPressEvent(QKeyEvent *event)
@@ -69,7 +67,7 @@ void Player::keyPressEvent(QKeyEvent *event)
                     if (typeid(* item) == typeid(NPC) ||
                         typeid(* item) == typeid(Pirate))
                     {
-                        if (model && health >= max_health / 5 && !in_battle && !in_city)
+                        if (model && health >= max_health / 5 && !in_battle && !in_city && ammo && cannons)
                             emit start_battle(dynamic_cast<Ship *>(item));
                     }
 
@@ -82,59 +80,21 @@ void Player::keyPressEvent(QKeyEvent *event)
             }
             break;
         case Qt::Key_E:
-            colliding_items = collidingItems();
-            if (colliding_items.size() != 0)
-            {
-                foreach (QGraphicsItem * item, colliding_items)
-                {
-                    if (typeid(* item) == typeid(NPC) ||
-                        typeid(* item) == typeid(Pirate))
-                    {
-                        if (in_battle)
-                            emit click_yes(true, false);
-                    }
-
-                    if (typeid(* item) == typeid(City))
-                    {
-                        if (in_city)
-                            emit click_yes(false, true);
-                    }
-                }
-            }
+        case Qt::Key_Y:
+            emit click_yes();
             break;
         case Qt::Key_Q:
-            colliding_items = collidingItems();
-            if (colliding_items.size() != 0)
-            {
-                foreach (QGraphicsItem * item, colliding_items)
-                {
-                    if (typeid(* item) == typeid(NPC) ||
-                        typeid(* item) == typeid(Pirate))
-                    {
-                        if (in_battle)
-                            emit click_no(true, false);
-                    }
-
-                    if (typeid(* item) == typeid(City))
-                    {
-                        if (in_city)
-                            emit click_no(false, true);
-                    }
-                }
-            }
+        case Qt::Key_N:
+            emit click_no();
             break;
         case Qt::Key_Escape:
             emit esc_pressed();
             break;
     }
-
-    //qDebug() << angle;
 }
 
 void Player::do_tour()
 {
-    /*if (isUnderMouse())
-        qDebug() << "Player is under mouse";*/
     probe->setPos(X + sprite_width/2- 60*sin(angle/180*M_PI),
                   Y + sprite_height/2 - 60*cos(angle/180*M_PI));
 

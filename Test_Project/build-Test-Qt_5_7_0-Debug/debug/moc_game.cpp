@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Game_t {
-    QByteArrayData data[37];
-    char stringdata0[417];
+    QByteArrayData data[36];
+    char stringdata0[409];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -64,8 +64,7 @@ QT_MOC_LITERAL(31, 348, 10), // "delete_npc"
 QT_MOC_LITERAL(32, 359, 11), // "esc_pressed"
 QT_MOC_LITERAL(33, 371, 14), // "create_new_npc"
 QT_MOC_LITERAL(34, 386, 11), // "clicked_yes"
-QT_MOC_LITERAL(35, 398, 7), // "_battle"
-QT_MOC_LITERAL(36, 406, 10) // "clicked_no"
+QT_MOC_LITERAL(35, 398, 10) // "clicked_no"
 
     },
     "Game\0new_day\0\0sink_abordage\0_battle_phase\0"
@@ -78,8 +77,7 @@ QT_MOC_LITERAL(36, 406, 10) // "clicked_no"
     "Ship*\0end_player_battle\0_status\0"
     "mouse_moved\0mouse_pressed\0mouse_released\0"
     "reset_timer\0delete_npc\0esc_pressed\0"
-    "create_new_npc\0clicked_yes\0_battle\0"
-    "clicked_no"
+    "create_new_npc\0clicked_yes\0clicked_no"
 };
 #undef QT_MOC_LITERAL
 
@@ -122,8 +120,8 @@ static const uint qt_meta_data_Game[] = {
       31,    1,  175,    2, 0x0a /* Public */,
       32,    0,  178,    2, 0x0a /* Public */,
       33,    0,  179,    2, 0x0a /* Public */,
-      34,    2,  180,    2, 0x0a /* Public */,
-      36,    2,  185,    2, 0x0a /* Public */,
+      34,    0,  180,    2, 0x0a /* Public */,
+      35,    0,  181,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -151,8 +149,8 @@ static const uint qt_meta_data_Game[] = {
     QMetaType::Void, 0x80000000 | 13,   14,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool, QMetaType::Bool,   35,   21,
-    QMetaType::Void, QMetaType::Bool, QMetaType::Bool,   35,   21,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -186,8 +184,8 @@ void Game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 20: _t->delete_npc((*reinterpret_cast< NPC*(*)>(_a[1]))); break;
         case 21: _t->esc_pressed(); break;
         case 22: _t->create_new_npc(); break;
-        case 23: _t->clicked_yes((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
-        case 24: _t->clicked_no((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 23: _t->clicked_yes(); break;
+        case 24: _t->clicked_no(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
