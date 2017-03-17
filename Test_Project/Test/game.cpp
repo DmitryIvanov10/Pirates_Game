@@ -861,9 +861,13 @@ void Game::end_player_battle(short _status)
                 break;
             case 3:
                 end_battle_menu_text->setPlainText(QString("You won and sank the opponent's ship!"));
+
+                player->change_gold(3000);  //zarobek za walkę
                 break;
             case 4:
                 end_battle_menu_text->setPlainText(QString("You won and let the opponent's ship go!"));
+
+                player->change_gold(3000);  //zarobek za walkę
                 break;
         }
         hide_battle_menu(battle_phase);
