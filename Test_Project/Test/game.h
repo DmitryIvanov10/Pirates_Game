@@ -124,10 +124,10 @@ class Game : public QObject
     int resolution_y = 768 - 3;
     int border_x = resolution_x / 4;
     int border_y = resolution_y / 4;
-    float version = 0.09f;
+    float version = 0.1f;
 
     const int start_npc_amount = 30; // ilość statków NPC
-    const int game_day = 200;
+    const int game_day = 500;
 
     double scene_x = player->get_x()-resolution_x/2; // położenie widoku x
     double scene_y = player->get_y()-resolution_y/2; // położenie widoku y

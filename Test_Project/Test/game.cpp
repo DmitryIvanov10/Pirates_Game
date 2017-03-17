@@ -1347,7 +1347,7 @@ void Game::set_hud()
 
     //tekst wersji
     hud_txt.push_back(new QGraphicsTextItem());
-    hud_txt[iterate]->setPlainText(QString("Version ") + QString("Pre Alpha ") + QString::number(version));
+    hud_txt[iterate]->setPlainText(QString("Version ") + QString("Alpha ") + QString::number(version));
     hud_txt[iterate]->setFont(QFont("times", 8));
     hud_txt[iterate]->setDefaultTextColor(Qt::lightGray);
     hud_txt[iterate]->setOpacity(0.5);
