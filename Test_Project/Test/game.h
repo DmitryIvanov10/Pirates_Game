@@ -182,6 +182,7 @@ public:
     void hide_city_menu(short _city_phase);
     void reset_start_city_parameters();
     void reset_shipyard_text();
+    void reset_tavern_text();
     void show_first_menu();
     void hide_first_menu();
 

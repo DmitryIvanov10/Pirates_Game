@@ -1267,6 +1267,37 @@ void Game::set_hud()
         shipyard_txt[iterate]->setDefaultTextColor(Qt::black);
     }
 
+    //elemnty tawerny
+    //elementy graficzne
+    tavern_img.push_back(new QGraphicsPixmapItem( QPixmap(":/tavern_screen.png") ) ); //główne menu
+
+    tavern_img.push_back(new QGraphicsPixmapItem( QPixmap(":/medium_button_01.png") ) ); //klawisz wyjścia
+
+    tavern_img.push_back(new QGraphicsPixmapItem( QPixmap(":/plus_off_02.png") ) );
+
+    tavern_img.push_back(new QGraphicsPixmapItem( QPixmap(":/plus_off_02.png") ) );
+
+    tavern_img.push_back(new QGraphicsPixmapItem( QPixmap(":/plus_off_02.png") ) );
+
+    tavern_img.push_back(new QGraphicsPixmapItem( QPixmap(":/minus_off_02.png") ) );
+
+    tavern_img.push_back(new QGraphicsPixmapItem( QPixmap(":/minus_off_02.png") ) );
+
+    tavern_img.push_back(new QGraphicsPixmapItem( QPixmap(":/minus_off_02.png") ) );
+    //elementy tekstowe
+    for (iterate = 0; iterate < 3; iterate++)
+    {
+        tavern_txt.push_back(new QGraphicsTextItem());
+        tavern_txt[iterate]->setFont(QFont("times", 12));
+        tavern_txt[iterate]->setDefaultTextColor(Qt::black);
+    }
+    for (iterate = 3; iterate < 6; iterate++)
+    {
+        tavern_txt.push_back(new QGraphicsTextItem());
+        tavern_txt[iterate]->setFont(QFont("times", 14));
+        tavern_txt[iterate]->setDefaultTextColor(Qt::black);
+    }
+
 
     //elementy tekstowe
     iterate = 0;
@@ -1729,7 +1760,33 @@ void Game::show_city_menu(short _city_phase)
             for(int i = 6; i < 12; i++)
             {
                 scene->addItem(shipyard_txt[i]);
+                tavern_img[0]->setPos(scene_x + resolution_x/2 - shipyard_img[0]->pixmap().width()/2,
+                        scene_y + resolution_y/2 - shipyard_img[0]->pixmap().height()/2);
             }
+
+            break;
+        case 5:
+            //tawerna
+
+            scene->addItem(tavern_img[0]);
+            tavern_img[0]->setPos(scene_x + resolution_x/2 - shipyard_img[0]->pixmap().width()/2, scene_y + resolution_y/2 - shipyard_img[0]->pixmap().height()/2);
+            scene->addItem(tavern_img[1]);
+            tavern_img[1]->setPos(tavern_img[0]->x() + 450, tavern_img[0]->y() + 275);
+            scene->addItem(city_menu_text[6]);
+            city_menu_text[6]->setPos(tavern_img[1]->x() + tavern_img[1]->pixmap().width()/2 - city_menu_text[6]->boundingRect().width()/2, tavern_img[1]->y() + 7);
+
+            for (int i = 2; i < 8; i++)
+                scene->addItem(tavern_img[i]);
+            tavern_img[2]->setPos(tavern_img[0]->x() + 200, tavern_img[0]->y() + 107);
+            tavern_img[3]->setPos(tavern_img[0]->x() + 485, tavern_img[0]->y() + 107);
+            tavern_img[4]->setPos(tavern_img[0]->x() + 400, tavern_img[0]->y() + 295);
+            tavern_img[5]->setPos(tavern_img[0]->x() + 100, tavern_img[0]->y() + 107);
+            tavern_img[6]->setPos(tavern_img[0]->x() + 370, tavern_img[0]->y() + 107);
+            tavern_img[7]->setPos(tavern_img[0]->x() + 175, tavern_img[0]->y() + 295);
+
+            reset_tavern_text();
+            for (short i = 0; i < 6; i++)
+                scene->addItem(tavern_txt[i]);
 
             break;
         case 7:
@@ -1757,6 +1814,15 @@ void Game::hide_city_menu(short _city_phase)
             for (size_t i = 0; i < shipyard_txt.size(); i++)
                 scene->removeItem(shipyard_txt[i]);
             scene->removeItem(city_menu_text[6]);
+            break;
+        case 5:
+            //tawerna
+            for (int i = 0; i < tavern_img.size(); i++)
+                scene->removeItem(tavern_img[i]);
+            for (int i = 0; i < tavern_txt.size(); i++)
+                scene->removeItem(tavern_txt[i]);
+            scene->removeItem(city_menu_text[6]);
+            break;
         case 7:
             hide_first_menu();
             break;
@@ -1800,6 +1866,24 @@ void Game::reset_shipyard_text()
     }
 }
 
+void Game::reset_tavern_text()
+{
+    tavern_txt[0]->setPlainText(QString("Buy food for your crue. The fever\nthey had, the lower will be morals"));
+    tavern_txt[1]->setPlainText(QString("Hire new crue members"));
+    tavern_txt[2]->setPlainText(QString("Set your salaries"));
+
+    tavern_txt[0] ->setPos(tavern_img[2]->x() - 35 - tavern_txt[0]->boundingRect().width()/2, tavern_img[2]->y() + 65);
+    tavern_txt[1] ->setPos(tavern_img[3]->x() - 40 - tavern_txt[1]->boundingRect().width()/2, tavern_img[3]->y() + 65);
+    tavern_txt[2] ->setPos(tavern_img[4]->x() - 90 - tavern_txt[2]->boundingRect().width()/2, tavern_img[4]->y() - 65);
+
+    tavern_txt[3]->setPlainText(QString::number(player->get_food()));
+    tavern_txt[4]->setPlainText(QString::number(player->get_crew()));
+    //tavern_txt[5]->setPlainText(QString::number(player->get_salary()));
+    for(int i = 3; i < 5; i++)
+        tavern_txt[i]->setPos(tavern_img[i+2]->x() + 60 - tavern_txt[i]->boundingRect().width()/2,
+                tavern_img[i+2]->y()-5);
+
+}
 
 void Game::show_battle_menu(short _battle_phase)
 {
@@ -2320,6 +2404,26 @@ void Game::mouse_moved()
                 shipyard_img[i]->setPixmap(QPixmap(":/minus_off_02.png"));
     }
 
+    //tavern menu
+    if(city_phase == 5)
+    {
+        if (tavern_img[1]->isUnderMouse())
+            city_menu_text[6]->setDefaultTextColor(Qt::red);
+        else
+            city_menu_text[6]->setDefaultTextColor(Qt::white);
+
+        for(int i = 2; i < 5; i++)
+            if (tavern_img[i]->isUnderMouse())
+                tavern_img[i]->setPixmap(QPixmap(":/plus_on_02.png"));
+            else
+                tavern_img[i]->setPixmap(QPixmap(":/plus_off_02.png"));
+        for (int i = 5; i < 8; i++)
+            if (tavern_img[i]->isUnderMouse())
+                tavern_img[i]->setPixmap(QPixmap(":/minus_on_02.png"));
+            else
+                tavern_img[i]->setPixmap(QPixmap(":/minus_off_02.png"));
+    }
+
     // obszar menu dla rozpoczęcia walki, landowania w mieście i wypływaniu z miasta
     if ((city_phase == 1 || city_phase == 7 || battle_phase == 1 || battle_phase == 3 || battle_phase == 5) && !menu_bool)
     {
@@ -2531,7 +2635,7 @@ void Game::mouse_moved()
 
 void Game::mouse_pressed()
 {
-    // czy chcę gracz wejść w miasto
+    // czy gracz chce wejść w miasto
     if (city_phase == 1 && !menu_bool && !clicked)
     {
         if (battle_start_menu[2]->isUnderMouse())
@@ -2556,13 +2660,12 @@ void Game::mouse_pressed()
     // obsługa głownego menu miasta
     if (city_phase == 2 && !clicked)
     {
-        if (menu_buttons[4]->isUnderMouse())
+        if (menu_buttons[2]->isUnderMouse())
         {
-            /*hide_city_menu(city_phase);
-            city_phase = 7;
-            show_city_menu(city_phase);*/
             clicked = true;
-            esc_pressed();
+            hide_city_menu(city_phase);
+            city_phase = 5;
+            show_city_menu(city_phase);
         }
         if (menu_buttons[3]->isUnderMouse())
         {
@@ -2570,6 +2673,14 @@ void Game::mouse_pressed()
             hide_city_menu(city_phase);
             city_phase = 4;
             show_city_menu(city_phase);
+        }
+        if (menu_buttons[4]->isUnderMouse())
+        {
+            /*hide_city_menu(city_phase);
+            city_phase = 7;
+            show_city_menu(city_phase);*/
+            clicked = true;
+            esc_pressed();
         }
     }
 
@@ -2637,7 +2748,7 @@ void Game::mouse_pressed()
             reset_shipyard_text();
         }
 
-        // zmiana armat
+        // zmiana amunicji
         if (shipyard_img[7]->isUnderMouse() && player->get_ammo() < player->get_max_ammo())
         {
             clicked = true;
@@ -2674,6 +2785,20 @@ void Game::mouse_pressed()
             }
 
         center_view();
+    }
+
+    //obsługa tawerny
+    if(city_phase == 5 && !clicked)
+    {
+        // wyjście ze stoczni
+        if (tavern_img[1]->isUnderMouse())
+        {
+            clicked = true;
+            hide_city_menu(city_phase);
+            city_phase = 2;
+            show_city_menu(city_phase);
+            esc_pressed();
+        }
     }
 
     // obsługa battle menu
