@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Wind_t {
-    QByteArrayData data[1];
-    char stringdata0[5];
+    QByteArrayData data[4];
+    char stringdata0[21];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -29,10 +29,13 @@ struct qt_meta_stringdata_Wind_t {
     )
 static const qt_meta_stringdata_Wind_t qt_meta_stringdata_Wind = {
     {
-QT_MOC_LITERAL(0, 0, 4) // "Wind"
+QT_MOC_LITERAL(0, 0, 4), // "Wind"
+QT_MOC_LITERAL(1, 5, 6), // "signal"
+QT_MOC_LITERAL(2, 12, 0), // ""
+QT_MOC_LITERAL(3, 13, 7) // "do_tour"
 
     },
-    "Wind"
+    "Wind\0signal\0\0do_tour"
 };
 #undef QT_MOC_LITERAL
 
@@ -42,26 +45,53 @@ static const uint qt_meta_data_Wind[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    0,   24,    2, 0x06 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags
+       3,    0,   25,    2, 0x0a /* Public */,
+
+ // signals: parameters
+    QMetaType::Void,
+
+ // slots: parameters
+    QMetaType::Void,
 
        0        // eod
 };
 
 void Wind::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        Wind *_t = static_cast<Wind *>(_o);
+        Q_UNUSED(_t)
+        switch (_id) {
+        case 0: _t->signal(); break;
+        case 1: _t->do_tour(); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (Wind::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Wind::signal)) {
+                *result = 0;
+            }
+        }
+    }
     Q_UNUSED(_a);
 }
 
 const QMetaObject Wind::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_Wind.data,
+    { &QGraphicsTextItem::staticMetaObject, qt_meta_stringdata_Wind.data,
       qt_meta_data_Wind,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
@@ -76,14 +106,29 @@ void *Wind::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_Wind.stringdata0))
         return static_cast<void*>(const_cast< Wind*>(this));
-    return QObject::qt_metacast(_clname);
+    return QGraphicsTextItem::qt_metacast(_clname);
 }
 
 int Wind::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QObject::qt_metacall(_c, _id, _a);
+    _id = QGraphicsTextItem::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 2)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 2;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 2)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 2;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void Wind::signal()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

@@ -32,6 +32,7 @@ INPUT(
 ./debug\qrc_islands6.o
 ./debug\qrc_harbors.o
 ./debug\qrc_harbour_menu.o
+./debug\qrc_tavern_menu.o
 ./debug\moc_player.o
 ./debug\moc_ship.o
 ./debug\moc_npc.o

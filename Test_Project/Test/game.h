@@ -77,8 +77,12 @@ class Game : public QObject
     std::vector <QGraphicsTextItem *> city_menu_text; // tekst menu miasta
     QGraphicsTextItem * city_start_menu_text = new QGraphicsTextItem(); // tekst menu przy przybyciu do miasta
     QGraphicsTextItem * leave_city_text = new QGraphicsTextItem(); // tekst menu przy wypływaniu z miasta
+
     std::vector <QGraphicsPixmapItem *> shipyard_img; // obrazki do stoczni
     std::vector <QGraphicsTextItem *> shipyard_txt; // tekst do stoczni
+
+    std::vector<QGraphicsPixmapItem*> tavern_img; //obrazki do tawerny
+    std::vector<QGraphicsTextItem*> tavern_txt; //tekst do stoczni
 
     QGraphicsTextItem * revolt_text = new QGraphicsTextItem();
 
@@ -109,7 +113,7 @@ class Game : public QObject
 
     // dla taverny
     short player_city_start_crew; // początkowa załoga gracza w mieście
-    short player_city_end_crew; // załóga gracza po tawernie
+    short player_city_end_crew; // załoga gracza po tawernie
     short player_city_start_salary; // początkowa wypłata załodze gracza w mieście
     short player_city_end_salary; // wypłata załodze gracza po tawernie
 

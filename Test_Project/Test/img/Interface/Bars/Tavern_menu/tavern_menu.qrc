@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>tavern_screen.png</file>
+    </qresource>
+</RCC>
