@@ -2799,6 +2799,35 @@ void Game::mouse_pressed()
             show_city_menu(city_phase);
             esc_pressed();
         }
+        //zmiana jedzenia
+        if (tavern_img[2]->isUnderMouse() && player->get_food() < player->get_max_food())
+        {
+            clicked = true;
+            if(!player->change_gold(-10*actual_city->show_price(QString("food"))))
+                player->change_food(10);
+            reset_tavern_text();
+        }
+        else if(tavern_img[5]->isUnderMouse() && player->get_food() >= 0)
+        {
+            clicked = true;
+            if(!player->change_gold(10*actual_city->show_price(QString("food"))))
+                player->change_food(-10);
+            reset_tavern_text();
+        }
+        if (tavern_img[3]->isUnderMouse() && player->get_food() < player->get_max_crew())
+        {
+            clicked = true;
+            if(!player->change_gold(-actual_city->show_price(QString("crew"))))
+                player->set_crew(player->get_crew()+1);
+            reset_tavern_text();
+        }
+        else if(tavern_img[6]->isUnderMouse() && player->get_crew() >= 0)
+        {
+            clicked = true;
+            if(!player->change_gold(actual_city->show_price(QString("crew"))))
+                player->set_crew(player->get_crew()-1);
+            reset_tavern_text();
+        }
     }
 
     // obsługa battle menu

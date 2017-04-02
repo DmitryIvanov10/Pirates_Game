@@ -66,6 +66,7 @@ public:
     void buy_new_ship(short _model);
     void lower_the_sails();
     bool change_gold(int _gold);
+    void change_food(int _food);
 
 public slots:
     void do_tour();

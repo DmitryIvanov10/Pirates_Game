@@ -259,6 +259,11 @@ bool Player::change_gold(int _gold)
     return 0;
 }
 
+void Player::change_food(int _food)
+{
+    food += _food;
+}
+
 void Player::set_days_off_harbor_morale(float value)
 {
     days_off_harbor_morale = value;
