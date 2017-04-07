@@ -1,0 +1,4 @@
+﻿  Generate moc_predefs.h
+  main.cpp
+main.cpp(18): warning C4189: 'game': local variable is initialized but not referenced
+  Test.vcxproj -> C:\Git\Pirates game\Test_Project\Test\release\Test.exe

@@ -1,6 +1,8 @@
 //biblioteki
 #include <QApplication>
 #include <vector>
+//#include <QtPlugin>
+//Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin);
 
 //pliki
 #include "game.h"

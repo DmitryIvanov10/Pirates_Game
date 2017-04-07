@@ -1,0 +1,636 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{d38ed7a2-347e-43c8-9e54-54c01422c871}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{81bc9872-dd7a-45ae-8460-180fce3c9e56}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="battle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cargo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="city.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="island.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="newgame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="npc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pirate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ship.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="voronoi_point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="voronoi_points.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wind.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_pirate.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_pirate.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_npc.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_npc.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_player.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_player.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_ship.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_ship.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_island.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_island.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_game.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_game.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_wind.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_wind.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_view.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_view.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_city.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_city.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_battle.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_battle.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_battle.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_boat.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_brig.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_brushes.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_caravel.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_cargo.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_city.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_harbors.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_harbour_menu.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_interface_hud.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_interface_temps.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_islands.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_islands2.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_islands4.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_islands5.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_islands6.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_menu_bars.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_resources.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_tavern_menu.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="battle.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="cargo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="city.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="game.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="island.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="newgame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="npc.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pirate.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="player.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ship.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="view.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="voronoi_point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="voronoi_points.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="wind.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="debug\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="release\moc_predefs.h.cbt">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\Ships\Boat\Boat_E_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Boat\Boat_NE_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Boat\Boat_NW_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Boat\Boat_N_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Boat\Boat_SE_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Boat\Boat_SW_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Boat\Boat_S_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Boat\Boat_W_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Brig\Brig_E_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Brig\Brig_NE_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Brig\Brig_NW_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Brig\Brig_N_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Brig\Brig_SE_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Brig\Brig_SW_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Brig\Brig_S_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Brig\Brig_W_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Caravel\Caravel_E_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Caravel\Caravel_NE_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Caravel\Caravel_NW_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Caravel\Caravel_N_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Caravel\Caravel_SE_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Caravel\Caravel_SW_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Caravel\Caravel_S_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Ships\Caravel\Caravel_W_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Fractions\Flag_British_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Fractions\Flag_French_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Fractions\Flag_Netherlands_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Fractions\Flag_Spanish_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_LD_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_LD_03.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_PD_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_PD_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_PG_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_PG_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_SD_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_SD_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_SD_03.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_SG_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_SG_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\Interface_SG_03.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Bars\Menu\Menu_bar_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\City\Menu_bar_03.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Battle\Message_bar_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Battle\Message_bar_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Battle\Small_button_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\arrow_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\HUD\arrow_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="img\Interface\Battle\battle.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="img\Interface\Battle\battle_screen_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Battle\big_button_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\City\big_button_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="img\Ships\Boat\boat.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Ships\Brig\brig.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Interface\Brushes\brushes.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Ships\Caravel\caravel.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Interface\Cargo\cargo.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Interface\City\city.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="img\Interface\Cargo\cocoa_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\coffee_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\corn_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\cotton_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Battle\cross_off_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Battle\cross_on_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\ebony_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\flour_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\fruits_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Brushes\green_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="img\City\harbors.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Interface\Bars\Harbour_menu\harbour_menu.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="img\Interface\HUD\interface_LG_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="img\Interface\HUD\interface_hud.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Interface\Temps\interface_temps.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="img\Islands\island_a1_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Islands\island_a1_03.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Islands\island_a2_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Islands\island_a2_03.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Islands\island_a3_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Islands\island_a4_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Islands\island_a4_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Islands\island_a5_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Islands\island_a6_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="img\Islands\islands.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Islands\islands2.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Islands\islands4.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Islands\islands5.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="img\Islands\islands6.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="img\Interface\Cargo\mahogany_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Battle\medium_button_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="img\Interface\Bars\Menu\menu_bars.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="img\Interface\Bars\Harbour_menu\minus_off_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Bars\Harbour_menu\minus_on_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\pedlock_03.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Bars\Harbour_menu\plus_off_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Bars\Harbour_menu\plus_on_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\probe.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Brushes\red_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="resources.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="img\Interface\Cargo\rum_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Sails\sail_full_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Sails\sail_half_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Sails\sail_none_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Sea\sea_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Bars\Harbour_menu\shipyard_screen_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Bars\Harbour_menu\shipyard_screen_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\spices_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\sugar_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Cargo\tabacco_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="img\Interface\Bars\Tavern_menu\tavern_menu.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="img\Interface\Bars\Tavern_menu\tavern_screen.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Temps\temp__npc_info_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Temps\temp__npc_info_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Temps\temp_bg_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Temps\temp_crew_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Temps\temp_food_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Temps\temp_gold_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Temps\temp_health_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Temps\temp_morale_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Battle\tick_off_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Battle\tick_on_01.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\City\town4.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\City\town5.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\City\town6.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="img\Interface\Brushes\yellow_02.png">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
