@@ -12,6 +12,10 @@
 6.	statek mi zniknął :( mogłem nadal pływać, ale mój obrazek nie był widoczny.
 	nie pomogła zmiana kąty statku (chyba było przed tym, jak dodaliśmy Pixmap łódzi - dlatego nie było widać statku)
 
+7.	elementy menu określony jako temporary, nie zniakają ze sceny, a przenoszą się do pozycji 0x0y mapy
 
+8.	wyjście z tawerny oznacza wyście z portu
+
+9.	nie ma ceny żywności w porcie
 
 
